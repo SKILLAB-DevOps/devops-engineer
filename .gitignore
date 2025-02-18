@@ -1,0 +1,16 @@
+.ipynb_checkpoints/
+.venv/
+.mypy_cache
+.vscode
+build/
+*egg-info
+.pytest_cache
+__pycache__
+.DS_Store
+
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+.terraform/
+
+*.pem

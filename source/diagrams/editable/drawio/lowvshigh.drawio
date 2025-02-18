@@ -1,0 +1,31 @@
+<mxfile host="Electron" modified="2023-07-08T12:58:11.642Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="E6U86lEsZ2AhRqrUi-ol" version="21.6.1" type="device">
+  <diagram name="Page-1" id="rxz5G02rqbF4uBFmE-Gu">
+    <mxGraphModel dx="523" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="I1CZPEyMBiO0fx2vizw2-1" value="&lt;h1&gt;High level languages&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="I1CZPEyMBiO0fx2vizw2-2" value="&lt;h1&gt;Intermediary languages&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="200" y="270" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="I1CZPEyMBiO0fx2vizw2-3" value="&lt;h1&gt;Low level languages&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="200" y="350" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="I1CZPEyMBiO0fx2vizw2-4" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#99FF99;strokeColor=#666666;gradientColor=#FFCCE6;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="612.26" y="400" as="sourcePoint" />
+            <mxPoint x="612.26" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I1CZPEyMBiO0fx2vizw2-5" value="&lt;h3&gt;&lt;ol&gt;&lt;li style=&quot;&quot;&gt;human readable&lt;/li&gt;&lt;li&gt;slower and more memory usage&lt;/li&gt;&lt;li&gt;easier to learn&lt;/li&gt;&lt;li&gt;less code broad view&lt;/li&gt;&lt;li&gt;lots of libraries&lt;/li&gt;&lt;/ol&gt;&lt;/h3&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="225" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="I1CZPEyMBiO0fx2vizw2-7" value="&lt;h3&gt;&lt;ol&gt;&lt;li style=&quot;&quot;&gt;not easy to read&lt;/li&gt;&lt;li&gt;faster and performant&lt;/li&gt;&lt;li&gt;harder to learn&lt;/li&gt;&lt;li&gt;more code narrow view&lt;/li&gt;&lt;li&gt;good amount of libraries&lt;/li&gt;&lt;/ol&gt;&lt;/h3&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;" vertex="1" parent="1">
+          <mxGeometry x="500" y="410" width="225" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

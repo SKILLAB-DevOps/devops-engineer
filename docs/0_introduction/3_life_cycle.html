@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0.3 Software Development Lifecycle Management &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="0.4 SCRUM Agile" href="4_scrum_agile.html" />
+    <link rel="prev" title="0.2 DevOps Roadmap" href="2_roadmap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">System Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">0.3 Software Development Lifecycle Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/0_introduction/3_life_cycle.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="software-development-lifecycle-management">
+<h1>0.3 Software Development Lifecycle Management<a class="headerlink" href="#software-development-lifecycle-management" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/sdlc.png"><img alt="DevOps Stages" src="../_images/sdlc.png" style="width: 500px;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Everything dies — even software.</p>
+<p>All applications will eventually be created, updated, reworked, and retired.</p>
+</div>
+<section id="explain-like-i-m-5-eli5-of-sdlc">
+<h2>“Explain Like I’m 5” (ELI5) of SDLC<a class="headerlink" href="#explain-like-i-m-5-eli5-of-sdlc" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/tree_house.png"><img alt="Build an application in the cloud" src="../_images/tree_house.png" style="width: 1000px;" />
+</a>
+<p>Imagine you’re building a tree house with your friends. Here’s how the process is similar to managing the lifecycle of software:</p>
+<ol class="arabic simple">
+<li><p><strong>Requirements Analysis</strong>:</p>
+<ul class="simple">
+<li><p>You gather your friends to discuss what they want in the tree house: a rope ladder, a slide, or maybe a secret trapdoor. You make a list of all the features that would make the tree house fun and functional for everyone.</p></li>
+<li><p><em>In software</em>: This is the phase where developers talk to stakeholders or users to understand what the software needs to do.</p></li>
+</ul>
+</li>
+<li><p><strong>Design</strong>:</p>
+<ul class="simple">
+<li><p>You take out a notebook and draw a detailed plan for the tree house. You decide where the ladder will go, how big the windows will be, and how sturdy the structure needs to be.</p></li>
+<li><p><em>In software</em>: Designers and architects create blueprints, diagrams, and workflows for the software, planning how it will work and look.</p></li>
+</ul>
+</li>
+<li><p><strong>Development</strong>:</p>
+<ul class="simple">
+<li><p>You grab your tools and start building the tree house based on your design. You hammer in nails, saw the wood, and construct the walls and roof.</p></li>
+<li><p><em>In software</em>: Developers write code to bring the designs to life, turning concepts into a working application.</p></li>
+</ul>
+</li>
+<li><p><strong>Testing</strong>:</p>
+<ul class="simple">
+<li><p>Before letting anyone climb into the tree house, you make sure it’s safe. You test the ladder, check the walls, and ensure the roof won’t leak. If something is wrong, you fix it.</p></li>
+<li><p><em>In software</em>: QA teams test the software to find bugs, ensure it works as expected, and meets the requirements.</p></li>
+</ul>
+</li>
+<li><p><strong>Deployment</strong>:</p>
+<ul class="simple">
+<li><p>The tree house is ready! You and your friends start using it for secret meetings or just hanging out.</p></li>
+<li><p><em>In software</em>: The application is deployed to users, who can now start using it.</p></li>
+</ul>
+</li>
+<li><p><strong>Maintenance</strong>:</p>
+<ul class="simple">
+<li><p>Over time, the paint might peel, or a board might loosen. You fix these problems and even add new features, like a flag or a zipline, based on your friends’ suggestions.</p></li>
+<li><p><em>In software</em>: Developers release updates to fix issues, improve performance, or add new features as needed.</p></li>
+</ul>
+</li>
+<li><p><strong>Retirement</strong>:</p>
+<ul class="simple">
+<li><p>Eventually, you outgrow the tree house and decide to take it down. Maybe you replace it with something new.</p></li>
+<li><p><em>In software</em>: When the application is no longer useful, it’s retired, and users transition to a newer solution.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="software-development-life-cycle">
+<h2>Software Development Life Cycle<a class="headerlink" href="#software-development-life-cycle" title="Link to this heading"></a></h2>
+<p>The <strong>Software Development Life Cycle (SDLC)</strong> is a structured process used to manage the entire lifespan of a software application. It ensures that software is developed efficiently, meets user needs, and evolves with changing requirements.</p>
+<p>Each stage of the SDLC serves a critical purpose:</p>
+<ol class="arabic simple">
+<li><p><strong>Requirements Analysis</strong>:</p>
+<ul class="simple">
+<li><p>Developers meet with stakeholders to understand the problem the software will solve and what features are needed.</p></li>
+<li><p><em>Output</em>: A document outlining functional (what the software does) and non-functional (performance, security, etc.) requirements.</p></li>
+</ul>
+</li>
+<li><p><strong>Design</strong>:</p>
+<ul class="simple">
+<li><p>Architects plan the software’s structure, including its database design, user interface, and system architecture.</p></li>
+<li><p><em>Output</em>: Detailed diagrams, mockups, and technical specifications.</p></li>
+</ul>
+</li>
+<li><p><strong>Development</strong>:</p>
+<ul class="simple">
+<li><p>The actual coding happens here. Developers write the application’s logic, connect it to databases, and integrate it with other systems.</p></li>
+<li><p><em>Output</em>: The first working version of the software, often called the MVP (Minimum Viable Product).</p></li>
+</ul>
+</li>
+<li><p><strong>Testing</strong>:</p>
+<ul class="simple">
+<li><p>The software is rigorously tested to identify bugs, performance bottlenecks, or security vulnerabilities.</p></li>
+<li><p><em>Output</em>: A stable version of the software that meets quality standards.</p></li>
+</ul>
+</li>
+<li><p><strong>Deployment</strong>:</p>
+<ul class="simple">
+<li><p>The tested software is released to users. This can be a big launch or incremental rollouts depending on the strategy.</p></li>
+<li><p><em>Output</em>: A live application accessible to users.</p></li>
+</ul>
+</li>
+<li><p><strong>Maintenance</strong>:</p>
+<ul class="simple">
+<li><p>This is the longest phase, where updates, bug fixes, and new features are continuously added based on user feedback.</p></li>
+<li><p><em>Output</em>: A constantly evolving and improving software product.</p></li>
+</ul>
+</li>
+<li><p><strong>Retirement</strong>:</p>
+<ul class="simple">
+<li><p>When the software is no longer needed or supported, it’s decommissioned. Data is migrated to a new system, and users are transitioned.</p></li>
+<li><p><em>Output</em>: A planned and smooth end-of-life process for the application.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="software-development-life-cycle-management-methodologies">
+<h2>Software Development Life Cycle Management Methodologies<a class="headerlink" href="#software-development-life-cycle-management-methodologies" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SDLC methodologies provide structured frameworks to guide how software is developed, tested, and deployed. Choosing the right methodology ensures efficiency, collaboration, and quality in the development process.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/sdlc-methodologies.png"><img alt="SDLC Methodologies" src="../_images/sdlc-methodologies.png" style="width: 700px;" />
+</a>
+<section id="common-sdlc-methodologies">
+<h3>Common SDLC Methodologies<a class="headerlink" href="#common-sdlc-methodologies" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Waterfall Model</strong>:</p>
+<ul class="simple">
+<li><p>A step-by-step, sequential approach where each phase must be completed before moving to the next.</p></li>
+<li><p><em>Pros</em>: Simple and predictable for well-defined projects.</p></li>
+<li><p><em>Cons</em>: Inflexible; hard to accommodate changes once a phase is completed.</p></li>
+</ul>
+</li>
+<li><p><strong>Agile Model</strong>:</p>
+<ul class="simple">
+<li><p>An iterative and incremental approach emphasizing collaboration and adaptability.</p></li>
+<li><p><em>Pros</em>: Flexible; great for projects with changing requirements.</p></li>
+<li><p><em>Cons</em>: Requires close communication and may lack predictability.</p></li>
+</ul>
+</li>
+<li><p><strong>Scrum</strong>:</p>
+<ul class="simple">
+<li><p>A specific Agile framework that uses sprints (short work cycles) to deliver small, usable increments of a product.</p></li>
+<li><p><em>Pros</em>: Clear timelines and frequent delivery of features.</p></li>
+<li><p><em>Cons</em>: Requires disciplined team collaboration.</p></li>
+</ul>
+</li>
+<li><p><strong>Lean</strong>:</p>
+<ul class="simple">
+<li><p>Focuses on maximizing value and minimizing waste.</p></li>
+<li><p><em>Pros</em>: High efficiency and customer focus.</p></li>
+<li><p><em>Cons</em>: Can be challenging to implement in traditional organizations.</p></li>
+</ul>
+</li>
+<li><p><strong>Spiral Model</strong>:</p>
+<ul class="simple">
+<li><p>Combines iterative development with risk management. Each iteration includes planning, development, and testing.</p></li>
+<li><p><em>Pros</em>: Ideal for complex, high-risk projects.</p></li>
+<li><p><em>Cons</em>: Can be time-consuming and expensive.</p></li>
+</ul>
+</li>
+<li><p><strong>Kanban</strong>:</p>
+<ul class="simple">
+<li><p>A visual workflow method using a board to manage and optimize work in progress.</p></li>
+<li><p><em>Pros</em>: Real-time adaptability; excellent for operational projects.</p></li>
+<li><p><em>Cons</em>: May lack deadlines or clear milestones.</p></li>
+</ul>
+</li>
+<li><p><strong>Extreme Programming (XP)</strong>:</p>
+<ul class="simple">
+<li><p>Focuses on high-quality code with practices like pair programming, test-driven development, and continuous feedback.</p></li>
+<li><p><em>Pros</em>: High-quality software; excellent for complex projects.</p></li>
+<li><p><em>Cons</em>: Requires skilled teams and customer involvement.</p></li>
+</ul>
+</li>
+<li><p><strong>Rapid Application Development (RAD)</strong>:</p>
+<ul class="simple">
+<li><p>Prioritizes speed by developing components in parallel and integrating them quickly.</p></li>
+<li><p><em>Pros</em>: Fast delivery and flexibility.</p></li>
+<li><p><em>Cons</em>: Less suitable for large-scale or highly complex projects.</p></li>
+</ul>
+</li>
+<li><p><strong>V-Model</strong>:</p>
+<ul class="simple">
+<li><p>An extension of Waterfall where validation and testing are emphasized for every development stage.</p></li>
+<li><p><em>Pros</em>: High focus on testing and quality.</p></li>
+<li><p><em>Cons</em>: Like Waterfall, it’s rigid and not ideal for projects with evolving requirements.</p></li>
+</ul>
+</li>
+<li><p><strong>DevOps</strong>:</p>
+<ul class="simple">
+<li><p>Combines development and IT operations to ensure faster and more reliable releases.</p></li>
+<li><p><em>Pros</em>: Continuous delivery, automation, and collaboration.</p></li>
+<li><p><em>Cons</em>: Requires a cultural shift and significant tooling investment.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="choosing-the-right-methodology">
+<h3>Choosing the Right Methodology<a class="headerlink" href="#choosing-the-right-methodology" title="Link to this heading"></a></h3>
+<p>Choosing the right SDLC methodology depends on the nature of your project:</p>
+<ul class="simple">
+<li><p>Use <strong>Waterfall</strong> for simple, predictable projects with clear requirements.</p></li>
+<li><p>Adopt <strong>Agile</strong> for dynamic projects with evolving needs.</p></li>
+<li><p>Choose <strong>DevOps</strong> for organizations looking to improve collaboration and streamline releases.</p></li>
+<li><p>Consider <strong>Kanban</strong> or <strong>Lean</strong> for operations-focused workflows.</p></li>
+</ul>
+<p>Understanding these methodologies allows teams to deliver better software by selecting the framework that best suits their needs.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_roadmap.html" class="btn btn-neutral float-left" title="0.2 DevOps Roadmap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_scrum_agile.html" class="btn btn-neutral float-right" title="0.4 SCRUM Agile" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
