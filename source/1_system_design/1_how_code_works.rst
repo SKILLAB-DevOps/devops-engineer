@@ -6,30 +6,113 @@
 
     Code is a set of instructions that a computer can understand and execute. It is written in a programming language, such as Python, Java, C++, etc. These languages provide a set of rules and syntax that programmers use to write their code.
 
-When a programmer writes code, they are essentially creating a set of instructions that the computer will follow to perform a specific task. For example, when a programmer writes code that tells a computer to display a message on the screen or to perform a calculation and return the result.
+===============================================
+What Happens to Code from Writing to Execution?
+===============================================
 
-Once the code is written, it must be compiled or interpreted by a program called a compiler or interpreter. The compiler or interpreter takes the code written in the programming language and converts it into machine code, which is a set of instructions that the computer's processor can understand and execute.
+When a programmer writes code, they are creating a set of instructions that tell the computer what to do. However, computers do not understand high-level programming languages like Python, Java, or Go directly. The code must go through several steps before it can be executed by the computer's processor.
 
-When the code is executed, the computer follows the instructions in the code, line by line. It performs the tasks specified in the code, such as displaying a message, performing calculations, or interacting with other parts of the system.
+1. **Writing the Code** (Source Code)
 
-The code also interacts with the computer's memory, where it stores and retrieves data. It also interacts with the computer's input and output devices, such as the keyboard, mouse, and screen, allowing the user to interact with the code and receive feedback from the code.
+- The programmer writes human-readable code in a high-level programming language (e.g., Python, Java, Go).
+- This code needs to be translated into machine language (binary code) so the computer can execute it.
 
-The source code is translated into assembly language.
-The assembly code is translated into machine language.
-The machine language is directly executed as binary code.
+2. **Code Translation**: Compilation vs. Interpretation
+
+Different programming languages use different methods to translate code into machine-executable form:
+
+  A. **Compiled Languages** (e.g., C, C++)
+
+  - A compiler translates the entire source code into machine code before execution.
+  - The compiler may generate assembly code as an intermediate step, which is then converted into machine code.
+  - The final output is an executable file that the computer can run directly.
+
+  B. **Interpreted Languages** (e.g., Python, JavaScript)
+
+  - An interpreter reads and executes the code line by line at runtime.
+  - The translation happens dynamically, which makes interpreted languages generally slower than compiled ones.
+
+  C. **Hybrid Languages** (e.g., Java, C#)
+  
+  - The code is first translated into an intermediate representation (e.g., Java bytecode).
+  - A virtual machine (e.g., JVM for Java) executes this intermediate code.
+
+3. **Machine Code Execution**
+
+Once the code is translated into machine code:
+
+  - The CPU fetches, decodes, and executes the binary instructions.
+  - Each instruction tells the processor to perform a specific operation (e.g., arithmetic calculations, memory access, or I/O operations).
+
+4. **Memory and I/O Interaction**
+
+- The program interacts with RAM to store and retrieve data.
+- It communicates with input/output devices such as the keyboard, mouse, and display.
+- If needed, it accesses files or databases on storage devices.
+
+5. The Role of the **Operating System**
+
+- The operating system (OS) manages program execution by allocating resources (CPU, memory, disk access).
+- It ensures that multiple programs can run simultaneously without interfering with each other.
+- The OS also handles system security and process scheduling.
 
 .. image:: ../diagrams/how-code-executes.png
-  :width: 1200
+  :width: 1700
   :alt: How code works
 
 ===========================================
 High level languages vs low level languages
 ===========================================
 
-High level language is a programming language that is designed to be easy for humans to read and write. It is also designed to be easy for computers to understand and execute. Examples of high level languages include Python, Java, Ruby, Go etc.
+.. image:: ../diagrams/low-vs-high-lang.png
+  :width: 1400
+  :alt: Low vs high languages
 
-Low level language is a programming language that is designed to be easy for computers to understand and execute. It is also designed to be difficult for humans to read and write. Examples of low level languages include assembly language and machine language.
-We classify C as low level language or better as intermediary language, because you have to do memory management, you have to clean up after yourself. "Garbage Collection" is when the system cleans up for you.
+.. note:: 
+
+  strace is a powerful diagnostic, debugging, and instructional tool in Linux that allows you to monitor the system calls and signals that a program makes and receives during its execution.
+
+.. code-block:: bash
+
+  strace -ls
+
+  # 1. Executing ls
+  execve("/usr/bin/ls", ["ls"], 0x7fff674cf020) = 0
+  # Runs the ls command.
+  
+  # 2. Loading Shared Libraries
+  openat("/etc/ld.so.cache", O_RDONLY) = 3
+  openat("/lib64/libc.so.6", O_RDONLY) = 3
+  # Opens the dynamic linker cache and loads necessary libraries like libc.so.6 (C standard library).
+  
+  # 3. Checking Terminal Settings
+  ioctl(1, TIOCGWINSZ, {ws_row=53, ws_col=126}) = 0
+  # Gets the terminal size for formatting output.
+  
+  # 4. Reading the Directory
+  openat(".", O_RDONLY|O_DIRECTORY) = 3
+  getdents64(3, 0x55d0539a7710 /* 14 entries */, 32768) = 440
+  close(3) = 0
+  # Opens the current directory, reads filenames, and closes it.
+  
+  # 5. Writing Output
+  write(1, "build  Makefile  README.md ...") = 105
+  # Prints the directory contents to stdout (screen).
+  
+  # 6. Exiting
+  exit_group(0) = ?
+  +++ exited with 0 +++
+  # ls finishes and exits normally (0 = success).
+
+++++
+Bash
+++++
+
+.. code-block::
+
+  #!/bin/bash
+
+  echo "Hello World"
 
 ++++++
 Python
@@ -77,10 +160,6 @@ Assembly
     msg: db "Hello World!", 10
     msglen: equ $ - msg
 
-
-.. image:: ../diagrams/low-vs-high-lang.png
-  :width: 700
-  :alt: Low vs high languages
 
 ====================
 In-memory vs on-disk

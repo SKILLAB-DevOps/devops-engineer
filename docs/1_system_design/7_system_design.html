@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.7 System Design &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TODO" href="TODO.html" />
+    <link rel="prev" title="1.6 Setup developing infrastructure" href="6_setup_infra.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">1.7 System Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/1_system_design/7_system_design.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="system-design">
+<h1>1.7 System Design<a class="headerlink" href="#system-design" title="Link to this heading"></a></h1>
+<p>System design interviews are seen as one of the hardest part of the recruitment process for software engineers. They require a deep understanding of system architecture, scalability, security, and performance. This guide will help you prepare for system design interviews by covering key concepts, common pitfalls, and best practices.</p>
+<p>Keep in mind that nothing can prepare you better than hands-on experience. Practice designing systems, building projects, and learning from real-world scenarios. This guide is a starting point, but practical experience is invaluable.</p>
+<section id="common-pitfalls-to-avoid">
+<h2>Common Pitfalls to Avoid<a class="headerlink" href="#common-pitfalls-to-avoid" title="Link to this heading"></a></h2>
+<p>Before proposing a solution the interviewer, take time to understand the problem. These are some of the common mistakes that a candidate can make:</p>
+<ul class="simple">
+<li><p>Diving Straight into Tools without clarifying requirements.</p></li>
+<li><p>Overengineering with too many services or microservices when a simpler approach suffices.</p></li>
+<li><p>Ignoring Cost: Especially critical in cloud environments.</p></li>
+<li><p>Neglecting Operational Concerns: Monitoring, logging, and security are integral parts of system design in Azure.</p></li>
+<li><p>Poor Time Management: In an interview, ensure you allocate enough time to walk through requirements, architecture, and a Q&amp;A.</p></li>
+</ul>
+</section>
+<section id="what-is-system-design">
+<h2>What is System Design?<a class="headerlink" href="#what-is-system-design" title="Link to this heading"></a></h2>
+<p>System design is the process of defining the <strong>architecture</strong>, <strong>modules</strong>, <strong>connections</strong>, and <strong>data</strong> needed to solve a particular problem. It serves as a <strong>blueprint</strong> for development to follow throughout the lifecycle of a system.</p>
+<p>Alongside the blueprint, you often create or maintain an <strong>Architecture Design Record (ADR)</strong>, which documents the rationale and trade-offs behind your design decisions. An ADR is a living document that evolves as the system itself evolves.</p>
+</section>
+<section id="how-to-approach-system-design">
+<h2>How to Approach System Design<a class="headerlink" href="#how-to-approach-system-design" title="Link to this heading"></a></h2>
+<p>Most systems you build will have these core components:</p>
+<ol class="arabic simple">
+<li><p><strong>UserInterface</strong> - Is the way that user interact with your system: webpage, mobile app, API, etc.</p></li>
+<li><p><strong>Compute</strong> - Is the backend logic that processes requests and generates responses.</p></li>
+<li><p><strong>Storage</strong> - Is where you store data: databases, caches, file systems, etc.</p></li>
+<li><p><strong>Network</strong> - Is how your system communicates internally and externally, including load balancers, CDNs, etc.</p></li>
+</ol>
+<p>When getting started, consider:</p>
+<ul class="simple">
+<li><p><strong>Availability</strong>: How does the system cope with failures and ensure minimal downtime?</p></li>
+<li><p><strong>Security</strong>: How will sensitive data be protected (encryption, authorization, etc.)?</p></li>
+<li><p><strong>Scalability</strong>: How will the system handle increasing load?</p></li>
+<li><p><strong>Performance</strong>: How quickly can the system process requests and manage large data volumes?</p></li>
+</ul>
+<p>But before proposing any architecture, it’s crucial to understand the <strong>requirements</strong> and <strong>constraints</strong> of the system. This includes:</p>
+<ul class="simple">
+<li><p><strong>Functional Requirements</strong>: What the system should do.</p></li>
+<li><p><strong>Non-Functional Requirements</strong>: How the system should perform (e.g., availability, security).</p></li>
+<li><p><strong>Use Cases</strong>: Scenarios that describe how users interact with the system.</p></li>
+<li><p><strong>Constraints</strong>: Limitations on the system (e.g., budget, technology stack, data localization).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure you fully understand what the problem is and start from a simple design before adding complexity. As the system evolves, you can iterate and refine the architecture to meet new requirements.</p>
+</div>
+</section>
+<section id="start-with-the-problem-statement-requirements">
+<h2>Start with the Problem Statement &amp; Requirements<a class="headerlink" href="#start-with-the-problem-statement-requirements" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clarify Requirements</p>
+<p>Ask clarifying questions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Who are the key stakeholders/users?</p></li>
+<li><p>What are the primary business goals: performance, cost, time to market?</p></li>
+<li><p>Any specific compliance/security requirements: data residency, GDPR/HIPAA, budget/costs?</p></li>
+<li><p>What are the expected usage patterns:peak load, concurrency, global usage?</p></li>
+</ul>
+</div></blockquote>
+<p>Identify KPIs:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Throughput (e.g., requests per second)</p></li>
+<li><p>Latency (e.g., maximum acceptable response time)</p></li>
+<li><p>Data storage/retention needs</p></li>
+<li><p>User growth projections</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Define Scope</p>
+<ol class="arabic">
+<li><p>Core features vs. ‘Nice-to-Haves’: Distinguish must-have functionalities from optional or future enhancements.</p></li>
+<li><p>Non-Functional Requirements:</p>
+<ul>
+<li><p>Availability - What is the acceptable downtime?</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>99.9%(Yearly: 8h 41m 38s)</p></li>
+<li><p>99.99%(Yearly: 52m 9.8s)</p></li>
+<li><p>99.999%(Yearly: 5m 15.6s)</p></li>
+<li><p>99.9999%(Yearly: 31.5s)</p></li>
+<li><p>99.99999%(Yearly: 3.1s)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Consistency requirements (strong vs. eventual)</p></li>
+<li><p>Data residency or compliance (GDPR, HIPAA, etc.)</p></li>
+<li><p>Security (encryption, access control)</p></li>
+<li><p>Scalability (horizontal vs. vertical)</p></li>
+<li><p>Performance (latency, throughput)</p></li>
+<li><p>Cost (budget constraints)</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="common-system-design-patterns">
+<h2>Common System Design Patterns<a class="headerlink" href="#common-system-design-patterns" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Monolithic vs. Microservices Architectures</p>
+<ol class="loweralpha simple">
+<li><p>Monolithic Architecture</p>
+<ul class="simple">
+<li><p>Definition: All services run in a single process, sharing the same database and codebase.</p></li>
+<li><p>Pros: Easier to develop, deploy, and test initially; straightforward for small apps.</p></li>
+<li><p>Cons: Lack of modularity at scale; difficult to isolate failures and scale different components independently; large codebase becomes cumbersome over time.</p></li>
+</ul>
+</li>
+<li><p>Microservices Architecture</p>
+<ul class="simple">
+<li><p>Definition: Breaks an application into independent services, each focusing on a specific business capability.</p></li>
+<li><p>Pros: Independent deployment and scaling; promotes modularity; isolates failures more effectively.</p></li>
+<li><p>Cons: Increased complexity (deployment, orchestration, monitoring); requires careful inter-service communication design.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Event-Driven Architecture (EDA)</p>
+<ol class="loweralpha">
+<li><p>Key Concepts</p>
+<ul>
+<li><p>Producers and Consumers: Services communicate by publishing events (producers) and reacting to them (consumers).</p></li>
+<li><p>Benefits: Loose coupling between components; scalable asynchronous communication; real-time data processing.</p></li>
+<li><p>Common Tools:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Message brokers like Kafka, RabbitMQ, or Azure Service Bus.</p></li>
+<li><p>Event routing services like AWS EventBridge or Azure Event Grid.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Example Patterns Within EDA
+- Pub/Sub (Publish-Subscribe): Enables broadcast of events to multiple subscribers simultaneously.
+- Stream Processing: Consuming and processing a continuous flow of events (e.g., with Apache Kafka Streams, Azure Stream Analytics, or Apache Flink).</p></li>
+</ol>
+</li>
+<li><p>Saga Pattern (Distributed Transactions)</p>
+<ul class="simple">
+<li><p>Definition: Saga: A sequence of local transactions in a distributed environment, coordinated using events or orchestration, ensuring data consistency without relying on a traditional 2PC (Two-Phase Commit).</p></li>
+<li><p>Types: Choreography: Each service listens for events and performs a local transaction, then publishes new events.</p></li>
+<li><p>Orchestration: A centralized “orchestrator” service coordinates the workflow among all the services.</p></li>
+<li><p>Use Cases: Order Processing: Where multiple services (payments, inventory, shipping) must coordinate to complete or roll back a transaction.</p></li>
+</ul>
+</li>
+<li><p>API Gateway Pattern</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Definition: API Gateway: A single entry point for client requests. It can handle:</dt><dd><ul>
+<li><p>Request routing</p></li>
+<li><p>Authentication/Authorization</p></li>
+<li><p>Rate limiting</p></li>
+<li><p>Protocol translations</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Benefit:</dt><dd><ul>
+<li><p>Simplifies Clients: They don’t need to track multiple service endpoints or integrate with each microservice directly.</p></li>
+<li><p>Cross-Cutting Concerns: Centralizes concerns like security, caching, and request transformations.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p>Service Mesh Pattern</p>
+<ul class="simple">
+<li><p>Definition: Service Mesh: Abstracts service-to-service communications into a dedicated layer, typically using sidecars.</p></li>
+<li><dl class="simple">
+<dt>Key Features:</dt><dd><ul>
+<li><p>Observability (metrics, logs, traces)</p></li>
+<li><p>Traffic management (load balancing, routing)</p></li>
+<li><p>Security (mTLS encryption, policy enforcement)</p></li>
+<li><p>Examples: Istio, Linkerd, Consul.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ol>
+<section id="step-1-start-with-a-simple-design">
+<h3>Step 1: Start With a Simple Design<a class="headerlink" href="#step-1-start-with-a-simple-design" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>MVP or Proof of Concept</strong></p>
+<ul class="simple">
+<li><p>Begin with a single-instance architecture: a simple <strong>web server</strong> (Node.js/Express, Python/Flask, Java/Spring, etc.) connected to a <strong>single database</strong> (MySQL, PostgreSQL, etc.).</p></li>
+<li><p>Place it behind a basic <strong>reverse proxy</strong> or <strong>web server</strong> (Nginx, Apache) to handle HTTP requests and basic routing.</p></li>
+<li><p>This approach gets core functionality up and running quickly. It’s easier to validate requirements and gather feedback before adding complexity.</p></li>
+</ul>
+</li>
+<li><p><strong>Identify problems by gathering information</strong></p>
+<ul class="simple">
+<li><p>Get the stakeholders feedback to understand what’s working and what’s not, what are the next features that are requested and the bottlenecks.</p></li>
+<li><p>Use basic monitoring (e.g., api requests, server metrics, DB connections) to find where the system slows under load.</p></li>
+<li><p>Bottlenecks guide where to invest in <strong>scaling</strong>, <strong>caching</strong>, or <strong>load balancing</strong> as your system evolves.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-2-consider-scalability">
+<h3>Step 2: Consider Scalability<a class="headerlink" href="#step-2-consider-scalability" title="Link to this heading"></a></h3>
+<p>A single machine 2CPUs - 8GB RAM can hold between 25-100 concurent users. Scalability is the system’s ability to handle increasing load without sacrificing performance. There are two key approaches:</p>
+<ol class="arabic simple">
+<li><p><strong>Vertical Scaling (Scale Up)</strong></p>
+<ul class="simple">
+<li><p>Add more CPU, memory, or disk to a single machine.</p></li>
+<li><p>Simple to implement initially but limited by the maximum capacity of a single server.</p></li>
+</ul>
+</li>
+<li><p><strong>Horizontal Scaling (Scale Out)</strong></p>
+<ul class="simple">
+<li><p>Run multiple instances of your service in parallel and distribute requests among them.</p></li>
+<li><p>Typically requires <strong>stateless</strong> services, so any instance can handle any request.</p></li>
+<li><p>Uses <strong>load balancers</strong> (e.g., AWS ELB, Nginx, HAProxy) to distribute traffic.</p></li>
+<li><p>Potentially <strong>unlimited</strong> growth but introduces complexity (e.g., data consistency, orchestration).</p></li>
+</ul>
+</li>
+</ol>
+<section id="common-strategies-supporting-horizontal-scaling">
+<h4>Common Strategies Supporting Horizontal Scaling<a class="headerlink" href="#common-strategies-supporting-horizontal-scaling" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p><strong>Load Balancing</strong></p>
+<p>Load balancers distribute incoming traffic to multiple servers, improving efficiency and reliability. They help:</p>
+<ul class="simple">
+<li><p>Prevent traffic from going to <strong>unhealthy</strong> servers.</p></li>
+<li><p>Avoid <strong>resource overload</strong>.</p></li>
+<li><p>Eliminate a <strong>single point of failure</strong> (when deployed in at least an active-passive configuration).</p></li>
+</ul>
+<p><strong>Implementation</strong> can be hardware-based (expensive, specialized appliances) or software-based (e.g., HAProxy, Nginx).</p>
+<p><strong>Key Features</strong>:</p>
+<ul class="simple">
+<li><p><strong>SSL Termination</strong>: Offloads encryption/decryption from backend servers.</p></li>
+<li><p><strong>Session Persistence</strong>: Routes a user to the same server if sessions are stored locally.</p></li>
+<li><p><strong>Redundancy</strong>: Multiple load balancers in active-passive or active-active mode for high availability.</p></li>
+</ul>
+<p><strong>Traffic Routing Strategies</strong>:</p>
+<ul class="simple">
+<li><p><strong>Random</strong>: Simple but can cause uneven distribution.</p></li>
+<li><p><strong>Least Loaded</strong>: Sends traffic to the instance with the fewest active connections or lowest usage.</p></li>
+<li><p><strong>Session-Based (Sticky Sessions)</strong>: Ensures a user’s requests go to the same instance.</p></li>
+<li><p><strong>Round Robin / Weighted Round Robin</strong>: Cycles through servers; Weighted Round Robin allocates more traffic to beefier servers.</p></li>
+<li><p><strong>Layer 4 Routing</strong>: Uses source/destination IP/ports, lower latency but less flexible.</p></li>
+<li><p><strong>Layer 7 Routing</strong>: Uses HTTP headers/URLs for more advanced routing but needs more processing power.</p></li>
+</ul>
+<p><strong>Challenges</strong>: Can become a <strong>bottleneck</strong> if not provisioned properly, adds complexity, and a single load balancer can be a failure point if not replicated.</p>
+</li>
+<li><p><strong>Caching</strong></p>
+<ul class="simple">
+<li><p><strong>Local Caching</strong> or <strong>CDN</strong> for static assets on the client’s browser or via HTTP cache headers.</p></li>
+<li><p><strong>Application Cache</strong> (e.g., Redis, Memcached) to store frequently accessed data (sessions, query results).</p></li>
+<li><p><strong>Database Caching</strong> (indexes, query caching) to reduce expensive queries.</p></li>
+</ul>
+<p><strong>What is a CDN (Content Delivery Network)</strong></p>
+<p>A CDN is a geographically distributed network of proxy servers designed to deliver content (e.g., images, CSS, JS) from locations nearer to the user.</p>
+<p><strong>Advantages</strong>:</p>
+<ul class="simple">
+<li><p><strong>Lower Latency</strong>: Users download assets from servers close to them.</p></li>
+<li><p><strong>Reduced Load</strong>: Offloads requests from your main servers.</p></li>
+</ul>
+<p><strong>Push CDNs vs. Pull CDNs</strong>:</p>
+<ul class="simple">
+<li><p><strong>Push</strong>: You actively upload new content to the CDN as it changes. Good for smaller or rarely updated content.</p></li>
+<li><p><strong>Pull</strong>: The CDN fetches content from your server on the first request. Good for large sites with frequently requested content.</p></li>
+</ul>
+<p><strong>Disadvantages</strong>:
+- <strong>Costs</strong> could be significant with high traffic.
+- Possible <strong>stale data</strong> if content changes before the TTL expires.
+- Requires <strong>URL rewrites</strong> for static assets.</p>
+</li>
+<li><p><strong>Database Sharding or Replication</strong></p>
+<ul class="simple">
+<li><p><strong>Master-Slave (Primary-Replica) Replication</strong>: Replicas handle reads, master handles writes.</p></li>
+<li><p><strong>Sharding (Horizontal Partitioning)</strong>: Splits data across multiple DB servers. Each shard handles a subset of the data.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="step-3-ensure-high-availability">
+<h3>Step 3: Ensure High Availability<a class="headerlink" href="#step-3-ensure-high-availability" title="Link to this heading"></a></h3>
+<p>High availability means your system remains up and responsive even when components fail.</p>
+<ol class="arabic simple">
+<li><p><strong>Redundancy</strong></p>
+<ul class="simple">
+<li><p>Run multiple instances of each service in different <strong>availability zones</strong> or data centers.</p></li>
+<li><p>If one instance fails, another instance automatically takes over.</p></li>
+</ul>
+</li>
+<li><p><strong>Active-Active vs. Active-Passive</strong></p>
+<ul class="simple">
+<li><p><strong>Active-Active</strong>: All instances handle traffic concurrently.</p></li>
+<li><p><strong>Active-Passive</strong>: Only the primary instance handles traffic; the secondary waits on standby.</p></li>
+</ul>
+</li>
+<li><p><strong>Failover Mechanisms</strong></p>
+<ul class="simple">
+<li><p><strong>Health Checks</strong>: Regularly check each instance’s health. Unhealthy instances are removed from rotation.</p></li>
+<li><p><strong>Automatic/Manual Failover</strong>: If a primary database fails, promote a replica to primary.</p></li>
+</ul>
+</li>
+<li><p><strong>Resiliency Patterns</strong></p>
+<ul class="simple">
+<li><p><strong>Circuit Breaker</strong>: Prevents cascading failures by “tripping” if a downstream service is unresponsive.</p></li>
+<li><p><strong>Bulkhead Pattern</strong>: Partitions resources (threads, connections) so one failing service can’t exhaust them all.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-4-incorporate-security-best-practices">
+<h3>Step 4: Incorporate Security Best Practices<a class="headerlink" href="#step-4-incorporate-security-best-practices" title="Link to this heading"></a></h3>
+<p>Security should be part of the initial design, not an afterthought.</p>
+<ol class="arabic simple">
+<li><p><strong>Authentication &amp; Authorization</strong></p>
+<ul class="simple">
+<li><p>Use industry-standard protocols (OAuth2, JWT) for user identity and permissions.</p></li>
+<li><p>Implement RBAC (role-based access control) or ABAC (attribute-based) for fine-grained policies.</p></li>
+</ul>
+</li>
+<li><p><strong>Transport Layer Security (TLS)</strong></p>
+<ul class="simple">
+<li><p>Encrypt data in transit (HTTPS).</p></li>
+<li><p>Keep TLS configurations updated; disable weak ciphers and protocols.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Protection</strong></p>
+<ul class="simple">
+<li><p>Encrypt data at rest (database, disk-level encryption).</p></li>
+<li><p>Store secrets securely (Vault, AWS KMS).</p></li>
+<li><p>Sanitize inputs to avoid SQL injection, XSS, CSRF, etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Infrastructure Security</strong></p>
+<ul class="simple">
+<li><p><strong>Network Segmentation</strong>: Place critical services in private subnets.</p></li>
+<li><p><strong>Firewalls/Security Groups</strong>: Restrict inbound/outbound traffic.</p></li>
+<li><p><strong>Monitoring &amp; Auditing</strong>: Track logs, user actions, anomalies.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-5-optimize-performance">
+<h3>Step 5: Optimize Performance<a class="headerlink" href="#step-5-optimize-performance" title="Link to this heading"></a></h3>
+<p>Performance focuses on <strong>latency</strong> (response times) and <strong>throughput</strong> (requests per second).</p>
+<ol class="arabic simple">
+<li><p><strong>Caching Strategy</strong></p>
+<ul class="simple">
+<li><p><strong>Application-Level</strong>: Cache expensive queries or computations (Redis, Memcached).</p></li>
+<li><p><strong>DB Query Optimization</strong>: Proper indexing, denormalization, avoiding full table scans.</p></li>
+<li><p><strong>Edge Caching (CDN)</strong>: Serve static content from edge servers.</p></li>
+</ul>
+</li>
+<li><p><strong>Asynchronous Processing</strong></p>
+<ul class="simple">
+<li><p>Move long-running tasks to background jobs with message queues (RabbitMQ, Kafka, AWS SQS).</p></li>
+<li><p>Keep the main request cycle fast and responsive.</p></li>
+</ul>
+</li>
+<li><p><strong>Efficient Data Modeling</strong></p>
+<ul class="simple">
+<li><p>Choose <strong>SQL</strong> vs. <strong>NoSQL</strong> based on data relationships, query patterns, and scalability needs.</p></li>
+<li><p><strong>NoSQL</strong> can offer flexible schemas and high throughput (Cassandra, DynamoDB, MongoDB).</p></li>
+<li><p><strong>Relational DBs</strong> (MySQL, PostgreSQL) excel at strong consistency and complex joins.</p></li>
+</ul>
+</li>
+<li><p><strong>Load Testing &amp; Profiling</strong></p>
+<ul class="simple">
+<li><p>Use tools like <strong>JMeter</strong>, <strong>Gatling</strong>, or <strong>Locust</strong> to simulate load and identify bottlenecks.</p></li>
+<li><p>Profile code (CPU, memory usage) to optimize critical paths.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="6_setup_infra.html" class="btn btn-neutral float-left" title="1.6 Setup developing infrastructure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TODO.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

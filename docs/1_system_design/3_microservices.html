@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3 Microservices &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4 Introduction to Linux" href="4_introduction_to_linux.html" />
+    <link rel="prev" title="1.2 Environments" href="2_environments.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">1.3 Microservices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/1_system_design/3_microservices.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="microservices">
+<h1>1.3 Microservices<a class="headerlink" href="#microservices" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A microservice is a software architectural style in which a large application is decomposed into a collection of small, independent services. Each service is responsible for a specific business capability and interacts with other services through simple, well-defined interfaces. Microservices are designed to be loosely coupled, enabling independent development, deployment, and scaling.</p>
+</div>
+<p>The primary benefit of microservices is that they allow teams to focus on smaller, manageable components rather than maintaining a large monolithic codebase. This approach simplifies testing, deployment, and scaling, leading to faster development cycles and more resilient systems.</p>
+<p>Microservices are commonly built using diverse technologies and are often deployed in containers or virtual machines. They communicate via APIs, allowing services to be implemented in different programming languages and operate across various platforms.</p>
+<p>Additionally, microservices empower teams to select the most suitable languages, frameworks, and technologies for each service, optimizing development efficiency and flexibility.</p>
+<p>In summary, a microservice is a self-contained unit that handles a specific business function and communicates through well-defined interfaces. Its loosely coupled nature simplifies testing, deployment, and scaling, resulting in faster development and more reliable systems.</p>
+<p><strong>Monolithic Architecture</strong></p>
+<blockquote>
+<div><p>In a monolithic architecture, all processes are tightly coupled and run as a single unit. This design means that if one part of the application experiences a surge in demand, the entire system must scale. As the codebase grows, maintaining and enhancing a monolithic application becomes more challenging, limiting experimentation and innovation. Furthermore, monolithic architectures increase the risk of application failures due to the high interdependence of components.</p>
+</div></blockquote>
+<p><strong>Microservices Architecture</strong></p>
+<blockquote>
+<div><p>A microservices architecture structures an application as a set of independent services, each handling a specific process. These services communicate through well-defined interfaces using lightweight APIs. Each service is built around a distinct business capability and functions autonomously. This independence allows services to be updated, deployed, and scaled separately to meet varying demand levels.</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="../_images/microserviceVSmonolith.png"><img alt="Microservices vs Monolith" src="../_images/microserviceVSmonolith.png" style="width: 1900px;" />
+</a>
+<p>Key advantages of microservices over monolithic architecture:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Scalability</strong> - Each service can be scaled independently, optimizing resource utilization.</p></li>
+<li><p><strong>Testability</strong> - Services can be tested in isolation, ensuring reliability.</p></li>
+<li><p><strong>Deployment Flexibility</strong> - Each service can be deployed separately without affecting others.</p></li>
+<li><p><strong>Maintainability</strong> - With a single responsibility per service, updates and modifications are more manageable and less disruptive.</p></li>
+</ol>
+</div></blockquote>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_environments.html" class="btn btn-neutral float-left" title="1.2 Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_introduction_to_linux.html" class="btn btn-neutral float-right" title="1.4 Introduction to Linux" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

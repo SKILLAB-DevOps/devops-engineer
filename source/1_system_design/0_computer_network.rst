@@ -6,7 +6,7 @@
 Computer
 ========
 
-A computer is composed of several key components: hardware, and software, which allow it to function and perform a wide array of tasks.
+A computer is composed of two key components: hardware, and software, which allow it to function and perform a wide array of tasks.
 
 .. image:: ../diagrams/computer.png
   :width: 1000
@@ -70,6 +70,10 @@ Simplified data flow:
 
 User's Device (Browser) -> Local Network (Router) -> ISP -> Internet Backbone -> Server (Website)
 
+.. code ::
+
+    traceroute google.com
+
 .. image:: ../diagrams/network.png
   :width: 1000
   :alt: How code works
@@ -77,6 +81,12 @@ User's Device (Browser) -> Local Network (Router) -> ISP -> Internet Backbone ->
 =========================
 IP Address vs MAC Address
 =========================
+
+.. code::
+
+  ip addr show
+  # or
+  ip a
 
 An IP address is a unique identifier assigned to each device connected to a network. It's used to identify the device and communicate with it. An IP address is a logical address that can be changed. It's assigned by the network administrator or ISP (Internet Service Provider).
 
@@ -107,6 +117,7 @@ Example:
 .. code-block::
   
     8.8.8.8
+
 	  00001000.00001000.00001000.00001000
 
 IP v6 is the sixth version of the Internet Protocol (IP). It's the most recent version of the Internet Protocol. It's designed to succeed Internet Protocol version 4 (IPv4). It's a connectionless protocol that operates on a best-effort delivery model, in that it does not guarantee delivery, nor does it assure proper sequencing or avoidance of duplicate delivery. These aspects, including data integrity, are addressed by an upper layer transport protocol, such as the Transmission Control Protocol (TCP).

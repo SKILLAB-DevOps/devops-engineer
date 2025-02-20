@@ -90,7 +90,14 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
 .. toctree::
    :hidden:
    :titlesonly:
-   :caption: System Design
+   :caption: Environments
 
    1_system_design/0_computer_network
    1_system_design/1_how_code_works.rst
+   1_system_design/2_environments
+   1_system_design/3_microservices
+   1_system_design/4_introduction_to_linux
+   1_system_design/5_getting_around
+   1_system_design/6_setup_infra
+   1_system_design/7_system_design.rst
+   1_system_design/TODO
