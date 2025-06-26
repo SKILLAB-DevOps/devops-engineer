@@ -101,3 +101,13 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    1_system_design/6_setup_infra
    1_system_design/7_system_design.rst
    1_system_design/TODO
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Pipelines
+
+   7_pipelines/0_introduction
+   7_pipelines/1_getting_started.rst
+   7_pipelines/TODO
+   7_pipelines/ANSWERS

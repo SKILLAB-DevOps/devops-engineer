@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.0 Introduction &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.1 Getting started" href="1_getting_started.html" />
+    <link rel="prev" title="TODO" href="../1_system_design/TODO.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_getting_started.html">7.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">7.0 Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/7_pipelines/0_introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>7.0 Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/devops.png"><img alt="A diagram showing schematically how a Continuous Integration and Continuous Deployment works" src="../_images/devops.png" style="width: 1000px;" />
+</a>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p>Explain how CI/CD pipelines transform software development workflows</p></li>
+<li><p>Implement a complete CI/CD pipeline from scratch using GitHub Actions</p></li>
+<li><p>Apply security and best practices to production-grade pipelines</p></li>
+<li><p>Troubleshoot common pipeline failures and optimize performance</p></li>
+<li><p>Design multi-environment deployment strategies</p></li>
+<li><p>Integrate monitoring and rollback procedures</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Basic understanding of Git, Python programming, and command-line operations.</p>
+</section>
+<section id="what-are-ci-cd-pipelines">
+<h2>What are CI/CD Pipelines?<a class="headerlink" href="#what-are-ci-cd-pipelines" title="Link to this heading"></a></h2>
+<p>CI/CD (Continuous Integration/Continuous Deployment) pipelines are automated workflows that transform your code from development to production. Think of them as an assembly line for software - each station performs a specific task, ensuring your code is built, tested, and deployed reliably.</p>
+<p><strong>Why do we need them?</strong></p>
+<ul class="simple">
+<li><p>Automate repetitive tasks and eliminate human error</p></li>
+<li><p>Catch bugs early when they’re 100x cheaper to fix</p></li>
+<li><p>Deploy changes safely and quickly to stay competitive</p></li>
+<li><p>Enable rapid experimentation and innovation</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Real-world analogy:</strong> Imagine a car manufacturing assembly line. Each station has a specific job (install engine, paint, quality check). Similarly, CI/CD pipelines have stages (build, test, deploy) that your code passes through automatically.</p>
+</div>
+</section>
+<section id="continuous-integration-ci">
+<h2>Continuous Integration (CI)<a class="headerlink" href="#continuous-integration-ci" title="Link to this heading"></a></h2>
+<p><strong>What is CI?</strong></p>
+<p>CI is the practice of frequently merging code changes into a shared repository (like git) - often multiple times per day. Each merge triggers an automated process to build and test the code.</p>
+<p><strong>The Three Pillars of CI:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Automated Builds</strong>: Your code is automatically compiled into runnable software</p></li>
+<li><p><strong>Automated Testing</strong>: A comprehensive test suite runs to catch bugs before they reach users</p></li>
+<li><p><strong>Frequent Integration</strong>: Developers merge code changes regularly (multiple times daily)</p></li>
+</ol>
+<p><strong>Example Workflow:</strong></p>
+<ol class="arabic simple">
+<li><p>Developer writes code locally</p></li>
+<li><p>Commits and pushes to shared repository (Git)</p></li>
+<li><p>CI system automatically detects the change</p></li>
+<li><p>Code is built and all tests run</p></li>
+<li><p>If tests pass, code is ready for the next stage</p></li>
+<li><p>If tests fail, developer is notified immediately</p></li>
+<li><p>Developer fixes issues and repeats the process</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Avoiding “Integration Hell”:</strong> Without CI, developers might work in isolation for weeks, then try to merge everything at once. This often leads to conflicts and bugs that are hard to trace - hence the term “integration hell.”</p>
+</div>
+</section>
+<section id="continuous-deployment-cd">
+<h2>Continuous Deployment (CD)<a class="headerlink" href="#continuous-deployment-cd" title="Link to this heading"></a></h2>
+<p><strong>What is CD?</strong></p>
+<p>CD automatically deploys code that passes all tests directly to production. It’s the next step after CI, completing the automation pipeline.</p>
+<p><strong>Two Flavors of CD:</strong></p>
+<ul class="simple">
+<li><p><strong>Continuous Deployment</strong>: Automatic deployment to production (e.g., Netflix deploys thousands of times per day)</p></li>
+<li><p><strong>Continuous Delivery</strong>: Automatic deployment to staging, manual approval for production (e.g., banking software with regulatory requirements)</p></li>
+</ul>
+<p><strong>Key Components:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Automated Deployment</strong>: No manual intervention needed - like having a robot that can safely install updates</p></li>
+<li><p><strong>Production-like Testing</strong>: Test in environments that mirror production (same database, same server setup)</p></li>
+<li><p><strong>Rollback Procedures</strong>: Automatic rollback if issues are detected (like an “undo” button for deployments)</p></li>
+<li><p><strong>Feature Flags</strong>: Deploy code without activating features, enabling gradual rollouts</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/pipeline.png"><img alt="A diagram showing schematically how a pipeline works" src="../_images/pipeline.png" style="width: 1000px;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Real-world example:</strong> Think of how your smartphone gets automatic updates. The app developers use CD to push updates that have been thoroughly tested, and if something goes wrong, they can quickly roll back to the previous version.</p>
+</div>
+</section>
+<section id="pipeline-stages-explained">
+<h2>Pipeline Stages Explained<a class="headerlink" href="#pipeline-stages-explained" title="Link to this heading"></a></h2>
+<p>A typical CI/CD pipeline includes the following stages:</p>
+<p><strong>Stage 1: Source Control</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> The pipeline starts when code is committed to a version control system (e.g., Git)</p>
+<p><em>Real example:</em> Developer Sarah fixes a bug in the login system and pushes her code to GitHub</p>
+</div></blockquote>
+<p><strong>Stage 2: Build</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> Code is compiled and dependencies are fetched</p>
+<p><em>Real example:</em> The system downloads all required libraries (like React, jQuery) and compiles Sarah’s JavaScript into optimized code</p>
+</div></blockquote>
+<p><strong>Stage 3: Testing</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> Automated tests verify the code works correctly</p>
+<p><em>Types of testing:</em></p>
+<ul class="simple">
+<li><p><strong>Unit tests</strong>: Test individual functions (does the login button work?)</p></li>
+<li><p><strong>Integration tests</strong>: Test how components work together (does login connect to the database?)</p></li>
+<li><p><strong>Load testing</strong>: Test performance under stress (can 1000 users login simultaneously?)</p></li>
+<li><p><strong>Security testing</strong>: Check for vulnerabilities (are passwords properly encrypted?)</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Stage 4: Artifact Storage</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> The tested code is packaged and stored securely</p>
+<p><em>Real example:</em> Sarah’s bug fix is packaged as version 2.1.3 and stored in the company’s artifact repository</p>
+</div></blockquote>
+<p><strong>Stage 5: Deployment to Staging</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> Code is deployed to a production-like test environment</p>
+<p><em>Real example:</em> The new login system is deployed to staging.mycompany.com where QA team can test it</p>
+</div></blockquote>
+<p><strong>Stage 6: Approval (Optional)</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> Stakeholders review and approve the changes</p>
+<p><em>Real example:</em> Product manager tests the new login flow and approves it for production</p>
+</div></blockquote>
+<p><strong>Stage 7: Release to Production</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> Code goes live for end users</p>
+<p><em>Real example:</em> Sarah’s bug fix is now live on mycompany.com for all customers</p>
+</div></blockquote>
+<p><strong>Stage 8: Monitoring</strong></p>
+<blockquote>
+<div><p><em>What happens:</em> System monitors the new code’s performance</p>
+<p><em>Real example:</em> Monitoring shows login success rate improved from 94% to 99.2%</p>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Pipeline Failure Protocol:</strong> If any stage fails (e.g., tests don’t pass, security scan finds vulnerabilities), the pipeline stops immediately and alerts the development team. This prevents buggy code from reaching users.</p>
+</div>
+</section>
+<section id="popular-ci-cd-tools-and-when-to-use-them">
+<h2>Popular CI/CD Tools and When to Use Them<a class="headerlink" href="#popular-ci-cd-tools-and-when-to-use-them" title="Link to this heading"></a></h2>
+<p>Choosing the right CI/CD tool can make or break your automation strategy. Here’s a practical decision guide:</p>
+<p><strong>For Small Teams/Startups or really tech companies:</strong></p>
+<ul class="simple">
+<li><p><strong>GitHub Actions</strong>: Perfect if your code is already on GitHub, free for public repos, $4/month for private</p></li>
+<li><p><strong>GitLab CI/CD</strong>: Great all-in-one solution with built-in Git hosting, generous free tier</p></li>
+</ul>
+<p><strong>For Enterprise on prem</strong></p>
+<ul class="simple">
+<li><p><strong>Azure Pipelines</strong> or <strong>Github Enterprise</strong>: Ideal for Microsoft-centric environments, enterprise security features</p></li>
+<li><p><strong>Jenkins</strong>: Highly customizable, self-hosted, thousands of plugins available</p></li>
+<li><p><strong>TeamCity</strong>: JetBrains’ solution, excellent for Java/Kotlin projects</p></li>
+<li><p><strong>Gitlab Enterprise</strong>: Advanced features for large teams, integrates with GitLab’s ecosystem</p></li>
+</ul>
+<p><strong>Cloud Platform Integration:</strong></p>
+<ul class="simple">
+<li><p><strong>AWS CodePipeline</strong>: Native integration with Amazon Web Services, pay-per-use</p></li>
+<li><p><strong>Google Cloud Build</strong>: Best for Google Cloud Platform projects, strong container support</p></li>
+<li><p><strong>Azure DevOps</strong>: Seamless integration with Microsoft Azure, enterprise features</p></li>
+</ul>
+<p><strong>Decision Framework:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─ Are you already on GitHub? ──── YES ──── GitHub Actions
+│
+├─ Need enterprise security? ───── YES ──── Azure DevOps / Jenkins
+│
+├─ Want everything integrated? ─── YES ──── GitLab CI/CD
+│
+└─ Maximum customization? ──────── YES ──── Jenkins
+</pre></div>
+</div>
+</section>
+<section id="benefits-of-ci-cd">
+<h2>Benefits of CI/CD<a class="headerlink" href="#benefits-of-ci-cd" title="Link to this heading"></a></h2>
+<p>Understanding the benefits helps justify the investment in CI/CD infrastructure:</p>
+<p><strong>Speed &amp; Efficiency</strong></p>
+<ul class="simple">
+<li><p><strong>Faster time-to-market</strong>: Features reach customers in days instead of months</p></li>
+<li><p><strong>Reduced deployment time</strong>: From hours of manual work to minutes of automation</p></li>
+<li><p><strong>Example</strong>: Meta deploys code changes 10,000+ times per day vs. traditional monthly releases</p></li>
+</ul>
+<p><strong>Quality &amp; Reliability</strong></p>
+<ul class="simple">
+<li><p><strong>Early bug detection</strong>: Issues caught in development cost 100x less to fix than in production</p></li>
+<li><p><strong>Consistent testing</strong>: Every code change goes through the same rigorous validation</p></li>
+<li><p><strong>Reduced downtime</strong>: Automated rollbacks mean faster recovery from issues</p></li>
+</ul>
+<p><strong>Team Collaboration</strong></p>
+<ul class="simple">
+<li><p><strong>Reduced “works on my machine” problems</strong>: Standardized environments for all developers</p></li>
+<li><p><strong>Better visibility</strong>: Everyone sees the same pipeline status and deployment history</p></li>
+<li><p><strong>Knowledge sharing</strong>: Pipeline configuration serves as documentation</p></li>
+</ul>
+<p><strong>Cost Reduction</strong></p>
+<ul class="simple">
+<li><p><strong>Less manual effort</strong>: Developers focus on features instead of repetitive deployment tasks</p></li>
+<li><p><strong>Fewer production incidents</strong>: Automated testing catches issues before they impact users</p></li>
+<li><p><strong>Resource optimization</strong>: Automated scaling and deployment reduces infrastructure waste</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>ROI Example:</strong> A company spending 20 hours/week on manual deployments can save $50,000+ annually by implementing CI/CD (assuming $50/hour developer cost).</p>
+</div>
+</section>
+<section id="common-challenges-solutions">
+<h2>Common Challenges &amp; Solutions<a class="headerlink" href="#common-challenges-solutions" title="Link to this heading"></a></h2>
+<p><strong>Challenge 1: “Our tests take too long”</strong></p>
+<ul class="simple">
+<li><p><em>Solution</em>: Implement test parallelization and smart test selection</p></li>
+<li><p><em>Example</em>: Run only tests related to changed code for faster feedback</p></li>
+</ul>
+<p><strong>Challenge 2: “Pipeline keeps breaking”</strong></p>
+<ul class="simple">
+<li><p><em>Solution</em>: Start simple, add complexity gradually</p></li>
+<li><p><em>Example</em>: Begin with basic build + test, then add security scans and performance tests</p></li>
+</ul>
+<p><strong>Challenge 3: “Team resistance to change”</strong></p>
+<ul class="simple">
+<li><p><em>Solution</em>: Start with pilot project, demonstrate value with metrics</p></li>
+<li><p><em>Example</em>: Show 90% reduction in deployment time and 50% fewer bugs</p></li>
+</ul>
+<p><strong>Challenge 4: “Legacy systems are hard to automate”</strong></p>
+<ul class="simple">
+<li><p><em>Solution</em>: Implement CI/CD for new features while gradually modernizing legacy components</p></li>
+<li><p><em>Example</em>: Create APIs for legacy systems to enable automated testing</p></li>
+</ul>
+</section>
+<section id="getting-started-checklist">
+<h2>Getting Started Checklist<a class="headerlink" href="#getting-started-checklist" title="Link to this heading"></a></h2>
+<p>Ready to implement CI/CD? Follow this practical checklist:</p>
+<p><strong>Week 1: Foundation</strong></p>
+<ul class="simple">
+<li><p>Choose your CI/CD tool based on team needs</p></li>
+<li><p>Set up basic pipeline: source → build → test</p></li>
+<li><p>Write your first automated test</p></li>
+<li><p>Configure notifications for pipeline failures</p></li>
+</ul>
+<p><strong>Week 2-3: Testing</strong></p>
+<ul class="simple">
+<li><p>Add unit tests for critical functions</p></li>
+<li><p>Implement integration tests</p></li>
+<li><p>Set up test environment that mirrors production</p></li>
+<li><p>Add code quality checks (linting, security scans)</p></li>
+</ul>
+<p><strong>Week 4-6: Deployment</strong></p>
+<ul class="simple">
+<li><p>Create staging environment</p></li>
+<li><p>Implement automated deployment to staging</p></li>
+<li><p>Add monitoring and logging</p></li>
+<li><p>Test rollback procedures</p></li>
+</ul>
+<p><strong>Week 7-8: Production</strong></p>
+<ul class="simple">
+<li><p>Deploy first feature using the pipeline</p></li>
+<li><p>Monitor performance and gather feedback</p></li>
+<li><p>Gradually increase deployment frequency</p></li>
+<li><p>Train team on troubleshooting pipeline issues</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Success Metrics to Track:</strong></p>
+<ul class="simple">
+<li><p>Deployment frequency (aim for multiple times per day)</p></li>
+<li><p>Lead time (from commit to production)</p></li>
+<li><p>Mean time to recovery (how quickly you fix issues)</p></li>
+<li><p>Change failure rate (percentage of deployments causing problems)</p></li>
+</ul>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading"></a></h2>
+<p>CI/CD pipelines are essential for modern software development because they:</p>
+<ol class="arabic simple">
+<li><p><strong>Automate the boring stuff</strong> - Let machines handle repetitive tasks while humans focus on creativity</p></li>
+<li><p><strong>Catch problems early</strong> - Fix bugs when they’re cheap and easy to resolve</p></li>
+<li><p><strong>Enable rapid innovation</strong> - Deploy features quickly and safely to stay competitive</p></li>
+<li><p><strong>Improve team happiness</strong> - Reduce stress from manual deployments and late-night fixes</p></li>
+</ol>
+<p>Remember: <em>Perfect is the enemy of good</em>. Start with a simple pipeline and improve it over time. The goal is progress, not perfection.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Common Mistake:</strong> Don’t try to implement everything at once. Start small, prove value, then expand. Many teams fail because they over-engineer their first pipeline.</p>
+</div>
+<p><strong>Next Steps:</strong> In the following sections, we’ll dive deeper into specific tools and hands-on implementation examples.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../1_system_design/TODO.html" class="btn btn-neutral float-left" title="TODO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1_getting_started.html" class="btn btn-neutral float-right" title="7.1 Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
