@@ -7,14 +7,15 @@ Documentation is made using ``Sphinx``, to build it:
 1. Create and init a virtual environment
 
     ```bash
-    python3.12 -m venv venv
-    source venv/bin/activate
+    pip install uv
+    uv venv .venv
+    source .venv/bin/activate
     ```
 
 2. Install Python dependencies
 
     ```bash
-    pip install -r requirements.txt
+    uv pip install .
     ```
 
 3. Build documentation

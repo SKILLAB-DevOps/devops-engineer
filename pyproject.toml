@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devops-docs"
+version = "0.1.0"
+description = "Documentation built with Sphinx for DevOps."
+readme = "README.md"
+license = "MIT"  # Use a simple SPDX string for the license
+requires-python = ">=3.12"
+
+dependencies = [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "sphinx-copybutton",
+    "rst2pdf",
+    "rstcheck",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pylint",
+    "black",
+    "mypy",
+]
+
+[tool.setuptools.packages.find]
+# Adjust the include pattern as needed:
+include = ["source*", "source_code*"]
+
+[tool.uv]
