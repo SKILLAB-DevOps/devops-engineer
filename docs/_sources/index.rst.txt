@@ -108,6 +108,9 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    :caption: Pipelines
 
    7_pipelines/0_introduction
-   7_pipelines/1_getting_started.rst
+   7_pipelines/1_getting_started
+   7_pipelines/2_python_cli
+   7_pipelines/3_github
+   7_pipelines/4_best_practices
    7_pipelines/TODO
    7_pipelines/ANSWERS

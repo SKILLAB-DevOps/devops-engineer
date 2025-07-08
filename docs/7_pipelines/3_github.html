@@ -1,0 +1,1472 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.3 GitHub Actions Advanced &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.4 CI/CD Best Practices" href="4_best_practices.html" />
+    <link rel="prev" title="7.2 Python CLI" href="2_python_cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">7.3 GitHub Actions Advanced</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/7_pipelines/3_github.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="github-actions-advanced">
+<h1>7.3 GitHub Actions Advanced<a class="headerlink" href="#github-actions-advanced" title="Link to this heading"></a></h1>
+<p><strong>From Simple to Sophisticated</strong></p>
+<p>You’ve built basic pipelines and understand the fundamentals. Now it’s time to explore the advanced features that enable enterprise-grade automation. This section covers the patterns and techniques that separate hobby projects from production systems used by companies like Netflix, Spotify, and GitHub itself.</p>
+<p>These aren’t just “nice-to-have” features - they’re essential capabilities that enable teams to scale their development practices, reduce costs, and maintain reliability as systems grow complex.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Master</strong> matrix strategies for testing across multiple platforms and configurations</p></li>
+<li><p><strong>Create</strong> reusable workflows that eliminate duplication across projects</p></li>
+<li><p><strong>Implement</strong> cost optimization strategies that can reduce CI/CD expenses by 50-80%</p></li>
+<li><p><strong>Integrate</strong> with external services for notifications, deployments, and monitoring</p></li>
+<li><p><strong>Apply</strong> advanced security practices including secrets management and supply chain security</p></li>
+<li><p><strong>Build</strong> efficient caching and artifact strategies for faster pipelines</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Completed previous sections, understanding of YAML, experience with basic GitHub Actions workflows</p>
+<p><strong>Real-World Context:</strong> The techniques in this section are used by teams managing hundreds of repositories, thousands of daily deployments, and multi-million dollar infrastructure budgets.</p>
+</section>
+<section id="advanced-github-actions-patterns">
+<h2>Advanced GitHub Actions Patterns<a class="headerlink" href="#advanced-github-actions-patterns" title="Link to this heading"></a></h2>
+<p><strong>Scaling Beyond Basic Workflows</strong></p>
+<p>As your projects grow from single applications to complex systems, your CI/CD needs evolve dramatically. Simple “build, test, deploy” workflows become insufficient when you’re managing:</p>
+<ul class="simple">
+<li><p>Multiple applications with different technology stacks</p></li>
+<li><p>Cross-platform compatibility requirements (Windows, macOS, Linux)</p></li>
+<li><p>Various deployment environments (staging, production, region-specific instances)</p></li>
+<li><p>Integration with external systems (cloud platforms, monitoring tools, notification systems)</p></li>
+<li><p>Large development teams with different workflow requirements</p></li>
+</ul>
+<p>Advanced GitHub Actions patterns solve these challenges by providing structure, reusability, and intelligence to your automation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Enterprise Reality Check:</strong> Companies like Shopify manage over 2,000 repositories with GitHub Actions. Without advanced patterns, they would need thousands of similar workflow files. With reusable workflows and matrix strategies, they maintain consistency across their entire platform with just a handful of template workflows.</p>
+</div>
+</section>
+<section id="matrix-strategies-cross-platform-testing">
+<h2>Matrix Strategies &amp; Cross-Platform Testing<a class="headerlink" href="#matrix-strategies-cross-platform-testing" title="Link to this heading"></a></h2>
+<p><strong>The Combinatorial Testing Challenge</strong></p>
+<p>Imagine you’re building a Python CLI tool that needs to work on Windows, macOS, and Linux, across Python versions 3.10, 3.11, and 3.12. That’s 9 different combinations to test. Add in different dependency versions or additional configurations, and you quickly have dozens of test scenarios.</p>
+<p>Matrix strategies automate this combinatorial testing, running your tests across all combinations simultaneously.</p>
+<p><strong>Strategic Matrix Design</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Smart matrix strategy for real-world testing</span>
+<span class="nt">strategy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">fail-fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># Don&#39;t stop other jobs when one fails</span>
+<span class="w">  </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ubuntu-latest</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">windows-latest</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">macos-latest</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.13&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># Add experimental configurations</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.13-dev&quot;</span>
+<span class="w">        </span><span class="nt">experimental</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="c1"># Add platform-specific configurations</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows-latest</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span>
+<span class="w">        </span><span class="nt">extra-args</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;--enable-optimizations&quot;</span>
+<span class="w">    </span><span class="nt">exclude</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># Skip problematic combinations</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos-latest</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.10&quot;</span><span class="w">  </span><span class="c1"># Performance issues on older macOS</span>
+</pre></div>
+</div>
+<p><strong>Why This Approach Works:</strong></p>
+<ul class="simple">
+<li><p><strong>Comprehensive coverage</strong> without manual test management</p></li>
+<li><p><strong>Parallel execution</strong> - 9 combinations run simultaneously instead of sequentially</p></li>
+<li><p><strong>Selective exclusions</strong> - Skip known problematic combinations</p></li>
+<li><p><strong>Experimental testing</strong> - Test upcoming versions without blocking releases</p></li>
+<li><p><strong>Platform-specific optimizations</strong> - Each OS can have tailored configurations</p></li>
+</ul>
+<p><strong>Cost vs. Coverage Trade-offs:</strong></p>
+<p>Matrix strategies can dramatically increase CI costs. Here’s how teams balance thoroughness with budget:</p>
+<ul class="simple">
+<li><p><strong>Pull requests</strong>: Test core combinations (Ubuntu + latest Python versions)</p></li>
+<li><p><strong>Main branch</strong>: Full matrix across all platforms and versions</p></li>
+<li><p><strong>Releases</strong>: Full matrix plus additional security and performance testing</p></li>
+</ul>
+</section>
+<section id="reusable-workflows-composite-actions">
+<h2>Reusable Workflows &amp; Composite Actions<a class="headerlink" href="#reusable-workflows-composite-actions" title="Link to this heading"></a></h2>
+<p><strong>Eliminating Configuration Duplication</strong></p>
+<p>One of the biggest maintenance burdens in multi-repository organizations is keeping CI/CD workflows consistent and up-to-date. Changes to security practices, new compliance requirements, or improved testing strategies need to propagate across dozens or hundreds of repositories.</p>
+<p>Reusable workflows solve this by centralizing common automation patterns.</p>
+<p><strong>Reusable Workflow Architecture</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/reusable-python-ci.yml in your organization&#39;s shared repository</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reusable Python CI</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">workflow_call</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">python-version</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span>
+<span class="w">      </span><span class="nt">coverage-threshold</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">number</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">      </span><span class="nt">run-security-scan</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">CODECOV_TOKEN</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>This reusable workflow can then be called from any repository in your organization:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Any repository&#39;s .github/workflows/ci.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ci</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myorg/shared-workflows/.github/workflows/reusable-python-ci.yml@main</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.11&quot;</span>
+<span class="w">      </span><span class="nt">coverage-threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">CODECOV_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CODECOV_TOKEN }}</span>
+</pre></div>
+</div>
+<p><strong>Business Impact:</strong></p>
+<ul class="simple">
+<li><p><strong>Consistency</strong>: All repositories follow the same security and quality standards</p></li>
+<li><p><strong>Maintenance</strong>: Update practices in one place, applies everywhere</p></li>
+<li><p><strong>Compliance</strong>: Centralized enforcement of regulatory requirements</p></li>
+<li><p><strong>Onboarding</strong>: New repositories get production-ready CI/CD automatically</p></li>
+</ul>
+<p><strong>Real-World Example:</strong></p>
+<p>Netflix uses reusable workflows to ensure that all of their microservices follow the same security scanning, testing, and deployment patterns. When they need to add a new compliance requirement, they update the central workflow and it automatically applies to thousands of repositories.</p>
+</section>
+<section id="cost-optimization-strategies">
+<h2>Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Link to this heading"></a></h2>
+<p><strong>CI/CD Costs Add Up Quickly</strong></p>
+<p>GitHub Actions pricing is based on compute minutes. For small teams, this might seem negligible, but enterprise teams can easily spend thousands of dollars monthly on CI/CD. Smart optimization strategies can reduce these costs by 50-80% without sacrificing quality.</p>
+<p><strong>Intelligent Caching Strategies</strong></p>
+<p><em>Problem</em>: Downloading and installing dependencies takes 2-5 minutes of every pipeline run
+<em>Solution</em>: Cache dependencies that rarely change</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache Python dependencies</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">~/.cache/uv</span>
+<span class="w">      </span><span class="no">.venv</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-python-${{ hashFiles(&#39;uv.lock&#39;) }}</span>
+<span class="w">    </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">${{ runner.os }}-python-</span>
+</pre></div>
+</div>
+<p><em>Impact</em>: Reduces typical Python setup from 3 minutes to 30 seconds</p>
+<p><strong>Conditional Execution</strong></p>
+<p><em>Problem</em>: Running expensive tests when only documentation changes
+<em>Solution</em>: Smart path filtering</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">check-changes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">code-changed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.changes.outputs.code }}</span>
+<span class="w">      </span><span class="nt">docs-changed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.changes.outputs.docs }}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">changes</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">filters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">code:</span>
+<span class="w">              </span><span class="no">- &#39;src/**&#39;</span>
+<span class="w">              </span><span class="no">- &#39;tests/**&#39;</span>
+<span class="w">            </span><span class="no">docs:</span>
+<span class="w">              </span><span class="no">- &#39;docs/**&#39;</span>
+<span class="w">              </span><span class="no">- &#39;*.md&#39;</span>
+
+<span class="w">  </span><span class="nt">expensive-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-changes</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">needs.check-changes.outputs.code-changed == &#39;true&#39;</span>
+<span class="w">    </span><span class="c1"># Only run when actual code changes</span>
+</pre></div>
+</div>
+<p><em>Impact</em>: Documentation-only changes complete in 1 minute instead of 15 minutes</p>
+<p><strong>Resource Right-Sizing</strong></p>
+<p><em>Problem</em>: Using expensive runners for simple tasks
+<em>Solution</em>: Match runner size to workload</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">lint</span><span class="p">:</span><span class="w">  </span><span class="c1"># Simple task, basic runner</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">  </span><span class="nt">integration-tests</span><span class="p">:</span><span class="w">  </span><span class="c1"># CPU-intensive, larger runner</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest-4-cores</span>
+
+<span class="w">  </span><span class="nt">security-scan</span><span class="p">:</span><span class="w">  </span><span class="c1"># Memory-intensive, high-memory runner</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest-16-cores</span>
+</pre></div>
+</div>
+</section>
+<section id="security-and-secrets-management">
+<h2>Security and Secrets Management<a class="headerlink" href="#security-and-secrets-management" title="Link to this heading"></a></h2>
+<p><strong>Beyond Basic Secret Storage</strong></p>
+<p>Modern applications require sophisticated secret management that goes far beyond storing API keys in repository settings.</p>
+<p><strong>Environment-Specific Secrets</strong></p>
+<p>Different environments (development, staging, production) require different credentials, configurations, and access levels.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.environment }}</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to AWS</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}</span>
+<span class="w">        </span><span class="no">aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}</span>
+<span class="w">        </span><span class="no">deploy.sh ${{ inputs.environment }}</span>
+</pre></div>
+</div>
+<p><strong>Supply Chain Security</strong></p>
+<p>Modern applications depend on dozens of external libraries and tools. Supply chain attacks target these dependencies.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">security</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Pin action versions to specific SHAs</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab</span><span class="w">  </span><span class="c1"># v3.5.2</span>
+
+<span class="w">    </span><span class="c1"># Verify action signatures</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify action integrity</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no"># Use cosign or similar tools to verify action signatures</span>
+<span class="w">        </span><span class="no">cosign verify github.com/actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab</span>
+</pre></div>
+</div>
+<p><strong>Least Privilege Access</strong></p>
+<p>Grant workflows only the permissions they actually need.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span><span class="w">      </span><span class="c1"># Can read repository contents</span>
+<span class="w">  </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span><span class="w"> </span><span class="c1"># Can comment on PRs</span>
+<span class="w">  </span><span class="c1"># Explicitly deny all other permissions</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-with-external-services">
+<h2>Integration with External Services<a class="headerlink" href="#integration-with-external-services" title="Link to this heading"></a></h2>
+<p><strong>Beyond GitHub’s Ecosystem</strong></p>
+<p>Production systems need to integrate with monitoring services, cloud platforms, notification systems, and deployment tools.</p>
+<p><strong>Notification Strategies</strong></p>
+<p><em>Smart notifications</em> keep teams informed without overwhelming them:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">notify</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span><span class="w">  </span><span class="c1"># Run even if previous jobs fail</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Notify on failure</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">failure()</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8398a7/action-slack@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">failure</span>
+<span class="w">        </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#critical-alerts&#39;</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Notify on success (main branch only)</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">success() &amp;&amp; github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8398a7/action-slack@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">success</span>
+<span class="w">        </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#deployments&#39;</span>
+</pre></div>
+</div>
+<p><strong>Cloud Platform Integration</strong></p>
+<p>Deploy to AWS, Azure, Google Cloud, or other platforms:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">deploy-to-aws</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure AWS credentials</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-actions/configure-aws-credentials@v2</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">role-to-assume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.AWS_ROLE_ARN }}</span>
+<span class="w">        </span><span class="nt">aws-region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to ECS</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">aws ecs update-service --cluster production --service myapp --force-new-deployment</span>
+</pre></div>
+</div>
+</section>
+<section id="monitoring-and-analytics">
+<h2>Monitoring and Analytics<a class="headerlink" href="#monitoring-and-analytics" title="Link to this heading"></a></h2>
+<p><strong>Making Data-Driven CI/CD Decisions</strong></p>
+<p>Successful teams treat their CI/CD pipelines like production systems - they monitor performance, track costs, and optimize based on data.</p>
+<p><strong>Key Metrics to Track:</strong></p>
+<ul class="simple">
+<li><p><strong>Pipeline duration trends</strong>: Are builds getting slower over time?</p></li>
+<li><p><strong>Success rates by repository</strong>: Which projects need attention?</p></li>
+<li><p><strong>Cost per repository</strong>: Where is budget being spent?</p></li>
+<li><p><strong>Developer satisfaction</strong>: Are pipelines helping or hindering productivity?</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Record pipeline metrics</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">curl -X POST ${{ secrets.METRICS_ENDPOINT }} \</span>
+<span class="w">      </span><span class="no">-H &quot;Content-Type: application/json&quot; \</span>
+<span class="w">      </span><span class="no">-d &#39;{</span>
+<span class="w">        </span><span class="no">&quot;repository&quot;: &quot;${{ github.repository }}&quot;,</span>
+<span class="w">        </span><span class="no">&quot;workflow&quot;: &quot;${{ github.workflow }}&quot;,</span>
+<span class="w">        </span><span class="no">&quot;duration&quot;: &quot;${{ env.PIPELINE_DURATION }}&quot;,</span>
+<span class="w">        </span><span class="no">&quot;result&quot;: &quot;${{ job.status }}&quot;,</span>
+<span class="w">        </span><span class="no">&quot;commit_sha&quot;: &quot;${{ github.sha }}&quot;</span>
+<span class="w">      </span><span class="no">}&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading"></a></h2>
+<p><strong>Advanced GitHub Actions patterns enable:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Scale</strong> - Manage hundreds of repositories with consistent practices</p></li>
+<li><p><strong>Efficiency</strong> - Reduce costs while improving quality and speed</p></li>
+<li><p><strong>Security</strong> - Implement enterprise-grade security practices</p></li>
+<li><p><strong>Integration</strong> - Connect with your entire development and deployment ecosystem</p></li>
+<li><p><strong>Intelligence</strong> - Make data-driven decisions about your automation</p></li>
+</ol>
+<p><strong>Implementation Strategy:</strong></p>
+<p>Don’t try to implement all advanced patterns at once. Start with the biggest pain points:
+- If you have multiple similar repositories → Implement reusable workflows
+- If CI/CD costs are high → Focus on caching and conditional execution
+- If you need cross-platform support → Implement matrix strategies
+- If security is a concern → Start with secrets management and supply chain security</p>
+<p><strong>Next Steps:</strong></p>
+<dl class="simple">
+<dt>The final section will tie together everything you’ve learned with comprehensive best practices that ensure your CI/CD implementations are production-ready and sustainable.</dt><dd><dl class="simple">
+<dt>secrets:</dt><dd><p>CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<section id="composite-action-github-actions-setup-python-env-action-yml">
+<h3>Composite Action (.github/actions/setup-python-env/action.yml)<a class="headerlink" href="#composite-action-github-actions-setup-python-env-action-yml" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Setup</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">Environment&#39;</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Set</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">uv</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">dependencies&#39;</span>
+
+<span class="nt">inputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">python-version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Python</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">use&#39;</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">  </span><span class="nt">cache-key-suffix</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Additional</span><span class="nv"> </span><span class="s">cache</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">suffix&#39;</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
+
+<span class="nt">outputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">cache-hit</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Whether</span><span class="nv"> </span><span class="s">cache</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">hit&#39;</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.cache.outputs.cache-hit }}</span>
+
+<span class="nt">runs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">using</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;composite&#39;</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.python-version }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache dependencies</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cache</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/uv</span>
+<span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv-${{ runner.os }}-${{ inputs.python-version }}-${{ hashFiles(&#39;**/pyproject.toml&#39;, &#39;**/uv.lock&#39;) }}-${{ inputs.cache-key-suffix }}</span>
+<span class="w">        </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">uv-${{ runner.os }}-${{ inputs.python-version }}-</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Cost Optimization Strategies<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>GitHub Actions pricing can add up quickly in large organizations. Here are proven strategies to reduce costs:</p>
+<section id="optimal-runner-selection">
+<h3>1. Optimal Runner Selection<a class="headerlink" href="#optimal-runner-selection" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Expensive - unnecessarily powerful</span>
+<span class="w">  </span><span class="nt">lint</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest-4-cores</span><span class="w">  </span><span class="c1"># $0.032/minute</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span><span class="w">  </span><span class="c1"># Takes 10 seconds</span>
+
+<span class="w">  </span><span class="c1"># Cost-effective - right-sized</span>
+<span class="w">  </span><span class="nt">lint</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w">  </span><span class="c1"># $0.008/minute</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span>
+</pre></div>
+</div>
+</section>
+<section id="conditional-job-execution">
+<h3>2. Conditional Job Execution<a class="headerlink" href="#conditional-job-execution" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">changes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.backend }}</span>
+<span class="w">      </span><span class="nt">frontend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.frontend }}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filter</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">filters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">backend:</span>
+<span class="w">              </span><span class="no">- &#39;src/**&#39;</span>
+<span class="w">              </span><span class="no">- &#39;tests/**&#39;</span>
+<span class="w">            </span><span class="no">frontend:</span>
+<span class="w">              </span><span class="no">- &#39;web/**&#39;</span>
+<span class="w">              </span><span class="no">- &#39;package.json&#39;</span>
+
+<span class="w">  </span><span class="nt">test-backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">changes</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">needs.changes.outputs.backend == &#39;true&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="c1"># Only runs when backend files change</span>
+
+<span class="w">  </span><span class="nt">test-frontend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">changes</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">needs.changes.outputs.frontend == &#39;true&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="c1"># Only runs when frontend files change</span>
+</pre></div>
+</div>
+</section>
+<section id="aggressive-caching">
+<h3>3. Aggressive Caching<a class="headerlink" href="#aggressive-caching" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache everything possible</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">~/.cache/uv</span>
+<span class="w">      </span><span class="no">~/.cache/pip</span>
+<span class="w">      </span><span class="no">~/.cache/pre-commit</span>
+<span class="w">      </span><span class="no">node_modules</span>
+<span class="w">      </span><span class="no">.pytest_cache</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mega-cache-${{ runner.os }}-${{ hashFiles(&#39;**/*.lock&#39;, &#39;**/*.toml&#39;, &#39;**/*.json&#39;) }}</span>
+<span class="w">    </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">mega-cache-${{ runner.os }}-</span>
+</pre></div>
+</div>
+</section>
+<section id="self-hosted-runners-for-repetitive-tasks">
+<h3>4. Self-Hosted Runners for Repetitive Tasks<a class="headerlink" href="#self-hosted-runners-for-repetitive-tasks" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># For organizations with high CI volume</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">self-hosted</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">linux</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">x64</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="c1"># Runs on your own infrastructure</span>
+<span class="w">    </span><span class="c1"># Cost: Your server costs only</span>
+<span class="w">    </span><span class="c1"># vs GitHub hosted: $0.008/minute</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-analysis-example">
+<h3>Cost Analysis Example<a class="headerlink" href="#cost-analysis-example" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Organization: 50 developers, 500 CI runs/day
+
+Before optimization:
+- 500 runs x 15 minutes x $0.008 = $60/day
+- Monthly cost: ~$1,800
+
+After optimization:
+- Conditional jobs: 50% reduction
+- Better caching: 30% faster builds
+- Right-sized runners: 25% cost reduction
+- Final cost: ~$675/month (62% savings)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="external-service-integrations">
+<h2>External Service Integrations<a class="headerlink" href="#external-service-integrations" title="Link to this heading"></a></h2>
+<section id="slack-integration-for-deployment-notifications">
+<h3>Slack Integration for Deployment Notifications<a class="headerlink" href="#slack-integration-for-deployment-notifications" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Notify Slack on deployment</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span><span class="w">  </span><span class="c1"># Run even if previous steps fail</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8398a7/action-slack@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ job.status }}</span>
+<span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#deployments&#39;</span>
+<span class="w">    </span><span class="nt">webhook_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.SLACK_WEBHOOK }}</span>
+<span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo,message,commit,author,action,eventName,ref,workflow</span>
+<span class="w">    </span><span class="nt">custom_payload</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">{</span>
+<span class="w">        </span><span class="no">&quot;blocks&quot;: [</span>
+<span class="w">          </span><span class="no">{</span>
+<span class="w">            </span><span class="no">&quot;type&quot;: &quot;section&quot;,</span>
+<span class="w">            </span><span class="no">&quot;text&quot;: {</span>
+<span class="w">              </span><span class="no">&quot;type&quot;: &quot;mrkdwn&quot;,</span>
+<span class="w">              </span><span class="no">&quot;text&quot;: &quot;🚀 Deployment to production ${{ job.status == &#39;success&#39; &amp;&amp; &#39;succeeded&#39; || &#39;failed&#39; }}\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Commit:* &lt;${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}&gt;\n*Author:* ${{ github.event.head_commit.author.name }}&quot;</span>
+<span class="w">            </span><span class="no">}</span>
+<span class="w">          </span><span class="no">}</span>
+<span class="w">        </span><span class="no">]</span>
+<span class="w">      </span><span class="no">}</span>
+</pre></div>
+</div>
+</section>
+<section id="email-notifications-with-rich-content">
+<h3>Email Notifications with Rich Content<a class="headerlink" href="#email-notifications-with-rich-content" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Send deployment summary email</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dawidd6/action-send-mail@v3</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">server_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smtp.gmail.com</span>
+<span class="w">    </span><span class="nt">server_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">587</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.EMAIL_USERNAME }}</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.EMAIL_PASSWORD }}</span>
+<span class="w">    </span><span class="nt">subject</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Production</span><span class="nv"> </span><span class="s">Deployment</span><span class="nv"> </span><span class="s">Successful</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">${{</span><span class="nv"> </span><span class="s">github.repository</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">    </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devops-team@company.com</span>
+<span class="w">    </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub Actions &lt;noreply@company.com&gt;</span>
+<span class="w">    </span><span class="nt">html_body</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">&lt;h2&gt;Deployment Summary&lt;/h2&gt;</span>
+<span class="w">      </span><span class="no">&lt;p&gt;&lt;strong&gt;Repository:&lt;/strong&gt; ${{ github.repository }}&lt;/p&gt;</span>
+<span class="w">      </span><span class="no">&lt;p&gt;&lt;strong&gt;Branch:&lt;/strong&gt; ${{ github.ref_name }}&lt;/p&gt;</span>
+<span class="w">      </span><span class="no">&lt;p&gt;&lt;strong&gt;Commit:&lt;/strong&gt; &lt;a href=&quot;${{ github.event.head_commit.url }}&quot;&gt;${{ github.event.head_commit.message }}&lt;/a&gt;&lt;/p&gt;</span>
+<span class="w">      </span><span class="no">&lt;p&gt;&lt;strong&gt;Author:&lt;/strong&gt; ${{ github.event.head_commit.author.name }}&lt;/p&gt;</span>
+<span class="w">      </span><span class="no">&lt;p&gt;&lt;strong&gt;Deployed at:&lt;/strong&gt; ${{ github.event.head_commit.timestamp }}&lt;/p&gt;</span>
+
+<span class="w">      </span><span class="no">&lt;h3&gt;Pipeline Results&lt;/h3&gt;</span>
+<span class="w">      </span><span class="no">&lt;ul&gt;</span>
+<span class="w">        </span><span class="no">&lt;li&gt;Tests: Passed&lt;/li&gt;</span>
+<span class="w">        </span><span class="no">&lt;li&gt;Security Scan: Clean&lt;/li&gt;</span>
+<span class="w">        </span><span class="no">&lt;li&gt;Deployment: Successful&lt;/li&gt;</span>
+<span class="w">      </span><span class="no">&lt;/ul&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-cloud-deployment">
+<h3>Multi-Cloud Deployment<a class="headerlink" href="#multi-cloud-deployment" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">cloud</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws</span>
+<span class="w">          </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure</span>
+<span class="w">          </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eastus</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp</span>
+<span class="w">          </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-central1</span>
+
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to ${{ matrix.cloud.name }}</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">case &quot;${{ matrix.cloud.name }}&quot; in</span>
+<span class="w">          </span><span class="no">&quot;aws&quot;)</span>
+<span class="w">            </span><span class="no">aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}</span>
+<span class="w">            </span><span class="no">aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}</span>
+<span class="w">            </span><span class="no">aws ecs update-service --cluster prod --service myapp --force-new-deployment</span>
+<span class="w">            </span><span class="no">;;</span>
+<span class="w">          </span><span class="no">&quot;azure&quot;)</span>
+<span class="w">            </span><span class="no">az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}</span>
+<span class="w">            </span><span class="no">az container restart --name myapp --resource-group prod</span>
+<span class="w">            </span><span class="no">;;</span>
+<span class="w">          </span><span class="no">&quot;gcp&quot;)</span>
+<span class="w">            </span><span class="no">echo &#39;${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}&#39; | base64 -d &gt; gcp-key.json</span>
+<span class="w">            </span><span class="no">gcloud auth activate-service-account --key-file gcp-key.json</span>
+<span class="w">            </span><span class="no">gcloud run deploy myapp --image gcr.io/project/myapp:latest --region ${{ matrix.cloud.region }}</span>
+<span class="w">            </span><span class="no">;;</span>
+<span class="w">        </span><span class="no">esac</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-security-secrets-management">
+<h2>Advanced Security &amp; Secrets Management<a class="headerlink" href="#advanced-security-secrets-management" title="Link to this heading"></a></h2>
+<section id="environment-based-secrets">
+<h3>Environment-Based Secrets<a class="headerlink" href="#environment-based-secrets" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.ref_name == &#39;main&#39; &amp;&amp; &#39;production&#39; || &#39;staging&#39; }}</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.deploy.outputs.url }}</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to environment</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no"># Secrets are automatically scoped to the environment</span>
+<span class="w">          </span><span class="no">echo &quot;Deploying with DATABASE_URL: ${{ secrets.DATABASE_URL }}&quot;</span>
+<span class="w">          </span><span class="no">echo &quot;API_KEY configured: ${{ secrets.API_KEY != &#39;&#39; }}&quot;</span>
+
+<span class="w">          </span><span class="no"># Environment-specific logic</span>
+<span class="w">          </span><span class="no">if [[ &quot;${{ github.ref_name }}&quot; == &quot;main&quot; ]]; then</span>
+<span class="w">            </span><span class="no">DEPLOY_URL=&quot;https://myapp.com&quot;</span>
+<span class="w">          </span><span class="no">else</span>
+<span class="w">            </span><span class="no">DEPLOY_URL=&quot;https://staging.myapp.com&quot;</span>
+<span class="w">          </span><span class="no">fi</span>
+
+<span class="w">          </span><span class="no">echo &quot;url=$DEPLOY_URL&quot; &gt;&gt; $GITHUB_OUTPUT</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="progress-checkpoint-best-practices">
+<h2>Progress Checkpoint &amp; Best Practices<a class="headerlink" href="#progress-checkpoint-best-practices" title="Link to this heading"></a></h2>
+<section id="by-now-you-should-be-able-to">
+<h3>By now you should be able to:<a class="headerlink" href="#by-now-you-should-be-able-to" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Implement matrix strategies for efficient cross-platform testing</p></li>
+<li><p>Create reusable workflows and composite actions for code reuse</p></li>
+<li><p>Optimize CI/CD costs through smart runner selection and caching</p></li>
+<li><p>Integrate with external services for notifications and deployments</p></li>
+<li><p>Apply advanced security practices and secret management</p></li>
+<li><p>Debug complex workflow issues effectively</p></li>
+</ul>
+</section>
+<section id="github-actions-best-practices-summary">
+<h3>GitHub Actions Best Practices Summary:<a class="headerlink" href="#github-actions-best-practices-summary" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Start simple, optimize later</strong>: Begin with basic workflows, add complexity as needed</p></li>
+<li><p><strong>Cache aggressively</strong>: Every second saved multiplied by thousands of runs</p></li>
+<li><p><strong>Fail fast</strong>: Put quick checks first to give developers rapid feedback</p></li>
+<li><p><strong>Use matrix wisely</strong>: Test what matters, skip redundant combinations</p></li>
+<li><p><strong>Monitor costs</strong>: Set up alerts for unexpected usage spikes</p></li>
+<li><p><strong>Security first</strong>: Use OIDC, rotate secrets, minimal permissions</p></li>
+<li><p><strong>Make it observable</strong>: Add logging, timing, and alerts</p></li>
+</ol>
+</section>
+<section id="next-steps">
+<h3>Next Steps:<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h3>
+<p>In the final section, we’ll cover best practices for production deployments, team collaboration patterns, and building a sustainable CI/CD culture.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Practice Challenge</strong>: Take your existing pipeline and apply three optimizations from this section. Measure the before/after performance and cost impact.</p>
+<ol class="arabic simple">
+<li><p>Events: Events are triggers that start a workflow, such as a push to the repository, opening a pull request, or scheduling a cron job.</p></li>
+<li><p>Actions: Actions are individual tasks that make up the workflow, such as checking out code from the repository, building and testing code, or deploying code to a production environment.</p></li>
+</ol>
+</div>
+<p>A workflow is defined in a YAML file in the .github/workflows directory of a GitHub repository. The structure of a GitHub Actions workflow typically includes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Name: A unique name for the workflow that identifies it in the GitHub Actions interface.</p></li>
+<li><p>On: The event that triggers the workflow, such as a push to the repository or opening a pull request.</p></li>
+<li><p>Jobs: One or more jobs that make up the workflow, each with its own set of steps.</p></li>
+<li><p>Steps: The individual tasks, or steps, that make up a job. Steps can be individual shell commands or calls to predefined actions from the GitHub Actions marketplace or other sources.</p></li>
+<li><p>Conditionals: Optional logic that determines whether a step or job should be run, based on conditions such as the success or failure of previous steps or the value of environment variables.</p></li>
+</ol>
+</div></blockquote>
+<p>This workflow runs whenever the code is pushed to the main branch of the repository. It consists of one job, “build,” that runs on an Ubuntu virtual machine and performs four steps: checking out the code, setting up Node.js, installing dependencies, and building and testing the code.</p>
+</section>
+</section>
+<section id="workflows-vs-actions">
+<h2>Workflows vs Actions<a class="headerlink" href="#workflows-vs-actions" title="Link to this heading"></a></h2>
+<p>A workflow is a configurable automated process made up of one or more jobs. Workflows are defined in YAML files, which are stored in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> directory of a repository.</p>
+<p>An action is a reusable unit of code that can be used in a workflow. Actions are the smallest portable building block of a workflow. Actions can be written in JavaScript, TypeScript, or any other language that can be packaged in a Docker container.</p>
+<p>A workflow can use actions defined in the same repository, a public repository, or a published Docker container image.</p>
+</section>
+<section id="directory-structure">
+<h2>Directory structure<a class="headerlink" href="#directory-structure" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>GitHub Actions workflow</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.github/workflows/
+├── build.yml
+└── deploy.yml
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>GitHub Actions action</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.github/actions/actionName
+├──action.yml
+├── Dockerfile
+├── index.js
+└── package.json
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="workflow-syntax">
+<h2>Workflow syntax<a class="headerlink" href="#workflow-syntax" title="Link to this heading"></a></h2>
+<p>A workflow is defined in a YAML file in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> directory of a GitHub repository.</p>
+<p>The structure of a GitHub Actions workflow typically includes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Name</strong>: A unique name for the workflow that identifies it in the GitHub Actions interface.</p></li>
+<li><p><strong>On</strong>: The event that triggers the workflow, such as a push to the repository or opening a pull request.</p></li>
+<li><p><strong>Jobs</strong>: One or more jobs that make up the workflow, each with its own set of steps.</p></li>
+<li><p><strong>Steps</strong>: The individual tasks, or steps, that make up a job. Steps can be individual shell commands or calls to predefined actions from the GitHub Actions marketplace or other sources.</p></li>
+<li><p><strong>Conditionals</strong>: Optional logic that determines whether a step or job should be run, based on conditions such as the success or failure of previous steps or the value of environment variables.</p></li>
+</ol>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python package</span>
+
+<span class="c1"># runs on push and pull request to master (keep in mind that most of the default branches would be blocked for pushing directly to master)</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;master&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;master&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="nt">build</span><span class="p">:</span>
+
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">fail-fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.9&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.10&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">]</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python-version }}</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip</span>
+<span class="w">        </span><span class="no">python -m pip install flake8 pytest</span>
+<span class="w">        </span><span class="no">if [ -f requirements.txt ]; then pip install -r requirements.txt; fi</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint with flake8</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no"># stop the build if there are Python syntax errors or undefined names</span>
+<span class="w">        </span><span class="no">flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics</span>
+<span class="w">        </span><span class="no"># exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide</span>
+<span class="w">        </span><span class="no">flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test with pytest</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">pytest</span>
+</pre></div>
+</div>
+<p>or an workflow that uses the next action as a step:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python application with Action</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">workflow_dispatch</span><span class="p">:</span>
+
+<span class="nt">permissions</span><span class="p">:</span>
+<span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="nt">test_python</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.8&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.9&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.10&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/actions/testing</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">python-version:${{ matrix.python-version }}</span>
+</pre></div>
+</div>
+</section>
+<section id="action-syntax">
+<h2>Action syntax<a class="headerlink" href="#action-syntax" title="Link to this heading"></a></h2>
+<p>An action is defined in a YAML file in the <code class="docutils literal notranslate"><span class="pre">.github/actions/actionName/action.yaml</span></code> directory of a GitHub repository.</p>
+<p>The structure of a GitHub Actions action typically includes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Name</strong>: A unique name for the action that identifies it in the GitHub Actions interface.</p></li>
+<li><p><strong>Inputs</strong>: A list of inputs that can be passed to the action.</p></li>
+<li><p><strong>Outputs</strong>: A list of outputs that can be returned from the action.</p></li>
+<li><p><strong>Runs</strong>: The runtime environment for the action, such as a Docker container or JavaScript runtime.</p></li>
+<li><p><strong>Steps</strong>: The individual tasks, or steps, that make up the action. Steps can be individual shell commands or calls to predefined actions from the GitHub Actions marketplace or other sources.</p></li>
+</ol>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Python</span><span class="nv"> </span><span class="s">Test</span><span class="nv"> </span><span class="s">Action&#39;</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Action</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">setup,</span><span class="nv"> </span><span class="s">lint,</span><span class="nv"> </span><span class="s">type-check</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">application&#39;</span>
+
+<span class="nt">inputs</span><span class="p">:</span>
+<span class="nt">python_version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Python</span><span class="nv"> </span><span class="s">version&#39;</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+
+<span class="nt">runs</span><span class="p">:</span>
+<span class="nt">using</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;composite&quot;</span>
+<span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python 3.10</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.python_version }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">    </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_code/pipelines</span>
+<span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip</span>
+<span class="w">        </span><span class="no">pip install -r requirements.txt</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint with pylint</span>
+<span class="w">    </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_code/pipelines</span>
+<span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pylint cli/</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check with mypy</span>
+<span class="w">    </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_code/pipelines</span>
+<span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypy cli/</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test with pytest</span>
+<span class="w">    </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_code/pipelines</span>
+<span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest</span>
+</pre></div>
+</div>
+</section>
+<section id="triggering">
+<h2>Triggering<a class="headerlink" href="#triggering" title="Link to this heading"></a></h2>
+<p>There are several ways to trigger a workflow run:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Push</strong>: A workflow can be triggered by a push to the repository. This is the default trigger for a workflow.</p></li>
+<li><p><strong>Pull Request</strong>: A workflow can be triggered by a pull request to the repository.</p></li>
+<li><p><strong>Schedule</strong>: A workflow can be triggered on a schedule, using cron syntax.</p></li>
+<li><p><strong>Webhook</strong>: A workflow can be triggered by a webhook, such as a GitHub App.</p></li>
+<li><p><strong>External</strong>: A workflow can be triggered by an external event, such as a Docker image being pushed to a registry.</p></li>
+<li><p><strong>On Demand</strong>: A workflow can be triggered manually from the GitHub Actions interface.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="workflow-templates">
+<h2>Workflow templates<a class="headerlink" href="#workflow-templates" title="Link to this heading"></a></h2>
+<p>GitHub provides a number of workflow templates that can be used to quickly create a workflow for common tasks, such as building and testing code, deploying code to a production environment, or publishing a Docker image.</p>
+<p>Workflow templates can be accessed from the GitHub Actions interface or from the GitHub Actions Marketplace.</p>
+</section>
+<section id="github-secrets">
+<h2>Github Secrets<a class="headerlink" href="#github-secrets" title="Link to this heading"></a></h2>
+<p>Managing secrets (passwords, tokens, certificates, keys) is a challenging problem in software development. Secrets can be used to grant access to resources, such as databases, APIs, and cloud services, and should be kept secure at all times.</p>
+<p>GitHub Actions provides a way to securely store and access secrets, using the GitHub Actions interface or the GitHub API.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In most companies this feature is avoided because most of the time there are requirements to use a third party tool like Hashicorp Vault or Kubernetes Secrets to manage secrets inside of company network.</p>
+</div>
+</section>
+<section id="github-runners">
+<h2>Github Runners<a class="headerlink" href="#github-runners" title="Link to this heading"></a></h2>
+<p>There are 2 types of workers:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>GitHub-hosted runners</strong>: GitHub provides a set of virtual machines that are pre-configured with a variety of software environments. These runners are available to use for free, each account has certain amounts of minutes per month.</p></li>
+<li><p><strong>Self-hosted runners</strong>: You can host your own runners on your own machines, using a variety of operating systems and architectures. Self-hosted runners can be used for free, but require more setup and maintenance.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="modern-workflow-structure">
+<h2>Modern Workflow Structure<a class="headerlink" href="#modern-workflow-structure" title="Link to this heading"></a></h2>
+<p>GitHub Actions workflows follow a hierarchical structure that’s easy to understand:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Workflow (CI/CD Pipeline)
+├── Event Triggers (push, PR, schedule)
+├── Job 1 (e.g., test)
+│   ├── Step 1 (checkout code)
+│   ├── Step 2 (setup Python)
+│   └── Step 3 (run tests)
+├── Job 2 (e.g., build)
+│   └── Steps...
+└── Job 3 (e.g., deploy)
+    └── Steps...
+</pre></div>
+</div>
+<p><strong>Key Components Explained:</strong></p>
+<ul class="simple">
+<li><p><strong>Workflow</strong>: The entire automated process (like a recipe)</p></li>
+<li><p><strong>Jobs</strong>: Groups of steps that run on the same runner (like cooking steps)</p></li>
+<li><p><strong>Steps</strong>: Individual tasks within a job (like individual recipe instructions)</p></li>
+<li><p><strong>Actions</strong>: Reusable code blocks (like pre-made ingredients)</p></li>
+</ul>
+</section>
+<section id="advanced-python-workflow-examples">
+<h2>Advanced Python Workflow Examples<a class="headerlink" href="#advanced-python-workflow-examples" title="Link to this heading"></a></h2>
+<p><strong>1. Multi-Environment Testing with Matrix:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Comprehensive Python Testing</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.os }}</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">fail-fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ubuntu-latest</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">windows-latest</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">macos-latest</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.13&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">exclude</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows-latest</span>
+<span class="w">            </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python-version }}</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">uv sync --dev</span>
+<span class="w">          </span><span class="no">uv run pytest -v</span>
+</pre></div>
+</div>
+<p><strong>2. Complete CI/CD Pipeline with Deployment:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python Package CI/CD</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;v*&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Quality checks</span>
+<span class="w">  </span><span class="nt">quality</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Code quality</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">uv run ruff check .</span>
+<span class="w">          </span><span class="no">uv run ruff format --check .</span>
+<span class="w">          </span><span class="no">uv run mypy src/</span>
+<span class="w">          </span><span class="no">uv run bandit -r src/</span>
+
+<span class="w">  </span><span class="c1"># Tests</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.13&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest --cov --cov-report=xml</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov/codecov-action@v3</span>
+
+<span class="w">  </span><span class="c1"># Build package</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">quality</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv build</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">packages</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist/</span>
+
+<span class="w">  </span><span class="c1"># Deploy to PyPI (only on tags)</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">startsWith(github.ref, &#39;refs/tags/v&#39;)</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pypi</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span><span class="w">  </span><span class="c1"># For trusted publishing</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/download-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">packages</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist/</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pypa/gh-action-pypi-publish@release/v1</span>
+</pre></div>
+</div>
+<p><strong>3. Custom Action for Python Setup:</strong></p>
+<p>Create <cite>.github/actions/setup-python-project/action.yml</cite>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Setup</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">Project&#39;</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Setup</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">uv</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">dependencies&#39;</span>
+
+<span class="nt">inputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">python-version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Python</span><span class="nv"> </span><span class="s">version&#39;</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+<span class="w">  </span><span class="nt">install-dev</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Install</span><span class="nv"> </span><span class="s">dev</span><span class="nv"> </span><span class="s">dependencies&#39;</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+
+<span class="nt">runs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">using</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;composite&quot;</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ inputs.python-version }}</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.python-version }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enable-cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">if [ &quot;${{ inputs.install-dev }}&quot; == &quot;true&quot; ]; then</span>
+<span class="w">          </span><span class="no">uv sync --dev</span>
+<span class="w">        </span><span class="no">else</span>
+<span class="w">          </span><span class="no">uv sync</span>
+<span class="w">        </span><span class="no">fi</span>
+</pre></div>
+</div>
+<p><strong>Using the custom action:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Using Custom Action</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/actions/setup-python-project</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest</span>
+</pre></div>
+</div>
+</section>
+<section id="workflow-triggers">
+<h2>Workflow Triggers<a class="headerlink" href="#workflow-triggers" title="Link to this heading"></a></h2>
+<p>GitHub Actions supports various trigger events:</p>
+<p><strong>Common Triggers:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single event</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+
+<span class="c1"># Multiple events</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="c1"># Detailed configuration</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">develop</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;src/**&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;tests/**&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">synchronize</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">reopened</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1&#39;</span><span class="w">  </span><span class="c1"># Every Monday at 2 AM</span>
+<span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span><span class="w">     </span><span class="c1"># Manual trigger</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Environment</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">deploy&#39;</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;staging&#39;</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">choice</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;staging&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;production&#39;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>Advanced Trigger Examples:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Only run on changes to Python files</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;**.py&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;pyproject.toml&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;uv.lock&#39;</span><span class="p p-Indicator">]</span>
+
+<span class="c1"># Skip CI on documentation changes</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">paths-ignore</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;docs/**&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;**.md&#39;</span><span class="p p-Indicator">]</span>
+
+<span class="c1"># Different workflows for different branches</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w">      </span><span class="c1"># Production deployment</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">develop</span><span class="w">   </span><span class="c1"># Staging deployment</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;feature/*&#39;</span><span class="w">  </span><span class="c1"># Feature testing</span>
+</pre></div>
+</div>
+</section>
+<section id="secrets-and-security">
+<h2>Secrets and Security<a class="headerlink" href="#secrets-and-security" title="Link to this heading"></a></h2>
+<p>GitHub Actions provides secure ways to handle sensitive information:</p>
+<p><strong>Repository Secrets:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to repository Settings → Secrets and variables → Actions</p></li>
+<li><p>Add secrets like <cite>PYPI_TOKEN</cite>, <cite>DATABASE_URL</cite>, etc.</p></li>
+</ol>
+<p><strong>Using secrets in workflows:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to PyPI</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">PYPI_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.PYPI_TOKEN }}</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">uv run twine upload dist/* --username __token__ --password $PYPI_TOKEN</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to staging</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.STAGING_DATABASE_URL }}</span>
+<span class="w">      </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.API_KEY }}</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">echo &quot;Deploying with secure credentials...&quot;</span>
+</pre></div>
+</div>
+<p><strong>Environment-specific secrets:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span><span class="w">  </span><span class="c1"># Uses production environment secrets</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">SECRET_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.SECRET_KEY }}</span><span class="w">  </span><span class="c1"># From production environment</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Deploying to production&quot;</span>
+</pre></div>
+</div>
+<p><strong>Security best practices:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Limit permissions</span>
+<span class="nt">permissions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">  </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span><span class="w">  </span><span class="c1"># For OIDC</span>
+
+<span class="c1"># Use trusted publishing for PyPI</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pypa/gh-action-pypi-publish@release/v1</span>
+<span class="w">  </span><span class="c1"># No API token needed with trusted publishing</span>
+</pre></div>
+</div>
+</section>
+<section id="artifacts-and-caching">
+<h2>Artifacts and Caching<a class="headerlink" href="#artifacts-and-caching" title="Link to this heading"></a></h2>
+<p><strong>Artifacts</strong> store files between jobs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv build</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-package</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist/</span>
+<span class="w">          </span><span class="nt">retention-days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+
+<span class="w">  </span><span class="nt">test-package</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/download-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-package</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist/</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install dist/*.whl &amp;&amp; python -c &quot;import mypackage&quot;</span>
+</pre></div>
+</div>
+<p><strong>Caching</strong> speeds up workflows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">  </span><span class="c1"># Cache Python dependencies</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v3</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/uv</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-uv-${{ hashFiles(&#39;uv.lock&#39;) }}</span>
+<span class="w">      </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-uv-</span>
+
+<span class="w">  </span><span class="c1"># Or use uv&#39;s built-in caching</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">enable-cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">cache-dependency-glob</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;uv.lock&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>GitHub Runners<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>GitHub-hosted runners</strong> (recommended for most use cases):</p>
+<ul class="simple">
+<li><p><strong>ubuntu-latest</strong>: Most common, fastest startup</p></li>
+<li><p><strong>windows-latest</strong>: For Windows-specific testing</p></li>
+<li><p><strong>macos-latest</strong>: For macOS testing (slower, more expensive)</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w">  </span><span class="c1"># Free tier: 2,000 minutes/month</span>
+<span class="w">    </span><span class="c1"># runs-on: windows-latest  # Free tier: 2,000 minutes/month</span>
+<span class="w">    </span><span class="c1"># runs-on: macos-latest     # Free tier: 500 minutes/month</span>
+</pre></div>
+</div>
+<p><strong>Self-hosted runners</strong> (for special requirements):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">self-hosted</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">linux</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">x64</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">gpu</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Custom labels</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvidia-smi</span><span class="w">  </span><span class="c1"># Use GPU for ML workloads</span>
+</pre></div>
+</div>
+<p><strong>When to use self-hosted runners:</strong></p>
+<ul class="simple">
+<li><p>Need specific hardware (GPUs, large memory)</p></li>
+<li><p>Require access to internal networks</p></li>
+<li><p>Want faster builds with persistent caching</p></li>
+<li><p>Have compliance requirements</p></li>
+</ul>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<p><strong>Conditional execution:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to production</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39; &amp;&amp; github.event_name == &#39;push&#39;</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Deploying to production&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run only on Python changes</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contains(github.event.head_commit.modified, &#39;.py&#39;)</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Python files changed&quot;</span>
+</pre></div>
+</div>
+<p><strong>Dynamic matrix from file:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">setup</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.set-matrix.outputs.matrix }}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set-matrix</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;matrix=$(cat .github/test-matrix.json)&quot; &gt;&gt; $GITHUB_OUTPUT</span>
+
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setup</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ fromJson(needs.setup.outputs.matrix) }}</span>
+</pre></div>
+</div>
+<p><strong>Reusable workflows:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/reusable-python-ci.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reusable Python CI</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">workflow_call</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">python-version</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.python-version }}</span>
+
+<span class="c1"># .github/workflows/main.yml</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">call-reusable</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/reusable-python-ci.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use specific action versions</strong>: <cite>uses: actions/checkout&#64;v4</cite> not <cite>&#64;main</cite></p></li>
+<li><p><strong>Pin Python versions</strong>: Test against specific versions you support</p></li>
+<li><p><strong>Cache dependencies</strong>: Use <cite>uv</cite> caching or <cite>actions/cache</cite></p></li>
+<li><p><strong>Fail fast</strong>: Use <cite>fail-fast: false</cite> in matrix when debugging</p></li>
+<li><p><strong>Secure secrets</strong>: Use environments for sensitive deployments</p></li>
+<li><p><strong>Monitor usage</strong>: Track Action minutes usage in billing settings</p></li>
+<li><p><strong>Use job dependencies</strong>: <cite>needs:</cite> to control execution order</p></li>
+<li><p><strong>Meaningful names</strong>: Clear job and step names for easier debugging</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Debugging workflows:</strong></p>
+<ul class="simple">
+<li><p>Use <cite>workflow_dispatch</cite> for manual testing</p></li>
+<li><p>Add <cite>run: env</cite> step to see all environment variables</p></li>
+<li><p>Use <cite>actions/upload-artifact</cite> to inspect generated files</p></li>
+<li><p>Enable debug logging with <cite>ACTIONS_STEP_DEBUG: true</cite></p></li>
+</ul>
+</div>
+</section>
+<section id="integration-with-modern-python-tools">
+<h2>Integration with Modern Python Tools<a class="headerlink" href="#integration-with-modern-python-tools" title="Link to this heading"></a></h2>
+<p>GitHub Actions works excellently with the modern Python ecosystem:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Modern Python Stack</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ci</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="c1"># Modern package management</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">enable-cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">      </span><span class="c1"># Install and run modern tools</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">uv sync --dev</span>
+<span class="w">          </span><span class="no">uv run ruff check .           # Linting</span>
+<span class="w">          </span><span class="no">uv run ruff format --check .  # Formatting</span>
+<span class="w">          </span><span class="no">uv run mypy .                 # Type checking</span>
+<span class="w">          </span><span class="no">uv run bandit -r src/         # Security</span>
+<span class="w">          </span><span class="no">uv run pytest --cov           # Testing</span>
+<span class="w">          </span><span class="no">uv build                      # Building</span>
+</pre></div>
+</div>
+<p>This modern approach is faster, more reliable, and easier to maintain than traditional Python CI setups!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_python_cli.html" class="btn btn-neutral float-left" title="7.2 Python CLI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_best_practices.html" class="btn btn-neutral float-right" title="7.4 CI/CD Best Practices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

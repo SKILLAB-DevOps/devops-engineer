@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.4 CI/CD Best Practices &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TODO" href="TODO.html" />
+    <link rel="prev" title="7.3 GitHub Actions Advanced" href="3_github.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">7.4 CI/CD Best Practices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/7_pipelines/4_best_practices.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ci-cd-best-practices">
+<h1>7.4 CI/CD Best Practices<a class="headerlink" href="#ci-cd-best-practices" title="Link to this heading"></a></h1>
+<p><strong>From Working to World-Class</strong></p>
+<p>You’ve built your first pipeline and seen it work. Now comes the crucial step: transforming that basic pipeline into a production-ready system that your team can depend on. This section distills lessons learned from thousands of production CI/CD implementations across companies from startups to Fortune 500 enterprises.</p>
+<p>These aren’t theoretical guidelines - they’re battle-tested practices that prevent outages, reduce costs, and enable teams to deploy with confidence.</p>
+<section id="pipeline-design-principles">
+<h2>Pipeline Design Principles<a class="headerlink" href="#pipeline-design-principles" title="Link to this heading"></a></h2>
+<p><strong>1. Optimize for Developer Experience</strong></p>
+<p><em>Why this matters:</em> If your pipeline frustrates developers, they’ll find ways around it. A great pipeline becomes invisible - developers trust it and forget it’s there.</p>
+<p><em>Practical guidelines:</em></p>
+<ul class="simple">
+<li><p><strong>Fast feedback loops:</strong> Aim for &lt;5 minutes for basic validation, &lt;15 minutes for comprehensive testing</p></li>
+<li><p><strong>Clear error messages:</strong> Developers should immediately understand what went wrong and how to fix it</p></li>
+<li><p><strong>Consistent environments:</strong> “Works on my machine” problems disappear when environments are identical</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Clear, actionable error reporting</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests with detailed output</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">python -m pytest -v --tb=short --strict-markers</span>
+<span class="w">    </span><span class="no">if [ $? -ne 0 ]; then</span>
+<span class="w">      </span><span class="no">echo &quot;Tests failed. Check the output above for specific failures.&quot;</span>
+<span class="w">      </span><span class="no">echo &quot;Tip: Run &#39;python -m pytest -v&#39; locally to debug&quot;</span>
+<span class="w">      </span><span class="no">exit 1</span>
+<span class="w">    </span><span class="no">fi</span>
+</pre></div>
+</div>
+<p><em>Real-world impact:</em> Teams with great developer experience deploy 3x more frequently than those with clunky pipelines.</p>
+<p><strong>2. Fail Fast, Fail Clearly</strong></p>
+<p><em>The principle:</em> Catch problems as early as possible when they’re cheapest and easiest to fix.</p>
+<p><em>Implementation strategy:</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimal job ordering</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Stage 1: Quick validations (1-2 minutes)</span>
+<span class="w">  </span><span class="nt">lint-and-format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff check .</span><span class="w">        </span><span class="c1"># Fast linting</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff format --check .</span><span class="w"> </span><span class="c1"># Fast formatting check</span>
+
+<span class="w">  </span><span class="c1"># Stage 2: Core functionality (3-5 minutes)</span>
+<span class="w">  </span><span class="nt">unit-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lint-and-format</span><span class="w">  </span><span class="c1"># Only run if linting passes</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest tests/unit/</span>
+
+<span class="w">  </span><span class="c1"># Stage 3: Integration tests (10-15 minutes)</span>
+<span class="w">  </span><span class="nt">integration-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit-tests</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest tests/integration/</span>
+</pre></div>
+</div>
+<p><em>Why this ordering works:</em> Developers get feedback about syntax errors in 2 minutes instead of waiting 15 minutes for integration tests to fail.</p>
+<p><strong>3. Build Security In (DevSecOps)</strong></p>
+<p><em>Traditional approach:</em> Security team reviews code after development is “done”
+<em>Modern approach:</em> Security checks are built into every stage of the pipeline</p>
+<p><em>Essential security checks:</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">security</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">    </span><span class="c1"># Dependency vulnerability scanning</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check for vulnerable dependencies</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">uv run safety check</span>
+<span class="w">        </span><span class="no">uv run pip-audit</span>
+
+<span class="w">    </span><span class="c1"># Static security analysis</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run security linter</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run bandit -r src/ -f json -o security-report.json</span>
+
+<span class="w">    </span><span class="c1"># Secret detection</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Scan for leaked secrets</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trufflesecurity/trufflehog@main</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./</span>
+<span class="w">        </span><span class="nt">base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="w">        </span><span class="nt">head</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEAD</span>
+</pre></div>
+</div>
+<p><em>Business value:</em> Finding security issues in development costs $100. Finding them in production costs $10,000+.</p>
+<p><strong>4. Make Pipelines Observable</strong></p>
+<p><em>What you can’t measure, you can’t improve.</em> Successful teams track pipeline metrics as carefully as application metrics.</p>
+<p><em>Key metrics to monitor:</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Record pipeline metrics</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">echo &quot;PIPELINE_START_TIME=$(date +%s)&quot; &gt;&gt; $GITHUB_ENV</span>
+<span class="w">    </span><span class="no">echo &quot;COMMIT_SHA=${GITHUB_SHA}&quot; &gt;&gt; $GITHUB_ENV</span>
+<span class="w">    </span><span class="no">echo &quot;BUILD_NUMBER=${GITHUB_RUN_NUMBER}&quot; &gt;&gt; $GITHUB_ENV</span>
+
+<span class="c1"># At the end of your pipeline</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Report pipeline success</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">success()</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">DURATION=$(($(date +%s) - $PIPELINE_START_TIME))</span>
+<span class="w">    </span><span class="no">curl -X POST &quot;$METRICS_ENDPOINT&quot; \</span>
+<span class="w">      </span><span class="no">-d &quot;pipeline_duration_seconds=$DURATION&quot; \</span>
+<span class="w">      </span><span class="no">-d &quot;pipeline_result=success&quot; \</span>
+<span class="w">      </span><span class="no">-d &quot;commit_sha=$COMMIT_SHA&quot;</span>
+</pre></div>
+</div>
+<p><em>Metrics that matter:</em></p>
+<ul class="simple">
+<li><p><strong>Pipeline duration:</strong> How long builds take (optimize the slowest stages first)</p></li>
+<li><p><strong>Success rate:</strong> What percentage of builds pass (target &gt;95%)</p></li>
+<li><p><strong>Flaky test rate:</strong> Tests that sometimes fail (fix these immediately)</p></li>
+<li><p><strong>Queue time:</strong> How long builds wait to start (indicates resource constraints)</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest</span>
+</pre></div>
+</div>
+<p><strong>3. Make Pipelines Self-Contained</strong></p>
+<ul class="simple">
+<li><p>Each pipeline run should be completely independent</p></li>
+<li><p>Don’t rely on previous build artifacts</p></li>
+<li><p>Use fresh environments for each run</p></li>
+</ul>
+</section>
+<section id="python-specific-best-practices">
+<h2>Python-Specific Best Practices<a class="headerlink" href="#python-specific-best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Dependency Management</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Use modern tools with dependency locking</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enable-cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">cache-dependency-glob</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;uv.lock&quot;</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
+
+<span class="c1"># Bad: Unpinned dependencies</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install pytest flask</span>
+</pre></div>
+</div>
+<p><strong>2. Multi-Version Testing</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Test supported Python versions</span>
+<span class="nt">strategy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.13&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">exclude</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span>
+<span class="w">        </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows-latest</span><span class="w">  </span><span class="c1"># Skip problematic combinations</span>
+</pre></div>
+</div>
+<p><strong>3. Code Quality Gates</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Comprehensive quality checks</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Code quality</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">uv run ruff check .           # Linting</span>
+<span class="w">    </span><span class="no">uv run ruff format --check .  # Formatting</span>
+<span class="w">    </span><span class="no">uv run mypy src/              # Type checking</span>
+<span class="w">    </span><span class="no">uv run bandit -r src/         # Security scanning</span>
+</pre></div>
+</div>
+</section>
+<section id="security-best-practices">
+<h2>Security Best Practices<a class="headerlink" href="#security-best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Secret Management</strong></p>
+<ul class="simple">
+<li><p>Never hardcode secrets in code or configuration files</p></li>
+<li><p>Use GitHub repository secrets or environment secrets</p></li>
+<li><p>Rotate secrets regularly</p></li>
+<li><p>Use least-privilege principle</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Proper secret usage</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to production</span>
+<span class="w">  </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.PRODUCTION_API_KEY }}</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy.sh</span>
+
+<span class="c1"># Bad: Hardcoded secrets</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curl -H &quot;Authorization</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bearer abc123&quot; api.example.com</span>
+</pre></div>
+</div>
+<p><strong>2. Dependency Security</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Regular security scanning</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security audit</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">uv run bandit -r src/</span>
+<span class="w">    </span><span class="no">uv run safety check</span>
+<span class="w">    </span><span class="no"># Scan for vulnerable dependencies</span>
+</pre></div>
+</div>
+<p><strong>3. Container Security</strong></p>
+<ul class="simple">
+<li><p>Use official, minimal base images</p></li>
+<li><p>Scan images for vulnerabilities</p></li>
+<li><p>Don’t run containers as root</p></li>
+</ul>
+</section>
+<section id="testing-best-practices">
+<h2>Testing Best Practices<a class="headerlink" href="#testing-best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Test Pyramid Implementation</strong></p>
+<ul class="simple">
+<li><p>Many unit tests (fast, isolated)</p></li>
+<li><p>Some integration tests (medium speed)</p></li>
+<li><p>Few end-to-end tests (slow, comprehensive)</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Layered testing approach</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit tests</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest tests/unit/ -v</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Integration tests</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest tests/integration/ -v</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">E2E tests</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest tests/e2e/ -v</span>
+</pre></div>
+</div>
+<p><strong>2. Test Coverage Standards</strong></p>
+<ul class="simple">
+<li><p>Aim for &gt;80% code coverage</p></li>
+<li><p>Focus on critical business logic</p></li>
+<li><p>Don’t obsess over 100% coverage</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Coverage with reasonable thresholds</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test with coverage</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">uv run pytest --cov=src --cov-report=xml --cov-fail-under=80</span>
+<span class="w">    </span><span class="no">uv run coverage report</span>
+</pre></div>
+</div>
+<p><strong>3. Test Environment Parity</strong></p>
+<ul class="simple">
+<li><p>Use production-like data (anonymized)</p></li>
+<li><p>Mirror production configuration</p></li>
+<li><p>Test with realistic load</p></li>
+</ul>
+</section>
+<section id="environment-management-strategies">
+<h2>Environment Management Strategies<a class="headerlink" href="#environment-management-strategies" title="Link to this heading"></a></h2>
+<p><strong>The Production Mirror Principle</strong></p>
+<p>One of the most expensive mistakes in software development is assuming that code working in development will work in production. The solution: make your pipeline environments as close to production as possible.</p>
+<p><strong>Container-Based Consistency</strong></p>
+<p><em>Problem:</em> “It works on my machine” syndrome
+<em>Solution:</em> Containerize everything - development, testing, and production environments should use identical base images.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production-ready approach</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">container</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python:3.12-slim</span><span class="w">  </span><span class="c1"># Same image used in production</span>
+<span class="w">      </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql://test:test@postgres:5432/testdb</span>
+
+<span class="w">    </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span><span class="w">  </span><span class="c1"># Same version as production</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">          </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testdb</span>
+</pre></div>
+</div>
+<p><strong>Environment Promotion Strategy</strong></p>
+<p><em>Best practice:</em> Code should flow through environments automatically, with identical deployment processes.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Environment promotion workflow</span>
+<span class="nt">deploy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">staging</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">production</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging</span>
+<span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://staging.myapp.com</span>
+<span class="w">          </span><span class="nt">requires_approval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://myapp.com</span>
+<span class="w">          </span><span class="nt">requires_approval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p><em>Why this works:</em> If deployment fails in staging, you know it will fail in production. Fix it once, deploy everywhere.</p>
+</section>
+<section id="deployment-best-practices">
+<h2>Deployment Best Practices<a class="headerlink" href="#deployment-best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Environment Strategy</strong></p>
+<ul class="simple">
+<li><p>Development → Staging → Production</p></li>
+<li><p>Each environment should be production-like</p></li>
+<li><p>Automate environment provisioning</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Environment-specific deployments</span>
+<span class="nt">deploy-staging</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/develop&#39;</span>
+<span class="w">  </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging</span>
+
+<span class="nt">deploy-production</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">startsWith(github.ref, &#39;refs/tags/v&#39;)</span>
+<span class="w">  </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">  </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">test</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">security-scan</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>2. Blue-Green and Canary Deployments</strong></p>
+<ul class="simple">
+<li><p>Minimize downtime with blue-green deployments</p></li>
+<li><p>Reduce risk with canary releases</p></li>
+<li><p>Always have a rollback plan</p></li>
+</ul>
+<p><strong>3. Database Migration Safety</strong></p>
+<ul class="simple">
+<li><p>Make migrations backward-compatible</p></li>
+<li><p>Test migrations on production-like data</p></li>
+<li><p>Have rollback procedures for schema changes</p></li>
+</ul>
+</section>
+<section id="monitoring-and-observability">
+<h2>Monitoring and Observability<a class="headerlink" href="#monitoring-and-observability" title="Link to this heading"></a></h2>
+<p><strong>1. Pipeline Monitoring</strong></p>
+<ul class="simple">
+<li><p>Track pipeline success rates</p></li>
+<li><p>Monitor pipeline duration trends</p></li>
+<li><p>Alert on failures</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Failure notifications</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Notify on failure</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">failure()</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/slack@v1</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">webhook</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.SLACK_WEBHOOK }}</span>
+<span class="w">    </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pipeline</span><span class="nv"> </span><span class="s">failed</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">${{</span><span class="nv"> </span><span class="s">github.ref</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+</div>
+<p><strong>2. Key Metrics to Track</strong></p>
+<ul class="simple">
+<li><p><strong>Lead Time</strong>: Code commit to production</p></li>
+<li><p><strong>Deployment Frequency</strong>: How often you deploy</p></li>
+<li><p><strong>Mean Time to Recovery</strong>: How quickly you fix issues</p></li>
+<li><p><strong>Change Failure Rate</strong>: Percentage of deployments causing issues</p></li>
+</ul>
+</section>
+<section id="workflow-organization">
+<h2>Workflow Organization<a class="headerlink" href="#workflow-organization" title="Link to this heading"></a></h2>
+<p><strong>1. Branching Strategy Alignment</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Strategy-aligned triggers</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span><span class="w">        </span><span class="c1"># Production deployments</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span><span class="w">        </span><span class="c1"># PR validation</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">develop</span><span class="p p-Indicator">]</span><span class="w">     </span><span class="c1"># Staging deployments</span>
+</pre></div>
+</div>
+<p><strong>2. Job Dependencies and Parallelization</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Optimal job organization</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Fast parallel checks</span>
+<span class="w">  </span><span class="nt">lint</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">  </span><span class="nt">security</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">  </span><span class="c1"># Build only after checks pass</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">lint</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">security</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">  </span><span class="c1"># Deploy only after build succeeds</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization">
+<h2>Cost Optimization<a class="headerlink" href="#cost-optimization" title="Link to this heading"></a></h2>
+<p><strong>1. Runner Selection</strong></p>
+<ul class="simple">
+<li><p>Use ubuntu-latest for most jobs (cheapest)</p></li>
+<li><p>Use macOS/Windows only when necessary</p></li>
+<li><p>Consider self-hosted runners for heavy workloads</p></li>
+</ul>
+<p><strong>2. Cache Strategy</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Effective caching</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/uv</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-uv-${{ hashFiles(&#39;uv.lock&#39;) }}</span>
+<span class="w">    </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-uv-</span>
+</pre></div>
+</div>
+<p><strong>3. Conditional Execution</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Skip unnecessary work</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy docs</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contains(github.event.head_commit.modified, &#39;docs/&#39;)</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-docs.sh</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization-strategies">
+<h2>Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Link to this heading"></a></h2>
+<p><strong>CI/CD costs can quickly spiral out of control.</strong> Here are proven strategies to keep them manageable:</p>
+<p><strong>1. Smart Caching</strong></p>
+<p><em>Impact:</em> Can reduce pipeline time by 50-80%</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache dependencies</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">~/.cache/uv</span>
+<span class="w">      </span><span class="no">.venv</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-uv-${{ hashFiles(&#39;uv.lock&#39;) }}</span>
+<span class="w">    </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">${{ runner.os }}-uv-</span>
+</pre></div>
+</div>
+<p><strong>2. Conditional Workflows</strong></p>
+<p><em>Strategy:</em> Only run expensive tests when necessary</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">check-changes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">backend-changed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.changes.outputs.backend }}</span>
+<span class="w">      </span><span class="nt">frontend-changed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.changes.outputs.frontend }}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">changes</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">filters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">backend:</span>
+<span class="w">              </span><span class="no">- &#39;src/**&#39;</span>
+<span class="w">              </span><span class="no">- &#39;requirements.txt&#39;</span>
+<span class="w">            </span><span class="no">frontend:</span>
+<span class="w">              </span><span class="no">- &#39;frontend/**&#39;</span>
+<span class="w">              </span><span class="no">- &#39;package.json&#39;</span>
+
+<span class="w">  </span><span class="nt">test-backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-changes</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">needs.check-changes.outputs.backend-changed == &#39;true&#39;</span>
+<span class="w">    </span><span class="c1"># ... backend tests</span>
+</pre></div>
+</div>
+<p><strong>3. Resource Right-Sizing</strong></p>
+<p><em>Principle:</em> Use the smallest runner that gets the job done</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">lint</span><span class="p">:</span><span class="w">  </span><span class="c1"># Fast job, small runner</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">  </span><span class="nt">integration-tests</span><span class="p">:</span><span class="w">  </span><span class="c1"># Resource-intensive job, larger runner</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest-4-cores</span>
+</pre></div>
+</div>
+</section>
+<section id="monitoring-and-alerting">
+<h2>Monitoring and Alerting<a class="headerlink" href="#monitoring-and-alerting" title="Link to this heading"></a></h2>
+<p><strong>Beyond Green/Red Status</strong></p>
+<p>Successful teams monitor their CI/CD pipelines as carefully as their production applications.</p>
+<p><strong>Essential Alerts</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Send failure notification</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">failure()</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8398a7/action-slack@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">failure</span>
+<span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#dev-alerts&#39;</span>
+<span class="w">    </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">🚨 Pipeline failed for ${{ github.repository }}</span>
+<span class="w">      </span><span class="no">Commit: ${{ github.sha }}</span>
+<span class="w">      </span><span class="no">Author: ${{ github.actor }}</span>
+<span class="w">      </span><span class="no">Branch: ${{ github.ref }}</span>
+<span class="w">      </span><span class="no">Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}</span>
+</pre></div>
+</div>
+<p><strong>Pipeline Health Dashboard</strong></p>
+<p>Track these metrics weekly:
+- Average pipeline duration (trending down is good)
+- Success rate by branch (main should be &gt;95%)
+- Most frequent failure causes
+- Developer satisfaction scores</p>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start Simple</strong>: Begin with basic pipelines and evolve gradually</p></li>
+<li><p><strong>Automate Everything</strong>: If you do it twice, automate it</p></li>
+<li><p><strong>Fail Fast</strong>: Catch issues early when they’re cheap to fix</p></li>
+<li><p><strong>Monitor Continuously</strong>: Track metrics and improve iteratively</p></li>
+<li><p><strong>Secure by Default</strong>: Build security into every step</p></li>
+<li><p><strong>Team Ownership</strong>: Everyone is responsible for pipeline health</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Common Anti-Patterns to Avoid:</strong></p>
+<ul class="simple">
+<li><p>Manual steps in automated pipelines</p></li>
+<li><p>Skipping tests to “save time”</p></li>
+<li><p>Deploying on Fridays without monitoring</p></li>
+<li><p>Ignoring flaky tests</p></li>
+<li><p>Over-engineering on day one</p></li>
+</ul>
+</div>
+<p>Remember: The best CI/CD pipeline is one that your team actually uses and trusts. Focus on reliability and simplicity over complexity.</p>
+</section>
+<section id="implementation-checklist">
+<h2>Implementation Checklist<a class="headerlink" href="#implementation-checklist" title="Link to this heading"></a></h2>
+<p><strong>Week 1: Foundation</strong></p>
+<ul class="simple">
+<li><p>Set up basic CI pipeline (build, test, lint)</p></li>
+<li><p>Configure dependency management with uv</p></li>
+<li><p>Add code quality checks (ruff, mypy)</p></li>
+<li><p>Set up test coverage reporting</p></li>
+</ul>
+<p><strong>Week 2: Security &amp; Quality</strong></p>
+<ul class="simple">
+<li><p>Add security scanning (bandit)</p></li>
+<li><p>Configure secret management</p></li>
+<li><p>Set up multi-version testing</p></li>
+<li><p>Add integration tests</p></li>
+</ul>
+<p><strong>Week 3: Deployment</strong></p>
+<ul class="simple">
+<li><p>Create staging environment</p></li>
+<li><p>Set up automated deployment pipeline</p></li>
+<li><p>Configure environment-specific secrets</p></li>
+<li><p>Test rollback procedures</p></li>
+</ul>
+<p><strong>Week 4: Optimization</strong></p>
+<ul class="simple">
+<li><p>Optimize pipeline speed with caching</p></li>
+<li><p>Set up monitoring and alerts</p></li>
+<li><p>Document troubleshooting procedures</p></li>
+<li><p>Train team on CI/CD best practices</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>Key Takeaways<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><strong>The practices that matter most:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Developer experience trumps everything</strong> - If your pipeline frustrates developers, they’ll work around it</p></li>
+<li><p><strong>Fail fast, fail clearly</strong> - Catch problems early when they’re cheap to fix</p></li>
+<li><p><strong>Automate security from day one</strong> - Security can’t be an afterthought</p></li>
+<li><p><strong>Monitor your pipeline like production</strong> - What you can’t measure, you can’t improve</p></li>
+<li><p><strong>Optimize for confidence, not perfection</strong> - A simple pipeline that works beats a complex one that doesn’t</p></li>
+</ol>
+<p><strong>Your next steps:</strong> Pick one practice from this section and implement it in your current pipeline. Master it, then move to the next. Sustainable improvement beats revolutionary changes that nobody adopts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Reality Check:</strong> These practices took years to develop across thousands of teams. Don’t try to implement everything at once. Focus on the practices that solve your team’s biggest pain points first.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3_github.html" class="btn btn-neutral float-left" title="7.3 GitHub Actions Advanced" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TODO.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

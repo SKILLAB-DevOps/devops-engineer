@@ -400,6 +400,225 @@ Quiz Answers
     
     Explanation: GitHub provides encrypted secret storage that's the secure way to handle sensitive information in workflows.
 
+======================
+Task Solution Guidance
+======================
+
+----------------------------------
+Task 1: Create Your 2nd Python CLI
+----------------------------------
+
+**Project Structure:**
+
+.. code-block:: text
+
+    my-python-cli/
+    ├── .github/workflows/ci.yml
+    ├── src/my_cli/
+    │   ├── __init__.py
+    │   └── main.py
+    ├── tests/
+    │   └── test_main.py
+    ├── pyproject.toml
+    └── README.md
+
+**Sample CLI Implementation:**
+
+.. code-block:: python
+
+    # src/my_cli/main.py
+    import click
+    import random
+
+    @click.group()
+    def cli():
+        """My awesome CLI application."""
+        pass
+
+    @cli.command()
+    @click.option('--name', prompt='Your name', help='Name to greet')
+    def greet(name):
+        """Greet someone."""
+        click.echo(f'Hello, {name}!')
+
+    @cli.command()
+    @click.argument('city')
+    def weather(city):
+        """Show weather for a city."""
+        temp = random.randint(15, 30)
+        conditions = random.choice(['sunny', 'cloudy', 'rainy'])
+        click.echo(f'Weather in {city}: {temp}°C, {conditions}')
+
+    @cli.group()
+    def calc():
+        """Calculator commands."""
+        pass
+
+    @calc.command()
+    @click.argument('a', type=float)
+    @click.argument('b', type=float)
+    def add(a, b):
+        """Add two numbers."""
+        click.echo(f'{a} + {b} = {a + b}')
+
+**Basic CI Workflow:**
+
+.. code-block:: yaml
+
+    name: CI
+    on: [push, pull_request]
+    
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - uses: actions/setup-python@v4
+            with:
+              python-version: '3.11'
+          - uses: astral-sh/setup-uv@v3
+          - run: uv sync --dev
+          - run: uv run pytest --cov
+
+-------------------------------------------
+Task 2: Implement Modern Python CI Pipeline
+-------------------------------------------
+
+**Complete CI Workflow:**
+
+.. code-block:: yaml
+
+    name: Modern Python CI
+    on: [push, pull_request]
+    
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        strategy:
+          matrix:
+            python-version: ["3.10", "3.11", "3.12"]
+        
+        steps:
+          - uses: actions/checkout@v4
+          - uses: actions/setup-python@v4
+            with:
+              python-version: ${{ matrix.python-version }}
+          - uses: astral-sh/setup-uv@v3
+            with:
+              enable-cache: true
+          - run: uv sync --dev
+          - run: uv run ruff format --check .
+          - run: uv run ruff check .
+          - run: uv run mypy src/
+          - run: uv run bandit -r src/
+          - run: uv run pytest --cov=src --cov-report=xml
+          - uses: codecov/codecov-action@v3
+
+------------------------------------
+Task 3: Build a Complete CD Pipeline
+------------------------------------
+
+**Release Workflow:**
+
+.. code-block:: yaml
+
+    name: Release
+    on:
+      push:
+        tags: ['v*']
+    
+    jobs:
+      test:
+        uses: ./.github/workflows/ci.yml
+      
+      build:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - uses: astral-sh/setup-uv@v3
+          - run: uv build
+          - uses: actions/upload-artifact@v4
+            with:
+              name: dist
+              path: dist/
+      
+      publish:
+        needs: build
+        runs-on: ubuntu-latest
+        environment: pypi
+        permissions:
+          id-token: write
+        steps:
+          - uses: actions/download-artifact@v4
+          - uses: pypa/gh-action-pypi-publish@release/v1
+
+------------------------------------
+Task 4: Create Custom GitHub Actions
+------------------------------------
+
+**Python Setup Action (.github/actions/setup-python/action.yml):**
+
+.. code-block:: yaml
+
+    name: 'Setup Python Project'
+    description: 'Setup Python with uv and dependencies'
+    inputs:
+      python-version:
+        description: 'Python version'
+        required: true
+        default: '3.11'
+    
+    runs:
+      using: composite
+      steps:
+        - uses: actions/setup-python@v4
+          with:
+            python-version: ${{ inputs.python-version }}
+        - uses: astral-sh/setup-uv@v3
+          with:
+            enable-cache: true
+        - run: uv sync --dev
+          shell: bash
+
+===========================
+Common Issues and Solutions
+===========================
+
+**Issue 1: "uv: command not found"**
+
+*Solution:* Make sure you're using the astral-sh/setup-uv action:
+
+.. code-block:: yaml
+
+    - uses: astral-sh/setup-uv@v3
+
+**Issue 2: Tests pass locally but fail in CI**
+
+*Solution:* Check for:
+
+- Different Python versions
+- Missing environment variables
+- File path differences (Windows vs Linux)
+- Timezone-dependent tests
+
+**Issue 3: Pipeline is too slow**
+
+*Solutions:*
+- Enable caching
+- Use matrix parallelization
+- Split into smaller jobs
+- Use faster runners
+
+**Issue 4: Import errors in tests**
+
+*Solution:* Ensure proper package installation:
+
+.. code-block:: yaml
+
+    - run: uv sync --dev
+    - run: uv run pytest  # Use uv run to ensure proper environment
+
 ====================
 Additional Resources
 ====================

@@ -2,6 +2,10 @@
 TODO
 ####
 
+#########
+Exercises
+#########
+
 This section contains practical exercises designed to build your CI/CD skills progressively. Each task includes estimated completion time, skills practiced, and success criteria.
 
 .. note::
@@ -244,3 +248,495 @@ This quiz tests your understanding of the concepts covered in this section. Each
     c. Pass them as command line arguments
     d. Use environment variables in the workflow file
 
+==========================
+Hands-On Programming Tasks
+==========================
+
+----------------------------------
+Task 1: Create Your 2nd Python CLI
+----------------------------------
+
+**Objective**: Build a simple CLI application and set up basic CI/CD
+
+**Requirements:**
+
+1. Create a new GitHub repository named ``my-python-cli``
+2. Build a CLI using Click that has these commands:
+
+   - ``greet --name <name>`` - prints a greeting
+   - ``weather <city>`` - shows mock weather data
+   - ``calc add <a> <b>`` - adds two numbers
+3. Use modern Python project structure with ``src/`` layout
+4. Include comprehensive tests using pytest
+5. Set up a basic CI pipeline that runs on push and pull requests
+
+**Deliverables:**
+
+- Working CLI installable with ``uv run python -m my_cli``
+- Test coverage >80%
+- Passing CI pipeline
+
+-------------------------------------------
+Task 2: Implement Modern Python CI Pipeline
+-------------------------------------------
+
+**Objective**: Create a comprehensive CI pipeline using modern tools
+
+**Requirements:**
+
+1. Fork or use the CLI from Task 1
+2. Create a CI pipeline that includes:
+
+   - Code formatting check with ``ruff format --check``
+   - Linting with ``ruff check``
+   - Type checking with ``mypy``
+   - Security scanning with ``bandit``
+   - Testing with ``pytest`` and coverage reporting
+   - Matrix testing across Python 3.10, 3.11, and 3.12
+3. Use ``uv`` for dependency management
+4. Configure proper caching for faster builds
+5. Upload test coverage to a service like Codecov
+
+**Deliverables:**
+
+- ``.github/workflows/ci.yml`` file
+- Pipeline that completes in <5 minutes
+- All quality checks passing
+
+------------------------------------
+Task 3: Build a Complete CD Pipeline
+------------------------------------
+
+**Objective**: Extend CI with deployment capabilities
+
+**Requirements:**
+
+1. Extend the CI pipeline from Task 2
+2. Add a CD pipeline that:
+
+   - Builds a Python package with ``uv build``
+   - Creates GitHub releases on version tags
+   - Publishes to PyPI (use TestPyPI for practice)
+   - Deploys documentation to GitHub Pages
+
+3. Use GitHub environments for staging and production
+4. Implement proper secret management
+5. Add deployment notifications (e.g., Slack webhook)
+
+**Deliverables:**
+
+- Working CD pipeline triggered by tags
+- Published package on TestPyPI
+- Automated GitHub releases
+
+------------------------------------
+Task 4: Create Custom GitHub Actions
+------------------------------------
+
+**Objective**: Build reusable GitHub Actions
+
+**Requirements:**
+
+1. Create a custom composite action for Python setup:
+
+   - Sets up Python with specified version
+   - Installs and configures uv
+   - Installs dependencies
+   - Caches appropriately
+2. Create a custom action for Python quality checks:
+
+   - Runs ruff, mypy, bandit
+   - Generates and uploads reports
+   - Provides clear success/failure feedback
+3. Use these actions in multiple repositories
+4. Publish actions to GitHub Marketplace (optional)
+
+**Deliverables:**
+
+- ``.github/actions/`` directory with custom actions
+- Documentation for action inputs/outputs
+- Example workflows using the actions
+
+----------------------------------
+Task 5: Advanced Pipeline Features
+----------------------------------
+
+**Objective**: Implement advanced CI/CD patterns
+
+**Requirements:**
+
+1. Implement a blue-green deployment simulation
+2. Add conditional workflows based on changed files
+3. Create a workflow that:
+
+   - Runs different jobs based on branch (main vs feature)
+   - Uses workflow artifacts for job communication
+   - Implements approval gates for production deployments
+   - Includes rollback capabilities
+4. Add comprehensive monitoring and alerting
+5. Create workflow templates for team use
+
+**Deliverables:**
+
+- Advanced workflow configurations
+- Documentation for deployment procedures
+- Monitoring dashboard (can use GitHub's built-in features)
+
+===========================
+Research and Analysis Tasks
+===========================
+
+--------------------------------
+Task 6: Tool Comparison Analysis
+--------------------------------
+
+**Objective**: Compare different CI/CD platforms and tools
+
+**Requirements:**
+
+1. Research and compare:
+
+   - GitHub Actions vs GitLab CI vs Jenkins
+   - uv vs poetry vs pip-tools for dependency management
+   - Different testing strategies and tools
+
+2. Create a 1 ADR (Architectural Decision Record) document or 1 PoC (Proof of Concept) with:
+
+   - Feature comparison table
+   - Performance benchmarks
+   - Cost analysis
+   - Recommendations for different use cases
+
+**Deliverables:**
+
+- 1 ADR (Architectural Decision Record) document or 1 PoC (Proof of Concept)
+- Practical recommendations with justification
+
+----------------------
+Task 7: Security Audit
+----------------------
+
+**Objective**: Perform a security review of CI/CD pipelines
+
+**Requirements:**
+
+1. Audit an existing CI/CD pipeline for security issues
+2. Check for:
+
+   - Secret management practices
+   - Dependency vulnerabilities
+   - Permission configurations
+   - Code injection possibilities
+3. Create a security checklist for CI/CD pipelines
+4. Implement fixes for identified issues
+
+**Deliverables:**
+
+- Security audit report
+- CI/CD security checklist
+- Improved pipeline configuration
+
+==================
+Intermediate Tasks
+==================
+
+**Prerequisites:** Completed all Beginner tasks, basic Docker knowledge
+
+------------------------------------
+Task 5: Multi-Environment Deployment
+------------------------------------
+
+**Objective:** Deploy to staging and production environments
+
+**What you'll do:**
+
+- Set up staging environment (GitHub Pages)
+- Create production environment with manual approval
+- Use environment-specific configuration
+- Implement proper secret management
+
+**Skills practiced:** Environment management, deployment strategies, secrets
+
+**Success criteria:**
+
+- Code automatically deploys to staging on main branch
+- Production deployment requires manual approval
+- Different configurations for each environment
+
+**Extension challenge:** Add smoke tests that run post-deployment
+
+-------------------------------
+Task 6: Matrix Testing Strategy
+-------------------------------
+
+**Objective:** Test across multiple operating systems and Python versions
+
+**What you'll do:**
+
+- Configure matrix strategy for OS (Ubuntu, Windows, macOS)
+- Test Python versions 3.10, 3.11, 3.12
+- Handle OS-specific test failures gracefully
+- Optimize for fastest feedback
+
+**Skills practiced:** Cross-platform testing, matrix configurations
+
+**Success criteria:**
+
+- Pipeline runs on all OS/Python combinations
+- Total runtime under 10 minutes
+- Clear reporting of which combinations fail
+
+**Extension challenge:** Add performance benchmarking across platforms
+
+-------------------------------
+Task 7: Security and Compliance
+-------------------------------
+
+**Objective:** Integrate security scanning into your pipeline
+
+**What you'll do:**
+
+- Add Bandit for Python security scanning
+- Implement dependency vulnerability checking
+- Add SAST (Static Application Security Testing)
+- Configure security failure thresholds
+
+**Skills practiced:** Security automation, vulnerability management
+
+**Success criteria:**
+
+- Pipeline catches security vulnerabilities
+- Clear reporting of security issues
+- Automated blocking of high-severity findings
+
+**Extension challenge:** Add license compliance checking
+
+-----------------------------
+Task 8: Container Integration
+-----------------------------
+
+**Objective:** Build and deploy containerized applications
+
+**What you'll do:**
+
+- Create Dockerfile for your application
+- Build Docker images in pipeline
+- Push images to container registry
+- Deploy containerized app to staging
+
+**Skills practiced:** Containerization, registry management, container deployment
+
+**Success criteria:**
+
+- Docker images build successfully
+- Images pushed to GitHub Container Registry
+- Application runs correctly in container
+
+**Extension challenge:** Multi-stage builds for optimized image size
+
+==============
+Advanced Tasks
+==============
+
+**Prerequisites:** Completed Intermediate tasks, Kubernetes basics
+
+-----------------------------------
+Task 9: Microservices Orchestration
+-----------------------------------
+
+**Objective:** Coordinate CI/CD across multiple related services
+
+**What you'll do:**
+
+- Set up 3 microservices with dependencies
+- Implement cross-service integration testing
+- Coordinate deployments with proper ordering
+- Handle partial deployment failures
+
+**Skills practiced:** Microservices architecture, service dependencies
+
+**Success criteria:**
+
+- Services deploy in correct order
+- Integration tests validate service communication
+- Rollback works across all services
+
+**Extension challenge:** Implement canary deployments
+
+------------------------------
+Task 10: Blue-Green Deployment
+------------------------------
+
+**Objective:** Implement zero-downtime deployment strategy
+
+**What you'll do:**
+
+- Set up blue and green environments
+- Implement automated traffic switching
+- Add health checks and rollback triggers
+- Monitor deployment success metrics
+
+**Skills practiced:** Advanced deployment patterns, traffic management
+
+**Success criteria:**
+
+- Zero downtime during deployments
+- Automatic rollback on health check failure
+- Deployment completes in under 2 minutes
+
+**Extension challenge:** Add gradual traffic shifting (10%, 50%, 100%)
+
+-----------------------------------
+Task 11: Performance and Monitoring
+-----------------------------------
+
+**Objective:** Integrate performance testing and monitoring
+
+**What you'll do:**
+
+- Add load testing to pipeline
+- Implement performance regression detection
+- Set up monitoring and alerting
+- Create performance budgets
+
+**Skills practiced:** Performance testing, monitoring, SRE practices
+
+**Success criteria:**
+
+- Load tests run on every deployment
+- Performance regressions block deployments
+- Monitoring dashboards show key metrics
+
+**Extension challenge:** Implement chaos engineering tests
+
+-----------------------------
+Task 12: Multi-Cloud Strategy
+-----------------------------
+
+**Objective:** Deploy to multiple cloud platforms
+
+**What you'll do:**
+
+- Deploy to AWS, Azure, and GCP
+- Implement cloud-agnostic configuration
+- Handle cloud-specific features gracefully
+- Monitor costs across platforms
+
+**Skills practiced:** Multi-cloud architecture, cost optimization
+
+**Success criteria:**
+
+- Application runs identically on all clouds
+- Deployment costs tracked and optimized
+- Failover between clouds works automatically
+
+**Extension challenge:** Implement geographic load balancing
+
+========================
+Project-Based Challenges
+========================
+
+--------------------------------------
+Challenge 1: Multi-Service Application
+--------------------------------------
+
+**Objective**: Set up CI/CD for a microservices architecture
+
+**Requirements:**
+
+1. Create a repository with:
+
+   - 3 Python microservices
+   - Shared library/common code
+   - Database migrations
+   - API documentation
+
+2. Implement CI/CD that:
+
+   - Detects which services changed
+   - Runs tests only for affected services
+   - Coordinates deployments across services
+   - Manages database schema updates
+
+--------------------------------------
+Challenge 2: Open Source Project Setup
+--------------------------------------
+
+**Objective**: Create a production-ready open source Python project
+
+**Requirements:**
+
+1. Set up a complete open source project with:
+
+   - Comprehensive documentation (README, CONTRIBUTING, etc.)
+   - Code of conduct and issue templates
+   - Automated dependency updates (Dependabot)
+   - Multiple Python version support
+   - Cross-platform testing (Linux, macOS, Windows)
+   - Automated changelog generation
+   - Semantic versioning with automated releases
+
+=========================
+Troubleshooting Scenarios
+=========================
+
+---------------------------------------
+Scenario 1: Pipeline Performance Issues
+---------------------------------------
+
+You inherit a CI pipeline that takes 45 minutes to complete. Users complain about slow feedback. Analyze and optimize the pipeline to reduce runtime by at least 50%.
+
+-----------------------
+Scenario 2: Flaky Tests
+-----------------------
+
+The test suite has several tests that fail intermittently, causing developers to re-run pipelines frequently. Identify and fix the root causes of test flakiness.
+
+-------------------------------
+Scenario 3: Deployment Failures
+-------------------------------
+
+Production deployments are failing 30% of the time due to various issues. Design and implement a more robust deployment strategy with proper rollback mechanisms.
+
+=====================
+Submission Guidelines
+=====================
+
+**For Practical Tasks:**
+
+1. Create GitHub repositories for each task
+2. Include comprehensive README files
+3. Ensure all pipelines are publicly visible
+4. Add comments explaining complex configurations
+5. Include screenshots of successful pipeline runs
+
+**For Analysis Tasks:**
+
+1. Submit documents in Markdown format
+2. Include references and sources
+3. Provide concrete examples and evidence
+4. Make recommendations actionable
+
+**Evaluation Criteria:**
+
+- **Functionality**: Does it work as specified?
+- **Best Practices**: Follows modern CI/CD principles?
+- **Code Quality**: Clean, well-documented code?
+- **Innovation**: Creative solutions to challenges?
+- **Documentation**: Clear explanations and instructions?
+
+.. note::
+
+    **Getting Help:**
+    
+    - Use LLM for questions
+    - Reference the documentation we've covered
+    - Check GitHub Actions marketplace for existing solutions
+    - Test workflows with ``workflow_dispatch`` for easier debugging
+
+**Bonus Points:**
+
+- Contribute improvements to open source projects
+- Create tutorial content for others
+- Present your solutions to the class
+- Help teammates with their implementations
