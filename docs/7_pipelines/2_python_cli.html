@@ -81,8 +81,21 @@
 <li class="toctree-l1"><a class="reference internal" href="3_github.html">7.3 GitHub Actions Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_best_practices.html">7.4 CI/CD Best Practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TODO.html#exercises">Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
 </ul>
 
         </div>
@@ -168,18 +181,26 @@
 <h2>Modern Python CLI Development Stack<a class="headerlink" href="#modern-python-cli-development-stack" title="Link to this heading"></a></h2>
 <p><strong>The Tools That Matter in 2024</strong></p>
 <p>Python CLI development has been transformed by modern tooling that makes development faster, more reliable, and more enjoyable. Here’s the stack we’ll use and why each tool matters:</p>
-<dl class="simple">
-<dt><strong>Project Management: UV</strong></dt><dd><p><em>Why not pip?</em> UV is 10-100x faster than pip, provides deterministic dependency resolution, and handles virtual environments seamlessly. It’s quickly becoming the Python community standard.</p>
-</dd>
-<dt><strong>CLI Framework: Click</strong></dt><dd><p><em>Why not argparse?</em> Click provides automatic help generation, type validation, command grouping, and a decorator-based syntax that’s both powerful and readable.</p>
-</dd>
-<dt><strong>Testing: pytest + coverage</strong></dt><dd><p><em>Why not unittest?</em> pytest’s fixture system, parametrized tests, and plugin ecosystem make testing CLI applications much more straightforward.</p>
-</dd>
-<dt><strong>Code Quality: ruff + mypy</strong></dt><dd><p><em>Why this combination?</em> ruff replaces multiple tools (flake8, black, isort) with a single, extremely fast tool. mypy adds type safety that catches bugs before they reach users.</p>
-</dd>
-<dt><strong>Security: bandit + safety</strong></dt><dd><p><em>Why essential?</em> CLI tools often handle sensitive data and run with elevated privileges. Security scanning catches common vulnerabilities early.</p>
-</dd>
-</dl>
+<p><strong>Project Management: UV</strong></p>
+<blockquote>
+<div><p><em>Why not pip?</em> UV is 10-100x faster than pip, provides deterministic dependency resolution, and handles virtual environments seamlessly. It’s quickly becoming the Python community standard.</p>
+</div></blockquote>
+<p><strong>CLI Framework: Click</strong></p>
+<blockquote>
+<div><p><em>Why not argparse?</em> Click provides automatic help generation, type validation, command grouping, and a decorator-based syntax that’s both powerful and readable.</p>
+</div></blockquote>
+<p><strong>Testing: pytest + coverage</strong></p>
+<blockquote>
+<div><p><em>Why not unittest?</em> pytest’s fixture system, parametrized tests, and plugin ecosystem make testing CLI applications much more straightforward.</p>
+</div></blockquote>
+<p><strong>Code Quality: ruff + mypy</strong></p>
+<blockquote>
+<div><p><em>Why this combination?</em> ruff replaces multiple tools (flake8, black, isort) with a single, extremely fast tool. mypy adds type safety that catches bugs before they reach users.</p>
+</div></blockquote>
+<p><strong>Security: bandit + safety</strong></p>
+<blockquote>
+<div><p><em>Why essential?</em> CLI tools often handle sensitive data and run with elevated privileges. Security scanning catches common vulnerabilities early.</p>
+</div></blockquote>
 </section>
 <section id="building-a-weather-cli">
 <h2>Building a Weather CLI<a class="headerlink" href="#building-a-weather-cli" title="Link to this heading"></a></h2>

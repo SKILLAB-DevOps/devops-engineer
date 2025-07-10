@@ -1,0 +1,902 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.7 Container Testing &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.8 Container Best Practices" href="8_best_practices.html" />
+    <link rel="prev" title="8.6 Container Orchestration" href="6_orchestration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.7 Container Testing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/7_test.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="container-testing">
+<h1>8.7 Container Testing<a class="headerlink" href="#container-testing" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/testing_pyramid.png"><img alt="A comprehensive diagram showing different layers of container testing from unit tests to production validation" src="../_images/testing_pyramid.png" style="width: 800px;" />
+</a>
+<p><strong>Beyond “It Works on My Machine”</strong></p>
+<p>Testing containers requires a different mindset than traditional application testing. You’re not just testing your code - you’re testing the entire packaged environment, its configuration, security posture, and behavior under various conditions. This section covers comprehensive testing strategies that ensure your containers work reliably from development to production.</p>
+<p>Modern container testing spans multiple dimensions: functional correctness, security compliance, performance characteristics, and operational behavior.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Design</strong> comprehensive container testing strategies</p></li>
+<li><p><strong>Implement</strong> automated security and vulnerability testing</p></li>
+<li><p><strong>Create</strong> performance and load testing for containerized applications</p></li>
+<li><p><strong>Validate</strong> container configurations and infrastructure</p></li>
+<li><p><strong>Build</strong> testing pipelines that catch issues before production</p></li>
+<li><p><strong>Monitor</strong> container behavior in production environments</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Understanding of containers, Docker/Podman, testing concepts, and CI/CD basics</p>
+</section>
+<section id="container-testing-pyramid">
+<h2>Container Testing Pyramid<a class="headerlink" href="#container-testing-pyramid" title="Link to this heading"></a></h2>
+<p><strong>Multi-Layer Testing Strategy</strong></p>
+<p>Container testing follows a pyramid model with different types of tests at each level:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────┐
+│     Production Monitoring   │  ← Observability, alerting
+├─────────────────────────────┤
+│     Integration Tests       │  ← Multi-container, end-to-end
+├─────────────────────────────┤
+│     Container Tests         │  ← Image structure, security
+├─────────────────────────────┤
+│     Unit Tests              │  ← Application logic
+└─────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Testing Categories:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Unit Tests:</strong> Test application logic in isolation</p></li>
+<li><p><strong>Container Tests:</strong> Validate image structure, security, and configuration</p></li>
+<li><p><strong>Integration Tests:</strong> Test multi-container applications and external dependencies</p></li>
+<li><p><strong>Performance Tests:</strong> Validate resource usage and scalability</p></li>
+<li><p><strong>Security Tests:</strong> Scan for vulnerabilities and compliance</p></li>
+<li><p><strong>Production Monitoring:</strong> Continuous validation in live environments</p></li>
+</ol>
+</section>
+<section id="unit-testing-in-containers">
+<h2>Unit Testing in Containers<a class="headerlink" href="#unit-testing-in-containers" title="Link to this heading"></a></h2>
+<p><strong>Testing Application Logic</strong></p>
+<p><strong>1. Test-Driven Development with Containers</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Multi-stage Dockerfile with testing</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">base</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Test stage</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">base</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">test</span>
+<span class="k">COPY</span><span class="w"> </span>requirements-test.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-test.txt
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>app<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>--cov-report<span class="o">=</span>term
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pytest&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-v&quot;</span><span class="p">]</span>
+
+<span class="c"># Production stage</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">base</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">production</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;gunicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:8000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app:app&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>2. Running Tests in Containers</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and run tests</span>
+docker<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-t<span class="w"> </span>myapp:test<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>myapp:test
+
+<span class="c1"># Run tests with volume mount for development</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-w<span class="w"> </span>/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>python:3.11-slim<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install -r requirements-test.txt &amp;&amp; pytest -v&quot;</span>
+
+<span class="c1"># Generate test coverage reports</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-w<span class="w"> </span>/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>python:3.11-slim<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install -r requirements-test.txt &amp;&amp; pytest --cov=app --cov-report=html&quot;</span>
+</pre></div>
+</div>
+<p><strong>3. Database Testing with Test Containers</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python example using pytest and docker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">docker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">postgres_container</span><span class="p">():</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="n">from_env</span><span class="p">()</span>
+
+    <span class="c1"># Start test database</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="s2">&quot;postgres:15-alpine&quot;</span><span class="p">,</span>
+        <span class="n">environment</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;POSTGRES_DB&quot;</span><span class="p">:</span> <span class="s2">&quot;testdb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;POSTGRES_USER&quot;</span><span class="p">:</span> <span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;POSTGRES_PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;testpass&quot;</span>
+        <span class="p">},</span>
+        <span class="n">ports</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;5432/tcp&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>  <span class="c1"># Random port</span>
+        <span class="n">detach</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">remove</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Wait for database to be ready</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">port</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;NetworkSettings&quot;</span><span class="p">][</span><span class="s2">&quot;Ports&quot;</span><span class="p">][</span><span class="s2">&quot;5432/tcp&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;HostPort&quot;</span><span class="p">]</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+                <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+                <span class="n">database</span><span class="o">=</span><span class="s2">&quot;testdb&quot;</span><span class="p">,</span>
+                <span class="n">user</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+                <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpass&quot;</span>
+            <span class="p">)</span>
+            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">break</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;postgresql://testuser:testpass@localhost:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">/testdb&quot;</span>
+
+    <span class="n">container</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_database_operations</span><span class="p">(</span><span class="n">postgres_container</span><span class="p">):</span>
+    <span class="c1"># Your database tests here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="container-structure-testing">
+<h2>Container Structure Testing<a class="headerlink" href="#container-structure-testing" title="Link to this heading"></a></h2>
+<p><strong>Validating Image Configuration</strong></p>
+<p><strong>1. Dockerfile Linting with hadolint</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install hadolint</span>
+docker<span class="w"> </span>pull<span class="w"> </span>hadolint/hadolint
+
+<span class="c1"># Lint Dockerfile</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-i<span class="w"> </span>hadolint/hadolint<span class="w"> </span>&lt;<span class="w"> </span>Dockerfile
+
+<span class="c1"># Create hadolint configuration</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>.hadolint.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">ignored:</span>
+<span class="s">  - DL3008  # Pin versions in apt get install</span>
+<span class="s">  - DL3009  # Delete the apt-get lists after installing something</span>
+<span class="s">failure-threshold: error</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Run with configuration</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-i<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/.hadolint.yaml:/.config/hadolint.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>hadolint/hadolint<span class="w"> </span>&lt;<span class="w"> </span>Dockerfile
+</pre></div>
+</div>
+<p><strong>2. Image Layer Analysis with dive</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install dive</span>
+docker<span class="w"> </span>pull<span class="w"> </span>wagoodman/dive
+
+<span class="c1"># Analyze image layers</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>wagoodman/dive:latest<span class="w"> </span>myapp:latest
+</pre></div>
+</div>
+<p><strong>3. Container Structure Tests</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># container-structure-test.yaml</span>
+<span class="nt">schemaVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.0.0&#39;</span>
+
+<span class="nt">commandTests</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Python</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">check&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python&quot;</span>
+<span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;--version&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">expectedOutput</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;Python</span><span class="nv"> </span><span class="s">3.11.*&quot;</span><span class="p p-Indicator">]</span>
+
+<span class="nt">fileExistenceTests</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Application</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">exists&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/app/main.py&quot;</span>
+<span class="w">    </span><span class="nt">shouldExist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;No</span><span class="nv"> </span><span class="s">sensitive</span><span class="nv"> </span><span class="s">files&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/passwd&quot;</span>
+<span class="w">    </span><span class="nt">shouldExist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">fileContentTests</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Check</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">configuration&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/passwd&quot;</span>
+<span class="w">    </span><span class="nt">expectedContents</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;appuser:x:1001:1001::/app:/bin/false&quot;</span><span class="p p-Indicator">]</span>
+
+<span class="nt">metadataTest</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">exposedPorts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;8080&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1001&quot;</span>
+<span class="w">  </span><span class="nt">workdir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/app&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run structure tests</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/container-structure-test.yaml:/tests.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gcr.io/gcp-runtimes/container-structure-test:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nb">test</span><span class="w"> </span>--image<span class="w"> </span>myapp:latest<span class="w"> </span>--config<span class="w"> </span>/tests.yaml
+</pre></div>
+</div>
+<p><strong>4. Security Configuration Testing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python script for security testing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">docker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_container_security</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="n">from_env</span><span class="p">()</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_name</span><span class="p">)</span>
+
+    <span class="c1"># Check image configuration</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Config&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Test: Container should not run as root</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">user</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">user</span> <span class="o">!=</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s2">&quot;Container should not run as root&quot;</span>
+
+    <span class="c1"># Test: No exposed privileged ports</span>
+    <span class="n">exposed_ports</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ExposedPorts&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">privileged_ports</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">exposed_ports</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">privileged_ports</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Exposed privileged ports: </span><span class="si">{</span><span class="n">privileged_ports</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Test: Health check should be defined</span>
+    <span class="n">healthcheck</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Healthcheck&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">healthcheck</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Health check should be defined&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Security tests passed&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_container_security</span><span class="p">(</span><span class="s2">&quot;myapp:latest&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="security-testing">
+<h2>Security Testing<a class="headerlink" href="#security-testing" title="Link to this heading"></a></h2>
+<p><strong>Comprehensive Vulnerability Assessment</strong></p>
+<p><strong>1. Vulnerability Scanning with Trivy</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic vulnerability scan</span>
+trivy<span class="w"> </span>image<span class="w"> </span>myapp:latest
+
+<span class="c1"># Scan with specific severity</span>
+trivy<span class="w"> </span>image<span class="w"> </span>--severity<span class="w"> </span>HIGH,CRITICAL<span class="w"> </span>myapp:latest
+
+<span class="c1"># Output to JSON for processing</span>
+trivy<span class="w"> </span>image<span class="w"> </span>--format<span class="w"> </span>json<span class="w"> </span>--output<span class="w"> </span>results.json<span class="w"> </span>myapp:latest
+
+<span class="c1"># Scan filesystem (for local development)</span>
+trivy<span class="w"> </span>fs<span class="w"> </span>--security-checks<span class="w"> </span>vuln,config<span class="w"> </span>.
+
+<span class="c1"># Continuous scanning in CI/CD</span>
+trivy<span class="w"> </span>image<span class="w"> </span>--exit-code<span class="w"> </span><span class="m">1</span><span class="w"> </span>--severity<span class="w"> </span>CRITICAL<span class="w"> </span>myapp:latest
+</pre></div>
+</div>
+<p><strong>2. Configuration Scanning</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scan for misconfigurations</span>
+trivy<span class="w"> </span>config<span class="w"> </span>.
+
+<span class="c1"># Scan Kubernetes manifests</span>
+trivy<span class="w"> </span>config<span class="w"> </span>--file-patterns<span class="w"> </span><span class="s2">&quot;*.yaml&quot;</span><span class="w"> </span>k8s-manifests/
+
+<span class="c1"># Custom policy with OPA Rego</span>
+trivy<span class="w"> </span>config<span class="w"> </span>--policy<span class="w"> </span>./policies/<span class="w"> </span>.
+</pre></div>
+</div>
+<p><strong>3. Secret Detection</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scan for secrets in image</span>
+trivy<span class="w"> </span>image<span class="w"> </span>--scanners<span class="w"> </span>secret<span class="w"> </span>myapp:latest
+
+<span class="c1"># Scan codebase for secrets</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>trufflesecurity/trufflehog:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>filesystem<span class="w"> </span>/workspace
+</pre></div>
+</div>
+<p><strong>4. Automated Security Testing Pipeline</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/security.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security Testing</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">security-scan</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t ${{ github.repository }}:${{ github.sha }} .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Trivy vulnerability scanner</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aquasecurity/trivy-action@master</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">image-ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.repository }}:${{ github.sha }}</span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;sarif&#39;</span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;trivy-results.sarif&#39;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload Trivy scan results</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github/codeql-action/upload-sarif@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sarif_file</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;trivy-results.sarif&#39;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret detection</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trufflesecurity/trufflehog@main</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./</span>
+<span class="w">          </span><span class="nt">base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="w">          </span><span class="nt">head</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEAD</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-testing">
+<h2>Integration Testing<a class="headerlink" href="#integration-testing" title="Link to this heading"></a></h2>
+<p><strong>Testing Multi-Container Applications</strong></p>
+<p><strong>1. Docker Compose Testing</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># docker-compose.test.yml</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL=postgresql://testuser:testpass@db:5432/testdb</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REDIS_URL=redis://cache:6379</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+<span class="w">      </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_started</span>
+
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15-alpine</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_DB=testdb</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_USER=testuser</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=testpass</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD-SHELL&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">testuser</span><span class="nv"> </span><span class="s">-d</span><span class="nv"> </span><span class="s">testdb&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="w">  </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:alpine</span>
+
+<span class="w">  </span><span class="c1"># Test runner service</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TEST_DATABASE_URL=postgresql://testuser:testpass@db:5432/testdb</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TEST_REDIS_URL=redis://cache:6379</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest tests/integration/ -v</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cache</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run integration tests</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.test.yml<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>--abort-on-container-exit
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.test.yml<span class="w"> </span>down<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>2. End-to-End Testing with Newman</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="c1">// postman-collection.json</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;API Integration Tests&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;item&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Health Check&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{baseUrl}}/health&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;listen&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;exec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">&quot;pm.test(&#39;Status code is 200&#39;, function () {&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;    pm.response.to.have.status(200);&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;});&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run API tests with Newman</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>container-network<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/tests:/etc/newman<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postman/newman:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>run<span class="w"> </span>/etc/newman/postman-collection.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--environment<span class="w"> </span>/etc/newman/environment.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reporters<span class="w"> </span>cli,htmlextra<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reporter-htmlextra-export<span class="w"> </span>/etc/newman/report.html
+</pre></div>
+</div>
+<p><strong>3. Browser-Based E2E Testing</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// cypress/integration/app.spec.js</span>
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Application E2E Tests&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">beforeEach</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">visit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">})</span>
+
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should load the homepage&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;Welcome&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;[data-testid=&quot;user-count&quot;]&#39;</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;be.visible&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">})</span>
+
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should create a new user&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;[data-testid=&quot;create-user-btn&quot;]&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">()</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;[data-testid=&quot;username-input&quot;]&#39;</span><span class="p">).</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;testuser&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;[data-testid=&quot;email-input&quot;]&#39;</span><span class="p">).</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;test@example.com&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;[data-testid=&quot;submit-btn&quot;]&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">()</span>
+<span class="w">    </span><span class="nx">cy</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;User created successfully&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># E2E testing with Cypress</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">app</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3000:3000&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NODE_ENV=test</span>
+
+<span class="w">  </span><span class="nt">cypress</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cypress/included:latest</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CYPRESS_baseUrl=http://app:3000</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./cypress:/e2e</span>
+<span class="w">    </span><span class="nt">working_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/e2e</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cypress run</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-testing">
+<h2>Performance Testing<a class="headerlink" href="#performance-testing" title="Link to this heading"></a></h2>
+<p><strong>Load Testing and Performance Validation</strong></p>
+<p><strong>1. Load Testing with k6</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// load-test.js</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;k6/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">check</span><span class="p">,</span><span class="w"> </span><span class="nx">sleep</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;k6&#39;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">stages</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;2m&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Ramp up</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;5m&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Stay at 100 users</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;2m&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Ramp up to 200</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;5m&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Stay at 200</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;2m&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">},</span><span class="w">   </span><span class="c1">// Ramp down</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">thresholds</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;http_req_duration&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;p(95)&lt;500&#39;</span><span class="p">],</span><span class="w"> </span><span class="c1">// 95% of requests under 500ms</span>
+<span class="w">    </span><span class="s1">&#39;http_req_failed&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;rate&lt;0.1&#39;</span><span class="p">],</span><span class="w">    </span><span class="c1">// Error rate under 10%</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/users&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">check</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;status is 200&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;response time &lt; 500ms&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">timings</span><span class="p">.</span><span class="nx">duration</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="nx">sleep</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run load tests against containerized app</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/scripts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>grafana/k6:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>run<span class="w"> </span>/scripts/load-test.js
+</pre></div>
+</div>
+<p><strong>2. Resource Usage Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monitor resource usage during tests</span>
+<span class="c1">#!/bin/bash</span>
+
+<span class="c1"># Start application</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Monitor resources</span>
+docker<span class="w"> </span>stats<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>resource-usage.log<span class="w"> </span><span class="p">&amp;</span>
+<span class="nv">STATS_PID</span><span class="o">=</span><span class="nv">$!</span>
+
+<span class="c1"># Run load test</span>
+k6<span class="w"> </span>run<span class="w"> </span>load-test.js
+
+<span class="c1"># Stop monitoring</span>
+<span class="nb">kill</span><span class="w"> </span><span class="nv">$STATS_PID</span>
+
+<span class="c1"># Check if containers stayed within limits</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>app-container<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.[0].HostConfig.Memory&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="chaos-testing">
+<h2>Chaos Testing<a class="headerlink" href="#chaos-testing" title="Link to this heading"></a></h2>
+<p><strong>Testing Resilience and Failure Scenarios</strong></p>
+<p><strong>1. Container Failure Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># chaos-test.sh</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Starting chaos testing...&quot;</span>
+
+<span class="c1"># Kill random container</span>
+<span class="nv">CONTAINERS</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.Names}}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>postgres<span class="k">)</span>
+<span class="nv">RANDOM_CONTAINER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$CONTAINERS</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>shuf<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Killing container: </span><span class="nv">$RANDOM_CONTAINER</span><span class="s2">&quot;</span>
+docker<span class="w"> </span><span class="nb">kill</span><span class="w"> </span><span class="nv">$RANDOM_CONTAINER</span>
+
+<span class="c1"># Wait and check if service recovers</span>
+sleep<span class="w"> </span><span class="m">30</span>
+
+<span class="c1"># Test if application is still responsive</span>
+<span class="k">if</span><span class="w"> </span>curl<span class="w"> </span>-f<span class="w"> </span>http://localhost:8080/health<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; Service recovered successfully&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; Service failed to recover&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>2. Network Chaos with Pumba</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Pumba for chaos testing</span>
+docker<span class="w"> </span>pull<span class="w"> </span>gaiaadm/pumba
+
+<span class="c1"># Add 100ms delay to network</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gaiaadm/pumba<span class="w"> </span>netem<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--duration<span class="w"> </span>1m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface<span class="w"> </span>eth0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>delay<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--time<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>app-container
+
+<span class="c1"># Simulate packet loss</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gaiaadm/pumba<span class="w"> </span>netem<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--duration<span class="w"> </span>1m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>loss<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--percent<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>app-container
+</pre></div>
+</div>
+<p><strong>3. Resource Exhaustion Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test memory limits</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--memory<span class="o">=</span>128m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>memory-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>alpine:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">  while true; do</span>
+<span class="s2">    dd if=/dev/zero of=/tmp/test bs=1M count=10</span>
+<span class="s2">    sleep 1</span>
+<span class="s2">  done</span>
+<span class="s2">  &quot;</span>
+
+<span class="c1"># Monitor behavior when limits are exceeded</span>
+docker<span class="w"> </span>stats<span class="w"> </span>memory-test
+</pre></div>
+</div>
+</section>
+<section id="compliance-testing">
+<h2>Compliance Testing<a class="headerlink" href="#compliance-testing" title="Link to this heading"></a></h2>
+<p><strong>Regulatory and Security Compliance</strong></p>
+<p><strong>1. CIS Benchmark Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run CIS Docker Benchmark</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--net<span class="w"> </span>host<span class="w"> </span>--pid<span class="w"> </span>host<span class="w"> </span>--userns<span class="w"> </span>host<span class="w"> </span>--cap-add<span class="w"> </span>audit_control<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">DOCKER_CONTENT_TRUST</span><span class="o">=</span><span class="nv">$DOCKER_CONTENT_TRUST</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/etc:/etc:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/usr/bin/containerd:/usr/bin/containerd:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/usr/bin/runc:/usr/bin/runc:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/usr/lib/systemd:/usr/lib/systemd:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/lib:/var/lib:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--label<span class="w"> </span>docker_bench_security<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>docker/docker-bench-security
+</pre></div>
+</div>
+<p><strong>2. NIST Compliance Checking</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compliance_check.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">docker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_nist_compliance</span><span class="p">(</span><span class="n">container_name</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="n">from_env</span><span class="p">()</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+
+    <span class="n">compliance_results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;compliant&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;findings&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Check if running as non-root</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Config&#39;</span><span class="p">]</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;root&#39;</span> <span class="ow">or</span> <span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">compliance_results</span><span class="p">[</span><span class="s2">&quot;compliant&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">compliance_results</span><span class="p">[</span><span class="s2">&quot;findings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Container running as root user&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check resource limits</span>
+    <span class="n">host_config</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;HostConfig&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">host_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Memory&#39;</span><span class="p">):</span>
+        <span class="n">compliance_results</span><span class="p">[</span><span class="s2">&quot;compliant&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">compliance_results</span><span class="p">[</span><span class="s2">&quot;findings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;No memory limit set&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">host_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CpuShares&#39;</span><span class="p">):</span>
+        <span class="n">compliance_results</span><span class="p">[</span><span class="s2">&quot;compliant&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">compliance_results</span><span class="p">[</span><span class="s2">&quot;findings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;No CPU limit set&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">compliance_results</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-automation">
+<h2>Testing Automation<a class="headerlink" href="#testing-automation" title="Link to this heading"></a></h2>
+<p><strong>CI/CD Pipeline Integration</strong></p>
+<p><strong>1. Complete Testing Pipeline</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/test.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container Testing Pipeline</span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">unit-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run unit tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker build --target test -t myapp:test .</span>
+<span class="w">          </span><span class="no">docker run --rm myapp:test</span>
+
+<span class="w">  </span><span class="nt">security-scan</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t myapp:${{ github.sha }} .</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security scan</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">trivy image --exit-code 1 --severity HIGH,CRITICAL myapp:${{ github.sha }}</span>
+
+<span class="w">  </span><span class="nt">integration-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">unit-tests</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">security-scan</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run integration tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit</span>
+
+<span class="w">  </span><span class="nt">performance-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integration-tests</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Performance testing</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker-compose up -d</span>
+<span class="w">          </span><span class="no">docker run --rm --network host -v $(pwd):/scripts grafana/k6:latest run /scripts/load-test.js</span>
+</pre></div>
+</div>
+<p><strong>2. Test Results Reporting</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test_reporter.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_test_report</span><span class="p">(</span><span class="n">test_results</span><span class="p">):</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+        <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;total_tests&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;passed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;failed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;skipped&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;suites&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Process JUnit XML results</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;test-results.xml&#39;</span><span class="p">)</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">testsuite</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;testsuite&#39;</span><span class="p">):</span>
+        <span class="n">suite</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">testsuite</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+            <span class="s2">&quot;tests&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">testsuite</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+            <span class="s2">&quot;failures&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">testsuite</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;failures&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+            <span class="s2">&quot;errors&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">testsuite</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;errors&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">testsuite</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="n">report</span><span class="p">[</span><span class="s2">&quot;suites&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">suite</span><span class="p">)</span>
+
+        <span class="n">report</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">][</span><span class="s2">&quot;total_tests&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">suite</span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
+        <span class="n">report</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">][</span><span class="s2">&quot;failed&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">suite</span><span class="p">[</span><span class="s2">&quot;failures&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">suite</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]</span>
+        <span class="n">report</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">][</span><span class="s2">&quot;passed&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">suite</span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">suite</span><span class="p">[</span><span class="s2">&quot;failures&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">suite</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">report</span>
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>You now have comprehensive knowledge of container testing strategies and tools. The next section covers production deployment best practices, bringing together everything you’ve learned about containers, security, and operations.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul class="simple">
+<li><p>Container testing spans multiple layers from unit tests to production monitoring</p></li>
+<li><p>Security testing must be automated and integrated into CI/CD pipelines</p></li>
+<li><p>Performance testing validates both application and infrastructure behavior</p></li>
+<li><p>Integration testing ensures multi-container applications work correctly</p></li>
+<li><p>Compliance testing is essential for regulated environments</p></li>
+<li><p>Automated testing pipelines catch issues before they reach production</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Testing Culture:</strong> Great container testing requires a shift in mindset - you’re testing not just code, but entire environments. Invest in automation early and test often.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="6_orchestration.html" class="btn btn-neutral float-left" title="8.6 Container Orchestration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="8_best_practices.html" class="btn btn-neutral float-right" title="8.8 Container Best Practices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

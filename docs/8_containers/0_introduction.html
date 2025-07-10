@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.0 Introduction &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.1 Getting Started" href="1_installation.html" />
+    <link rel="prev" title="Answers" href="../7_pipelines/ANSWERS.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.0 Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/0_introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>8.0 Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/containers.png"><img alt="A diagram showing the difference between traditional VMs and containers" src="../_images/containers.png" style="width: 1000px;" />
+</a>
+<p><strong>Imagine this scenario:</strong> Your team has built a Python web application that works perfectly on your laptop. But when you try to deploy it to the staging server, you get cryptic dependency errors. The production server runs a different Python version. Your colleague can’t even get it running locally because they’re missing a system library. Sound familiar?</p>
+<p>This is the classic “it works on my machine” problem that has plagued software teams for decades. Containers solve this fundamental challenge by packaging your application with everything it needs to run, creating a consistent experience from development to production.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p><strong>Understand</strong> how containers revolutionize application deployment and eliminate environment inconsistencies</p></li>
+<li><p><strong>Build</strong> containerized applications using Docker and modern alternatives like Podman</p></li>
+<li><p><strong>Create</strong> production-ready Dockerfiles following security and performance best practices</p></li>
+<li><p><strong>Orchestrate</strong> multi-container applications using Docker Compose</p></li>
+<li><p><strong>Implement</strong> container security scanning and vulnerability management</p></li>
+<li><p><strong>Deploy</strong> containerized applications to production environments with confidence</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Basic understanding of command-line operations, software dependencies, and application deployment concepts.</p>
+</section>
+<section id="the-container-revolution-explained">
+<h2>The Container Revolution Explained<a class="headerlink" href="#the-container-revolution-explained" title="Link to this heading"></a></h2>
+<p><strong>From Shipping to Software</strong></p>
+<p>The concept of containers isn’t new - the shipping industry revolutionized global trade in the 1950s by standardizing cargo containers. Before containers, loading a ship was a manual, time-consuming process with different packaging for every type of cargo. With standardized containers, any cargo could be efficiently loaded onto any ship, truck, or train.</p>
+<p>Software containers bring this same standardization to application deployment. Instead of worrying about different operating systems, library versions, or system configurations, you package your application in a standardized container that runs identically everywhere.</p>
+<p><strong>The Problem Containers Solve:</strong></p>
+<p>Traditional application deployment faces several critical challenges:</p>
+<ul class="simple">
+<li><p><strong>Environment drift:</strong> Development, staging, and production environments gradually diverge</p></li>
+<li><p><strong>Dependency conflicts:</strong> Different applications require conflicting versions of the same library</p></li>
+<li><p><strong>Resource waste:</strong> Virtual machines consume significant overhead for simple applications</p></li>
+<li><p><strong>Scaling complexity:</strong> Adding new servers requires manual configuration and setup</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Why This Matters for DevOps:</strong> Containers are foundational to modern DevOps practices. They enable infrastructure as code, simplify CI/CD pipelines, and make microservices architectures practical. Understanding containers isn’t optional - it’s essential for modern software delivery.</p>
+</div>
+</section>
+<section id="containers-vs-virtual-machines">
+<h2>Containers vs Virtual Machines<a class="headerlink" href="#containers-vs-virtual-machines" title="Link to this heading"></a></h2>
+<p>Understanding the difference between containers and virtual machines is crucial for grasping why containers have become the standard for modern application deployment:</p>
+<p><strong>Virtual Machines:</strong></p>
+<ul class="simple">
+<li><p>Include a complete operating system</p></li>
+<li><p>Require significant CPU and memory overhead</p></li>
+<li><p>Boot slowly (minutes)</p></li>
+<li><p>Provide strong isolation through hardware virtualization</p></li>
+<li><p>Ideal for running different operating systems or legacy applications</p></li>
+</ul>
+<p><strong>Containers:</strong></p>
+<ul class="simple">
+<li><p>Share the host operating system kernel</p></li>
+<li><p>Minimal overhead (megabytes vs gigabytes)</p></li>
+<li><p>Start instantly (milliseconds)</p></li>
+<li><p>Provide process-level isolation</p></li>
+<li><p>Perfect for microservices and cloud-native applications</p></li>
+</ul>
+<p><strong>Real-world impact:</strong> A single server that might run 5-10 virtual machines can easily run 50-100 containers, dramatically improving resource utilization and cost efficiency.</p>
+</section>
+<section id="what-is-a-container">
+<h2>What is a Container?<a class="headerlink" href="#what-is-a-container" title="Link to this heading"></a></h2>
+<p><strong>A Simple Definition</strong></p>
+<p>A container is a lightweight, portable package that includes everything needed to run an application: code, runtime, system tools, libraries, and settings. Think of it as a “shipping box” for software that can be moved between different environments without breaking.</p>
+<p><strong>Technical Deep Dive:</strong></p>
+<p>At its core, a container is an isolated process (or group of processes) that runs on a shared operating system kernel. This isolation is achieved through Linux kernel features:</p>
+<ul class="simple">
+<li><p><strong>Namespaces:</strong> Provide process isolation (PID, network, filesystem, etc.)</p></li>
+<li><p><strong>Control Groups (cgroups):</strong> Limit and monitor resource usage (CPU, memory, I/O)</p></li>
+<li><p><strong>Union Filesystems:</strong> Enable efficient layered storage</p></li>
+</ul>
+<p><strong>Key Characteristics:</strong></p>
+<ul class="simple">
+<li><p><strong>Portable:</strong> Runs consistently across different environments</p></li>
+<li><p><strong>Lightweight:</strong> Shares OS kernel, minimal overhead</p></li>
+<li><p><strong>Isolated:</strong> Applications can’t interfere with each other</p></li>
+<li><p><strong>Immutable:</strong> Container images don’t change once built</p></li>
+<li><p><strong>Ephemeral:</strong> Containers can be created and destroyed quickly</p></li>
+</ul>
+</section>
+<section id="container-platforms">
+<h2>Container Platforms<a class="headerlink" href="#container-platforms" title="Link to this heading"></a></h2>
+<p><strong>Docker: The Pioneer</strong></p>
+<p>Docker popularized containerization and remains the most widely used platform:</p>
+<ul class="simple">
+<li><p><strong>Docker Engine:</strong> The runtime that creates and manages containers</p></li>
+<li><p><strong>Docker Hub:</strong> Cloud-based registry for sharing container images</p></li>
+<li><p><strong>Docker Desktop:</strong> Development environment for Mac and Windows</p></li>
+<li><p><strong>Docker Compose:</strong> Tool for defining multi-container applications</p></li>
+</ul>
+<p><strong>Podman: The Modern Alternative</strong></p>
+<p>Podman (Pod Manager) is a daemon-less container engine gaining popularity:</p>
+<ul class="simple">
+<li><p><strong>Daemon-less:</strong> No background service required, more secure</p></li>
+<li><p><strong>Rootless:</strong> Can run containers without root privileges</p></li>
+<li><p><strong>Pod support:</strong> Native support for Kubernetes-style pods</p></li>
+<li><p><strong>Docker compatibility:</strong> Drop-in replacement for most Docker commands</p></li>
+</ul>
+<p><strong>Container Runtime Landscape:</strong></p>
+<ul class="simple">
+<li><p><strong>containerd:</strong> Industry-standard container runtime (used by Docker and Kubernetes)</p></li>
+<li><p><strong>CRI-O:</strong> Lightweight runtime specifically designed for Kubernetes</p></li>
+<li><p><strong>runc:</strong> Low-level runtime that actually creates and runs containers</p></li>
+</ul>
+<p><strong>Choosing the Right Platform:</strong></p>
+<ul class="simple">
+<li><p><strong>Development:</strong> Docker Desktop for ease of use, Podman for security</p></li>
+<li><p><strong>Production:</strong> Kubernetes with containerd for scalability</p></li>
+<li><p><strong>Edge/IoT:</strong> Lightweight runtimes like containerd directly</p></li>
+</ul>
+</section>
+<section id="container-images-explained">
+<h2>Container Images Explained<a class="headerlink" href="#container-images-explained" title="Link to this heading"></a></h2>
+<p><strong>Understanding the Layered Architecture</strong></p>
+<p>Container images use a layered filesystem that enables efficiency and reusability:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────┐
+│     Application Layer       │  ← Your code and app-specific files
+├─────────────────────────────┤
+│     Dependencies Layer      │  ← Python packages, Node modules, etc.
+├─────────────────────────────┤
+│     Runtime Layer           │  ← Python interpreter, Node.js, etc.
+├─────────────────────────────┤
+│     Base OS Layer           │  ← Ubuntu, Alpine, or minimal OS
+└─────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Benefits of Layering:</strong></p>
+<ul class="simple">
+<li><p><strong>Space efficiency:</strong> Common layers are shared between images</p></li>
+<li><p><strong>Fast builds:</strong> Only changed layers need to be rebuilt</p></li>
+<li><p><strong>Caching:</strong> Docker can reuse cached layers to speed up builds</p></li>
+<li><p><strong>Security:</strong> Base layers can be updated independently</p></li>
+</ul>
+<p><strong>Image Registries:</strong></p>
+<p>Container images are stored in registries:</p>
+<ul class="simple">
+<li><p><strong>Docker Hub:</strong> Public registry with millions of images</p></li>
+<li><p><strong>Amazon ECR:</strong> AWS-managed private registry</p></li>
+<li><p><strong>Google Container Registry:</strong> Google Cloud’s registry service</p></li>
+<li><p><strong>GitHub Container Registry:</strong> Integrated with GitHub repositories</p></li>
+<li><p><strong>Harbor:</strong> Open-source enterprise registry with security scanning</p></li>
+</ul>
+</section>
+<section id="the-kubernetes-connection">
+<h2>The Kubernetes Connection<a class="headerlink" href="#the-kubernetes-connection" title="Link to this heading"></a></h2>
+<p><strong>From Containers to Orchestration</strong></p>
+<p>While containers solve the packaging problem, production applications need orchestration:</p>
+<p><strong>Pods: The Kubernetes Unit</strong></p>
+<p>Kubernetes introduces the concept of <strong>pods</strong> - the smallest deployable unit:</p>
+<ul class="simple">
+<li><p>A pod contains one or more containers</p></li>
+<li><p>Containers in a pod share networking and storage</p></li>
+<li><p>Pods are ephemeral and can be created/destroyed dynamically</p></li>
+<li><p>Think of pods as “wrapper” around your containers for orchestration</p></li>
+</ul>
+<p><strong>Why Pods Matter:</strong></p>
+<ul class="simple">
+<li><p><strong>Co-location:</strong> Helper containers (sidecars) can run alongside your main application</p></li>
+<li><p><strong>Shared resources:</strong> Containers in a pod can communicate via localhost</p></li>
+<li><p><strong>Atomic operations:</strong> The entire pod is scheduled, started, and stopped together</p></li>
+</ul>
+<p><strong>Container → Pod → Service → Deployment</strong></p>
+<p>This hierarchy enables scalable, resilient applications:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: A web application pod</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-server</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.21</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">log-processor</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluentd:latest</span>
+<span class="w">    </span><span class="c1"># Sidecar container for log processing</span>
+</pre></div>
+</div>
+</section>
+<section id="modern-use-cases">
+<h2>Modern Use Cases<a class="headerlink" href="#modern-use-cases" title="Link to this heading"></a></h2>
+<p><strong>Microservices Architecture</strong></p>
+<p>Containers are perfectly suited for microservices:</p>
+<ul class="simple">
+<li><p>Each service runs in its own container</p></li>
+<li><p>Independent scaling and deployment</p></li>
+<li><p>Technology diversity (different languages/frameworks)</p></li>
+<li><p>Fault isolation</p></li>
+</ul>
+<p><strong>Cloud-Native Development</strong></p>
+<ul class="simple">
+<li><p><strong>12-Factor App compliance:</strong> Containers naturally support cloud-native principles</p></li>
+<li><p><strong>CI/CD integration:</strong> Containers simplify build and deployment pipelines</p></li>
+<li><p><strong>Infrastructure as Code:</strong> Container definitions are code that can be versioned</p></li>
+</ul>
+<p><strong>Development Environment Standardization</strong></p>
+<ul class="simple">
+<li><p><strong>Onboarding:</strong> New developers get consistent environments</p></li>
+<li><p><strong>Testing:</strong> Identical environments across test stages</p></li>
+<li><p><strong>Reproducibility:</strong> Bugs can be reproduced reliably</p></li>
+</ul>
+<p><strong>Legacy Application Modernization</strong></p>
+<ul class="simple">
+<li><p><strong>Lift and shift:</strong> Containerize existing applications without rewriting</p></li>
+<li><p><strong>Gradual migration:</strong> Move components to containers incrementally</p></li>
+<li><p><strong>Dependency isolation:</strong> Solve compatibility issues between applications</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Security Considerations:</strong> While containers provide isolation, they’re not a security panacea. Container security requires proper image scanning, runtime monitoring, and adherence to security best practices covered later in this chapter.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../7_pipelines/ANSWERS.html" class="btn btn-neutral float-left" title="Answers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1_installation.html" class="btn btn-neutral float-right" title="8.1 Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

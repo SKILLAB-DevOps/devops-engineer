@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.3 Container Fundamentals &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.4 Creating Custom Images" href="4_usingdockerfile.html" />
+    <link rel="prev" title="8.2 Your First Container" href="2_helloworld.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.3 Container Fundamentals</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/3_workingwithdocker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="container-fundamentals">
+<h1>8.3 Container Fundamentals<a class="headerlink" href="#container-fundamentals" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/docker_arch.png"><img alt="A diagram showing the complete container lifecycle from image to running container" src="../_images/docker_arch.png" style="width: 800px;" />
+</a>
+<p><strong>Mastering the Container Lifecycle</strong></p>
+<p>Now that you can run basic containers, it’s time to understand how containers really work. This section covers essential container operations, networking concepts, data persistence, and debugging techniques you’ll use daily in development and production environments.</p>
+<p>Think of this as your “driver’s license” for containers - you’ll learn not just what to do, but why and when to do it.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Master</strong> container lifecycle management (create, start, stop, remove)</p></li>
+<li><p><strong>Configure</strong> container networking and port mapping effectively</p></li>
+<li><p><strong>Manage</strong> data persistence with volumes and bind mounts</p></li>
+<li><p><strong>Debug</strong> containers using logs, exec, and inspection tools</p></li>
+<li><p><strong>Optimize</strong> resource usage and container performance</p></li>
+<li><p><strong>Understand</strong> when to use interactive vs. detached modes</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Basic container concepts and successful “hello world” container runs</p>
+</section>
+<section id="container-execution-modes">
+<h2>Container Execution Modes<a class="headerlink" href="#container-execution-modes" title="Link to this heading"></a></h2>
+<p><strong>Interactive vs. Detached: When to Use Each</strong></p>
+<p>Understanding execution modes is crucial for effective container management:</p>
+<p><strong>Interactive Mode (-it):</strong></p>
+<ul class="simple">
+<li><p><strong>When to use:</strong> Development, debugging, one-time tasks, learning</p></li>
+<li><p><strong>Characteristics:</strong> Keeps terminal attached, captures input/output</p></li>
+<li><p><strong>Best for:</strong> Database administration, file editing, testing commands</p></li>
+</ul>
+<p><strong>Detached Mode (-d):</strong></p>
+<ul class="simple">
+<li><p><strong>When to use:</strong> Production services, long-running processes, web servers</p></li>
+<li><p><strong>Characteristics:</strong> Runs in background, returns control immediately</p></li>
+<li><p><strong>Best for:</strong> Web applications, databases, background workers</p></li>
+</ul>
+<p><strong>Practical Examples:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive: Perfect for debugging and exploration</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+<span class="c1"># You get a shell inside the container</span>
+
+<span class="c1"># Interactive with cleanup: One-time tasks</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>python:3.11<span class="w"> </span>python
+<span class="c1"># Python REPL, container removed when you exit</span>
+
+<span class="c1"># Detached: Long-running services</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web-server<span class="w"> </span>nginx:alpine
+<span class="c1"># Returns immediately, container runs in background</span>
+
+<span class="c1"># Detached with port mapping: Production-ready web service</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>--name<span class="w"> </span>my-web<span class="w"> </span>nginx:alpine
+</pre></div>
+</div>
+<p><strong>Combining Modes:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start detached, then connect interactively</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>debug-container<span class="w"> </span>ubuntu:22.04<span class="w"> </span>sleep<span class="w"> </span><span class="m">3600</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>debug-container<span class="w"> </span>/bin/bash
+
+<span class="c1"># View output from detached container</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>debug-container
+</pre></div>
+</div>
+</section>
+<section id="container-networking-mastery">
+<h2>Container Networking Mastery<a class="headerlink" href="#container-networking-mastery" title="Link to this heading"></a></h2>
+<p><strong>Port Mapping Deep Dive</strong></p>
+<p>Container networking can be confusing at first, but understanding the concepts makes everything click:</p>
+<p><strong>Basic Port Mapping:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Syntax: -p HOST_PORT:CONTAINER_PORT</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>nginx:alpine
+<span class="c1"># Maps host port 8080 to container port 80</span>
+
+<span class="c1"># Multiple port mappings</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8443</span>:443<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nginx:alpine
+
+<span class="c1"># Bind to specific interface</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:8080:80<span class="w"> </span>nginx:alpine
+<span class="c1"># Only accessible from localhost</span>
+
+<span class="c1"># Random port assignment</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-P<span class="w"> </span>nginx:alpine
+<span class="c1"># Docker assigns random available ports</span>
+</pre></div>
+</div>
+<p><strong>Network Modes:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default bridge network</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web1<span class="w"> </span>nginx:alpine
+
+<span class="c1"># Host networking (container uses host&#39;s network stack)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nginx:alpine
+<span class="c1"># Container port 80 = host port 80 directly</span>
+
+<span class="c1"># No networking</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>none<span class="w"> </span>alpine<span class="w"> </span>sleep<span class="w"> </span><span class="m">3600</span>
+<span class="c1"># Complete network isolation</span>
+
+<span class="c1"># Custom networks (recommended for multi-container apps)</span>
+docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>my-app-network
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>my-app-network<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>nginx:alpine
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>my-app-network<span class="w"> </span>--name<span class="w"> </span>db<span class="w"> </span>postgres:15
+</pre></div>
+</div>
+<p><strong>Service Discovery:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create custom network</span>
+docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>app-tier
+
+<span class="c1"># Start database</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>app-tier<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>postgres-db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>mypassword<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15
+
+<span class="c1"># Start web app (can connect to &#39;postgres-db&#39; by name)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>app-tier<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>web-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://postgres:mypassword@postgres-db:5432/postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-web-app:latest
+</pre></div>
+</div>
+</section>
+<section id="data-persistence-strategies">
+<h2>Data Persistence Strategies<a class="headerlink" href="#data-persistence-strategies" title="Link to this heading"></a></h2>
+<p><strong>Understanding Container Storage</strong></p>
+<p>Containers are ephemeral by design, but applications need persistent data. Here’s how to handle it:</p>
+<p><strong>Volume Types Comparison:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Use Case</p></th>
+<th class="head"><p>Performance</p></th>
+<th class="head"><p>Portability</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Volumes</strong></p></td>
+<td><p>Production data</p></td>
+<td><p>Excellent</p></td>
+<td><p>High (Docker-managed)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Bind Mounts</strong></p></td>
+<td><p>Development</p></td>
+<td><p>Native</p></td>
+<td><p>Medium (host-dependent)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>tmpfs</strong></p></td>
+<td><p>Temporary data</p></td>
+<td><p>Excellent</p></td>
+<td><p>Low (memory-only)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docker Volumes (Recommended for Production):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create named volume</span>
+docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>postgres-data
+
+<span class="c1"># Use volume in container</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>postgres-db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>postgres-data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>securepassword<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15
+
+<span class="c1"># Inspect volume</span>
+docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>postgres-data
+
+<span class="c1"># List all volumes</span>
+docker<span class="w"> </span>volume<span class="w"> </span>ls
+
+<span class="c1"># Backup volume data</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>postgres-data:/source:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ubuntu<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/postgres-backup.tar.gz<span class="w"> </span>-C<span class="w"> </span>/source<span class="w"> </span>.
+</pre></div>
+</div>
+<p><strong>Bind Mounts (Great for Development):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount current directory for live code editing</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>dev-server<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-w<span class="w"> </span>/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>node:18-alpine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>npm<span class="w"> </span>run<span class="w"> </span>dev
+
+<span class="c1"># Mount config files</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>web-server<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/nginx.conf:/etc/nginx/nginx.conf:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nginx:alpine
+</pre></div>
+</div>
+<p><strong>tmpfs Mounts (Memory-based, Fast):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount memory filesystem for temporary data</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>fast-cache<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tmpfs<span class="w"> </span>/cache:rw,noexec,nosuid,size<span class="o">=</span>1g<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>redis:alpine
+</pre></div>
+</div>
+</section>
+<section id="database-deployment-best-practices">
+<h2>Database Deployment Best Practices<a class="headerlink" href="#database-deployment-best-practices" title="Link to this heading"></a></h2>
+<p><strong>Production-Ready Database Container</strong></p>
+<p>Let’s deploy a PostgreSQL database following best practices:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create dedicated network for database</span>
+docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>db-network
+
+<span class="c1"># Create volume for persistent data</span>
+docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>postgres-data
+
+<span class="c1"># Deploy PostgreSQL with proper configuration</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>production-postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>db-network<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>postgres-data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/init-scripts:/docker-entrypoint-initdb.d:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>appdb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span>appuser<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>securepassword<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_INITDB_ARGS</span><span class="o">=</span><span class="s2">&quot;--auth-host=scram-sha-256&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15-alpine
+</pre></div>
+</div>
+<p><strong>Database Initialization Script:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- init-scripts/01-create-tables.sql</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">posts</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">content</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="c1">-- Create indexes for performance</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_users_username</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">username</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_posts_user_id</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">posts</span><span class="p">(</span><span class="n">user_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_posts_created_at</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">posts</span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Database Connection Testing:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test connection using psql</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>production-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>appuser<span class="w"> </span>-d<span class="w"> </span>appdb
+
+<span class="c1"># Run SQL commands from host</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>production-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>appuser<span class="w"> </span>-d<span class="w"> </span>appdb<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT version();&quot;</span>
+
+<span class="c1"># Import data from SQL file</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span>production-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>appuser<span class="w"> </span>-d<span class="w"> </span>appdb<span class="w"> </span>&lt;<span class="w"> </span>data.sql
+</pre></div>
+</div>
+</section>
+<section id="container-management-commands">
+<h2>Container Management Commands<a class="headerlink" href="#container-management-commands" title="Link to this heading"></a></h2>
+<p><strong>Essential Container Operations</strong></p>
+<p><strong>Lifecycle Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create container without starting</span>
+docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>my-app<span class="w"> </span>nginx:alpine
+
+<span class="c1"># Start a stopped container</span>
+docker<span class="w"> </span>start<span class="w"> </span>my-app
+
+<span class="c1"># Stop container gracefully (SIGTERM, then SIGKILL after timeout)</span>
+docker<span class="w"> </span>stop<span class="w"> </span>my-app
+
+<span class="c1"># Force stop container immediately (SIGKILL)</span>
+docker<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>my-app
+
+<span class="c1"># Restart container</span>
+docker<span class="w"> </span>restart<span class="w"> </span>my-app
+
+<span class="c1"># Pause/unpause container processes</span>
+docker<span class="w"> </span>pause<span class="w"> </span>my-app
+docker<span class="w"> </span>unpause<span class="w"> </span>my-app
+
+<span class="c1"># Remove container (must be stopped first)</span>
+docker<span class="w"> </span>rm<span class="w"> </span>my-app
+
+<span class="c1"># Remove running container forcefully</span>
+docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>my-app
+</pre></div>
+</div>
+<p><strong>Container Inspection and Debugging:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View detailed container information</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>my-app
+
+<span class="c1"># Get specific information using format</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{.State.Status}}&#39;</span><span class="w"> </span>my-app
+docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{.NetworkSettings.IPAddress}}&#39;</span><span class="w"> </span>my-app
+
+<span class="c1"># View container processes</span>
+docker<span class="w"> </span>top<span class="w"> </span>my-app
+
+<span class="c1"># Monitor resource usage</span>
+docker<span class="w"> </span>stats<span class="w"> </span>my-app
+docker<span class="w"> </span>stats<span class="w"> </span>--no-stream<span class="w">  </span><span class="c1"># One-time snapshot</span>
+
+<span class="c1"># View port mappings</span>
+docker<span class="w"> </span>port<span class="w"> </span>my-app
+</pre></div>
+</div>
+<p><strong>Working with Container Filesystems:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy files between host and container</span>
+docker<span class="w"> </span>cp<span class="w"> </span>local-file.txt<span class="w"> </span>my-app:/app/
+docker<span class="w"> </span>cp<span class="w"> </span>my-app:/app/logs/<span class="w"> </span>./logs/
+
+<span class="c1"># View filesystem changes</span>
+docker<span class="w"> </span>diff<span class="w"> </span>my-app
+
+<span class="c1"># Export container filesystem as tar</span>
+docker<span class="w"> </span><span class="nb">export</span><span class="w"> </span>my-app<span class="w"> </span>&gt;<span class="w"> </span>my-app-backup.tar
+</pre></div>
+</div>
+</section>
+<section id="logging-and-monitoring">
+<h2>Logging and Monitoring<a class="headerlink" href="#logging-and-monitoring" title="Link to this heading"></a></h2>
+<p><strong>Container Log Management</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View container logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>my-app
+
+<span class="c1"># Follow logs in real-time</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>my-app
+
+<span class="c1"># Show last 100 lines</span>
+docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">100</span><span class="w"> </span>my-app
+
+<span class="c1"># Show logs since specific time</span>
+docker<span class="w"> </span>logs<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2024-01-01T00:00:00&quot;</span><span class="w"> </span>my-app
+
+<span class="c1"># Show logs with timestamps</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-t<span class="w"> </span>my-app
+
+<span class="c1"># Configure log rotation</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--log-driver<span class="w"> </span>json-file<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--log-opt<span class="w"> </span>max-size<span class="o">=</span>10m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--log-opt<span class="w"> </span>max-file<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nginx:alpine
+</pre></div>
+</div>
+<p><strong>Resource Monitoring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Real-time resource usage</span>
+docker<span class="w"> </span>stats
+
+<span class="c1"># Historical resource usage (requires monitoring setup)</span>
+<span class="c1"># Use tools like cAdvisor, Prometheus, Grafana for production</span>
+
+<span class="c1"># Check disk usage</span>
+docker<span class="w"> </span>system<span class="w"> </span>df
+docker<span class="w"> </span>system<span class="w"> </span>df<span class="w"> </span>-v<span class="w">  </span><span class="c1"># Verbose output</span>
+</pre></div>
+</div>
+</section>
+<section id="development-workflows">
+<h2>Development Workflows<a class="headerlink" href="#development-workflows" title="Link to this heading"></a></h2>
+<p><strong>Hot Reloading Development Setup</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python development with hot reloading</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>python-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-w<span class="w"> </span>/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">FLASK_ENV</span><span class="o">=</span>development<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">FLASK_DEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>python:3.11-slim<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install flask &amp;&amp; flask run --host=0.0.0.0&quot;</span>
+
+<span class="c1"># Node.js development with nodemon</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>node-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-w<span class="w"> </span>/app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>node:18-alpine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;npm install -g nodemon &amp;&amp; nodemon app.js&quot;</span>
+</pre></div>
+</div>
+<p><strong>Database Development Workflow:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start development database</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>dev-postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5433</span>:5432<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>dev-postgres-data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>dev_app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span>dev_user<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>dev_pass<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15-alpine
+
+<span class="c1"># Run database migrations</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>dev_user<span class="w"> </span>-d<span class="w"> </span>dev_app<span class="w"> </span>-f<span class="w"> </span>/migrations/001_initial.sql
+
+<span class="c1"># Backup development data</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-postgres<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>dev_user<span class="w"> </span>dev_app<span class="w"> </span>&gt;<span class="w"> </span>dev_backup.sql
+
+<span class="c1"># Reset development database</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>dev_user<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;DROP DATABASE dev_app; CREATE DATABASE dev_app;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-guide">
+<h2>Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h2>
+<p><strong>Common Issues and Solutions</strong></p>
+<p><strong>Container Won’t Start:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check container status and exit code</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+
+<span class="c1"># View error logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>container-name
+
+<span class="c1"># Run with interactive mode to debug</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--entrypoint<span class="w"> </span>/bin/sh<span class="w"> </span>image-name
+
+<span class="c1"># Check if port is already in use</span>
+netstat<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:8080<span class="w">  </span><span class="c1"># Linux</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8080<span class="w">               </span><span class="c1"># macOS</span>
+</pre></div>
+</div>
+<p><strong>Performance Issues:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check resource constraints</span>
+docker<span class="w"> </span>stats
+
+<span class="c1"># Inspect container configuration</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>container-name<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.[].HostConfig.Resources&#39;</span>
+
+<span class="c1"># Check host system resources</span>
+free<span class="w"> </span>-h<span class="w">        </span><span class="c1"># Memory usage</span>
+df<span class="w"> </span>-h<span class="w">          </span><span class="c1"># Disk usage</span>
+top<span class="w">            </span><span class="c1"># CPU usage</span>
+</pre></div>
+</div>
+<p><strong>Network Connectivity Problems:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test container networking</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>container-name<span class="w"> </span>ping<span class="w"> </span>google.com
+
+<span class="c1"># Check DNS resolution</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>container-name<span class="w"> </span>nslookup<span class="w"> </span>example.com
+
+<span class="c1"># Inspect network configuration</span>
+docker<span class="w"> </span>network<span class="w"> </span>ls
+docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>bridge
+
+<span class="c1"># Test port connectivity</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>container-name<span class="w"> </span>nc<span class="w"> </span>-zv<span class="w"> </span>hostname<span class="w"> </span>port
+</pre></div>
+</div>
+<p><strong>Permission Issues:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check file ownership in container</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>container-name<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/app
+
+<span class="c1"># Fix ownership for bind mounts</span>
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>:<span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span>./app-directory
+
+<span class="c1"># Run container with specific user</span>
+docker<span class="w"> </span>run<span class="w"> </span>--user<span class="w"> </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>:<span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span>image-name
+</pre></div>
+</div>
+</section>
+<section id="production-considerations">
+<h2>Production Considerations<a class="headerlink" href="#production-considerations" title="Link to this heading"></a></h2>
+<p><strong>Resource Limits and Constraints</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set memory limit</span>
+docker<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>512m<span class="w"> </span>nginx:alpine
+
+<span class="c1"># Set CPU limit</span>
+docker<span class="w"> </span>run<span class="w"> </span>--cpus<span class="o">=</span><span class="s2">&quot;1.5&quot;</span><span class="w"> </span>nginx:alpine
+
+<span class="c1"># Set both memory and CPU limits</span>
+docker<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>512m<span class="w"> </span>--cpus<span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span>nginx:alpine
+
+<span class="c1"># Limit other resources</span>
+docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--memory<span class="o">=</span>512m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cpus<span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pids-limit<span class="o">=</span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ulimit<span class="w"> </span><span class="nv">nofile</span><span class="o">=</span><span class="m">1024</span>:2048<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nginx:alpine
+</pre></div>
+</div>
+<p><strong>Health Checks in Production:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run container with health check</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>healthy-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--health-cmd<span class="o">=</span><span class="s2">&quot;curl -f http://localhost:8080/health || exit 1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--health-interval<span class="o">=</span>30s<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--health-timeout<span class="o">=</span>10s<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--health-retries<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--health-start-period<span class="o">=</span>60s<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-web-app:latest
+
+<span class="c1"># Check health status</span>
+docker<span class="w"> </span>ps<span class="w">  </span><span class="c1"># Shows health status</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>healthy-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.[].State.Health&#39;</span>
+</pre></div>
+</div>
+<p><strong>Restart Policies:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restart policies for production</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--restart<span class="o">=</span>unless-stopped<span class="w"> </span>nginx:alpine<span class="w">  </span><span class="c1"># Recommended</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--restart<span class="o">=</span>always<span class="w"> </span>nginx:alpine<span class="w">          </span><span class="c1"># Always restart</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--restart<span class="o">=</span>on-failure:3<span class="w"> </span>nginx:alpine<span class="w">    </span><span class="c1"># Restart on failure, max 3 times</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--restart<span class="o">=</span>no<span class="w"> </span>nginx:alpine<span class="w">              </span><span class="c1"># Never restart (default)</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-examples">
+<h2>Practical Examples<a class="headerlink" href="#practical-examples" title="Link to this heading"></a></h2>
+<p><strong>Example 1: Complete Web Application Stack</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create network</span>
+docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>webapp-network
+
+<span class="c1"># Start database</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>webapp-db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>webapp-network<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>webapp-db-data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span>webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>securepassword<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15-alpine
+
+<span class="c1"># Start Redis cache</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>webapp-cache<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>webapp-network<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>redis:7-alpine
+
+<span class="c1"># Start web application</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>webapp-api<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>webapp-network<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://webapp:securepassword@webapp-db:5432/webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">REDIS_URL</span><span class="o">=</span>redis://webapp-cache:6379<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>my-webapp:latest
+
+<span class="c1"># Start reverse proxy</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>webapp-proxy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span>webapp-network<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/nginx.conf:/etc/nginx/nginx.conf:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nginx:alpine
+</pre></div>
+</div>
+<p><strong>Example 2: Development Environment</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Development database with sample data</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>dev-db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/dev-data:/docker-entrypoint-initdb.d:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>myapp_dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span>developer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>devpass<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15-alpine
+
+<span class="c1"># Development app with hot reloading</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>dev-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/src:/app/src:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/public:/app/public:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">NODE_ENV</span><span class="o">=</span>development<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>node:18-alpine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;cd /app &amp;&amp; npm run dev&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>You now have solid fundamentals for working with containers in any environment. In the next section, we’ll learn how to create your own custom container images using Dockerfiles, giving you complete control over your application environments.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul class="simple">
+<li><p>Interactive mode for development and debugging, detached for production</p></li>
+<li><p>Port mapping enables network access to containerized services</p></li>
+<li><p>Volumes provide persistent data storage across container lifecycles</p></li>
+<li><p>Networks enable secure communication between containers</p></li>
+<li><p>Proper resource limits prevent containers from impacting system performance</p></li>
+<li><p>Health checks and restart policies ensure application reliability</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Practice Makes Perfect:</strong> The commands and concepts in this section form the foundation of daily container operations. Practice them until they become second nature.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_helloworld.html" class="btn btn-neutral float-left" title="8.2 Your First Container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_usingdockerfile.html" class="btn btn-neutral float-right" title="8.4 Creating Custom Images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

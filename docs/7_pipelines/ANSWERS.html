@@ -23,6 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.0 Introduction" href="../8_containers/0_introduction.html" />
     <link rel="prev" title="TODO" href="TODO.html" /> 
 </head>
 
@@ -80,8 +81,21 @@
 <li class="toctree-l1"><a class="reference internal" href="3_github.html">7.3 GitHub Actions Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_best_practices.html">7.4 CI/CD Best Practices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TODO.html#exercises">Exercises</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
 </ul>
 
         </div>
@@ -110,586 +124,426 @@
              
   <section id="answers">
 <h1>Answers<a class="headerlink" href="#answers" title="Link to this heading"></a></h1>
-<p>This page contains comprehensive solutions for all exercises, multiple implementation approaches, and detailed explanations to help you understand not just the “how” but the “why” behind each solution.</p>
-<section id="complete-task-solutions">
-<h2>Complete Task Solutions<a class="headerlink" href="#complete-task-solutions" title="Link to this heading"></a></h2>
-<section id="task-1-your-first-pipeline">
-<h3>Task 1: Your First Pipeline<a class="headerlink" href="#task-1-your-first-pipeline" title="Link to this heading"></a></h3>
-<p><strong>Solution 1: Basic Hello World</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello World CI</span>
-<span class="nt">on</span><span class="p">:</span>
+<section id="quick-questions">
+<h2>Quick Questions<a class="headerlink" href="#quick-questions" title="Link to this heading"></a></h2>
+<p><strong>1. What is the main difference between Continuous Integration and Continuous Deployment?</strong></p>
+<p>CI automatically builds and tests code changes. CD automatically deploys tested code to production.</p>
+<p><strong>2. Where do you place GitHub Actions workflow files in a repository?</strong></p>
+<p>In the <cite>.github/workflows/</cite> directory with <cite>.yml</cite> or <cite>.yaml</cite> extensions.</p>
+<p><strong>3. What is a runner in GitHub Actions?</strong></p>
+<p>A virtual machine that executes your workflow jobs. GitHub provides Ubuntu, Windows, and macOS runners.</p>
+<p><strong>4. How do you make a job wait for another job to complete?</strong></p>
+<p>Use the <cite>needs</cite> keyword:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+</pre></div>
+</div>
+<p><strong>5. What is the purpose of caching in CI/CD pipelines?</strong></p>
+<p>To speed up builds by storing and reusing dependencies between workflow runs.</p>
+<p><strong>6. How do you securely store API keys and passwords in GitHub Actions?</strong></p>
+<p>Use GitHub Secrets in repository settings, then access with <cite>${{ secrets.SECRET_NAME }}</cite>.</p>
+<p><strong>7. What does a matrix strategy allow you to do?</strong></p>
+<p>Run the same job across multiple configurations (Python versions, OS, etc.) in parallel.</p>
+<p><strong>8. Why is `uv` preferred over `pip` for Python CI/CD?</strong></p>
+<p>It’s 10-100x faster for dependency installation and provides better dependency locking.</p>
+<p><strong>9. What is the “fail fast” principle in CI/CD?</strong></p>
+<p>Stop the pipeline immediately when critical issues are detected to provide quick feedback.</p>
+<p><strong>10. How do you trigger a workflow only when specific files change?</strong></p>
+<p>Use path filters in the workflow trigger:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">develop</span><span class="w"> </span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">hello</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Say hello</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">echo &quot;Hello from GitHub Actions!&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Triggered by: ${{ github.event_name }}&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Repository: ${{ github.repository }}&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Actor: ${{ github.actor }}&quot;</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Show system info</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">echo &quot;OS: ${{ runner.os }}&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Architecture: ${{ runner.arch }}&quot;</span>
-<span class="w">          </span><span class="no">uname -a</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;src/**&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;tests/**&#39;</span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
-<p><strong>Solution 2: Parallel Jobs (Extension Challenge)</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello World CI with Parallel Jobs</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">hello</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Hello from job 1!&quot;</span>
-
-<span class="w">  </span><span class="nt">system-info</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">echo &quot;System Information:&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;OS: $(uname -s)&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Kernel: $(uname -r)&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;CPU: $(nproc) cores&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Memory: $(free -h)&quot;</span>
-
-<span class="w">  </span><span class="nt">timestamp</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">echo &quot;Pipeline started at: $(date -u)&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Timezone: $(date +%Z)&quot;</span>
-</pre></div>
-</div>
-<p><strong>Why This Works:</strong></p>
-<ul class="simple">
-<li><p>Jobs run in parallel by default (faster execution)</p></li>
-<li><p>Each job gets its own fresh environment</p></li>
-<li><p>Can see different information from each runner</p></li>
-</ul>
-<p><strong>Common Mistakes Students Make:</strong></p>
-<ol class="arabic simple">
-<li><p><strong>Forgetting checkout action</strong> - Without <cite>actions/checkout&#64;v4</cite>, your code isn’t available</p></li>
-<li><p><strong>Wrong YAML indentation</strong> - GitHub Actions is strict about spacing</p></li>
-<li><p><strong>Missing quotes</strong> - Always quote string values in YAML</p></li>
-</ol>
-<p><strong>Production Considerations:</strong></p>
-<ul class="simple">
-<li><p>Add <cite>timeout-minutes: 10</cite> to prevent stuck workflows</p></li>
-<li><p>Use specific action versions (<cite>&#64;v4</cite> not <cite>&#64;main</cite>) for reliability</p></li>
-<li><p>Consider runner costs (macOS costs 10x more than Linux)</p></li>
-</ul>
 </section>
-<section id="task-2-automated-code-quality">
-<h3>Task 2: Automated Code Quality<a class="headerlink" href="#task-2-automated-code-quality" title="Link to this heading"></a></h3>
-<p><strong>Solution 1: Basic Linting with Ruff</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Code Quality</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
-
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<section id="task-1-hello-world">
+<h3>Task 1: Hello World<a class="headerlink" href="#task-1-hello-world" title="Link to this heading"></a></h3>
+<p><strong>hello.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello CI/CD!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>.github/workflows/hello.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello World</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
 <span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">lint</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hello</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">python -m pip install --upgrade pip</span>
-<span class="w">          </span><span class="no">pip install ruff black</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run ruff linting</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check code formatting</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">black --check .</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python hello.py</span>
 </pre></div>
 </div>
-<p><strong>Solution 2: Advanced Setup with uv and pre-commit</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Advanced Code Quality</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+</section>
+<section id="task-2-python-setup">
+<h3>Task 2: Python Setup<a class="headerlink" href="#task-2-python-setup" title="Link to this heading"></a></h3>
+<p><strong>fetch_data.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/zen&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GitHub Zen: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>requirements.txt:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>requests
+</pre></div>
+</div>
+<p><strong>.github/workflows/python-setup.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python Setup</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -r requirements.txt</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python fetch_data.py</span>
+</pre></div>
+</div>
+</section>
+<section id="task-3-code-quality-check">
+<h3>Task 3: Code Quality Check<a class="headerlink" href="#task-3-code-quality-check" title="Link to this heading"></a></h3>
+<p><strong>bad_code.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>.github/workflows/quality.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Code Quality</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">lint</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv python install 3.12</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">uv add --dev ruff black mypy pre-commit</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run pre-commit hooks</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">uv run pre-commit install</span>
-<span class="w">          </span><span class="no">uv run pre-commit run --all-files</span>
-</pre></div>
-</div>
-<p><strong>Multiple Approaches Comparison:</strong></p>
-<ol class="arabic simple">
-<li><p><strong>pip approach</strong>: Simple, widely understood, slower</p></li>
-<li><p><strong>uv approach</strong>: 10-100x faster, modern Python tooling</p></li>
-<li><p><strong>pre-commit approach</strong>: Consistent with local development, additional overhead</p></li>
-</ol>
-<p><strong>Performance Analysis:</strong></p>
-<ul class="simple">
-<li><p>pip install: ~45 seconds</p></li>
-<li><p>uv install: ~5 seconds</p></li>
-<li><p>pre-commit: +10 seconds setup, but catches more issues</p></li>
-</ul>
-<p><strong>Extension Challenge Solution: Adding mypy</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type checking</span>
-<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">    </span><span class="no">uv add --dev mypy</span>
-<span class="w">    </span><span class="no">uv run mypy src/ --strict</span>
-</pre></div>
-</div>
-</section>
-<section id="task-3-basic-test-coverage">
-<h3>Task 3: Basic Test Coverage<a class="headerlink" href="#task-3-basic-test-coverage" title="Link to this heading"></a></h3>
-<p><strong>Solution 1: pytest with coverage</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test Coverage</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv python install 3.12</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">uv add pytest pytest-cov</span>
-<span class="w">          </span><span class="no">uv sync</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests with coverage</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=80</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate coverage report</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">uv run pytest --cov=src --cov-report=xml</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload coverage to Codecov</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov/codecov-action@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./coverage.xml</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install ruff</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff format --check .</span>
 </pre></div>
 </div>
-<p><strong>Example Test File (test_calculator.py):</strong></p>
+<p><strong>Fix the code by properly formatting it and ruff will pass.</strong></p>
+</section>
+<section id="task-4-running-tests">
+<h3>Task 4: Running Tests<a class="headerlink" href="#task-4-running-tests" title="Link to this heading"></a></h3>
+<p><strong>calculator.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot divide by zero&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p><strong>test_calculator.py:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.calculator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Calculator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">calculator</span><span class="w"> </span><span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">divide</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">TestCalculator</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_add</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_addition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_divide</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_division_by_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Cannot divide by zero&quot;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_edge_cases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_divide_by_zero</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Coverage Badge Solution (Extension Challenge):</strong></p>
-<p>Add to your README.md:</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>[<span class="nt">![Coverage Status</span>](<span class="na">https://codecov.io/gh/username/repo/branch/main/graph/badge.svg</span>)](https://codecov.io/gh/username/repo)
+<p><strong>requirements.txt:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pytest
 </pre></div>
 </div>
-<p><strong>Why 80% Coverage?</strong></p>
-<ul class="simple">
-<li><p>Industry standard for production code</p></li>
-<li><p>Catches most critical bugs without over-testing</p></li>
-<li><p>Higher percentages often lead to diminishing returns</p></li>
-</ul>
-</section>
-<section id="task-4-environment-management">
-<h3>Task 4: Environment Management<a class="headerlink" href="#task-4-environment-management" title="Link to this heading"></a></h3>
-<p><strong>Solution: Modern Python with uv</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Multi-Python Testing</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
-
-<span class="nt">strategy</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;3.11&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.13&#39;</span><span class="p p-Indicator">]</span>
-
+<p><strong>.github/workflows/test.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tests</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">test</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python-version }}</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv python install ${{ matrix.python-version }}</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache dependencies</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/uv</span>
-<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-uv-${{ hashFiles(&#39;**/pyproject.toml&#39;) }}</span>
-<span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">            </span><span class="no">${{ runner.os }}-uv-</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -r requirements.txt</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest -v</span>
 </pre></div>
 </div>
-<p><strong>pyproject.toml Example:</strong></p>
-<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-project&quot;</span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.10&quot;</span>
-<span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;fastapi&gt;=0.100.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pydantic&gt;=2.0.0&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-
-<span class="k">[project.optional-dependencies]</span>
-<span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;pytest&gt;=7.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pytest-cov&gt;=4.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;ruff&gt;=0.1.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;black&gt;=23.0.0&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-<p><strong>Performance Comparison:</strong></p>
-<ul class="simple">
-<li><p>Without caching: 2-3 minutes per job</p></li>
-<li><p>With caching: 30-45 seconds per job</p></li>
-<li><p>uv vs pip: 10x faster dependency resolution</p></li>
-</ul>
 </section>
-</section>
-<section id="quiz-answers">
-<h2>Quiz Answers<a class="headerlink" href="#quiz-answers" title="Link to this heading"></a></h2>
-<p><strong>Basic GitHub Actions</strong></p>
-<ol class="arabic">
-<li><p><strong>Answer: b. .yml or .yaml</strong></p>
-<p>Explanation: GitHub Actions workflows are defined in YAML files with .yml or .yaml extensions.</p>
-</li>
-<li><p><strong>Answer: b. In the .github/workflows/ directory</strong></p>
-<p>Explanation: Workflow files must be placed in the .github/workflows/ directory of your repository for GitHub to recognize them.</p>
-</li>
-<li><p><strong>Answer: d. All of the above</strong></p>
-<p>Explanation: GitHub Actions workflows can be triggered by pushes, pull requests, releases, scheduled events, and many other GitHub events.</p>
-</li>
-<li><p><strong>Answer: c. The virtual environment in which the workflow runs</strong></p>
-<p>Explanation: A runner is a server (virtual machine) that executes your workflow jobs. GitHub provides hosted runners or you can use self-hosted ones.</p>
-</li>
-<li><p><strong>Answer: b. Using the uses keyword in your workflow to reference an action</strong></p>
-<p>Explanation: The <code class="docutils literal notranslate"><span class="pre">uses</span></code> keyword allows you to reference and reuse actions from the same repo, other repos, or the marketplace.</p>
-</li>
-<li><p><strong>Answer: c. A collection of steps that run in parallel</strong></p>
-<p>Explanation: Jobs contain multiple steps and run in parallel by default, unless dependencies are specified with <code class="docutils literal notranslate"><span class="pre">needs</span></code>.</p>
-</li>
-<li><p><strong>Answer: c. In the repository settings as encrypted secrets</strong></p>
-<p>Explanation: GitHub encrypts secrets and makes them available as environment variables during workflow execution.</p>
-</li>
-</ol>
-<p><strong>Modern Python Tools</strong></p>
-<ol class="arabic" start="8">
-<li><p><strong>Answer: c. uv</strong></p>
-<p>Explanation: uv is a modern, extremely fast Python package installer and resolver written in Rust.</p>
-</li>
-<li><p><strong>Answer: b. flake8, black, and isort</strong></p>
-<p>Explanation: Ruff is an all-in-one tool that replaces multiple Python linting and formatting tools with much better performance.</p>
-</li>
-<li><p><strong>Answer: b. uv sync –dev</strong></p>
-<p>Explanation: <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span> <span class="pre">--dev</span></code> installs both regular dependencies and development dependencies from the lock file.</p>
-</li>
-</ol>
-<p><strong>CI/CD Concepts</strong></p>
-<ol class="arabic" start="11">
-<li><p><strong>Answer: b. Integrate code changes frequently and catch issues early</strong></p>
-<p>Explanation: CI focuses on frequent integration and early detection of issues through automated building and testing.</p>
-</li>
-<li><p><strong>Answer: b. Many unit tests, some integration tests, few E2E tests</strong></p>
-<p>Explanation: The test pyramid emphasizes having many fast unit tests at the base, fewer integration tests in the middle, and few slow E2E tests at the top.</p>
-</li>
-<li><p><strong>Answer: b. A method to run jobs across multiple configurations</strong></p>
-<p>Explanation: Matrix strategies allow you to run the same job with different configurations (e.g., different Python versions, operating systems).</p>
-</li>
-<li><p><strong>Answer: c. When you want to see all matrix job results even if some fail</strong></p>
-<p>Explanation: <code class="docutils literal notranslate"><span class="pre">fail-fast:</span> <span class="pre">false</span></code> prevents the entire matrix from stopping when one job fails, useful for seeing all results.</p>
-</li>
-</ol>
-<p><strong>Security and Best Practices</strong></p>
-<ol class="arabic" start="15">
-<li><p><strong>Answer: c. Stop the pipeline immediately when critical issues are found</strong></p>
-<p>Explanation: Fail fast means catching and stopping on critical errors early to provide quick feedback and save resources.</p>
-</li>
-<li><p><strong>Answer: c. bandit</strong></p>
-<p>Explanation: Bandit is specifically designed to scan Python code for common security vulnerabilities.</p>
-</li>
-<li><p><strong>Answer: b. Use GitHub repository secrets or environment secrets</strong></p>
-<p>Explanation: GitHub provides encrypted secret storage that’s the secure way to handle sensitive information in workflows.</p>
-</li>
-</ol>
-</section>
-<section id="task-solution-guidance">
-<h2>Task Solution Guidance<a class="headerlink" href="#task-solution-guidance" title="Link to this heading"></a></h2>
-<section id="task-1-create-your-2nd-python-cli">
-<h3>Task 1: Create Your 2nd Python CLI<a class="headerlink" href="#task-1-create-your-2nd-python-cli" title="Link to this heading"></a></h3>
-<p><strong>Project Structure:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my-python-cli/
-├── .github/workflows/ci.yml
-├── src/my_cli/
-│   ├── __init__.py
-│   └── main.py
-├── tests/
-│   └── test_main.py
-├── pyproject.toml
-└── README.md
+<section id="task-5-using-secrets">
+<h3>Task 5: Using Secrets<a class="headerlink" href="#task-5-using-secrets" title="Link to this heading"></a></h3>
+<p><strong>api_client.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_TOKEN&#39;</span><span class="p">]</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;token </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/user&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Sample CLI Implementation:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># src/my_cli/main.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">click</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-
-<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">cli</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;My awesome CLI application.&quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-<span class="nd">@cli</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Your name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Name to greet&#39;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Greet someone.&quot;&quot;&quot;</span>
-    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
-
-<span class="nd">@cli</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">weather</span><span class="p">(</span><span class="n">city</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show weather for a city.&quot;&quot;&quot;</span>
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-    <span class="n">conditions</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;sunny&#39;</span><span class="p">,</span> <span class="s1">&#39;cloudy&#39;</span><span class="p">,</span> <span class="s1">&#39;rainy&#39;</span><span class="p">])</span>
-    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Weather in </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s1">°C, </span><span class="si">{</span><span class="n">conditions</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nd">@cli</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">calc</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculator commands.&quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-<span class="nd">@calc</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add two numbers.&quot;&quot;&quot;</span>
-    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Basic CI Workflow:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
-
+<p><strong>.github/workflows/secrets.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Using Secrets</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
 <span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">api</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest --cov</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install requests</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">GITHUB_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python api_client.py</span>
+</pre></div>
+</div>
+<p><strong>Set up GITHUB_TOKEN in repository Settings → Secrets.</strong></p>
+</section>
+<section id="task-6-caching-dependencies">
+<h3>Task 6: Caching Dependencies<a class="headerlink" href="#task-6-caching-dependencies" title="Link to this heading"></a></h3>
+<p><strong>data_app.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">],</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">]}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>requirements.txt:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pandas
+</pre></div>
+</div>
+<p><strong>.github/workflows/caching.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Caching Demo</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">process</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/pip</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-${{ hashFiles(&#39;requirements.txt&#39;) }}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -r requirements.txt</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python data_app.py</span>
 </pre></div>
 </div>
 </section>
-<section id="task-2-implement-modern-python-ci-pipeline">
-<h3>Task 2: Implement Modern Python CI Pipeline<a class="headerlink" href="#task-2-implement-modern-python-ci-pipeline" title="Link to this heading"></a></h3>
-<p><strong>Complete CI Workflow:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Modern Python CI</span>
-<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+<section id="task-7-matrix-testing">
+<h3>Task 7: Matrix Testing<a class="headerlink" href="#task-7-matrix-testing" title="Link to this heading"></a></h3>
+<p><strong>version_check.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
+<span class="n">version</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python </span><span class="si">{</span><span class="n">version</span><span class="o">.</span><span class="n">major</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">version</span><span class="o">.</span><span class="n">minor</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">version</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Has new f-string features&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>.github/workflows/matrix.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Matrix Testing</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">test</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;3.10&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.11&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3.12&quot;</span><span class="p p-Indicator">]</span>
-
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;3.11&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.13&#39;</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">enable-cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff format --check .</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff check .</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run mypy src/</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run bandit -r src/</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest --cov=src --cov-report=xml</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov/codecov-action@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python version_check.py</span>
 </pre></div>
 </div>
 </section>
-<section id="task-3-build-a-complete-cd-pipeline">
-<h3>Task 3: Build a Complete CD Pipeline<a class="headerlink" href="#task-3-build-a-complete-cd-pipeline" title="Link to this heading"></a></h3>
-<p><strong>Release Workflow:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Release</span>
-<span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;v*&#39;</span><span class="p p-Indicator">]</span>
+<section id="task-8-environment-variables">
+<h3>Task 8: Environment Variables<a class="headerlink" href="#task-8-environment-variables" title="Link to this heading"></a></h3>
+<p><strong>config_app.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
+<span class="n">env</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;APP_ENV&#39;</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">)</span>
+<span class="n">debug</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Environment: </span><span class="si">{</span><span class="n">env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Debug mode: </span><span class="si">{</span><span class="n">debug</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="s1">&#39;production&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running in production!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running in development&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>.github/workflows/environments.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Environment Config</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
 <span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/ci.yml</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">APP_ENV</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">development</span>
+<span class="w">      </span><span class="nt">DEBUG</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python config_app.py</span>
 
-<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">  </span><span class="nt">prod</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">APP_ENV</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">      </span><span class="nt">DEBUG</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python config_app.py</span>
+</pre></div>
+</div>
+</section>
+<section id="task-9-branch-protection">
+<h3>Task 9: Branch Protection<a class="headerlink" href="#task-9-branch-protection" title="Link to this heading"></a></h3>
+<p><strong>.github/workflows/pr.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PR Checks</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">quality</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv build</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist</span>
-<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist/</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install ruff pytest</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff check .</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest</span>
+</pre></div>
+</div>
+<p><strong>Set up branch protection in Settings → Branches → Add rule for main:</strong></p>
+<ul class="simple">
+<li><p>Require status checks to pass</p></li>
+<li><p>Select “quality” as required check</p></li>
+<li><p>Require pull request reviews</p></li>
+</ul>
+</section>
+<section id="task-10-deployment-pipeline">
+<h3>Task 10: Deployment Pipeline<a class="headerlink" href="#task-10-deployment-pipeline" title="Link to this heading"></a></h3>
+<p><strong>pyproject.toml:</strong></p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
 
-<span class="w">  </span><span class="nt">publish</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="k">[project]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-demo-package&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Demo package&quot;</span>
+</pre></div>
+</div>
+<p><strong>src/my_package/__init__.py:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello from my package!&quot;</span>
+</pre></div>
+</div>
+<p><strong>.github/workflows/deploy.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">release</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">published</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pypi</span>
-<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/download-artifact@v4</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pypa/gh-action-pypi-publish@release/v1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install build twine</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python -m build</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__token__</span>
+<span class="w">          </span><span class="nt">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.TESTPYPI_API_TOKEN }}</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">twine upload --repository testpypi dist/*</span>
 </pre></div>
 </div>
-</section>
-<section id="task-4-create-custom-github-actions">
-<h3>Task 4: Create Custom GitHub Actions<a class="headerlink" href="#task-4-create-custom-github-actions" title="Link to this heading"></a></h3>
-<p><strong>Python Setup Action (.github/actions/setup-python/action.yml):</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Setup</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">Project&#39;</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Setup</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">uv</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">dependencies&#39;</span>
-<span class="nt">inputs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">python-version</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Python</span><span class="nv"> </span><span class="s">version&#39;</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
-
-<span class="nt">runs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">using</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">composite</span>
-<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
-<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.python-version }}</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">enable-cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
-<span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
-</pre></div>
-</div>
+<p><strong>Create a release on GitHub to trigger deployment.</strong></p>
 </section>
 </section>
-<section id="common-issues-and-solutions">
-<h2>Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading"></a></h2>
-<p><strong>Issue 1: “uv: command not found”</strong></p>
-<p><em>Solution:</em> Make sure you’re using the astral-sh/setup-uv action:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v3</span>
-</pre></div>
-</div>
-<p><strong>Issue 2: Tests pass locally but fail in CI</strong></p>
-<p><em>Solution:</em> Check for:</p>
+<section id="open-ended-questions">
+<h2>Open-Ended Questions<a class="headerlink" href="#open-ended-questions" title="Link to this heading"></a></h2>
+<p><strong>Question 1: Pipeline Strategy</strong></p>
+<p>For a 10-person team:</p>
 <ul class="simple">
-<li><p>Different Python versions</p></li>
-<li><p>Missing environment variables</p></li>
-<li><p>File path differences (Windows vs Linux)</p></li>
-<li><p>Timezone-dependent tests</p></li>
+<li><p>Keep pipeline under 10 minutes total</p></li>
+<li><p>Run tests in parallel by module</p></li>
+<li><p>Use caching for dependencies</p></li>
+<li><p>Automatic staging deployment, manual production</p></li>
+<li><p>Set up notifications for failures</p></li>
 </ul>
-<p><strong>Issue 3: Pipeline is too slow</strong></p>
-<p><em>Solutions:</em>
-- Enable caching
-- Use matrix parallelization
-- Split into smaller jobs
-- Use faster runners</p>
-<p><strong>Issue 4: Import errors in tests</strong></p>
-<p><em>Solution:</em> Ensure proper package installation:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --dev</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest</span><span class="w">  </span><span class="c1"># Use uv run to ensure proper environment</span>
-</pre></div>
-</div>
-</section>
-<section id="additional-resources">
-<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
-<p><strong>Documentation:</strong></p>
+<p><strong>Question 2: Testing Strategy</strong></p>
+<p>For API with external services:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.github.com/en/actions">GitHub Actions Documentation</a></p></li>
-<li><p><a class="reference external" href="https://docs.astral.sh/uv/">uv Documentation</a></p></li>
-<li><p><a class="reference external" href="https://docs.astral.sh/ruff/">Ruff Documentation</a></p></li>
+<li><p>70% unit tests (mocked externals)</p></li>
+<li><p>25% integration tests (test doubles)</p></li>
+<li><p>5% end-to-end tests (real services)</p></li>
+<li><p>Test error scenarios and timeouts</p></li>
+<li><p>Use contract testing for API compatibility</p></li>
 </ul>
-<p><strong>Example Repositories:</strong></p>
+<p><strong>Question 3: Security Integration</strong></p>
+<p>To maintain development speed:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/tiangolo/fastapi">FastAPI</a> - Excellent CI/CD example</p></li>
-<li><p><a class="reference external" href="https://github.com/pydantic/pydantic">Pydantic</a> - Comprehensive testing</p></li>
-<li><p><a class="reference external" href="https://github.com/Textualize/rich">Rich</a> - Modern Python tooling</p></li>
+<li><p>Run basic security checks in PR pipeline (&lt; 2 minutes)</p></li>
+<li><p>Full security scans nightly</p></li>
+<li><p>Auto-fix simple vulnerabilities</p></li>
+<li><p>Block on critical issues, alert on medium/low</p></li>
+<li><p>Integrate security training in onboarding</p></li>
 </ul>
-<p><strong>Tools for Local Testing:</strong></p>
+<p><strong>Question 4: Multi-Environment Strategy</strong></p>
+<p>Environment management:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/nektos/act">act</a> - Run GitHub Actions locally</p></li>
-<li><p><a class="reference external" href="https://pre-commit.com/">pre-commit</a> - Git hooks for quality checks</p></li>
+<li><p>Use environment variables for config differences</p></li>
+<li><p>Promote through: dev → staging → production</p></li>
+<li><p>Automatic deployment to dev/staging</p></li>
+<li><p>Manual approval for production</p></li>
+<li><p>Keep environments as similar as possible</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Pro Tips for Success:</strong></p>
-<ol class="arabic simple">
-<li><p>Start with simple workflows and add complexity gradually</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">workflow_dispatch</span></code> for easy testing during development</p></li>
-<li><p>Always test your workflows on a feature branch first</p></li>
-<li><p>Read error messages carefully - they usually point to the exact issue</p></li>
-<li><p>Use the GitHub Actions marketplace for common tasks</p></li>
-<li><p>Cache aggressively but invalidate when dependencies change</p></li>
-</ol>
-</div>
+<p><strong>Question 5: Tool Selection</strong></p>
+<p>Evaluation criteria:</p>
+<ul class="simple">
+<li><p>Start with team’s existing tools and skills</p></li>
+<li><p>Consider integration with current workflow</p></li>
+<li><p>Evaluate setup time and learning curve</p></li>
+<li><p>Test with a pilot project</p></li>
+<li><p>Consider long-term maintenance needs</p></li>
+<li><p>Balance features with simplicity</p></li>
+</ul>
 </section>
 </section>
 
@@ -698,6 +552,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="TODO.html" class="btn btn-neutral float-left" title="TODO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../8_containers/0_introduction.html" class="btn btn-neutral float-right" title="8.0 Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

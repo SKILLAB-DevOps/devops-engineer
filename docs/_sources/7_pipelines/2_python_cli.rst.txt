@@ -68,27 +68,32 @@ Despite the rise of web interfaces and mobile apps, command-line tools have expe
 
     **Modern CLI Design Philosophy**: Today's best CLI tools are discoverable (excellent help systems), composable (work well with pipes and scripts), and provide immediate feedback (progress bars, colored output, clear error messages).
 
-====================================
+===================================
 Modern Python CLI Development Stack
-====================================
+===================================
 
 **The Tools That Matter in 2024**
 
 Python CLI development has been transformed by modern tooling that makes development faster, more reliable, and more enjoyable. Here's the stack we'll use and why each tool matters:
 
 **Project Management: UV**
+
     *Why not pip?* UV is 10-100x faster than pip, provides deterministic dependency resolution, and handles virtual environments seamlessly. It's quickly becoming the Python community standard.
 
 **CLI Framework: Click**
+
     *Why not argparse?* Click provides automatic help generation, type validation, command grouping, and a decorator-based syntax that's both powerful and readable.
 
 **Testing: pytest + coverage**
+
     *Why not unittest?* pytest's fixture system, parametrized tests, and plugin ecosystem make testing CLI applications much more straightforward.
 
 **Code Quality: ruff + mypy**
+
     *Why this combination?* ruff replaces multiple tools (flake8, black, isort) with a single, extremely fast tool. mypy adds type safety that catches bugs before they reach users.
 
 **Security: bandit + safety**
+
     *Why essential?* CLI tools often handle sensitive data and run with elevated privileges. Security scanning catches common vulnerabilities early.
 
 ======================
@@ -200,9 +205,9 @@ This single file replaces setup.py, requirements.txt, and multiple configuration
     testpaths = ["tests"]
     addopts = ["--strict-markers", "--strict-config", "--cov=src"]
 
-================================
+===============================
 Core Application Implementation
-================================
+===============================
 
 **main.py: The CLI Entry Point**
 

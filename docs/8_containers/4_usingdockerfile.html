@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.4 Creating Custom Images &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.5 Container Management" href="5_management.html" />
+    <link rel="prev" title="8.3 Container Fundamentals" href="3_workingwithdocker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.4 Creating Custom Images</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/4_usingdockerfile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="creating-custom-images">
+<h1>8.4 Creating Custom Images<a class="headerlink" href="#creating-custom-images" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/docker_arch.png"><img alt="A diagram showing the Dockerfile build process and image layers" src="../_images/docker_arch.png" style="width: 800px;" />
+</a>
+<p><strong>From Consumer to Creator</strong></p>
+<p>So far, you’ve been running containers from images created by others. Now comes the transformative moment: learning to build your own custom images. This is where containers become truly powerful - you can package your applications exactly how you want them, ensuring consistency across all environments.</p>
+<p>Think of this as learning to cook rather than just ordering takeout. Once you master Dockerfiles, you control every ingredient in your application’s environment.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Write</strong> production-ready Dockerfiles following security and efficiency best practices</p></li>
+<li><p><strong>Understand</strong> Docker’s layered filesystem and how to optimize build performance</p></li>
+<li><p><strong>Build</strong> images for different types of applications (web apps, APIs, databases)</p></li>
+<li><p><strong>Implement</strong> multi-stage builds to create smaller, more secure images</p></li>
+<li><p><strong>Debug</strong> build failures and optimize Docker image sizes</p></li>
+<li><p><strong>Apply</strong> security hardening techniques to your container images</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Understanding of basic container operations and command-line familiarity</p>
+</section>
+<section id="dockerfile-fundamentals">
+<h2>Dockerfile Fundamentals<a class="headerlink" href="#dockerfile-fundamentals" title="Link to this heading"></a></h2>
+<p><strong>What is a Dockerfile?</strong></p>
+<p>A Dockerfile is a text file containing a series of instructions that Docker uses to automatically build an image. It’s like a recipe that specifies:</p>
+<ul class="simple">
+<li><p>The base operating system or runtime</p></li>
+<li><p>Application dependencies to install</p></li>
+<li><p>Files to copy into the image</p></li>
+<li><p>Environment variables to set</p></li>
+<li><p>Commands to run when the container starts</p></li>
+</ul>
+<p><strong>The Anatomy of a Dockerfile:</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Syntax: FROM &lt;image&gt;:&lt;tag&gt;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="c"># Syntax: LABEL &lt;key&gt;=&lt;value&gt;</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;yourname@company.com&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span>
+
+<span class="c"># Syntax: WORKDIR &lt;path&gt;</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Syntax: COPY &lt;src&gt; &lt;dest&gt;</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="c"># Syntax: RUN &lt;command&gt;</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Syntax: COPY &lt;src&gt; &lt;dest&gt;</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c"># Syntax: EXPOSE &lt;port&gt;</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+
+<span class="c"># Syntax: CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="your-first-custom-image">
+<h2>Your First Custom Image<a class="headerlink" href="#your-first-custom-image" title="Link to this heading"></a></h2>
+<p><strong>Building a Python Web Application</strong></p>
+<p>Let’s create a complete web application image step by step:</p>
+<p><strong>Step 1: Create the Application</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># app.py - Simple Flask web application</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello from containerized Flask!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hostname&#39;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">node</span><span class="p">(),</span>
+        <span class="s1">&#39;python_version&#39;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">(),</span>
+        <span class="s1">&#39;environment&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;APP_ENV&#39;</span><span class="p">,</span> <span class="s1">&#39;development&#39;</span><span class="p">)</span>
+    <span class="p">})</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/health&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;healthy&#39;</span><span class="p">}),</span> <span class="mi">200</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Define Dependencies</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># requirements.txt
+Flask==2.3.3
+gunicorn==21.2.0
+</pre></div>
+</div>
+<p><strong>Step 3: Write the Dockerfile</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use Python 3.11 on slim Debian base (smaller than full Python image)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="c"># Add metadata to the image</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;devops-team@company.com&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;Flask web application demo&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span>
+
+<span class="c"># Create a non-root user for security</span>
+<span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-r<span class="w"> </span>appuser<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-g<span class="w"> </span>appuser<span class="w"> </span>appuser
+
+<span class="c"># Set working directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy requirements first (for better caching)</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="c"># Install Python dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Copy application code</span>
+<span class="k">COPY</span><span class="w"> </span>app.py<span class="w"> </span>.
+
+<span class="c"># Change ownership to non-root user</span>
+<span class="k">RUN</span><span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>appuser:appuser<span class="w"> </span>/app
+<span class="k">USER</span><span class="w"> </span><span class="s">appuser</span>
+
+<span class="c"># Expose port (documentation only, doesn&#39;t actually publish)</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+
+<span class="c"># Health check to monitor container status</span>
+<span class="k">HEALTHCHECK</span><span class="w"> </span>--interval<span class="o">=</span>30s<span class="w"> </span>--timeout<span class="o">=</span>3s<span class="w"> </span>--start-period<span class="o">=</span>5s<span class="w"> </span>--retries<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>CMD<span class="w"> </span>curl<span class="w"> </span>-f<span class="w"> </span>http://localhost:8000/health<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c"># Set environment variables</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">APP_ENV</span><span class="o">=</span>production
+<span class="k">ENV</span><span class="w"> </span><span class="nv">FLASK_APP</span><span class="o">=</span>app.py
+
+<span class="c"># Use exec form for proper signal handling</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Step 4: Build and Test</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the image</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-flask-app:1.0<span class="w"> </span>.
+
+<span class="c1"># Run the container</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>--name<span class="w"> </span>flask-demo<span class="w"> </span>my-flask-app:1.0
+
+<span class="c1"># Test the application</span>
+curl<span class="w"> </span>http://localhost:8000
+curl<span class="w"> </span>http://localhost:8000/health
+
+<span class="c1"># Check container health</span>
+docker<span class="w"> </span>ps
+docker<span class="w"> </span>logs<span class="w"> </span>flask-demo
+</pre></div>
+</div>
+</section>
+<section id="dockerfile-instructions-deep-dive">
+<h2>Dockerfile Instructions Deep Dive<a class="headerlink" href="#dockerfile-instructions-deep-dive" title="Link to this heading"></a></h2>
+<p><strong>Essential Instructions</strong></p>
+<p><strong>FROM - Choose Your Foundation</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Official language runtimes</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span><span class="w">        </span><span class="c"># Python with minimal OS</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">node:18-alpine</span><span class="w">          </span><span class="c"># Node.js on Alpine Linux (tiny)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">openjdk:17-jre-slim</span><span class="w">     </span><span class="c"># Java runtime only</span>
+
+<span class="c"># Operating systems</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:22.04</span><span class="w">            </span><span class="c"># Full Ubuntu system</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3.18</span><span class="w">             </span><span class="c"># Minimal Linux (5MB)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">scratch</span><span class="w">                 </span><span class="c"># Empty image (for static binaries)</span>
+
+<span class="c"># Application-specific bases</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">nginx:alpine</span><span class="w">            </span><span class="c"># Web server ready</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">postgres:15</span><span class="w">             </span><span class="c"># Database ready</span>
+</pre></div>
+</div>
+<p><strong>RUN - Execute Commands</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Single command</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update
+
+<span class="c"># Multiple commands (creates multiple layers)</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>clean
+
+<span class="c"># Better: Chain commands (single layer)</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Use here documents for complex scripts</span>
+<span class="k">RUN</span><span class="w"> </span>&lt;&lt;EOF
+apt-get<span class="w"> </span>update
+apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-pip
+pip3<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+EOF
+</pre></div>
+</div>
+<p><strong>COPY vs ADD</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># COPY: Simple file copying (preferred)</span>
+<span class="k">COPY</span><span class="w"> </span>app.py<span class="w"> </span>/app/
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>/app/
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>/app/<span class="w">                 </span>#<span class="w"> </span>Copy<span class="w"> </span>entire<span class="w"> </span>context
+
+<span class="c"># ADD: COPY plus extra features (use sparingly)</span>
+<span class="k">ADD</span><span class="w"> </span>app.tar.gz<span class="w"> </span>/app/<span class="w">         </span>#<span class="w"> </span>Automatically<span class="w"> </span>extracts<span class="w"> </span>archives
+<span class="k">ADD</span><span class="w"> </span>https://example.com/file.txt<span class="w"> </span>/app/<span class="w">  </span>#<span class="w"> </span>Downloads<span class="w"> </span>URLs
+
+<span class="c"># Best practice: Use COPY unless you need ADD&#39;s special features</span>
+</pre></div>
+</div>
+<p><strong>Environment and Configuration</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Set environment variables</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">NODE_ENV</span><span class="o">=</span>production
+<span class="k">ENV</span><span class="w"> </span><span class="nv">API_URL</span><span class="o">=</span>https://api.example.com
+<span class="k">ENV</span><span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nb">false</span>
+
+<span class="c"># Set build-time variables</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">VERSION</span><span class="o">=</span>latest
+<span class="k">ARG</span><span class="w"> </span>BUILD_DATE
+
+<span class="c"># Use ARG in RUN commands</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Building version </span><span class="nv">$VERSION</span><span class="s2"> on </span><span class="nv">$BUILD_DATE</span><span class="s2">&quot;</span>
+
+<span class="c"># Working directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app                 # Creates directory if it doesn&#39;t exist</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app/src            # Can be called multiple times</span>
+</pre></div>
+</div>
+<p><strong>User Security</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Create and use non-root user</span>
+<span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-r<span class="w"> </span>myapp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-g<span class="w"> </span>myapp<span class="w"> </span>myapp
+<span class="k">USER</span><span class="w"> </span><span class="s">myapp</span>
+
+<span class="c"># Or use numeric UID (works across all systems)</span>
+<span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-r<span class="w"> </span>myapp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-g<span class="w"> </span>myapp<span class="w"> </span>-u<span class="w"> </span><span class="m">1001</span><span class="w"> </span>myapp
+<span class="k">USER</span><span class="w"> </span><span class="s">1001:1001</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-stage-builds">
+<h2>Multi-Stage Builds<a class="headerlink" href="#multi-stage-builds" title="Link to this heading"></a></h2>
+<p><strong>The Problem with Single-Stage Builds</strong></p>
+<p>Traditional Dockerfiles include build tools in the final image:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Problematic: Final image includes build tools (larger, less secure)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">node:18</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>package*.json<span class="w"> </span>./
+<span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>install<span class="w">              </span>#<span class="w"> </span>Includes<span class="w"> </span>devDependencies
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w">           </span>#<span class="w"> </span>Build<span class="w"> </span>tools<span class="w"> </span>remain<span class="w"> </span><span class="k">in</span><span class="w"> </span>image
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;npm&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>The Multi-Stage Solution</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Stage 1: Build environment</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">node:18</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>package*.json<span class="w"> </span>./
+<span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span>--only<span class="o">=</span>production
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+
+<span class="c"># Stage 2: Production runtime</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">node:18-alpine</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">production</span>
+<span class="k">RUN</span><span class="w"> </span>addgroup<span class="w"> </span>-g<span class="w"> </span><span class="m">1001</span><span class="w"> </span>-S<span class="w"> </span>nodejs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>adduser<span class="w"> </span>-S<span class="w"> </span>nextjs<span class="w"> </span>-u<span class="w"> </span><span class="m">1001</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy only production files from builder stage</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>--chown<span class="o">=</span>nextjs:nodejs<span class="w"> </span>/app/dist<span class="w"> </span>./dist
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>--chown<span class="o">=</span>nextjs:nodejs<span class="w"> </span>/app/node_modules<span class="w"> </span>./node_modules
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>--chown<span class="o">=</span>nextjs:nodejs<span class="w"> </span>/app/package.json<span class="w"> </span>./package.json
+
+<span class="k">USER</span><span class="w"> </span><span class="s">nextjs</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">3000</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;npm&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Real-World Multi-Stage Example: Go Application</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Build stage</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">golang:1.21-alpine</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy go mod files</span>
+<span class="k">COPY</span><span class="w"> </span>go.mod<span class="w"> </span>go.sum<span class="w"> </span>./
+<span class="k">RUN</span><span class="w"> </span>go<span class="w"> </span>mod<span class="w"> </span>download
+
+<span class="c"># Copy source and build</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">GOOS</span><span class="o">=</span>linux<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-a<span class="w"> </span>-installsuffix<span class="w"> </span>cgo<span class="w"> </span>-o<span class="w"> </span>main<span class="w"> </span>.
+
+<span class="c"># Final stage - minimal image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3.18</span>
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--no-cache<span class="w"> </span>add<span class="w"> </span>ca-certificates
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/root/</span>
+
+<span class="c"># Copy only the binary</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/app/main<span class="w"> </span>.
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./main&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Benefits of Multi-Stage Builds:</strong></p>
+<ul class="simple">
+<li><p><strong>Smaller images:</strong> Final image only contains runtime dependencies</p></li>
+<li><p><strong>Better security:</strong> No build tools in production image</p></li>
+<li><p><strong>Faster deployments:</strong> Smaller images transfer faster</p></li>
+<li><p><strong>Cost savings:</strong> Less storage and bandwidth usage</p></li>
+</ul>
+</section>
+<section id="optimization-techniques">
+<h2>Optimization Techniques<a class="headerlink" href="#optimization-techniques" title="Link to this heading"></a></h2>
+<p><strong>Layer Caching Strategies</strong></p>
+<p>Docker caches layers to speed up builds. Optimize by ordering instructions from least to most frequently changed:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># GOOD: Stable layers first</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="c"># Install system dependencies (rarely change)</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Copy requirements file (changes occasionally)</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="c"># Install Python packages (changes occasionally)</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Copy source code (changes frequently)</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c"># BAD: Frequently changing layers first</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.<span class="w">                     </span>#<span class="w"> </span>Code<span class="w"> </span>changes<span class="w"> </span>invalidate<span class="w"> </span>all<span class="w"> </span>subsequent<span class="w"> </span>layers
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>...<span class="w">    </span>#<span class="w"> </span>Reinstalls<span class="w"> </span>every<span class="w"> </span>time
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">  </span>#<span class="w"> </span>Reinstalls<span class="w"> </span>every<span class="w"> </span>time
+</pre></div>
+</div>
+<p><strong>Minimize Image Size</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use Alpine Linux base images</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-alpine</span>
+
+<span class="c"># Clean package caches in the same RUN command</span>
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>build-base<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apk<span class="w"> </span>del<span class="w"> </span>build-base<span class="w">    </span>#<span class="w"> </span>Remove<span class="w"> </span>build<span class="w"> </span>dependencies<span class="w"> </span>after<span class="w"> </span>use
+
+<span class="c"># Use .dockerignore file to exclude unnecessary files</span>
+<span class="c"># .dockerignore:</span>
+<span class="c"># node_modules</span>
+<span class="c"># .git</span>
+<span class="c"># README.md</span>
+<span class="c"># .env.example</span>
+
+<span class="c"># Remove package manager caches</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>package1<span class="w"> </span>package2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+</pre></div>
+</div>
+<p><strong>Security Best Practices</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use specific tags, not &#39;latest&#39;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11.5-slim</span>
+
+<span class="c"># Scan base images for vulnerabilities</span>
+<span class="c"># Use tools like trivy: trivy image python:3.11.5-slim</span>
+
+<span class="c"># Run as non-root user</span>
+<span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-r<span class="w"> </span>app<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-g<span class="w"> </span>app<span class="w"> </span>app
+<span class="k">USER</span><span class="w"> </span><span class="s">app</span>
+
+<span class="c"># Don&#39;t store secrets in images</span>
+<span class="c"># BAD:</span>
+<span class="c"># ENV API_KEY=secret123</span>
+<span class="c"># GOOD: Use runtime environment variables or secrets management</span>
+
+<span class="c"># Use COPY instead of ADD when possible</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.<span class="w">      </span>#<span class="w"> </span>Explicit<span class="w"> </span>and<span class="w"> </span>predictable
+
+<span class="c"># Set read-only root filesystem</span>
+<span class="c"># docker run --read-only -v /tmp:/tmp:rw my-app</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-dockerfile-patterns">
+<h2>Advanced Dockerfile Patterns<a class="headerlink" href="#advanced-dockerfile-patterns" title="Link to this heading"></a></h2>
+<p><strong>Dynamic Build Arguments</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ARG</span><span class="w"> </span><span class="nv">NODE_VERSION</span><span class="o">=</span><span class="m">18</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">node:${NODE_VERSION}-alpine</span>
+
+<span class="k">ARG</span><span class="w"> </span>BUILD_DATE
+<span class="k">ARG</span><span class="w"> </span>GIT_COMMIT
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">build_date</span><span class="o">=</span><span class="nv">$BUILD_DATE</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">git_commit</span><span class="o">=</span><span class="nv">$GIT_COMMIT</span>
+
+<span class="c"># Use during build:</span>
+<span class="c"># docker build --build-arg BUILD_DATE=$(date -u +&#39;%Y-%m-%dT%H:%M:%SZ&#39;) \</span>
+<span class="c">#              --build-arg GIT_COMMIT=$(git rev-parse HEAD) \</span>
+<span class="c">#              -t my-app .</span>
+</pre></div>
+</div>
+<p><strong>Health Checks</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Basic HTTP health check</span>
+<span class="k">HEALTHCHECK</span><span class="w"> </span>--interval<span class="o">=</span>30s<span class="w"> </span>--timeout<span class="o">=</span>3s<span class="w"> </span>--start-period<span class="o">=</span>5s<span class="w"> </span>--retries<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>CMD<span class="w"> </span>curl<span class="w"> </span>-f<span class="w"> </span>http://localhost:8000/health<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c"># Custom health check script</span>
+<span class="k">COPY</span><span class="w"> </span>healthcheck.sh<span class="w"> </span>/usr/local/bin/
+<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/healthcheck.sh
+<span class="k">HEALTHCHECK</span><span class="w"> </span>--interval<span class="o">=</span>30s<span class="w"> </span>--timeout<span class="o">=</span>10s<span class="w"> </span>--start-period<span class="o">=</span>5s<span class="w"> </span>--retries<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>CMD<span class="w"> </span>healthcheck.sh
+</pre></div>
+</div>
+<p><strong>Signal Handling</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># GOOD: Use exec form for proper signal handling</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+
+<span class="c"># BAD: Shell form doesn&#39;t handle signals properly</span>
+<span class="k">CMD</span><span class="w"> </span>python<span class="w"> </span>app.py
+
+<span class="c"># For shell scripts, use exec:</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># setup.sh</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Starting application...&quot;</span>
+<span class="nb">exec</span><span class="w"> </span>python<span class="w"> </span>app.py
+</pre></div>
+</div>
+</section>
+<section id="debugging-build-issues">
+<h2>Debugging Build Issues<a class="headerlink" href="#debugging-build-issues" title="Link to this heading"></a></h2>
+<p><strong>Common Build Failures</strong></p>
+<p><strong>Permission Issues:</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Problem: Files copied as root, but running as user</span>
+<span class="k">COPY</span><span class="w"> </span>app.py<span class="w"> </span>/app/
+<span class="k">USER</span><span class="w"> </span><span class="s">1001</span>
+<span class="c"># Solution: Change ownership</span>
+<span class="k">COPY</span><span class="w"> </span>--chown<span class="o">=</span><span class="m">1001</span>:1001<span class="w"> </span>app.py<span class="w"> </span>/app/
+</pre></div>
+</div>
+<p><strong>Network Issues During Build:</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Problem: Network timeouts during package installation</span>
+<span class="c"># Solution: Add retries and use different mirrors</span>
+<span class="k">RUN</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">15</span><span class="p">;</span><span class="w"> </span><span class="se">\</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p><strong>Debugging Techniques:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build with no cache to see all steps</span>
+docker<span class="w"> </span>build<span class="w"> </span>--no-cache<span class="w"> </span>-t<span class="w"> </span>my-app<span class="w"> </span>.
+
+<span class="c1"># Build and stop at specific stage for inspection</span>
+docker<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>builder<span class="w"> </span>-t<span class="w"> </span>debug-build<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>debug-build<span class="w"> </span>/bin/bash
+
+<span class="c1"># Check build history and layer sizes</span>
+docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>my-app
+docker<span class="w"> </span>images<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;table {{.Repository}}\t{{.Tag}}\t{{.Size}}&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="production-dockerfile-template">
+<h2>Production Dockerfile Template<a class="headerlink" href="#production-dockerfile-template" title="Link to this heading"></a></h2>
+<p>Here’s a production-ready template for a Python web application:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># syntax=docker/dockerfile:1.4</span>
+
+<span class="c"># Build stage</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s">builder</span>
+
+<span class="c"># Install system dependencies for building</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Create virtual environment</span>
+<span class="k">RUN</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/opt/venv
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+
+<span class="c"># Copy and install Python dependencies</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Production stage</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s">production</span>
+
+<span class="c"># Create non-root user</span>
+<span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-r<span class="w"> </span>appuser<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>useradd<span class="w"> </span>-r<span class="w"> </span>-g<span class="w"> </span>appuser<span class="w"> </span>-u<span class="w"> </span><span class="m">1001</span><span class="w"> </span>appuser
+
+<span class="c"># Install runtime dependencies only</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Copy virtual environment from builder stage</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/opt/venv<span class="w"> </span>/opt/venv
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+
+<span class="c"># Set up application directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>--chown<span class="o">=</span>appuser:appuser<span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c"># Security and runtime configuration</span>
+<span class="k">USER</span><span class="w"> </span><span class="s">appuser</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+
+<span class="c"># Health check</span>
+<span class="k">HEALTHCHECK</span><span class="w"> </span>--interval<span class="o">=</span>30s<span class="w"> </span>--timeout<span class="o">=</span>3s<span class="w"> </span>--start-period<span class="o">=</span>5s<span class="w"> </span>--retries<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>CMD<span class="w"> </span>curl<span class="w"> </span>-f<span class="w"> </span>http://localhost:8000/health<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c"># Use exec form and run as non-root</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;gunicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--bind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:8000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--workers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app:app&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-exercises">
+<h2>Practical Exercises<a class="headerlink" href="#practical-exercises" title="Link to this heading"></a></h2>
+<p><strong>Exercise 1: Multi-Stage Node.js Build</strong></p>
+<p>Create a Dockerfile for a React application with separate build and production stages.</p>
+<p><strong>Exercise 2: Database with Custom Configuration</strong></p>
+<p>Build a PostgreSQL image with custom configuration and initialization scripts.</p>
+<p><strong>Exercise 3: Security Hardening</strong></p>
+<p>Take an existing Dockerfile and apply security best practices: non-root user, minimal packages, vulnerability scanning.</p>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>You now understand how to create custom container images that are secure, efficient, and production-ready. In the next section, we’ll explore container orchestration with Docker Compose to manage multi-container applications.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul class="simple">
+<li><p>Dockerfiles define repeatable, version-controlled environments</p></li>
+<li><p>Multi-stage builds create smaller, more secure images</p></li>
+<li><p>Layer caching and optimization techniques speed up builds</p></li>
+<li><p>Security practices are essential for production images</p></li>
+<li><p>Health checks and proper signal handling improve reliability</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Pro Tip:</strong> Start with working Dockerfiles and iteratively optimize them. Perfect is the enemy of good - a working container is better than a perfect container that doesn’t exist yet.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3_workingwithdocker.html" class="btn btn-neutral float-left" title="8.3 Container Fundamentals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_management.html" class="btn btn-neutral float-right" title="8.5 Container Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

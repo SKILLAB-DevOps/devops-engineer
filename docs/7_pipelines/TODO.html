@@ -81,8 +81,21 @@
 <li class="toctree-l1"><a class="reference internal" href="3_github.html">7.3 GitHub Actions Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_best_practices.html">7.4 CI/CD Best Practices</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">TODO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#exercises">Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
 </ul>
 
         </div>
@@ -111,716 +124,294 @@
              
   <section id="todo">
 <h1>TODO<a class="headerlink" href="#todo" title="Link to this heading"></a></h1>
-</section>
-<section id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading"></a></h1>
-<p>This section contains practical exercises designed to build your CI/CD skills progressively. Each task includes estimated completion time, skills practiced, and success criteria.</p>
+<p>This section contains practical exercises designed to build your CI/CD skills progressively. Each task includes estimated completion time and clear success criteria.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>How to Use This Section:</strong></p>
 <ol class="arabic simple">
-<li><p>Start with Beginner tasks if you’re new to CI/CD</p></li>
-<li><p>Check off each task as you complete it</p></li>
+<li><p>Start with Quick Questions to test your understanding</p></li>
+<li><p>Complete the 10-Minute Tasks to build hands-on experience</p></li>
 <li><p>Use the ANSWERS.rst file for detailed solutions</p></li>
-<li><p>Don’t skip ahead - each level builds on the previous one</p></li>
+<li><p>Think through the Open-Ended Questions for deeper understanding</p></li>
 </ol>
 </div>
-<section id="beginner-tasks">
-<h2>Beginner Tasks<a class="headerlink" href="#beginner-tasks" title="Link to this heading"></a></h2>
-<p><strong>Prerequisites:</strong> Basic Git knowledge, GitHub account, simple Python project</p>
-<section id="task-1-your-first-pipeline">
-<h3>Task 1: Your First Pipeline<a class="headerlink" href="#task-1-your-first-pipeline" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Create a basic “Hello World” CI pipeline</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="quick-questions">
+<h2>Quick Questions<a class="headerlink" href="#quick-questions" title="Link to this heading"></a></h2>
+<p><strong>These questions test your foundational CI/CD knowledge. Check ANSWERS.rst for explanations.</strong></p>
+<ol class="arabic simple">
+<li><p><strong>What is the main difference between Continuous Integration and Continuous Deployment?</strong></p></li>
+<li><p><strong>Where do you place GitHub Actions workflow files in a repository?</strong></p></li>
+<li><p><strong>What is a runner in GitHub Actions?</strong></p></li>
+<li><p><strong>How do you make a job wait for another job to complete?</strong></p></li>
+<li><p><strong>What is the purpose of caching in CI/CD pipelines?</strong></p></li>
+<li><p><strong>How do you securely store API keys and passwords in GitHub Actions?</strong></p></li>
+<li><p><strong>What does a matrix strategy allow you to do?</strong></p></li>
+<li><p><strong>Why is `uv` preferred over `pip` for Python CI/CD?</strong></p></li>
+<li><p><strong>What is the “fail fast” principle in CI/CD?</strong></p></li>
+<li><p><strong>How do you trigger a workflow only when specific files change?</strong></p></li>
+</ol>
+</section>
+<section id="minute-tasks">
+<h2>10-Minute Tasks<a class="headerlink" href="#minute-tasks" title="Link to this heading"></a></h2>
+<p><strong>Each task should take about 10-15 minutes to complete. All use Python applications.</strong></p>
+<section id="task-1-hello-world">
+<h3>Task 1: Hello World<a class="headerlink" href="#task-1-hello-world" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Create your first GitHub Actions workflow</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Create a public repository in your GitHub account</p></li>
+<li><p>Create a simple Python script that prints “Hello CI/CD!”</p></li>
 <li><p>Create <cite>.github/workflows/hello.yml</cite></p></li>
-<li><p>Add a workflow that runs on every push</p></li>
-<li><p>Test by pushing a commit</p></li>
+<li><p>Trigger workflow on push to main branch</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> YAML syntax, GitHub Actions basics, workflow triggers</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Green checkmark appears on your commit</p></li>
-<li><p>Can see workflow run in Actions tab</p></li>
-<li><p>Understand what each line of YAML does</p></li>
+<li><p>Workflow runs successfully</p></li>
+<li><p>Output visible in Actions tab</p></li>
+<li><p>Green checkmark on commit</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add a second job that runs in parallel</p>
+<p><strong>Skills practiced:</strong> Basic workflow creation, YAML syntax</p>
 </section>
-<section id="task-2-automated-code-quality">
-<h3>Task 2: Automated Code Quality<a class="headerlink" href="#task-2-automated-code-quality" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Add linting and formatting checks to your pipeline</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-2-python-setup">
+<h3>Task 2: Python Setup<a class="headerlink" href="#task-2-python-setup" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Set up Python environment in GitHub Actions</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Add ruff for Python linting</p></li>
-<li><p>Add black for code formatting</p></li>
-<li><p>Configure pre-commit hooks</p></li>
-<li><p>Make pipeline fail on style violations</p></li>
+<li><p>Create a Python script that uses <cite>requests</cite> library</p></li>
+<li><p>Install dependencies in workflow</p></li>
+<li><p>Run the script successfully</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Code quality tools, pipeline failure handling</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Pipeline catches and reports style violations</p></li>
-<li><p>Can fix violations and see pipeline pass</p></li>
-<li><p>Understand the importance of consistent code style</p></li>
+<li><p>Python environment set up correctly</p></li>
+<li><p>Dependencies installed</p></li>
+<li><p>Script executes without errors</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add mypy for type checking</p>
+<p><strong>Skills practiced:</strong> Python setup, dependency installation</p>
 </section>
-<section id="task-3-basic-test-coverage">
-<h3>Task 3: Basic Test Coverage<a class="headerlink" href="#task-3-basic-test-coverage" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Implement automated testing with coverage reporting</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-3-code-quality-check">
+<h3>Task 3: Code Quality Check<a class="headerlink" href="#task-3-code-quality-check" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Add linting to your pipeline</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Write unit tests for provided functions</p></li>
-<li><p>Add pytest to pipeline</p></li>
-<li><p>Generate coverage reports</p></li>
-<li><p>Set minimum coverage threshold (80%)</p></li>
+<li><p>Install and configure <cite>ruff</cite> for linting</p></li>
+<li><p>Create intentionally bad Python code</p></li>
+<li><p>Watch the pipeline fail, then fix the code</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Unit testing, coverage analysis, quality gates</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>All tests pass in CI</p></li>
-<li><p>Coverage report shows in pipeline logs</p></li>
-<li><p>Pipeline fails if coverage drops below threshold</p></li>
+<li><p>Ruff catches style violations</p></li>
+<li><p>Pipeline fails on bad code</p></li>
+<li><p>Pipeline passes after fixes</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add coverage badge to README</p>
+<p><strong>Skills practiced:</strong> Code quality tools, failure handling</p>
 </section>
-<section id="task-4-environment-management">
-<h3>Task 4: Environment Management<a class="headerlink" href="#task-4-environment-management" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Learn proper Python dependency management</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-4-running-tests">
+<h3>Task 4: Running Tests<a class="headerlink" href="#task-4-running-tests" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Add automated testing to your pipeline</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Convert requirements.txt to pyproject.toml</p></li>
-<li><p>Use uv for fast dependency installation</p></li>
-<li><p>Cache dependencies to speed up builds</p></li>
-<li><p>Test with multiple Python versions</p></li>
+<li><p>Write a simple function and its pytest test</p></li>
+<li><p>Run tests in GitHub Actions</p></li>
+<li><p>View test results in workflow</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Modern Python tooling, build optimization</p>
-<p><strong>Success criteria:</strong>
-- Build time reduced by 50% with caching
-- Pipeline tests Python 3.11, 3.12, and 3.13
-- Dependencies install consistently</p>
-<p><strong>Extension challenge:</strong> Add dependabot for automatic updates</p>
-</section>
-</section>
-<section id="knowledge-check-quiz">
-<h2>Knowledge Check Quiz<a class="headerlink" href="#knowledge-check-quiz" title="Link to this heading"></a></h2>
-<p>This quiz tests your understanding of the concepts covered in this section. Each question has one correct answer.</p>
-<p><strong>Basic GitHub Actions</strong></p>
-<ol class="arabic">
-<li><p>What file extension is used for GitHub Actions workflow files?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>.workflow</p></li>
-<li><p>.yml or .yaml</p></li>
-<li><p>.github</p></li>
-<li><p>.actions</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>Where must the GitHub Actions workflow files be placed in a repository?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>In the root directory of the repository</p></li>
-<li><p>In the .github/workflows/ directory</p></li>
-<li><p>In the actions/ directory</p></li>
-<li><p>In the workflow/ directory</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>Which event can trigger a GitHub Actions workflow?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>Push to a repository</p></li>
-<li><p>A pull request is opened</p></li>
-<li><p>A GitHub release is created</p></li>
-<li><p>All of the above</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>What is a runner in GitHub Actions?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>A type of workflow</p></li>
-<li><p>A user who triggers the workflow</p></li>
-<li><p>The virtual environment in which the workflow runs</p></li>
-<li><p>A specific task within a job</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>How can you reuse workflows in GitHub Actions?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>By linking to another workflow file in the repository</p></li>
-<li><p>Using the uses keyword in your workflow to reference an action</p></li>
-<li><p>By copying the workflow file to another repository</p></li>
-<li><p>It is not possible to reuse workflows</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>What is a job in the context of GitHub Actions?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>A step in a workflow</p></li>
-<li><p>An individual task that runs sequentially in a workflow</p></li>
-<li><p>A collection of steps that run in parallel</p></li>
-<li><p>A set of workflows that are executed on a trigger event</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>How are secrets stored and used in GitHub Actions?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>In plain text files within the repository</p></li>
-<li><p>As environment variables in the virtual environment</p></li>
-<li><p>In the repository settings as encrypted secrets</p></li>
-<li><p>They are not supported; all sensitive data must be hard-coded</p></li>
-</ol>
-</div></blockquote>
-</li>
-</ol>
-<p><strong>Modern Python Tools</strong></p>
-<ol class="arabic" start="8">
-<li><p>Which tool is recommended for fast Python package management?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>pip</p></li>
-<li><p>conda</p></li>
-<li><p>uv</p></li>
-<li><p>poetry</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>What does <code class="docutils literal notranslate"><span class="pre">ruff</span></code> replace in modern Python development?</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>pytest</p></li>
-<li><p>flake8, black, and isort</p></li>
-<li><p>mypy</p></li>
-<li><p>bandit</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>Which command installs both regular and development dependencies with uv?</p>
-<ol class="loweralpha simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">install</span> <span class="pre">--dev</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span> <span class="pre">--dev</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">--dev</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
-</ol>
-</li>
-</ol>
-<p><strong>CI/CD Concepts</strong></p>
-<ol class="arabic simple" start="11">
-<li><p>What is the main purpose of Continuous Integration?</p>
-<ol class="loweralpha simple">
-<li><p>Deploy code to production automatically</p></li>
-<li><p>Integrate code changes frequently and catch issues early</p></li>
-<li><p>Monitor production applications</p></li>
-<li><p>Manage project documentation</p></li>
-</ol>
-</li>
-<li><p>Which testing strategy follows the “test pyramid” principle?</p>
-<ol class="loweralpha simple">
-<li><p>Many E2E tests, few unit tests</p></li>
-<li><p>Many unit tests, some integration tests, few E2E tests</p></li>
-<li><p>Only integration tests</p></li>
-<li><p>Equal amounts of all test types</p></li>
-</ol>
-</li>
-<li><p>What is a matrix strategy in GitHub Actions?</p>
-<ol class="loweralpha simple">
-<li><p>A way to organize secrets</p></li>
-<li><p>A method to run jobs across multiple configurations</p></li>
-<li><p>A type of workflow trigger</p></li>
-<li><p>A security feature</p></li>
-</ol>
-</li>
-<li><p>When should you use <code class="docutils literal notranslate"><span class="pre">fail-fast:</span> <span class="pre">false</span></code> in a matrix strategy?</p>
-<ol class="loweralpha simple">
-<li><p>Always, for better performance</p></li>
-<li><p>Never, it’s a bad practice</p></li>
-<li><p>When you want to see all matrix job results even if some fail</p></li>
-<li><p>Only for production deployments</p></li>
-</ol>
-</li>
-</ol>
-<p><strong>Security and Best Practices</strong></p>
-<ol class="arabic simple" start="15">
-<li><p>What is the principle of “fail fast” in CI/CD?</p>
-<ol class="loweralpha simple">
-<li><p>Deploy quickly to production</p></li>
-<li><p>Run the slowest tests first</p></li>
-<li><p>Stop the pipeline immediately when critical issues are found</p></li>
-<li><p>Always use the fastest runner</p></li>
-</ol>
-</li>
-<li><p>Which tool scans Python code for security vulnerabilities?</p>
-<ol class="loweralpha simple">
-<li><p>ruff</p></li>
-<li><p>mypy</p></li>
-<li><p>bandit</p></li>
-<li><p>pytest</p></li>
-</ol>
-</li>
-<li><p>What is the recommended approach for handling secrets in GitHub Actions?</p>
-<ol class="loweralpha simple">
-<li><p>Store them in the code repository</p></li>
-<li><p>Use GitHub repository secrets or environment secrets</p></li>
-<li><p>Pass them as command line arguments</p></li>
-<li><p>Use environment variables in the workflow file</p></li>
-</ol>
-</li>
-</ol>
-</section>
-<section id="hands-on-programming-tasks">
-<h2>Hands-On Programming Tasks<a class="headerlink" href="#hands-on-programming-tasks" title="Link to this heading"></a></h2>
-<section id="task-1-create-your-2nd-python-cli">
-<h3>Task 1: Create Your 2nd Python CLI<a class="headerlink" href="#task-1-create-your-2nd-python-cli" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Build a simple CLI application and set up basic CI/CD</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Create a new GitHub repository named <code class="docutils literal notranslate"><span class="pre">my-python-cli</span></code></p></li>
-<li><p>Build a CLI using Click that has these commands:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">greet</span> <span class="pre">--name</span> <span class="pre">&lt;name&gt;</span></code> - prints a greeting</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">weather</span> <span class="pre">&lt;city&gt;</span></code> - shows mock weather data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">calc</span> <span class="pre">add</span> <span class="pre">&lt;a&gt;</span> <span class="pre">&lt;b&gt;</span></code> - adds two numbers</p></li>
-</ul>
-</li>
-<li><p>Use modern Python project structure with <code class="docutils literal notranslate"><span class="pre">src/</span></code> layout</p></li>
-<li><p>Include comprehensive tests using pytest</p></li>
-<li><p>Set up a basic CI pipeline that runs on push and pull requests</p></li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p>Working CLI installable with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">my_cli</span></code></p></li>
-<li><p>Test coverage &gt;80%</p></li>
-<li><p>Passing CI pipeline</p></li>
-</ul>
-</section>
-<section id="task-2-implement-modern-python-ci-pipeline">
-<h3>Task 2: Implement Modern Python CI Pipeline<a class="headerlink" href="#task-2-implement-modern-python-ci-pipeline" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Create a comprehensive CI pipeline using modern tools</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Fork or use the CLI from Task 1</p></li>
-<li><p>Create a CI pipeline that includes:</p>
-<ul class="simple">
-<li><p>Code formatting check with <code class="docutils literal notranslate"><span class="pre">ruff</span> <span class="pre">format</span> <span class="pre">--check</span></code></p></li>
-<li><p>Linting with <code class="docutils literal notranslate"><span class="pre">ruff</span> <span class="pre">check</span></code></p></li>
-<li><p>Type checking with <code class="docutils literal notranslate"><span class="pre">mypy</span></code></p></li>
-<li><p>Security scanning with <code class="docutils literal notranslate"><span class="pre">bandit</span></code></p></li>
-<li><p>Testing with <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and coverage reporting</p></li>
-<li><p>Matrix testing across Python 3.10, 3.11, and 3.12</p></li>
-</ul>
-</li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">uv</span></code> for dependency management</p></li>
-<li><p>Configure proper caching for faster builds</p></li>
-<li><p>Upload test coverage to a service like Codecov</p></li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> file</p></li>
-<li><p>Pipeline that completes in &lt;5 minutes</p></li>
-<li><p>All quality checks passing</p></li>
-</ul>
-</section>
-<section id="task-3-build-a-complete-cd-pipeline">
-<h3>Task 3: Build a Complete CD Pipeline<a class="headerlink" href="#task-3-build-a-complete-cd-pipeline" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Extend CI with deployment capabilities</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Extend the CI pipeline from Task 2</p></li>
-<li><p>Add a CD pipeline that:</p>
-<ul class="simple">
-<li><p>Builds a Python package with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">build</span></code></p></li>
-<li><p>Creates GitHub releases on version tags</p></li>
-<li><p>Publishes to PyPI (use TestPyPI for practice)</p></li>
-<li><p>Deploys documentation to GitHub Pages</p></li>
-</ul>
-</li>
-<li><p>Use GitHub environments for staging and production</p></li>
-<li><p>Implement proper secret management</p></li>
-<li><p>Add deployment notifications (e.g., Slack webhook)</p></li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p>Working CD pipeline triggered by tags</p></li>
-<li><p>Published package on TestPyPI</p></li>
-<li><p>Automated GitHub releases</p></li>
-</ul>
-</section>
-<section id="task-4-create-custom-github-actions">
-<h3>Task 4: Create Custom GitHub Actions<a class="headerlink" href="#task-4-create-custom-github-actions" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Build reusable GitHub Actions</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Create a custom composite action for Python setup:</p>
-<ul class="simple">
-<li><p>Sets up Python with specified version</p></li>
-<li><p>Installs and configures uv</p></li>
-<li><p>Installs dependencies</p></li>
-<li><p>Caches appropriately</p></li>
-</ul>
-</li>
-<li><p>Create a custom action for Python quality checks:</p>
-<ul class="simple">
-<li><p>Runs ruff, mypy, bandit</p></li>
-<li><p>Generates and uploads reports</p></li>
-<li><p>Provides clear success/failure feedback</p></li>
-</ul>
-</li>
-<li><p>Use these actions in multiple repositories</p></li>
-<li><p>Publish actions to GitHub Marketplace (optional)</p></li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.github/actions/</span></code> directory with custom actions</p></li>
-<li><p>Documentation for action inputs/outputs</p></li>
-<li><p>Example workflows using the actions</p></li>
-</ul>
-</section>
-<section id="task-5-advanced-pipeline-features">
-<h3>Task 5: Advanced Pipeline Features<a class="headerlink" href="#task-5-advanced-pipeline-features" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Implement advanced CI/CD patterns</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Implement a blue-green deployment simulation</p></li>
-<li><p>Add conditional workflows based on changed files</p></li>
-<li><p>Create a workflow that:</p>
-<ul class="simple">
-<li><p>Runs different jobs based on branch (main vs feature)</p></li>
-<li><p>Uses workflow artifacts for job communication</p></li>
-<li><p>Implements approval gates for production deployments</p></li>
-<li><p>Includes rollback capabilities</p></li>
-</ul>
-</li>
-<li><p>Add comprehensive monitoring and alerting</p></li>
-<li><p>Create workflow templates for team use</p></li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p>Advanced workflow configurations</p></li>
-<li><p>Documentation for deployment procedures</p></li>
-<li><p>Monitoring dashboard (can use GitHub’s built-in features)</p></li>
-</ul>
-</section>
-</section>
-<section id="research-and-analysis-tasks">
-<h2>Research and Analysis Tasks<a class="headerlink" href="#research-and-analysis-tasks" title="Link to this heading"></a></h2>
-<section id="task-6-tool-comparison-analysis">
-<h3>Task 6: Tool Comparison Analysis<a class="headerlink" href="#task-6-tool-comparison-analysis" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Compare different CI/CD platforms and tools</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Research and compare:</p>
-<ul class="simple">
-<li><p>GitHub Actions vs GitLab CI vs Jenkins</p></li>
-<li><p>uv vs poetry vs pip-tools for dependency management</p></li>
-<li><p>Different testing strategies and tools</p></li>
-</ul>
-</li>
-<li><p>Create a 1 ADR (Architectural Decision Record) document or 1 PoC (Proof of Concept) with:</p>
-<ul class="simple">
-<li><p>Feature comparison table</p></li>
-<li><p>Performance benchmarks</p></li>
-<li><p>Cost analysis</p></li>
-<li><p>Recommendations for different use cases</p></li>
-</ul>
-</li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p>1 ADR (Architectural Decision Record) document or 1 PoC (Proof of Concept)</p></li>
-<li><p>Practical recommendations with justification</p></li>
-</ul>
-</section>
-<section id="task-7-security-audit">
-<h3>Task 7: Security Audit<a class="headerlink" href="#task-7-security-audit" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Perform a security review of CI/CD pipelines</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Audit an existing CI/CD pipeline for security issues</p></li>
-<li><p>Check for:</p>
-<ul class="simple">
-<li><p>Secret management practices</p></li>
-<li><p>Dependency vulnerabilities</p></li>
-<li><p>Permission configurations</p></li>
-<li><p>Code injection possibilities</p></li>
-</ul>
-</li>
-<li><p>Create a security checklist for CI/CD pipelines</p></li>
-<li><p>Implement fixes for identified issues</p></li>
-</ol>
-<p><strong>Deliverables:</strong></p>
-<ul class="simple">
-<li><p>Security audit report</p></li>
-<li><p>CI/CD security checklist</p></li>
-<li><p>Improved pipeline configuration</p></li>
-</ul>
-</section>
-</section>
-<section id="intermediate-tasks">
-<h2>Intermediate Tasks<a class="headerlink" href="#intermediate-tasks" title="Link to this heading"></a></h2>
-<p><strong>Prerequisites:</strong> Completed all Beginner tasks, basic Docker knowledge</p>
-<section id="task-5-multi-environment-deployment">
-<h3>Task 5: Multi-Environment Deployment<a class="headerlink" href="#task-5-multi-environment-deployment" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Deploy to staging and production environments</p>
-<p><strong>What you’ll do:</strong></p>
-<ul class="simple">
-<li><p>Set up staging environment (GitHub Pages)</p></li>
-<li><p>Create production environment with manual approval</p></li>
-<li><p>Use environment-specific configuration</p></li>
-<li><p>Implement proper secret management</p></li>
-</ul>
-<p><strong>Skills practiced:</strong> Environment management, deployment strategies, secrets</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Code automatically deploys to staging on main branch</p></li>
-<li><p>Production deployment requires manual approval</p></li>
-<li><p>Different configurations for each environment</p></li>
+<li><p>Tests run successfully in CI</p></li>
+<li><p>Test results clearly visible</p></li>
+<li><p>Failed tests break the pipeline</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add smoke tests that run post-deployment</p>
+<p><strong>Skills practiced:</strong> Test automation, pytest</p>
 </section>
-<section id="task-6-matrix-testing-strategy">
-<h3>Task 6: Matrix Testing Strategy<a class="headerlink" href="#task-6-matrix-testing-strategy" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Test across multiple operating systems and Python versions</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-5-using-secrets">
+<h3>Task 5: Using Secrets<a class="headerlink" href="#task-5-using-secrets" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Safely handle sensitive information</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Configure matrix strategy for OS (Ubuntu, Windows, macOS)</p></li>
-<li><p>Test Python versions 3.10, 3.11, 3.12</p></li>
-<li><p>Handle OS-specific test failures gracefully</p></li>
-<li><p>Optimize for fastest feedback</p></li>
+<li><p>Create a script that uses an API key</p></li>
+<li><p>Store API key as GitHub secret</p></li>
+<li><p>Access secret in workflow</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Cross-platform testing, matrix configurations</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Pipeline runs on all OS/Python combinations</p></li>
-<li><p>Total runtime under 10 minutes</p></li>
-<li><p>Clear reporting of which combinations fail</p></li>
+<li><p>Secret not visible in logs</p></li>
+<li><p>Script successfully uses API key</p></li>
+<li><p>Workflow completes securely</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add performance benchmarking across platforms</p>
+<p><strong>Skills practiced:</strong> Secret management, security</p>
 </section>
-<section id="task-7-security-and-compliance">
-<h3>Task 7: Security and Compliance<a class="headerlink" href="#task-7-security-and-compliance" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Integrate security scanning into your pipeline</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-6-caching-dependencies">
+<h3>Task 6: Caching Dependencies<a class="headerlink" href="#task-6-caching-dependencies" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Speed up builds with caching</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Add Bandit for Python security scanning</p></li>
-<li><p>Implement dependency vulnerability checking</p></li>
-<li><p>Add SAST (Static Application Security Testing)</p></li>
-<li><p>Configure security failure thresholds</p></li>
+<li><p>Add dependency caching to your workflow</p></li>
+<li><p>Compare build times before/after caching</p></li>
+<li><p>Test cache invalidation</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Security automation, vulnerability management</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Pipeline catches security vulnerabilities</p></li>
-<li><p>Clear reporting of security issues</p></li>
-<li><p>Automated blocking of high-severity findings</p></li>
+<li><p>Second run significantly faster</p></li>
+<li><p>Cache hits visible in logs</p></li>
+<li><p>Dependencies restored correctly</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add license compliance checking</p>
+<p><strong>Skills practiced:</strong> Build optimization, caching</p>
 </section>
-<section id="task-8-container-integration">
-<h3>Task 8: Container Integration<a class="headerlink" href="#task-8-container-integration" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Build and deploy containerized applications</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-7-matrix-testing">
+<h3>Task 7: Matrix Testing<a class="headerlink" href="#task-7-matrix-testing" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Test across multiple Python versions</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Create Dockerfile for your application</p></li>
-<li><p>Build Docker images in pipeline</p></li>
-<li><p>Push images to container registry</p></li>
-<li><p>Deploy containerized app to staging</p></li>
+<li><p>Configure matrix to test Python 3.11, 3.12, 3.13</p></li>
+<li><p>Run the same tests on all versions</p></li>
+<li><p>Handle version-specific differences</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Containerization, registry management, container deployment</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Docker images build successfully</p></li>
-<li><p>Images pushed to GitHub Container Registry</p></li>
-<li><p>Application runs correctly in container</p></li>
+<li><p>Tests run on all Python versions</p></li>
+<li><p>Matrix results clearly displayed</p></li>
+<li><p>Version-specific issues identified</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Multi-stage builds for optimized image size</p>
+<p><strong>Skills practiced:</strong> Matrix strategies, cross-version testing</p>
 </section>
-</section>
-<section id="advanced-tasks">
-<h2>Advanced Tasks<a class="headerlink" href="#advanced-tasks" title="Link to this heading"></a></h2>
-<p><strong>Prerequisites:</strong> Completed Intermediate tasks, Kubernetes basics</p>
-<section id="task-9-microservices-orchestration">
-<h3>Task 9: Microservices Orchestration<a class="headerlink" href="#task-9-microservices-orchestration" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Coordinate CI/CD across multiple related services</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-8-environment-variables">
+<h3>Task 8: Environment Variables<a class="headerlink" href="#task-8-environment-variables" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Use environment-based configuration</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Set up 3 microservices with dependencies</p></li>
-<li><p>Implement cross-service integration testing</p></li>
-<li><p>Coordinate deployments with proper ordering</p></li>
-<li><p>Handle partial deployment failures</p></li>
+<li><p>Create Python script that behaves differently per environment</p></li>
+<li><p>Set different env vars for dev/prod workflows</p></li>
+<li><p>Test both configurations</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Microservices architecture, service dependencies</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Services deploy in correct order</p></li>
-<li><p>Integration tests validate service communication</p></li>
-<li><p>Rollback works across all services</p></li>
+<li><p>Script adapts to environment variables</p></li>
+<li><p>Different behaviors in different environments</p></li>
+<li><p>Configuration managed externally</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Implement canary deployments</p>
+<p><strong>Skills practiced:</strong> Environment management, configuration</p>
 </section>
-<section id="task-10-blue-green-deployment">
-<h3>Task 10: Blue-Green Deployment<a class="headerlink" href="#task-10-blue-green-deployment" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Implement zero-downtime deployment strategy</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-9-branch-protection">
+<h3>Task 9: Branch Protection<a class="headerlink" href="#task-9-branch-protection" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Enforce quality gates on pull requests</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Set up blue and green environments</p></li>
-<li><p>Implement automated traffic switching</p></li>
-<li><p>Add health checks and rollback triggers</p></li>
-<li><p>Monitor deployment success metrics</p></li>
+<li><p>Create a pull request workflow</p></li>
+<li><p>Set up branch protection rules</p></li>
+<li><p>Test that bad code blocks merging</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Advanced deployment patterns, traffic management</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Zero downtime during deployments</p></li>
-<li><p>Automatic rollback on health check failure</p></li>
-<li><p>Deployment completes in under 2 minutes</p></li>
+<li><p>PR workflow runs automatically</p></li>
+<li><p>Branch protection prevents bad merges</p></li>
+<li><p>Status checks required for merge</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Add gradual traffic shifting (10%, 50%, 100%)</p>
+<p><strong>Skills practiced:</strong> Quality gates, branch protection</p>
 </section>
-<section id="task-11-performance-and-monitoring">
-<h3>Task 11: Performance and Monitoring<a class="headerlink" href="#task-11-performance-and-monitoring" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Integrate performance testing and monitoring</p>
-<p><strong>What you’ll do:</strong></p>
+<section id="task-10-deployment-pipeline">
+<h3>Task 10: Deployment Pipeline<a class="headerlink" href="#task-10-deployment-pipeline" title="Link to this heading"></a></h3>
+<p><strong>Objective:</strong> Deploy code automatically</p>
+<p><strong>What to do:</strong></p>
 <ul class="simple">
-<li><p>Add load testing to pipeline</p></li>
-<li><p>Implement performance regression detection</p></li>
-<li><p>Set up monitoring and alerting</p></li>
-<li><p>Create performance budgets</p></li>
+<li><p>Create a simple Python package</p></li>
+<li><p>Build and publish to TestPyPI on releases</p></li>
+<li><p>Test the deployment process</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Performance testing, monitoring, SRE practices</p>
 <p><strong>Success criteria:</strong></p>
 <ul class="simple">
-<li><p>Load tests run on every deployment</p></li>
-<li><p>Performance regressions block deployments</p></li>
-<li><p>Monitoring dashboards show key metrics</p></li>
+<li><p>Package builds successfully</p></li>
+<li><p>Publishes to TestPyPI</p></li>
+<li><p>Triggered only on releases</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Implement chaos engineering tests</p>
+<p><strong>Skills practiced:</strong> Deployment automation, package publishing</p>
 </section>
-<section id="task-12-multi-cloud-strategy">
-<h3>Task 12: Multi-Cloud Strategy<a class="headerlink" href="#task-12-multi-cloud-strategy" title="Link to this heading"></a></h3>
-<p><strong>Objective:</strong> Deploy to multiple cloud platforms</p>
-<p><strong>What you’ll do:</strong></p>
+</section>
+<section id="open-ended-questions">
+<h2>Open-Ended Questions<a class="headerlink" href="#open-ended-questions" title="Link to this heading"></a></h2>
+<p><strong>These questions don’t have single correct answers. Think through them and discuss with peers.</strong></p>
+<p><strong>Question 1: Pipeline Strategy</strong></p>
+<p><em>How would you design a CI/CD pipeline for a team of 10 Python developers working on a web application?</em></p>
+<p><strong>Consider:</strong></p>
 <ul class="simple">
-<li><p>Deploy to AWS, Azure, and GCP</p></li>
-<li><p>Implement cloud-agnostic configuration</p></li>
-<li><p>Handle cloud-specific features gracefully</p></li>
-<li><p>Monitor costs across platforms</p></li>
+<li><p>Build times and developer productivity</p></li>
+<li><p>Quality gates and testing strategies</p></li>
+<li><p>Security scanning and vulnerability management</p></li>
+<li><p>Deployment frequency and rollback capabilities</p></li>
+<li><p>Resource costs and optimization</p></li>
 </ul>
-<p><strong>Skills practiced:</strong> Multi-cloud architecture, cost optimization</p>
-<p><strong>Success criteria:</strong></p>
+<p><strong>Guidelines:</strong></p>
 <ul class="simple">
-<li><p>Application runs identically on all clouds</p></li>
-<li><p>Deployment costs tracked and optimized</p></li>
-<li><p>Failover between clouds works automatically</p></li>
+<li><p>Balance speed with thoroughness</p></li>
+<li><p>Consider developer experience</p></li>
+<li><p>Think about failure scenarios</p></li>
+<li><p>Plan for growth and scaling</p></li>
 </ul>
-<p><strong>Extension challenge:</strong> Implement geographic load balancing</p>
-</section>
-</section>
-<section id="project-based-challenges">
-<h2>Project-Based Challenges<a class="headerlink" href="#project-based-challenges" title="Link to this heading"></a></h2>
-<section id="challenge-1-multi-service-application">
-<h3>Challenge 1: Multi-Service Application<a class="headerlink" href="#challenge-1-multi-service-application" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Set up CI/CD for a microservices architecture</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Create a repository with:</p>
+<p><strong>Question 2: Testing Strategy</strong></p>
+<p><em>What testing approach would you implement for a Python API that integrates with multiple external services?</em></p>
+<p><strong>Consider:</strong></p>
 <ul class="simple">
-<li><p>3 Python microservices</p></li>
-<li><p>Shared library/common code</p></li>
-<li><p>Database migrations</p></li>
-<li><p>API documentation</p></li>
+<li><p>Unit vs integration vs end-to-end testing</p></li>
+<li><p>Mocking external services</p></li>
+<li><p>Test data management</p></li>
+<li><p>Performance and load testing</p></li>
+<li><p>Testing in different environments</p></li>
 </ul>
-</li>
-<li><p>Implement CI/CD that:</p>
+<p><strong>Guidelines:</strong></p>
 <ul class="simple">
-<li><p>Detects which services changed</p></li>
-<li><p>Runs tests only for affected services</p></li>
-<li><p>Coordinates deployments across services</p></li>
-<li><p>Manages database schema updates</p></li>
+<li><p>Follow the test pyramid principle</p></li>
+<li><p>Consider test reliability and maintainability</p></li>
+<li><p>Think about test execution time</p></li>
+<li><p>Plan for different types of failures</p></li>
 </ul>
-</li>
-</ol>
-</section>
-<section id="challenge-2-open-source-project-setup">
-<h3>Challenge 2: Open Source Project Setup<a class="headerlink" href="#challenge-2-open-source-project-setup" title="Link to this heading"></a></h3>
-<p><strong>Objective</strong>: Create a production-ready open source Python project</p>
-<p><strong>Requirements:</strong></p>
-<ol class="arabic simple">
-<li><p>Set up a complete open source project with:</p>
+<p><strong>Question 3: Security Integration</strong></p>
+<p><em>How would you integrate security practices into your CI/CD pipeline without slowing down development?</em></p>
+<p><strong>Consider:</strong></p>
 <ul class="simple">
-<li><p>Comprehensive documentation (README, CONTRIBUTING, etc.)</p></li>
-<li><p>Code of conduct and issue templates</p></li>
-<li><p>Automated dependency updates (Dependabot)</p></li>
-<li><p>Multiple Python version support</p></li>
-<li><p>Cross-platform testing (Linux, macOS, Windows)</p></li>
-<li><p>Automated changelog generation</p></li>
-<li><p>Semantic versioning with automated releases</p></li>
+<li><p>Vulnerability scanning timing and frequency</p></li>
+<li><p>Secret management and rotation</p></li>
+<li><p>Code analysis and SAST tools</p></li>
+<li><p>Dependency security monitoring</p></li>
+<li><p>Compliance requirements</p></li>
 </ul>
-</li>
-</ol>
-</section>
-</section>
-<section id="troubleshooting-scenarios">
-<h2>Troubleshooting Scenarios<a class="headerlink" href="#troubleshooting-scenarios" title="Link to this heading"></a></h2>
-<section id="scenario-1-pipeline-performance-issues">
-<h3>Scenario 1: Pipeline Performance Issues<a class="headerlink" href="#scenario-1-pipeline-performance-issues" title="Link to this heading"></a></h3>
-<p>You inherit a CI pipeline that takes 45 minutes to complete. Users complain about slow feedback. Analyze and optimize the pipeline to reduce runtime by at least 50%.</p>
-</section>
-<section id="scenario-2-flaky-tests">
-<h3>Scenario 2: Flaky Tests<a class="headerlink" href="#scenario-2-flaky-tests" title="Link to this heading"></a></h3>
-<p>The test suite has several tests that fail intermittently, causing developers to re-run pipelines frequently. Identify and fix the root causes of test flakiness.</p>
-</section>
-<section id="scenario-3-deployment-failures">
-<h3>Scenario 3: Deployment Failures<a class="headerlink" href="#scenario-3-deployment-failures" title="Link to this heading"></a></h3>
-<p>Production deployments are failing 30% of the time due to various issues. Design and implement a more robust deployment strategy with proper rollback mechanisms.</p>
-</section>
-</section>
-<section id="submission-guidelines">
-<h2>Submission Guidelines<a class="headerlink" href="#submission-guidelines" title="Link to this heading"></a></h2>
-<p><strong>For Practical Tasks:</strong></p>
-<ol class="arabic simple">
-<li><p>Create GitHub repositories for each task</p></li>
-<li><p>Include comprehensive README files</p></li>
-<li><p>Ensure all pipelines are publicly visible</p></li>
-<li><p>Add comments explaining complex configurations</p></li>
-<li><p>Include screenshots of successful pipeline runs</p></li>
-</ol>
-<p><strong>For Analysis Tasks:</strong></p>
-<ol class="arabic simple">
-<li><p>Submit documents in Markdown format</p></li>
-<li><p>Include references and sources</p></li>
-<li><p>Provide concrete examples and evidence</p></li>
-<li><p>Make recommendations actionable</p></li>
-</ol>
-<p><strong>Evaluation Criteria:</strong></p>
+<p><strong>Guidelines:</strong></p>
 <ul class="simple">
-<li><p><strong>Functionality</strong>: Does it work as specified?</p></li>
-<li><p><strong>Best Practices</strong>: Follows modern CI/CD principles?</p></li>
-<li><p><strong>Code Quality</strong>: Clean, well-documented code?</p></li>
-<li><p><strong>Innovation</strong>: Creative solutions to challenges?</p></li>
-<li><p><strong>Documentation</strong>: Clear explanations and instructions?</p></li>
+<li><p>Shift security left in the pipeline</p></li>
+<li><p>Automate as much as possible</p></li>
+<li><p>Provide clear feedback to developers</p></li>
+<li><p>Balance security with productivity</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Getting Help:</strong></p>
+<p><strong>Question 4: Multi-Environment Strategy</strong></p>
+<p><em>How would you manage deployments across development, staging, and production environments with different requirements?</em></p>
+<p><strong>Consider:</strong></p>
 <ul class="simple">
-<li><p>Use LLM for questions</p></li>
-<li><p>Reference the documentation we’ve covered</p></li>
-<li><p>Check GitHub Actions marketplace for existing solutions</p></li>
-<li><p>Test workflows with <code class="docutils literal notranslate"><span class="pre">workflow_dispatch</span></code> for easier debugging</p></li>
+<li><p>Environment-specific configurations</p></li>
+<li><p>Data management and migrations</p></li>
+<li><p>Rollback strategies</p></li>
+<li><p>Monitoring and alerting</p></li>
+<li><p>Approval processes</p></li>
 </ul>
-</div>
-<p><strong>Bonus Points:</strong></p>
+<p><strong>Guidelines:</strong></p>
 <ul class="simple">
-<li><p>Contribute improvements to open source projects</p></li>
-<li><p>Create tutorial content for others</p></li>
-<li><p>Present your solutions to the class</p></li>
-<li><p>Help teammates with their implementations</p></li>
+<li><p>Keep environments as similar as possible</p></li>
+<li><p>Use environment variables for configuration</p></li>
+<li><p>Implement proper promotion workflows</p></li>
+<li><p>Plan for disaster recovery</p></li>
+</ul>
+<p><strong>Question 5: Tool Selection</strong></p>
+<p><em>How would you evaluate and choose between different CI/CD platforms (GitHub Actions, GitLab CI, Jenkins, etc.) for your organization?</em></p>
+<p><strong>Consider:</strong></p>
+<ul class="simple">
+<li><p>Team size and technical expertise</p></li>
+<li><p>Integration with existing tools</p></li>
+<li><p>Cost and resource requirements</p></li>
+<li><p>Scalability and performance needs</p></li>
+<li><p>Maintenance and support</p></li>
+</ul>
+<p><strong>Guidelines:</strong></p>
+<ul class="simple">
+<li><p>Start with organizational constraints</p></li>
+<li><p>Evaluate based on actual requirements</p></li>
+<li><p>Consider long-term maintenance costs</p></li>
+<li><p>Plan for team training and adoption</p></li>
 </ul>
 </section>
 </section>

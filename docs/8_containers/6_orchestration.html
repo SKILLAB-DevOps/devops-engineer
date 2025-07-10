@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.6 Container Orchestration &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.7 Container Testing" href="7_test.html" />
+    <link rel="prev" title="8.5 Container Management" href="5_management.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.6 Container Orchestration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/6_orchestration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="container-orchestration">
+<h1>8.6 Container Orchestration<a class="headerlink" href="#container-orchestration" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/docker_swarm.png"><img alt="A diagram showing the relationship between Docker Compose, Docker Swarm, and Kubernetes" src="../_images/docker_swarm.png" style="width: 1000px;" />
+</a>
+<p><strong>From Single Containers to Applications</strong></p>
+<p>Running individual containers is like assembling a car one bolt at a time. Modern applications consist of multiple services that need to work together: web servers, databases, caches, message queues, and more. Container orchestration tools coordinate these services, handling networking, scaling, health monitoring, and updates automatically.</p>
+<p>This section covers Docker Compose for development and testing, plus an introduction to production orchestration concepts that lead into Kubernetes.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Define</strong> multi-container applications using Docker Compose</p></li>
+<li><p><strong>Manage</strong> application lifecycles with compose commands</p></li>
+<li><p><strong>Configure</strong> inter-service networking and data persistence</p></li>
+<li><p><strong>Implement</strong> development workflows with live code reloading</p></li>
+<li><p><strong>Understand</strong> the progression from Compose to production orchestration</p></li>
+<li><p><strong>Deploy</strong> applications to Docker Swarm for high availability</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Understanding of Dockerfiles, container networking basics, and YAML syntax</p>
+</section>
+<section id="why-orchestration-matters">
+<h2>Why Orchestration Matters<a class="headerlink" href="#why-orchestration-matters" title="Link to this heading"></a></h2>
+<p><strong>The Multi-Container Challenge</strong></p>
+<p>Modern applications face several complexity challenges:</p>
+<ul class="simple">
+<li><p><strong>Service Discovery:</strong> How does the web app find the database?</p></li>
+<li><p><strong>Load Balancing:</strong> How do you distribute traffic across multiple instances?</p></li>
+<li><p><strong>Health Monitoring:</strong> What happens when a service crashes?</p></li>
+<li><p><strong>Rolling Updates:</strong> How do you update services without downtime?</p></li>
+<li><p><strong>Resource Management:</strong> How do you ensure services get the resources they need?</p></li>
+<li><p><strong>Configuration Management:</strong> How do you handle different environments?</p></li>
+</ul>
+<p><strong>Orchestration Solutions Landscape:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Complexity</p></th>
+<th class="head"><p>Scale</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Docker Compose</strong></p></td>
+<td><p>Development, Testing</p></td>
+<td><p>Low</p></td>
+<td><p>Single Host</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Docker Swarm</strong></p></td>
+<td><p>Simple Production</p></td>
+<td><p>Medium</p></td>
+<td><p>Multi-Host</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Kubernetes</strong></p></td>
+<td><p>Enterprise Production</p></td>
+<td><p>High</p></td>
+<td><p>Massive Scale</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Nomad</strong></p></td>
+<td><p>Mixed Workloads</p></td>
+<td><p>Medium</p></td>
+<td><p>Multi-Cloud</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="docker-compose-deep-dive">
+<h2>Docker Compose Deep Dive<a class="headerlink" href="#docker-compose-deep-dive" title="Link to this heading"></a></h2>
+<p><strong>What is Docker Compose?</strong></p>
+<p>Docker Compose is a tool for defining and running multi-container applications. You describe your entire application stack in a single YAML file, then bring it up with one command.</p>
+<p><strong>Core Concepts:</strong></p>
+<ul class="simple">
+<li><p><strong>Services:</strong> Individual containers that make up your application</p></li>
+<li><p><strong>Networks:</strong> Communication channels between services</p></li>
+<li><p><strong>Volumes:</strong> Persistent data storage shared between containers</p></li>
+<li><p><strong>Environment:</strong> Configuration that changes between deployments</p></li>
+</ul>
+<p><strong>A Real-World Example: Full-Stack Web Application</strong></p>
+<p>Let’s build a complete web application with frontend, backend, database, and cache:</p>
+<p><strong>Project Structure:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>web-app/
+├── docker-compose.yml
+├── frontend/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── src/
+├── backend/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── app.py
+└── nginx/
+    └── nginx.conf
+</pre></div>
+</div>
+<p><strong>Backend API (Flask):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend/app.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Database connection</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_db</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;postgres&#39;</span><span class="p">),</span>
+        <span class="n">database</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;webapp&#39;</span><span class="p">),</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;postgres&#39;</span><span class="p">),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Redis connection</span>
+<span class="n">cache</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REDIS_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;redis&#39;</span><span class="p">),</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span>
+    <span class="n">decode_responses</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/health&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">health_check</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;healthy&#39;</span><span class="p">,</span> <span class="s1">&#39;service&#39;</span><span class="p">:</span> <span class="s1">&#39;backend&#39;</span><span class="p">})</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/users&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">users</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+        <span class="c1"># Store in database</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;INSERT INTO users (name, email) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) RETURNING id&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="c1"># Cache the user</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;user:</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">ex</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;User created&#39;</span><span class="p">}),</span> <span class="mi">201</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Get from database</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT id, name, email FROM users&quot;</span><span class="p">)</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">([</span>
+            <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">users</span>
+        <span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Backend Dockerfile:</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># backend/Dockerfile</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Install system dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gcc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>postgresql-client<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Install Python dependencies</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Copy application code</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">5000</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Requirements file:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># backend/requirements.txt
+Flask==2.3.3
+Flask-CORS==4.0.0
+redis==5.0.0
+psycopg2-binary==2.9.7
+</pre></div>
+</div>
+<p><strong>The Complete docker-compose.yml:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Frontend (React/nginx)</span>
+<span class="w">  </span><span class="nt">frontend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./frontend</span>
+<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3000:80&quot;</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REACT_APP_API_URL=http://localhost:5000</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-network</span>
+
+<span class="w">  </span><span class="c1"># Backend API</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend</span>
+<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5000:5000&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_HOST=postgres</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_NAME=webapp</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_USER=postgres</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_PASSWORD=securepassword</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REDIS_HOST=redis</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+<span class="w">      </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_started</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend:/app</span><span class="w">  </span><span class="c1"># Hot reload for development</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-network</span>
+
+<span class="w">  </span><span class="c1"># PostgreSQL Database</span>
+<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15-alpine</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_DB=webapp</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_USER=postgres</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=securepassword</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./init.sql:/docker-entrypoint-initdb.d/init.sql:ro</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD-SHELL&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">postgres&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-network</span>
+
+<span class="w">  </span><span class="c1"># Redis Cache</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7-alpine</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis-server --appendonly yes</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis_data:/data</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;redis-cli&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ping&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-network</span>
+
+<span class="w">  </span><span class="c1"># Reverse Proxy (Production)</span>
+<span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:alpine</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./nginx/nginx.conf:/etc/nginx/nginx.conf:ro</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-network</span>
+
+<span class="c1"># Persistent storage</span>
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="nt">redis_data</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+
+<span class="c1"># Custom network for service communication</span>
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">app-network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+<span class="w">    </span><span class="nt">ipam</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.20.0.0/16</span>
+</pre></div>
+</div>
+<p><strong>Database Initialization:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- init.sql</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="s1">&#39;Alice Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;alice@example.com&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Bob Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bob@example.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="compose-commands-mastery">
+<h2>Compose Commands Mastery<a class="headerlink" href="#compose-commands-mastery" title="Link to this heading"></a></h2>
+<p><strong>Essential Lifecycle Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the entire application</span>
+docker-compose<span class="w"> </span>up
+
+<span class="c1"># Start in background (detached mode)</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Build images before starting</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+
+<span class="c1"># Start specific services only</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>frontend<span class="w"> </span>backend
+
+<span class="c1"># View running services</span>
+docker-compose<span class="w"> </span>ps
+
+<span class="c1"># View service logs</span>
+docker-compose<span class="w"> </span>logs
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend<span class="w">  </span><span class="c1"># Follow logs for specific service</span>
+
+<span class="c1"># Stop services gracefully</span>
+docker-compose<span class="w"> </span>stop
+
+<span class="c1"># Stop and remove containers, networks, volumes</span>
+docker-compose<span class="w"> </span>down
+
+<span class="c1"># Remove everything including volumes (destructive!)</span>
+docker-compose<span class="w"> </span>down<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>Development Workflow Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rebuild a specific service</span>
+docker-compose<span class="w"> </span>build<span class="w"> </span>backend
+
+<span class="c1"># Restart a service (useful after code changes)</span>
+docker-compose<span class="w"> </span>restart<span class="w"> </span>backend
+
+<span class="c1"># Scale services horizontally</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--scale<span class="w"> </span><span class="nv">backend</span><span class="o">=</span><span class="m">3</span>
+
+<span class="c1"># Execute commands in running containers</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>webapp
+
+<span class="c1"># Run one-off commands</span>
+docker-compose<span class="w"> </span>run<span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;Hello from container&#39;)&quot;</span>
+</pre></div>
+</div>
+<p><strong>Monitoring and Debugging:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View resource usage</span>
+docker-compose<span class="w"> </span>top
+
+<span class="c1"># Monitor logs from all services</span>
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f
+
+<span class="c1"># Check service health</span>
+docker-compose<span class="w"> </span>ps<span class="w"> </span>--services<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;status=running&quot;</span>
+
+<span class="c1"># Get IP addresses of services</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>nslookup<span class="w"> </span>postgres
+</pre></div>
+</div>
+</section>
+<section id="advanced-compose-features">
+<h2>Advanced Compose Features<a class="headerlink" href="#advanced-compose-features" title="Link to this heading"></a></h2>
+<p><strong>Environment-Specific Configurations</strong></p>
+<p><strong>Base compose file (docker-compose.yml):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_HOST=postgres</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend:/app</span>
+</pre></div>
+</div>
+<p><strong>Development override (docker-compose.override.yml):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG=true</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOG_LEVEL=debug</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5000:5000&quot;</span>
+</pre></div>
+</div>
+<p><strong>Production override (docker-compose.prod.yml):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG=false</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOG_LEVEL=warning</span>
+<span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512M</span>
+<span class="w">        </span><span class="nt">reservations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256M</span>
+</pre></div>
+</div>
+<p><strong>Usage:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Development (uses override.yml automatically)</span>
+docker-compose<span class="w"> </span>up
+
+<span class="c1"># Production</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>up
+</pre></div>
+</div>
+<p><strong>Secrets Management:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use external secrets (Docker Swarm)</span>
+<span class="nt">secrets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db_password</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_password</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_PASSWORD_FILE=/run/secrets/db_password</span>
+</pre></div>
+</div>
+<p><strong>Health Checks and Dependencies:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD-SHELL&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pg_isready&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">      </span><span class="nt">start_period</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60s</span>
+
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+</pre></div>
+</div>
+</section>
+<section id="production-considerations">
+<h2>Production Considerations<a class="headerlink" href="#production-considerations" title="Link to this heading"></a></h2>
+<p><strong>Resource Limits and Constraints:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.0&#39;</span>
+<span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1G</span>
+<span class="w">        </span><span class="nt">reservations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1.0&#39;</span>
+<span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512M</span>
+<span class="w">      </span><span class="nt">restart_policy</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">on-failure</span>
+<span class="w">        </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">        </span><span class="nt">max_attempts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</pre></div>
+</div>
+<p><strong>Logging Configuration:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;json-file&quot;</span>
+<span class="w">      </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">max-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10m&quot;</span>
+<span class="w">        </span><span class="nt">max-file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+</pre></div>
+</div>
+<p><strong>Security Hardening:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1000:1000&quot;</span><span class="w">  </span><span class="c1"># Non-root user</span>
+<span class="w">    </span><span class="nt">read_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">     </span><span class="c1"># Read-only root filesystem</span>
+<span class="w">    </span><span class="nt">tmpfs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp</span><span class="w">            </span><span class="c1"># Writable temporary filesystem</span>
+<span class="w">    </span><span class="nt">security_opt</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no-new-privileges:true</span>
+</pre></div>
+</div>
+</section>
+<section id="docker-swarm-introduction">
+<h2>Docker Swarm Introduction<a class="headerlink" href="#docker-swarm-introduction" title="Link to this heading"></a></h2>
+<p><strong>When to Use Swarm vs Kubernetes</strong></p>
+<p>Docker Swarm is Docker’s native clustering solution:</p>
+<p><strong>Swarm Advantages:</strong></p>
+<ul class="simple">
+<li><p><strong>Simple setup:</strong> Easy to learn if you know Docker Compose</p></li>
+<li><p><strong>Built-in:</strong> Comes with Docker Engine</p></li>
+<li><p><strong>Familiar syntax:</strong> Uses compose file format</p></li>
+<li><p><strong>Good enough:</strong> Handles most production scenarios</p></li>
+</ul>
+<p><strong>Kubernetes Advantages:</strong></p>
+<ul class="simple">
+<li><p><strong>Feature-rich:</strong> More advanced scheduling and networking</p></li>
+<li><p><strong>Ecosystem:</strong> Vast ecosystem of tools and operators</p></li>
+<li><p><strong>Industry standard:</strong> Most cloud providers have managed Kubernetes</p></li>
+<li><p><strong>Flexibility:</strong> Supports complex deployment patterns</p></li>
+</ul>
+<p><strong>Basic Swarm Setup:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a swarm (on manager node)</span>
+docker<span class="w"> </span>swarm<span class="w"> </span>init
+
+<span class="c1"># Join worker nodes (run on worker machines)</span>
+docker<span class="w"> </span>swarm<span class="w"> </span>join<span class="w"> </span>--token<span class="w"> </span>&lt;worker-token&gt;<span class="w"> </span>&lt;manager-ip&gt;:2377
+
+<span class="c1"># Deploy compose application to swarm</span>
+docker<span class="w"> </span>stack<span class="w"> </span>deploy<span class="w"> </span>-c<span class="w"> </span>docker-compose.yml<span class="w"> </span>myapp
+
+<span class="c1"># List stacks</span>
+docker<span class="w"> </span>stack<span class="w"> </span>ls
+
+<span class="c1"># List services in a stack</span>
+docker<span class="w"> </span>stack<span class="w"> </span>services<span class="w"> </span>myapp
+
+<span class="c1"># Check service logs</span>
+docker<span class="w"> </span>service<span class="w"> </span>logs<span class="w"> </span>myapp_backend
+
+<span class="c1"># Scale a service</span>
+docker<span class="w"> </span>service<span class="w"> </span>scale<span class="w"> </span><span class="nv">myapp_backend</span><span class="o">=</span><span class="m">5</span>
+
+<span class="c1"># Remove stack</span>
+docker<span class="w"> </span>stack<span class="w"> </span>rm<span class="w"> </span>myapp
+</pre></div>
+</div>
+</section>
+<section id="development-best-practices">
+<h2>Development Best Practices<a class="headerlink" href="#development-best-practices" title="Link to this heading"></a></h2>
+<p><strong>Project Organization:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>project/
+├── docker-compose.yml          # Main compose file
+├── docker-compose.override.yml # Development overrides
+├── docker-compose.prod.yml     # Production config
+├── .env                        # Environment variables
+├── .env.example               # Template for environment vars
+├── services/
+│   ├── frontend/
+│   ├── backend/
+│   └── database/
+└── docs/
+    └── deployment.md
+</pre></div>
+</div>
+<p><strong>Environment Variables:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># .env file</span>
+<span class="nv">COMPOSE_PROJECT_NAME</span><span class="o">=</span>myapp
+<span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>dev_password_change_in_prod
+<span class="nv">REDIS_URL</span><span class="o">=</span>redis://redis:6379
+<span class="nv">API_URL</span><span class="o">=</span>http://localhost:5000
+</pre></div>
+</div>
+<p><strong>Development Workflow:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial setup</span>
+git<span class="w"> </span>clone<span class="w"> </span>&lt;repository&gt;
+<span class="nb">cd</span><span class="w"> </span>project
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<span class="c1"># Edit .env with your values</span>
+
+<span class="c1"># Start development environment</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Run tests</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>pytest
+
+<span class="c1"># Access database</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>postgres
+
+<span class="c1"># View logs</span>
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend
+
+<span class="c1"># Clean shutdown</span>
+docker-compose<span class="w"> </span>down
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-guide">
+<h2>Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h2>
+<p><strong>Common Issues and Solutions:</strong></p>
+<p><strong>Services can’t communicate:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if services are on the same network</span>
+docker<span class="w"> </span>network<span class="w"> </span>ls
+docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>&lt;network_name&gt;
+
+<span class="c1"># Test connectivity between services</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>frontend<span class="w"> </span>ping<span class="w"> </span>backend
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>nslookup<span class="w"> </span>postgres
+</pre></div>
+</div>
+<p><strong>Port already in use:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find what&#39;s using the port</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:5000<span class="w">  </span><span class="c1"># macOS/Linux</span>
+netstat<span class="w"> </span>-ano<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>:5000<span class="w">  </span><span class="c1"># Windows</span>
+
+<span class="c1"># Change port in compose file or stop conflicting service</span>
+</pre></div>
+</div>
+<p><strong>Permission issues with volumes:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix with user mapping</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${UID}:${GID}&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend:/app</span>
+</pre></div>
+</div>
+<p><strong>Database connection issues:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check database is ready</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>pg_isready
+
+<span class="c1"># Check database logs</span>
+docker-compose<span class="w"> </span>logs<span class="w"> </span>postgres
+
+<span class="c1"># Test connection manually</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">import psycopg2</span>
+<span class="s2">conn = psycopg2.connect(&#39;host=postgres user=postgres password=password&#39;)</span>
+<span class="s2">print(&#39;Connected successfully&#39;)</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-exercises">
+<h2>Practical Exercises<a class="headerlink" href="#practical-exercises" title="Link to this heading"></a></h2>
+<p><strong>Exercise 1: WordPress Stack</strong></p>
+<p>Create a compose file for WordPress with MySQL and Redis cache.</p>
+<p><strong>Exercise 2: Microservices Demo</strong></p>
+<p>Build a microservices application with API gateway, user service, and product service.</p>
+<p><strong>Exercise 3: Development Environment</strong></p>
+<p>Set up a development environment with hot reloading, test database, and debugging tools.</p>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>You now understand how to orchestrate multi-container applications for development and simple production scenarios. The next chapter covers container security, monitoring, and best practices for production deployments.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul class="simple">
+<li><p>Docker Compose simplifies multi-container application management</p></li>
+<li><p>Service discovery and networking are handled automatically</p></li>
+<li><p>Health checks and dependencies ensure proper startup order</p></li>
+<li><p>Environment-specific configurations enable dev/test/prod workflows</p></li>
+<li><p>Resource limits and logging are essential for production</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Production Path:</strong> While Compose is great for development, production workloads typically benefit from Kubernetes for advanced features like auto-scaling, rolling updates, and multi-cluster deployments.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5_management.html" class="btn btn-neutral float-left" title="8.5 Container Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="7_test.html" class="btn btn-neutral float-right" title="8.7 Container Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

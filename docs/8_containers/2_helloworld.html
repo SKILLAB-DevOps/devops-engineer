@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.2 Your First Container &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.3 Container Fundamentals" href="3_workingwithdocker.html" />
+    <link rel="prev" title="8.1 Getting Started" href="1_installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.2 Your First Container</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/2_helloworld.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="your-first-container">
+<h1>8.2 Your First Container<a class="headerlink" href="#your-first-container" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/containers.png"><img alt="A diagram showing the process of running your first container" src="../_images/containers.png" style="width: 600px;" />
+</a>
+<p><strong>From Installation to Action</strong></p>
+<p>You’ve got Docker or Podman installed - now comes the exciting part: running your first container. This isn’t just a “hello world” exercise; we’ll explore what’s actually happening behind the scenes and build practical skills you’ll use every day.</p>
+<p>By the end of this section, you’ll understand how containers start, how they differ from traditional processes, and how to inspect and manage them effectively.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Run</strong> your first container and understand what happens during execution</p></li>
+<li><p><strong>Explore</strong> container internals using inspection and debugging commands</p></li>
+<li><p><strong>Manage</strong> container lifecycle (start, stop, remove, list)</p></li>
+<li><p><strong>Understand</strong> container networking and port mapping basics</p></li>
+<li><p><strong>Build</strong> confidence with essential container management commands</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Completed container platform installation from the previous section</p>
+</section>
+<section id="the-classic-hello-world">
+<h2>The Classic “Hello World”<a class="headerlink" href="#the-classic-hello-world" title="Link to this heading"></a></h2>
+<p><strong>Your First Command</strong></p>
+<p>Let’s start with the most famous container command in the world:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker users:</span>
+docker<span class="w"> </span>run<span class="w"> </span>hello-world
+
+<span class="c1"># Podman users:</span>
+podman<span class="w"> </span>run<span class="w"> </span>hello-world
+</pre></div>
+</div>
+<p><strong>What Just Happened?</strong></p>
+<p>When you ran this command, several important things occurred:</p>
+<ol class="arabic simple">
+<li><p><strong>Image Pull:</strong> The platform downloaded the <cite>hello-world</cite> image from the registry</p></li>
+<li><p><strong>Container Creation:</strong> A new container was created from that image</p></li>
+<li><p><strong>Process Execution:</strong> The container ran its default command</p></li>
+<li><p><strong>Output Display:</strong> The program printed a message and exited</p></li>
+<li><p><strong>Container Termination:</strong> The container stopped (but still exists)</p></li>
+</ol>
+<p><strong>The Output Explained:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+</pre></div>
+</div>
+<p>This simple example demonstrates the entire container lifecycle in action.</p>
+</section>
+<section id="understanding-what-happened">
+<h2>Understanding What Happened<a class="headerlink" href="#understanding-what-happened" title="Link to this heading"></a></h2>
+<p><strong>Behind the Scenes</strong></p>
+<p>Let’s verify what actually occurred and learn essential management commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all containers (including stopped ones)</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+<span class="c1"># or: podman ps -a</span>
+</pre></div>
+</div>
+<p>You should see output similar to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+abc123def456   hello-world   &quot;/hello&quot;   2 minutes ago   Exited (0) 2 minutes ago             inspiring_newton
+</pre></div>
+</div>
+<p><strong>Key Information Revealed:</strong></p>
+<ul class="simple">
+<li><p><strong>Container ID:</strong> Unique identifier (abc123def456)</p></li>
+<li><p><strong>Image:</strong> Source image used (hello-world)</p></li>
+<li><p><strong>Command:</strong> What the container executed (/hello)</p></li>
+<li><p><strong>Status:</strong> Current state (Exited with code 0 = success)</p></li>
+<li><p><strong>Names:</strong> Random name assigned (inspiring_newton)</p></li>
+</ul>
+<p><strong>Inspect Container Details:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get detailed container information (replace with your container ID)</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>abc123def456
+<span class="c1"># or: podman inspect abc123def456</span>
+</pre></div>
+</div>
+<p>This reveals everything about the container: network settings, mounted volumes, environment variables, and more.</p>
+</section>
+<section id="interactive-containers">
+<h2>Interactive Containers<a class="headerlink" href="#interactive-containers" title="Link to this heading"></a></h2>
+<p><strong>Beyond Hello World</strong></p>
+<p>Let’s run something more interesting - an interactive Linux container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run an Ubuntu container with interactive terminal</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+<span class="c1"># or: podman run -it ubuntu:22.04 /bin/bash</span>
+</pre></div>
+</div>
+<p><strong>Command Breakdown:</strong></p>
+<ul class="simple">
+<li><p><cite>run</cite>: Create and start a new container</p></li>
+<li><p><cite>-i</cite>: Keep STDIN open (interactive)</p></li>
+<li><p><cite>-t</cite>: Allocate a pseudo-TTY (terminal)</p></li>
+<li><p><cite>ubuntu:22.04</cite>: Use Ubuntu 22.04 LTS image</p></li>
+<li><p><cite>/bin/bash</cite>: Run bash shell instead of default command</p></li>
+</ul>
+<p><strong>Inside the Container:</strong></p>
+<p>Once inside, you’re in a complete Linux environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the operating system</span>
+cat<span class="w"> </span>/etc/os-release
+
+<span class="c1"># See running processes</span>
+ps<span class="w"> </span>aux
+
+<span class="c1"># Check available disk space</span>
+df<span class="w"> </span>-h
+
+<span class="c1"># Install software (try it!)</span>
+apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl
+
+<span class="c1"># Test network connectivity</span>
+curl<span class="w"> </span>-s<span class="w"> </span>https://httpbin.org/ip
+
+<span class="c1"># Exit the container</span>
+<span class="nb">exit</span>
+</pre></div>
+</div>
+<p><strong>What’s Fascinating Here:</strong></p>
+<ul class="simple">
+<li><p>You’re in a complete Ubuntu system, but it started in seconds</p></li>
+<li><p>It’s isolated from your host operating system</p></li>
+<li><p>You can install software without affecting your host</p></li>
+<li><p>When you exit, all changes are lost (unless saved)</p></li>
+</ul>
+</section>
+<section id="container-management">
+<h2>Container Management<a class="headerlink" href="#container-management" title="Link to this heading"></a></h2>
+<p><strong>Essential Lifecycle Commands</strong></p>
+<p><strong>Listing Containers:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show running containers only</span>
+docker<span class="w"> </span>ps
+
+<span class="c1"># Show all containers (running and stopped)</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+
+<span class="c1"># Show container sizes</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-s
+
+<span class="c1"># Custom formatting</span>
+docker<span class="w"> </span>ps<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;table {{.Names}}\t{{.Status}}\t{{.Image}}&quot;</span>
+</pre></div>
+</div>
+<p><strong>Starting and Stopping:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start a stopped container</span>
+docker<span class="w"> </span>start<span class="w"> </span>container_name_or_id
+
+<span class="c1"># Stop a running container gracefully</span>
+docker<span class="w"> </span>stop<span class="w"> </span>container_name_or_id
+
+<span class="c1"># Force stop a container</span>
+docker<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>container_name_or_id
+
+<span class="c1"># Restart a container</span>
+docker<span class="w"> </span>restart<span class="w"> </span>container_name_or_id
+</pre></div>
+</div>
+<p><strong>Connecting to Running Containers:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute commands in running containers</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container_name<span class="w"> </span>/bin/bash
+
+<span class="c1"># Run a single command</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>container_name<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/app
+
+<span class="c1"># Check container logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>container_name
+
+<span class="c1"># Follow logs in real-time</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>container_name
+</pre></div>
+</div>
+<p><strong>Container Cleanup:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove a stopped container</span>
+docker<span class="w"> </span>rm<span class="w"> </span>container_name_or_id
+
+<span class="c1"># Remove multiple containers</span>
+docker<span class="w"> </span>rm<span class="w"> </span>container1<span class="w"> </span>container2<span class="w"> </span>container3
+
+<span class="c1"># Remove all stopped containers</span>
+docker<span class="w"> </span>container<span class="w"> </span>prune
+
+<span class="c1"># Force remove a running container</span>
+docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>container_name
+</pre></div>
+</div>
+</section>
+<section id="running-web-applications">
+<h2>Running Web Applications<a class="headerlink" href="#running-web-applications" title="Link to this heading"></a></h2>
+<p><strong>A Real-World Example</strong></p>
+<p>Let’s run a web server to understand networking:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run nginx web server with port mapping</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>--name<span class="w"> </span>my-web-server<span class="w"> </span>nginx:alpine
+<span class="c1"># or: podman run -d -p 8080:80 --name my-web-server nginx:alpine</span>
+</pre></div>
+</div>
+<p><strong>Command Explanation:</strong></p>
+<ul class="simple">
+<li><p><cite>-d</cite>: Run in detached mode (background)</p></li>
+<li><p><cite>-p 8080:80</cite>: Map host port 8080 to container port 80</p></li>
+<li><p><cite>–name my-web-server</cite>: Give the container a friendly name</p></li>
+<li><p><cite>nginx:alpine</cite>: Use lightweight Alpine-based nginx image</p></li>
+</ul>
+<p><strong>Test Your Web Server:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if container is running</span>
+docker<span class="w"> </span>ps
+
+<span class="c1"># Test the web server</span>
+curl<span class="w"> </span>http://localhost:8080
+
+<span class="c1"># Or open in your browser: http://localhost:8080</span>
+</pre></div>
+</div>
+<p><strong>Modify the Web Content:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy a file into the running container</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;h1&gt;Hello from my container!&lt;/h1&gt;&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>index.html
+docker<span class="w"> </span>cp<span class="w"> </span>index.html<span class="w"> </span>my-web-server:/usr/share/nginx/html/index.html
+
+<span class="c1"># Refresh your browser to see the change</span>
+</pre></div>
+</div>
+<p><strong>Monitor the Container:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch resource usage</span>
+docker<span class="w"> </span>stats<span class="w"> </span>my-web-server
+
+<span class="c1"># View logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>my-web-server
+
+<span class="c1"># Execute commands inside</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>my-web-server<span class="w"> </span>/bin/sh
+</pre></div>
+</div>
+</section>
+<section id="image-management-basics">
+<h2>Image Management Basics<a class="headerlink" href="#image-management-basics" title="Link to this heading"></a></h2>
+<p><strong>Understanding Images vs Containers</strong></p>
+<p>Images are templates; containers are running instances:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List downloaded images</span>
+docker<span class="w"> </span>images
+<span class="c1"># or: docker image ls</span>
+
+<span class="c1"># Pull an image without running it</span>
+docker<span class="w"> </span>pull<span class="w"> </span>python:3.11-slim
+
+<span class="c1"># Remove an image</span>
+docker<span class="w"> </span>rmi<span class="w"> </span>image_name:tag
+
+<span class="c1"># Remove unused images</span>
+docker<span class="w"> </span>image<span class="w"> </span>prune
+</pre></div>
+</div>
+<p><strong>Image Information:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect an image</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>nginx:alpine
+
+<span class="c1"># View image layers and history</span>
+docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>nginx:alpine
+
+<span class="c1"># Show image disk usage</span>
+docker<span class="w"> </span>system<span class="w"> </span>df
+</pre></div>
+</div>
+</section>
+<section id="debugging-and-inspection">
+<h2>Debugging and Inspection<a class="headerlink" href="#debugging-and-inspection" title="Link to this heading"></a></h2>
+<p><strong>When Things Go Wrong</strong></p>
+<p><strong>Container Won’t Start:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check what went wrong</span>
+docker<span class="w"> </span>logs<span class="w"> </span>container_name
+
+<span class="c1"># Run container interactively to debug</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--entrypoint<span class="w"> </span>/bin/sh<span class="w"> </span>image_name
+
+<span class="c1"># Inspect container configuration</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>container_name
+</pre></div>
+</div>
+<p><strong>Performance Issues:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monitor resource usage</span>
+docker<span class="w"> </span>stats
+
+<span class="c1"># Check system resource usage</span>
+docker<span class="w"> </span>system<span class="w"> </span>df
+
+<span class="c1"># View container processes</span>
+docker<span class="w"> </span>top<span class="w"> </span>container_name
+</pre></div>
+</div>
+<p><strong>Network Connectivity:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List networks</span>
+docker<span class="w"> </span>network<span class="w"> </span>ls
+
+<span class="c1"># Inspect network configuration</span>
+docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>bridge
+
+<span class="c1"># Test connectivity from inside container</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container_name<span class="w"> </span>ping<span class="w"> </span>google.com
+</pre></div>
+</div>
+</section>
+<section id="practical-exercises">
+<h2>Practical Exercises<a class="headerlink" href="#practical-exercises" title="Link to this heading"></a></h2>
+<p><strong>Exercise 1: Run a Database</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run PostgreSQL database</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>my-postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>mypassword<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>testdb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>postgres:15
+
+<span class="c1"># Connect to the database</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>my-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>-d<span class="w"> </span>testdb
+</pre></div>
+</div>
+<p><strong>Exercise 2: Multi-Container Setup</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run Redis cache</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>my-redis<span class="w"> </span>redis:alpine
+
+<span class="c1"># Run a Python app that connects to Redis</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>my-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--link<span class="w"> </span>my-redis:redis<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>python:3.11-slim<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">import time</span>
+<span class="s2">import redis</span>
+<span class="s2">r = redis.Redis(host=&#39;redis&#39;, port=6379)</span>
+<span class="s2">while True:</span>
+<span class="s2">    r.incr(&#39;visits&#39;)</span>
+<span class="s2">    print(f&#39;Visits: {r.get(\&quot;visits\&quot;).decode()}&#39;)</span>
+<span class="s2">    time.sleep(5)</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p><strong>Exercise 3: Container Cleanup Challenge</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create several test containers</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>test1<span class="w"> </span>nginx:alpine
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>test2<span class="w"> </span>redis:alpine
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>test3<span class="w"> </span>postgres:15
+
+<span class="c1"># Stop all test containers</span>
+docker<span class="w"> </span>stop<span class="w"> </span>test1<span class="w"> </span>test2<span class="w"> </span>test3
+
+<span class="c1"># Remove all test containers</span>
+docker<span class="w"> </span>rm<span class="w"> </span>test1<span class="w"> </span>test2<span class="w"> </span>test3
+
+<span class="c1"># Verify cleanup</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>Container Naming:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Descriptive names</span>
+docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>web-frontend<span class="w"> </span>nginx
+docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>api-backend<span class="w"> </span>python:3.11
+docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>cache-redis<span class="w"> </span>redis
+
+<span class="c1"># Bad: Default random names</span>
+docker<span class="w"> </span>run<span class="w"> </span>nginx<span class="w">  </span><span class="c1"># Gets name like &quot;elegant_einstein&quot;</span>
+</pre></div>
+</div>
+<p><strong>Resource Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Limit memory and CPU</span>
+docker<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>512m<span class="w"> </span>--cpus<span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span>nginx
+
+<span class="c1"># Set restart policy</span>
+docker<span class="w"> </span>run<span class="w"> </span>--restart<span class="o">=</span>unless-stopped<span class="w"> </span>nginx
+</pre></div>
+</div>
+<p><strong>Regular Cleanup:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Weekly cleanup routine</span>
+docker<span class="w"> </span>container<span class="w"> </span>prune<span class="w">  </span><span class="c1"># Remove stopped containers</span>
+docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w">      </span><span class="c1"># Remove unused images</span>
+docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w">     </span><span class="c1"># Remove unused volumes</span>
+docker<span class="w"> </span>network<span class="w"> </span>prune<span class="w">    </span><span class="c1"># Remove unused networks</span>
+
+<span class="c1"># Or clean everything unused</span>
+docker<span class="w"> </span>system<span class="w"> </span>prune<span class="w"> </span>-a
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>You’ve mastered the basics of running and managing containers. In the next section, we’ll learn how to create your own container images using Dockerfiles, transforming your applications into portable, shareable containers.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul class="simple">
+<li><p>Containers are lightweight, isolated processes</p></li>
+<li><p>They start quickly and can be managed easily</p></li>
+<li><p>Port mapping enables network access to containerized services</p></li>
+<li><p>Container lifecycle management is essential for effective development</p></li>
+<li><p>Images are templates; containers are running instances</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Practice Makes Perfect:</strong> The commands you’ve learned in this section form the foundation of daily container work. Practice them regularly until they become second nature.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_installation.html" class="btn btn-neutral float-left" title="8.1 Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3_workingwithdocker.html" class="btn btn-neutral float-right" title="8.3 Container Fundamentals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
