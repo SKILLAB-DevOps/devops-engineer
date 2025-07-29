@@ -1,0 +1,551 @@
+##########################
+8.4.5 Container Registries
+##########################
+
+**The Container Distribution Challenge**
+
+You've built your application into a container image, but now you need to share it with your team, deploy it to staging, and ultimately run it in production. Container registries solve this fundamental distribution problem by providing centralized, secure storage for container images with versioning, access control, and global distribution capabilities.
+
+Think of a container registry as a specialized package manager for container images - it handles storage, versioning, security scanning, and distribution across your infrastructure.
+
+===================
+Learning Objectives
+===================
+
+By the end of this section, you will:
+
+• **Understand** how container registries work and why they're essential
+• **Push and pull** images to/from DockerHub and private registries
+• **Deploy** your own private Docker registry with security and authentication
+• **Implement** image versioning and lifecycle management strategies
+• **Configure** automated security scanning and vulnerability management
+• **Design** registry architecture for enterprise environments
+
+**Prerequisites:** Understanding of Docker basics, image building, and container fundamentals
+
+===========================
+Container Registry Concepts
+===========================
+
+**What is a Container Registry?**
+
+A container registry is a repository for storing and distributing container images. It provides:
+
+- **Centralized Storage:** Single location for all your container images
+- **Version Management:** Multiple tags and versions of the same image
+- **Access Control:** Authentication and authorization for security
+- **Distribution:** Efficient image pulling across multiple environments
+- **Metadata:** Image information, vulnerability scans, and build history
+
+**Registry vs Repository vs Tag**
+
+Understanding the hierarchy is crucial:
+
+.. code-block:: text
+
+    Registry: docker.io (DockerHub)
+    └── Repository: nginx
+        ├── Tag: latest
+        ├── Tag: 1.21-alpine
+        └── Tag: stable
+
+    Full Image Reference: docker.io/nginx:1.21-alpine
+
+**Public vs Private Registries**
+
+**Public Registries:**
+
+- Free to use for public images
+- Great for open source projects
+- No access control needed
+- Examples: DockerHub, Quay.io
+
+**Private Registries:**
+
+- Controlled access to your images
+- Required for proprietary applications
+- Enhanced security features
+- Can be self-hosted or cloud-managed
+
+======================
+Working with DockerHub
+======================
+
+**Setting Up DockerHub Access**
+
+**1. Create DockerHub Account**
+
+Visit https://hub.docker.com and create your account.
+
+**2. Login from Command Line**
+
+.. code-block:: bash
+
+    # Login to DockerHub
+    docker login
+    
+    # Login with specific credentials
+    docker login -u yourusername -p yourpassword
+    
+    # Login using access token (recommended)
+    echo $DOCKER_ACCESS_TOKEN | docker login -u yourusername --password-stdin
+
+**3. Create Access Token (Recommended)**
+
+Instead of using your password, create an access token:
+
+1. Go to DockerHub → Account Settings → Security
+2. Click "New Access Token"
+3. Give it a descriptive name and appropriate permissions
+4. Save the token securely
+
+.. warning::
+
+    **Security Best Practice:** Never use your DockerHub password in scripts or CI/CD pipelines. Always use access tokens with limited permissions.
+
+**Pushing Images to DockerHub**
+
+**1. Tag Your Image Properly**
+
+.. code-block:: bash
+
+    # Build your image
+    docker build -t myapp .
+    
+    # Tag for DockerHub (username/repository:tag)
+    docker tag myapp yourusername/myapp:latest
+    docker tag myapp yourusername/myapp:v1.0.0
+    
+    # List your images
+    docker images
+
+**2. Push to DockerHub**
+
+.. code-block:: bash
+
+    # Push specific tag
+    docker push yourusername/myapp:v1.0.0
+    
+    # Push all tags
+    docker push yourusername/myapp --all-tags
+
+**3. Verify the Upload**
+
+.. code-block:: bash
+
+    # Pull from another machine to test
+    docker pull yourusername/myapp:v1.0.0
+    
+    # Run the pulled image
+    docker run yourusername/myapp:v1.0.0
+
+**DockerHub Repository Management**
+
+**1. Repository Settings**
+
+Configure your repository through the DockerHub web interface:
+
+- **Description:** Clear explanation of your application
+- **README:** Detailed usage instructions
+- **Build Settings:** Automated builds from Git repositories
+- **Webhooks:** Trigger actions when images are pushed
+
+**2. Automated Builds**
+
+Connect your GitHub/Bitbucket repository for automatic builds:
+
+.. code-block:: yaml
+
+    # Example .github/workflows/docker-publish.yml
+    name: Docker Build and Push
+    
+    on:
+      push:
+        branches: [ main ]
+        tags: [ 'v*' ]
+    
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          
+          - name: Login to DockerHub
+            uses: docker/login-action@v2
+            with:
+              username: ${{ secrets.DOCKERHUB_USERNAME }}
+              password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+          - name: Build and push
+            uses: docker/build-push-action@v4
+            with:
+              push: true
+              tags: |
+                yourusername/myapp:latest
+                yourusername/myapp:${{ github.ref_name }}
+
+**3. Multi-Architecture Images**
+
+Build images that work on different CPU architectures:
+
+.. code-block:: bash
+
+    # Create and use multi-platform builder
+    docker buildx create --name multiarch --use
+    
+    # Build for multiple platforms
+    docker buildx build \
+      --platform linux/amd64,linux/arm64,linux/arm/v7 \
+      --push \
+      -t yourusername/myapp:multiarch .
+
+============================
+Deploying Private Registries
+============================
+
+**Why Private Registries?**
+
+- **Security:** Keep proprietary images private
+- **Control:** Manage access and policies
+- **Performance:** Local caching reduces pull times
+- **Compliance:** Meet regulatory requirements
+- **Cost:** Avoid bandwidth charges for large images
+
+**Method 2: Harbor Enterprise Registry**
+
+Harbor provides enterprise-grade features:
+
+.. code-block:: yaml
+
+    # docker-compose.yml for Harbor
+    version: '3.8'
+    
+    services:
+      harbor-log:
+        image: goharbor/harbor-log:v2.7.0
+        container_name: harbor-log
+        restart: always
+        volumes:
+          - ./harbor-data/log:/var/log/docker/:z
+          - type: bind
+            source: ./harbor-config/log/logrotate.conf
+            target: /etc/logrotate.d/docker
+        ports:
+          - 127.0.0.1:1514:10514
+    
+      registry:
+        image: goharbor/registry-photon:v2.7.0
+        container_name: registry
+        restart: always
+        volumes:
+          - ./harbor-data/registry:/storage:z
+          - ./harbor-config/registry/:/etc/registry/:z
+        depends_on:
+          - harbor-log
+        logging:
+          driver: syslog
+          options:
+            syslog-address: tcp://127.0.0.1:1514
+            tag: "registry"
+    
+      harbor-core:
+        image: goharbor/harbor-core:v2.7.0
+        container_name: harbor-core
+        restart: always
+        volumes:
+          - ./harbor-data/ca_download/:/etc/core/ca/:z
+          - ./harbor-data/:/data/:z
+          - ./harbor-config/core/app.conf:/etc/core/app.conf:z
+        depends_on:
+          - harbor-log
+          - registry
+        logging:
+          driver: syslog
+          options:
+            syslog-address: tcp://127.0.0.1:1514
+            tag: "harbor-core"
+    
+      harbor-portal:
+        image: goharbor/harbor-portal:v2.7.0
+        container_name: harbor-portal
+        restart: always
+        depends_on:
+          - harbor-log
+        logging:
+          driver: syslog
+          options:
+            syslog-address: tcp://127.0.0.1:1514
+            tag: "harbor-portal"
+
+
+==============================
+Registry Management & Security
+==============================
+
+**Image Versioning Strategy**
+
+**1. Semantic Versioning**
+
+.. code-block:: bash
+
+    # Use semantic versioning for releases
+    docker tag myapp:latest myapp:1.0.0    # Major release
+    docker tag myapp:latest myapp:1.0.1    # Bug fix
+    docker tag myapp:latest myapp:1.1.0    # Minor feature
+    docker tag myapp:latest myapp:2.0.0    # Breaking changes
+
+**2. Environment-Based Tagging**
+
+.. code-block:: bash
+
+    # Tag by environment
+    docker tag myapp:1.0.0 myapp:dev
+    docker tag myapp:1.0.0 myapp:staging  
+    docker tag myapp:1.0.0 myapp:production
+    
+    # Include git commit hash
+    GIT_HASH=$(git rev-parse --short HEAD)
+    docker tag myapp:latest myapp:${GIT_HASH}
+
+**3. Immutable Tags**
+
+.. code-block:: bash
+
+    # Never reuse tags in production
+    # Bad: Always using 'latest'
+    docker tag myapp:latest myapp:latest
+    
+    # Good: Immutable versioning
+    docker tag myapp:latest myapp:$(date +%Y%m%d)-${BUILD_NUMBER}
+    docker tag myapp:latest myapp:sha-${GIT_HASH}
+
+**Security Scanning**
+
+**1. Vulnerability Scanning with Trivy**
+
+.. code-block:: bash
+
+    # Install Trivy
+    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+    
+    # Scan local image
+    trivy image myapp:latest
+    
+    # Scan with specific severity
+    trivy image --severity HIGH,CRITICAL myapp:latest
+    
+    # Output to JSON for automation
+    trivy image --format json --output results.json myapp:latest
+
+**2. Automated Security Scanning**
+
+.. code-block:: yaml
+
+    # .github/workflows/security-scan.yml
+    name: Container Security Scan
+    
+    on:
+      push:
+        branches: [ main ]
+      pull_request:
+        branches: [ main ]
+    
+    jobs:
+      security-scan:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          
+          - name: Build image
+            run: docker build -t myapp:${{ github.sha }} .
+          
+          - name: Run Trivy vulnerability scanner
+            uses: aquasecurity/trivy-action@master
+            with:
+              image-ref: 'myapp:${{ github.sha }}'
+              format: 'sarif'
+              output: 'trivy-results.sarif'
+          
+          - name: Upload Trivy scan results
+            uses: github/codeql-action/upload-sarif@v2
+            with:
+              sarif_file: 'trivy-results.sarif'
+
+**3. Registry Access Control**
+
+.. code-block:: bash
+
+    # Create role-based access
+    # registry-rbac.conf
+    
+    # Admin users (full access)
+    admin:
+      - pull
+      - push
+      - delete
+    
+    # Developer users (read/write)
+    developer:
+      - pull  
+      - push
+    
+    # CI/CD systems (automated deployment)
+    cicd:
+      - pull
+      - push
+    
+    # Production users (read-only)
+    readonly:
+      - pull
+
+=============================
+Registry Integration Patterns
+=============================
+
+**CI/CD Pipeline Integration**
+
+**1. Build, Test, and Push Pipeline**
+
+.. code-block:: yaml
+
+    # Comprehensive CI/CD pipeline
+    stages:
+      - build
+      - test
+      - security-scan
+      - push
+      - deploy
+    
+    build:
+      script:
+        - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+        - docker build -t $CI_REGISTRY_IMAGE:latest .
+    
+    test:
+      script:
+        - docker run --rm $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA npm test
+    
+    security-scan:
+      script:
+        - trivy image --exit-code 1 --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    
+    push:
+      script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+        - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+        - docker push $CI_REGISTRY_IMAGE:latest
+      only:
+        - main
+    
+    deploy:
+      script:
+        - kubectl set image deployment/myapp myapp=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      only:
+        - main
+
+**2. Multi-Registry Strategy**
+
+.. code-block:: bash
+
+    # Push to multiple registries for redundancy
+    #!/bin/bash
+    
+    IMAGE_NAME="myapp"
+    VERSION="1.0.0"
+    
+    # Primary registry (private)
+    docker tag $IMAGE_NAME:latest registry.company.com/$IMAGE_NAME:$VERSION
+    docker push registry.company.com/$IMAGE_NAME:$VERSION
+    
+    # Backup registry (cloud)
+    docker tag $IMAGE_NAME:latest 123456789.dkr.ecr.us-west-2.amazonaws.com/$IMAGE_NAME:$VERSION
+    docker push 123456789.dkr.ecr.us-west-2.amazonaws.com/$IMAGE_NAME:$VERSION
+    
+    # Public registry (if open source)
+    docker tag $IMAGE_NAME:latest docker.io/username/$IMAGE_NAME:$VERSION
+    docker push docker.io/username/$IMAGE_NAME:$VERSION
+
+**Registry Monitoring and Alerting**
+
+1. Health Monitoring** - check registry status and uptime
+2. Disk Usage Monitoring** - track storage consumption
+3. Access Logs and Auditing** - monitor who accessed what images
+4. Performance Metrics** - response times, pull rates
+
+==============
+Best Practices
+==============
+
+**Registry Security**
+
+1. **Always use HTTPS** in production environments
+2. **Implement authentication** even for internal registries
+3. **Regular security scanning** of stored images
+4. **Role-based access control** for different teams
+5. **Network isolation** - registry in private networks
+6. **Regular backup** of registry data and configuration
+
+**Image Management**
+
+1. **Immutable tags** - never reuse version tags
+2. **Meaningful naming** - clear repository and tag names
+3. **Size optimization** - use multi-stage builds and Alpine base images
+4. **Regular cleanup** - automated removal of old/unused images
+5. **Vulnerability management** - regular scanning and patching
+
+**Operational Excellence**
+
+1. **Monitoring and alerting** for registry health and performance
+2. **Backup and disaster recovery** procedures
+3. **Documentation** of registry policies and procedures
+4. **Capacity planning** for storage and bandwidth
+5. **Performance optimization** - caching and CDN for global distribution
+
+.. note::
+
+    **Production Readiness Checklist:**
+    
+    - HTTPS/TLS encryption configured
+    - Authentication and RBAC implemented
+    - Regular security scanning enabled
+    - Backup procedures tested
+    - Monitoring and alerting configured
+    - Cleanup automation implemented
+    - Documentation complete
+    - Disaster recovery plan tested
+
+=====================
+Hands-On Lab Exercise
+=====================
+
+**Lab: Complete Registry Workflow**
+
+**Objective:** Set up a complete container registry workflow including DockerHub integration, private registry deployment, and CI/CD automation.
+
+**Part 1: DockerHub Integration**
+
+1. Create a simple web application
+2. Write a Dockerfile
+3. Build and test locally
+4. Push to DockerHub
+5. Set up automated builds
+
+============
+What's Next?
+============
+
+Container registries are the foundation of container distribution in production environments. You now understand how to work with public registries like DockerHub, deploy and manage private registries, and integrate them into your CI/CD pipelines.
+
+The next section covers container orchestration with Docker Compose, which builds on these registry concepts to manage multi-container applications. Understanding registries is crucial for the Kubernetes section, where image distribution becomes even more important at scale.
+
+**Key takeaways:**
+
+- Registries enable secure, versioned distribution of container images
+- DockerHub is great for public projects, private registries for enterprise use
+- Security scanning and access control are essential for production
+- Automation and cleanup prevent registries from becoming unmanageable
+- Multi-registry strategies provide redundancy and performance benefits
+
+.. warning::
+
+    **Security Reminder:** Container registries are critical infrastructure components. Treat them with the same security rigor as your databases and ensure proper backup, monitoring, and access controls are in place.

@@ -126,6 +126,7 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    8_containers/2_helloworld
    8_containers/3_workingwithdocker
    8_containers/4_usingdockerfile
+   8_containers/4.5_container_registries
    8_containers/5_management
    8_containers/6_orchestration
    8_containers/7_test

@@ -604,9 +604,9 @@ Build a PostgreSQL image with custom configuration and initialization scripts.
 
 Take an existing Dockerfile and apply security best practices: non-root user, minimal packages, vulnerability scanning.
 
-==============
+============
 What's Next?
-==============
+============
 
 You now understand how to create custom container images that are secure, efficient, and production-ready. In the next section, we'll explore container orchestration with Docker Compose to manage multi-container applications.
 

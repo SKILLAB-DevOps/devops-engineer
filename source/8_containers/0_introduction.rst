@@ -6,7 +6,7 @@
   :alt: A diagram showing the difference between traditional VMs and containers
   :width: 1000 px
 
-**Imagine this scenario:** Your team has built a Python web application that works perfectly on your laptop. But when you try to deploy it to the staging server, you get cryptic dependency errors. The production server runs a different Python version. Your colleague can't even get it running locally because they're missing a system library. Sound familiar?
+**Imagine this scenario:** Your team has built a Python web application that works perfectly on your laptop. But when you try to deploy it to the staging server, you get cryptic dependency errors. The production server runs a different Python version. Your colleague can't even get it running locally because they're missing a system library or some environments variables that you've added in a .env file. Sound familiar?
 
 This is the classic "it works on my machine" problem that has plagued software teams for decades. Containers solve this fundamental challenge by packaging your application with everything it needs to run, creating a consistent experience from development to production.
 
@@ -245,3 +245,79 @@ Containers are perfectly suited for microservices:
 .. warning::
 
     **Security Considerations:** While containers provide isolation, they're not a security panacea. Container security requires proper image scanning, runtime monitoring, and adherence to security best practices covered later in this chapter.
+
+========================
+12 Factor App Principles
+========================
+
+I. Codebase
+
+- What it says: One codebase tracked in version control, many deploys
+- Why it matters: A single authoritative source ensures every environment (dev, staging, prod) is running the same application—not divergent forks.
+- In practice: Keep one Git repo per service. Each deploy (prod, staging, feature branch preview) is just a different instance of that repo at a particular commit or tag.
+
+II. Dependencies
+
+- What it says: Explicitly declare and isolate dependencies
+- Why it matters: Hidden global packages ("it works on my machine!") cause brittle builds.
+- In practice: Use a manifest—package.json, requirements.txt, go.mod, etc.—and containerize or virtual-env so the runtime never reaches outside the declared list.
+
+III. Config
+
+- What it says: Store config in the environment
+- Why it matters: Things that vary between deploys (DB URLs, API keys) shouldn't live in code; that forces recompiles.
+- In practice: Inject values via environment variables or a secrets manager. Commit defaults or schemas, never real credentials.
+
+IV. Backing services
+
+- What it says: Treat backing services as attached resources
+- Why it matters: Databases, queues, and caches should be swappable without changing code.
+- In practice: Your app gets its Postgres connection string from DATABASE_URL; if you point it at RDS today and a local Docker container tomorrow, nothing else changes.
+
+V. Build, release, run
+
+- What it says: Strictly separate build and run stages
+- Why it matters: Reproducible releases. A build artifact (container, JAR, wheel) is immutable; releases just bind config to that artifact, runs execute it.
+- In practice: A CI pipeline that (1) builds a Docker image, (2) tags it with a version, (3) deploys it by injecting env vars.
+
+VI. Processes
+
+- What it says: Execute the app as one or more stateless processes
+- Why it matters: Horizontal scaling becomes trivial when you don't rely on local memory or sticky sessions.
+- In practice: Put session data in Redis, files in S3. Your API pods can be killed and replaced at will.
+
+VII. Port binding
+
+- What it says: Export services via port binding
+- Why it matters: The app is self-contained; it doesn't require an external web server injected at deploy time.
+- In practice: A Go binary that listens on $PORT—whether it's wrapped by Kubernetes, Heroku, or systemd is infrastructure's concern, not the app's.
+
+VIII. Concurrency
+
+- What it says: Scale out via the process model
+- Why it matters: Different workloads need different process types/quantities—HTTP, workers, schedulers.
+- In practice: In Procfile-style platforms you might run web=4, worker=8, scheduler=1, each as separate process classes.
+
+IX. Disposability
+
+- What it says: Maximize robustness with fast startup and graceful shutdown
+- Why it matters: Rapid restarts make deployments and failures less disruptive; graceful shutdown prevents lost work.
+- In practice: Aim for <1s boot, trap SIGTERM to finish in-flight requests, and acknowledge queue jobs only after success.
+
+X. Dev/prod parity
+
+- What it says: Keep development, staging, and production as similar as possible
+- Why it matters: The bigger the gap, the more "works locally" surprises.
+- In practice: Use Docker Compose or Tilt to mimic prod containers locally; deploy multiple times per day so code isn't long-lived on a laptop.
+
+XI. Logs
+
+- What it says: Treat logs as event streams
+- Why it matters: The app shouldn't worry about log files, rotation, or archival.
+- In practice: Write to STDOUT/STDERR. Let the platform (CloudWatch, Loki, ELK) aggregate, index, and retain.
+
+XII. Admin processes
+
+- What it says: Run admin/management tasks as one-off processes
+- Why it matters: Database migrations or data backfills need the same code + config as the main app, but shouldn't be part of the long-running service.
+- In practice: heroku run python manage.py migrate or a Kubernetes Job that mounts the same container image and environment but exits when finished.

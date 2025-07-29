@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.4.5 Container Registries &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.5 Container Management" href="5_management.html" />
+    <link rel="prev" title="8.4 Creating Custom Images" href="4_usingdockerfile.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.4.5 Container Registries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/4.5_container_registries.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="container-registries">
+<h1>8.4.5 Container Registries<a class="headerlink" href="#container-registries" title="Link to this heading"></a></h1>
+<p><strong>The Container Distribution Challenge</strong></p>
+<p>You’ve built your application into a container image, but now you need to share it with your team, deploy it to staging, and ultimately run it in production. Container registries solve this fundamental distribution problem by providing centralized, secure storage for container images with versioning, access control, and global distribution capabilities.</p>
+<p>Think of a container registry as a specialized package manager for container images - it handles storage, versioning, security scanning, and distribution across your infrastructure.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p><strong>Understand</strong> how container registries work and why they’re essential</p></li>
+<li><p><strong>Push and pull</strong> images to/from DockerHub and private registries</p></li>
+<li><p><strong>Deploy</strong> your own private Docker registry with security and authentication</p></li>
+<li><p><strong>Implement</strong> image versioning and lifecycle management strategies</p></li>
+<li><p><strong>Configure</strong> automated security scanning and vulnerability management</p></li>
+<li><p><strong>Design</strong> registry architecture for enterprise environments</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Understanding of Docker basics, image building, and container fundamentals</p>
+</section>
+<section id="container-registry-concepts">
+<h2>Container Registry Concepts<a class="headerlink" href="#container-registry-concepts" title="Link to this heading"></a></h2>
+<p><strong>What is a Container Registry?</strong></p>
+<p>A container registry is a repository for storing and distributing container images. It provides:</p>
+<ul class="simple">
+<li><p><strong>Centralized Storage:</strong> Single location for all your container images</p></li>
+<li><p><strong>Version Management:</strong> Multiple tags and versions of the same image</p></li>
+<li><p><strong>Access Control:</strong> Authentication and authorization for security</p></li>
+<li><p><strong>Distribution:</strong> Efficient image pulling across multiple environments</p></li>
+<li><p><strong>Metadata:</strong> Image information, vulnerability scans, and build history</p></li>
+</ul>
+<p><strong>Registry vs Repository vs Tag</strong></p>
+<p>Understanding the hierarchy is crucial:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Registry: docker.io (DockerHub)
+└── Repository: nginx
+    ├── Tag: latest
+    ├── Tag: 1.21-alpine
+    └── Tag: stable
+
+Full Image Reference: docker.io/nginx:1.21-alpine
+</pre></div>
+</div>
+<p><strong>Public vs Private Registries</strong></p>
+<p><strong>Public Registries:</strong></p>
+<ul class="simple">
+<li><p>Free to use for public images</p></li>
+<li><p>Great for open source projects</p></li>
+<li><p>No access control needed</p></li>
+<li><p>Examples: DockerHub, Quay.io</p></li>
+</ul>
+<p><strong>Private Registries:</strong></p>
+<ul class="simple">
+<li><p>Controlled access to your images</p></li>
+<li><p>Required for proprietary applications</p></li>
+<li><p>Enhanced security features</p></li>
+<li><p>Can be self-hosted or cloud-managed</p></li>
+</ul>
+</section>
+<section id="working-with-dockerhub">
+<h2>Working with DockerHub<a class="headerlink" href="#working-with-dockerhub" title="Link to this heading"></a></h2>
+<p><strong>Setting Up DockerHub Access</strong></p>
+<p><strong>1. Create DockerHub Account</strong></p>
+<p>Visit <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a> and create your account.</p>
+<p><strong>2. Login from Command Line</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Login to DockerHub</span>
+docker<span class="w"> </span>login
+
+<span class="c1"># Login with specific credentials</span>
+docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>yourusername<span class="w"> </span>-p<span class="w"> </span>yourpassword
+
+<span class="c1"># Login using access token (recommended)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$DOCKER_ACCESS_TOKEN</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>yourusername<span class="w"> </span>--password-stdin
+</pre></div>
+</div>
+<p><strong>3. Create Access Token (Recommended)</strong></p>
+<p>Instead of using your password, create an access token:</p>
+<ol class="arabic simple">
+<li><p>Go to DockerHub → Account Settings → Security</p></li>
+<li><p>Click “New Access Token”</p></li>
+<li><p>Give it a descriptive name and appropriate permissions</p></li>
+<li><p>Save the token securely</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Security Best Practice:</strong> Never use your DockerHub password in scripts or CI/CD pipelines. Always use access tokens with limited permissions.</p>
+</div>
+<p><strong>Pushing Images to DockerHub</strong></p>
+<p><strong>1. Tag Your Image Properly</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build your image</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp<span class="w"> </span>.
+
+<span class="c1"># Tag for DockerHub (username/repository:tag)</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp<span class="w"> </span>yourusername/myapp:latest
+docker<span class="w"> </span>tag<span class="w"> </span>myapp<span class="w"> </span>yourusername/myapp:v1.0.0
+
+<span class="c1"># List your images</span>
+docker<span class="w"> </span>images
+</pre></div>
+</div>
+<p><strong>2. Push to DockerHub</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Push specific tag</span>
+docker<span class="w"> </span>push<span class="w"> </span>yourusername/myapp:v1.0.0
+
+<span class="c1"># Push all tags</span>
+docker<span class="w"> </span>push<span class="w"> </span>yourusername/myapp<span class="w"> </span>--all-tags
+</pre></div>
+</div>
+<p><strong>3. Verify the Upload</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pull from another machine to test</span>
+docker<span class="w"> </span>pull<span class="w"> </span>yourusername/myapp:v1.0.0
+
+<span class="c1"># Run the pulled image</span>
+docker<span class="w"> </span>run<span class="w"> </span>yourusername/myapp:v1.0.0
+</pre></div>
+</div>
+<p><strong>DockerHub Repository Management</strong></p>
+<p><strong>1. Repository Settings</strong></p>
+<p>Configure your repository through the DockerHub web interface:</p>
+<ul class="simple">
+<li><p><strong>Description:</strong> Clear explanation of your application</p></li>
+<li><p><strong>README:</strong> Detailed usage instructions</p></li>
+<li><p><strong>Build Settings:</strong> Automated builds from Git repositories</p></li>
+<li><p><strong>Webhooks:</strong> Trigger actions when images are pushed</p></li>
+</ul>
+<p><strong>2. Automated Builds</strong></p>
+<p>Connect your GitHub/Bitbucket repository for automatic builds:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example .github/workflows/docker-publish.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Docker Build and Push</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;v*&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Login to DockerHub</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker/login-action@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.DOCKERHUB_USERNAME }}</span>
+<span class="w">          </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.DOCKERHUB_TOKEN }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker/build-push-action@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">push</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">yourusername/myapp:latest</span>
+<span class="w">            </span><span class="no">yourusername/myapp:${{ github.ref_name }}</span>
+</pre></div>
+</div>
+<p><strong>3. Multi-Architecture Images</strong></p>
+<p>Build images that work on different CPU architectures:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and use multi-platform builder</span>
+docker<span class="w"> </span>buildx<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>multiarch<span class="w"> </span>--use
+
+<span class="c1"># Build for multiple platforms</span>
+docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--platform<span class="w"> </span>linux/amd64,linux/arm64,linux/arm/v7<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-t<span class="w"> </span>yourusername/myapp:multiarch<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="deploying-private-registries">
+<h2>Deploying Private Registries<a class="headerlink" href="#deploying-private-registries" title="Link to this heading"></a></h2>
+<p><strong>Why Private Registries?</strong></p>
+<ul class="simple">
+<li><p><strong>Security:</strong> Keep proprietary images private</p></li>
+<li><p><strong>Control:</strong> Manage access and policies</p></li>
+<li><p><strong>Performance:</strong> Local caching reduces pull times</p></li>
+<li><p><strong>Compliance:</strong> Meet regulatory requirements</p></li>
+<li><p><strong>Cost:</strong> Avoid bandwidth charges for large images</p></li>
+</ul>
+<p><strong>Method 2: Harbor Enterprise Registry</strong></p>
+<p>Harbor provides enterprise-grade features:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># docker-compose.yml for Harbor</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">harbor-log</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goharbor/harbor-log:v2.7.0</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor-log</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-data/log:/var/log/docker/:z</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bind</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-config/log/logrotate.conf</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/logrotate.d/docker</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:1514:10514</span>
+
+<span class="w">  </span><span class="nt">registry</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goharbor/registry-photon:v2.7.0</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-data/registry:/storage:z</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-config/registry/:/etc/registry/:z</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor-log</span>
+<span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syslog</span>
+<span class="w">      </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">syslog-address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp://127.0.0.1:1514</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;registry&quot;</span>
+
+<span class="w">  </span><span class="nt">harbor-core</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goharbor/harbor-core:v2.7.0</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor-core</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-data/ca_download/:/etc/core/ca/:z</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-data/:/data/:z</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./harbor-config/core/app.conf:/etc/core/app.conf:z</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor-log</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry</span>
+<span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syslog</span>
+<span class="w">      </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">syslog-address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp://127.0.0.1:1514</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;harbor-core&quot;</span>
+
+<span class="w">  </span><span class="nt">harbor-portal</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goharbor/harbor-portal:v2.7.0</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor-portal</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor-log</span>
+<span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syslog</span>
+<span class="w">      </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">syslog-address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp://127.0.0.1:1514</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;harbor-portal&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="registry-management-security">
+<h2>Registry Management &amp; Security<a class="headerlink" href="#registry-management-security" title="Link to this heading"></a></h2>
+<p><strong>Image Versioning Strategy</strong></p>
+<p><strong>1. Semantic Versioning</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use semantic versioning for releases</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:1.0.0<span class="w">    </span><span class="c1"># Major release</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:1.0.1<span class="w">    </span><span class="c1"># Bug fix</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:1.1.0<span class="w">    </span><span class="c1"># Minor feature</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:2.0.0<span class="w">    </span><span class="c1"># Breaking changes</span>
+</pre></div>
+</div>
+<p><strong>2. Environment-Based Tagging</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tag by environment</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.0.0<span class="w"> </span>myapp:dev
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.0.0<span class="w"> </span>myapp:staging
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.0.0<span class="w"> </span>myapp:production
+
+<span class="c1"># Include git commit hash</span>
+<span class="nv">GIT_HASH</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--short<span class="w"> </span>HEAD<span class="k">)</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:<span class="si">${</span><span class="nv">GIT_HASH</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>3. Immutable Tags</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Never reuse tags in production</span>
+<span class="c1"># Bad: Always using &#39;latest&#39;</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:latest
+
+<span class="c1"># Good: Immutable versioning</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>-<span class="si">${</span><span class="nv">BUILD_NUMBER</span><span class="si">}</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:latest<span class="w"> </span>myapp:sha-<span class="si">${</span><span class="nv">GIT_HASH</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>Security Scanning</strong></p>
+<p><strong>1. Vulnerability Scanning with Trivy</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Trivy</span>
+curl<span class="w"> </span>-sfL<span class="w"> </span>https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>-b<span class="w"> </span>/usr/local/bin
+
+<span class="c1"># Scan local image</span>
+trivy<span class="w"> </span>image<span class="w"> </span>myapp:latest
+
+<span class="c1"># Scan with specific severity</span>
+trivy<span class="w"> </span>image<span class="w"> </span>--severity<span class="w"> </span>HIGH,CRITICAL<span class="w"> </span>myapp:latest
+
+<span class="c1"># Output to JSON for automation</span>
+trivy<span class="w"> </span>image<span class="w"> </span>--format<span class="w"> </span>json<span class="w"> </span>--output<span class="w"> </span>results.json<span class="w"> </span>myapp:latest
+</pre></div>
+</div>
+<p><strong>2. Automated Security Scanning</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/security-scan.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container Security Scan</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">security-scan</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t myapp:${{ github.sha }} .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Trivy vulnerability scanner</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aquasecurity/trivy-action@master</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">image-ref</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;myapp:${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&#39;</span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;sarif&#39;</span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;trivy-results.sarif&#39;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload Trivy scan results</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github/codeql-action/upload-sarif@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sarif_file</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;trivy-results.sarif&#39;</span>
+</pre></div>
+</div>
+<p><strong>3. Registry Access Control</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create role-based access</span>
+<span class="c1"># registry-rbac.conf</span>
+
+<span class="c1"># Admin users (full access)</span>
+admin:
+<span class="w">  </span>-<span class="w"> </span>pull
+<span class="w">  </span>-<span class="w"> </span>push
+<span class="w">  </span>-<span class="w"> </span>delete
+
+<span class="c1"># Developer users (read/write)</span>
+developer:
+<span class="w">  </span>-<span class="w"> </span>pull
+<span class="w">  </span>-<span class="w"> </span>push
+
+<span class="c1"># CI/CD systems (automated deployment)</span>
+cicd:
+<span class="w">  </span>-<span class="w"> </span>pull
+<span class="w">  </span>-<span class="w"> </span>push
+
+<span class="c1"># Production users (read-only)</span>
+readonly:
+<span class="w">  </span>-<span class="w"> </span>pull
+</pre></div>
+</div>
+</section>
+<section id="registry-integration-patterns">
+<h2>Registry Integration Patterns<a class="headerlink" href="#registry-integration-patterns" title="Link to this heading"></a></h2>
+<p><strong>CI/CD Pipeline Integration</strong></p>
+<p><strong>1. Build, Test, and Push Pipeline</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprehensive CI/CD pipeline</span>
+<span class="nt">stages</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security-scan</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy</span>
+
+<span class="nt">build</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t $CI_REGISTRY_IMAGE:latest .</span>
+
+<span class="nt">test</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker run --rm $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA npm test</span>
+
+<span class="nt">security-scan</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trivy image --exit-code 1 --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA</span>
+
+<span class="nt">push</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker push $CI_REGISTRY_IMAGE:latest</span>
+<span class="w">  </span><span class="nt">only</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+
+<span class="nt">deploy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubectl set image deployment/myapp myapp=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA</span>
+<span class="w">  </span><span class="nt">only</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+</pre></div>
+</div>
+<p><strong>2. Multi-Registry Strategy</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Push to multiple registries for redundancy</span>
+<span class="c1">#!/bin/bash</span>
+
+<span class="nv">IMAGE_NAME</span><span class="o">=</span><span class="s2">&quot;myapp&quot;</span>
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span>
+
+<span class="c1"># Primary registry (private)</span>
+docker<span class="w"> </span>tag<span class="w"> </span><span class="nv">$IMAGE_NAME</span>:latest<span class="w"> </span>registry.company.com/<span class="nv">$IMAGE_NAME</span>:<span class="nv">$VERSION</span>
+docker<span class="w"> </span>push<span class="w"> </span>registry.company.com/<span class="nv">$IMAGE_NAME</span>:<span class="nv">$VERSION</span>
+
+<span class="c1"># Backup registry (cloud)</span>
+docker<span class="w"> </span>tag<span class="w"> </span><span class="nv">$IMAGE_NAME</span>:latest<span class="w"> </span><span class="m">123456789</span>.dkr.ecr.us-west-2.amazonaws.com/<span class="nv">$IMAGE_NAME</span>:<span class="nv">$VERSION</span>
+docker<span class="w"> </span>push<span class="w"> </span><span class="m">123456789</span>.dkr.ecr.us-west-2.amazonaws.com/<span class="nv">$IMAGE_NAME</span>:<span class="nv">$VERSION</span>
+
+<span class="c1"># Public registry (if open source)</span>
+docker<span class="w"> </span>tag<span class="w"> </span><span class="nv">$IMAGE_NAME</span>:latest<span class="w"> </span>docker.io/username/<span class="nv">$IMAGE_NAME</span>:<span class="nv">$VERSION</span>
+docker<span class="w"> </span>push<span class="w"> </span>docker.io/username/<span class="nv">$IMAGE_NAME</span>:<span class="nv">$VERSION</span>
+</pre></div>
+</div>
+<p><strong>Registry Monitoring and Alerting</strong></p>
+<ol class="arabic simple">
+<li><p>Health Monitoring** - check registry status and uptime</p></li>
+<li><p>Disk Usage Monitoring** - track storage consumption</p></li>
+<li><p>Access Logs and Auditing** - monitor who accessed what images</p></li>
+<li><p>Performance Metrics** - response times, pull rates</p></li>
+</ol>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>Registry Security</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Always use HTTPS</strong> in production environments</p></li>
+<li><p><strong>Implement authentication</strong> even for internal registries</p></li>
+<li><p><strong>Regular security scanning</strong> of stored images</p></li>
+<li><p><strong>Role-based access control</strong> for different teams</p></li>
+<li><p><strong>Network isolation</strong> - registry in private networks</p></li>
+<li><p><strong>Regular backup</strong> of registry data and configuration</p></li>
+</ol>
+<p><strong>Image Management</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Immutable tags</strong> - never reuse version tags</p></li>
+<li><p><strong>Meaningful naming</strong> - clear repository and tag names</p></li>
+<li><p><strong>Size optimization</strong> - use multi-stage builds and Alpine base images</p></li>
+<li><p><strong>Regular cleanup</strong> - automated removal of old/unused images</p></li>
+<li><p><strong>Vulnerability management</strong> - regular scanning and patching</p></li>
+</ol>
+<p><strong>Operational Excellence</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Monitoring and alerting</strong> for registry health and performance</p></li>
+<li><p><strong>Backup and disaster recovery</strong> procedures</p></li>
+<li><p><strong>Documentation</strong> of registry policies and procedures</p></li>
+<li><p><strong>Capacity planning</strong> for storage and bandwidth</p></li>
+<li><p><strong>Performance optimization</strong> - caching and CDN for global distribution</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Production Readiness Checklist:</strong></p>
+<ul class="simple">
+<li><p>HTTPS/TLS encryption configured</p></li>
+<li><p>Authentication and RBAC implemented</p></li>
+<li><p>Regular security scanning enabled</p></li>
+<li><p>Backup procedures tested</p></li>
+<li><p>Monitoring and alerting configured</p></li>
+<li><p>Cleanup automation implemented</p></li>
+<li><p>Documentation complete</p></li>
+<li><p>Disaster recovery plan tested</p></li>
+</ul>
+</div>
+</section>
+<section id="hands-on-lab-exercise">
+<h2>Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Link to this heading"></a></h2>
+<p><strong>Lab: Complete Registry Workflow</strong></p>
+<p><strong>Objective:</strong> Set up a complete container registry workflow including DockerHub integration, private registry deployment, and CI/CD automation.</p>
+<p><strong>Part 1: DockerHub Integration</strong></p>
+<ol class="arabic simple">
+<li><p>Create a simple web application</p></li>
+<li><p>Write a Dockerfile</p></li>
+<li><p>Build and test locally</p></li>
+<li><p>Push to DockerHub</p></li>
+<li><p>Set up automated builds</p></li>
+</ol>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>Container registries are the foundation of container distribution in production environments. You now understand how to work with public registries like DockerHub, deploy and manage private registries, and integrate them into your CI/CD pipelines.</p>
+<p>The next section covers container orchestration with Docker Compose, which builds on these registry concepts to manage multi-container applications. Understanding registries is crucial for the Kubernetes section, where image distribution becomes even more important at scale.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul class="simple">
+<li><p>Registries enable secure, versioned distribution of container images</p></li>
+<li><p>DockerHub is great for public projects, private registries for enterprise use</p></li>
+<li><p>Security scanning and access control are essential for production</p></li>
+<li><p>Automation and cleanup prevent registries from becoming unmanageable</p></li>
+<li><p>Multi-registry strategies provide redundancy and performance benefits</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Security Reminder:</strong> Container registries are critical infrastructure components. Treat them with the same security rigor as your databases and ensure proper backup, monitoring, and access controls are in place.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_usingdockerfile.html" class="btn btn-neutral float-left" title="8.4 Creating Custom Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_management.html" class="btn btn-neutral float-right" title="8.5 Container Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

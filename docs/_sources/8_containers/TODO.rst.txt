@@ -220,9 +220,9 @@ Task 9: Container Logs
 
 **Skills practiced:** Python logging, container logging patterns
 
----------------------------
+------------------------
 Task 10: Resource Limits
----------------------------
+------------------------
 
 **Objective:** Control container resource usage
 
