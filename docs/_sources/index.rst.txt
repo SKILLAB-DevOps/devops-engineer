@@ -133,3 +133,11 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    8_containers/8_best_practices
    8_containers/TODO
    8_containers/ANSWERS
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Kubernetes
+
+   9_kubernetes/0_introduction
+   9_kubernetes/1_gettingstarted
