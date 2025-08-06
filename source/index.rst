@@ -141,3 +141,10 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
 
    9_kubernetes/0_introduction
    9_kubernetes/1_gettingstarted
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Project
+
+   12_project/introduction

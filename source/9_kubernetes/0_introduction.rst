@@ -518,6 +518,7 @@ Ready to Get Started?
 **Your Learning Journey Ahead**
 
 You now understand:
+
 - **What** Kubernetes is (container orchestration platform)
 - **How** it works (control loops, distributed architecture, declarative management)
 - **Why** you need it (production scale, reliability, automation)

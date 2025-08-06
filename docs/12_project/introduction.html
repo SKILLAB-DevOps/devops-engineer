@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.0 Project &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="9.1 Getting Started" href="../9_kubernetes/1_gettingstarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">12.0 Project</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/12_project/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="project">
+<h1>12.0 Project<a class="headerlink" href="#project" title="Link to this heading"></a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this capstone project, you will be able to:</p>
+<ul class="simple">
+<li><p><strong>Code</strong> a complete Python application that integrates with a Large Language Model (LLM) service</p></li>
+<li><p><strong>Integrate</strong> all DevOps concepts learned throughout the course into a real-world application</p></li>
+<li><p><strong>Design</strong> and implement a complete CI/CD pipeline for a cloud-native application</p></li>
+<li><p><strong>Deploy</strong> applications to production using containers, Kubernetes, and cloud platforms</p></li>
+<li><p><strong>Apply</strong> infrastructure as code principles for reproducible and scalable deployments</p></li>
+<li><p><strong>Implement</strong> monitoring, logging, and security best practices for production systems</p></li>
+<li><p><strong>Demonstrate</strong> collaborative development workflows using Git, code reviews, and documentation</p></li>
+<li><p><strong>Troubleshoot</strong> and optimize real-world deployment issues and performance bottlenecks</p></li>
+<li><p><strong>Present</strong> technical solutions effectively to stakeholders and receive constructive feedback</p></li>
+</ul>
+</section>
+<section id="build-and-deploy-a-complete-python-application-with-llm-integration-in-the-cloud">
+<h2>Build and deploy a complete Python application with LLM integration in the cloud<a class="headerlink" href="#build-and-deploy-a-complete-python-application-with-llm-integration-in-the-cloud" title="Link to this heading"></a></h2>
+</section>
+<section id="project-purpose">
+<h2>Project purpose<a class="headerlink" href="#project-purpose" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project is optional!</p>
+</div>
+<p>If you choose to do this project you will supplement the theoretical knowledge gained during the course with practical experience that will help you a lot in understanding how and when you can apply the knowledge learned in this course.</p>
+</section>
+<section id="project-prerequisites">
+<h2>Project Prerequisites<a class="headerlink" href="#project-prerequisites" title="Link to this heading"></a></h2>
+<p>This capstone project integrates all the DevOps concepts you’ve learned throughout the course. The project is structured as progressive tasks that will give you insight into real-world DevOps workflows.</p>
+<p><strong>Course Foundation Required:</strong></p>
+<p>Before starting this project, you should have completed the course modules covering:</p>
+<ul class="simple">
+<li><p>Linux system administration and scripting</p></li>
+<li><p>Git version control and collaboration workflows</p></li>
+<li><p>Python programming and application development</p></li>
+<li><p>Containerization with Docker</p></li>
+<li><p>Kubernetes orchestration and deployment</p></li>
+<li><p>CI/CD pipeline design and implementation</p></li>
+<li><p>Infrastructure as Code (Terraform/Ansible)</p></li>
+<li><p>Cloud platforms and services</p></li>
+<li><p>Monitoring, logging, and security practices</p></li>
+</ul>
+<p><strong>Why This Project Matters:</strong></p>
+<p>DevOps work focuses on helping development teams be more productive through automation, reliable infrastructure, and streamlined processes. This project will make you a well-rounded developer who understands the complete software delivery lifecycle.</p>
+</section>
+<section id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This project is optional but highly recommended!</strong></p>
+</div>
+<p>This capstone project allows you to apply the theoretical knowledge gained during the course in a practical, real-world scenario. You’ll build a complete application that demonstrates your mastery of DevOps principles and practices.</p>
+<p><strong>What You’ll Build:</strong></p>
+<p>You need to create a complete Python application (or challenge yourself with Go, Ruby, JavaScript, or Scala) that integrates with a Large Language Model (LLM) service of your choice.</p>
+<p><strong>Project Scope:</strong></p>
+<p>Building an LLM-integrated microservice involves multiple phases:</p>
+<ol class="arabic simple">
+<li><p><strong>Planning &amp; Setup</strong>: Environment configuration and project structure</p></li>
+<li><p><strong>Development</strong>: Application logic and LLM service integration</p></li>
+<li><p><strong>Testing</strong>: Automated testing and quality assurance</p></li>
+<li><p><strong>Deployment</strong>: Containerization and cloud deployment</p></li>
+<li><p><strong>Operations</strong>: Monitoring, maintenance, and documentation</p></li>
+</ol>
+<p><strong>LLM Service Options:</strong></p>
+<p>You can choose from any of the following LLM services (or others):</p>
+<ul class="simple">
+<li><p><strong>OpenAI</strong>: <a class="reference external" href="https://platform.openai.com/docs/api-reference">https://platform.openai.com/docs/api-reference</a></p></li>
+<li><p><strong>Anthropic Claude</strong>: <a class="reference external" href="https://docs.anthropic.com/claude/reference/getting-started">https://docs.anthropic.com/claude/reference/getting-started</a></p></li>
+<li><p><strong>Google Gemini</strong>: <a class="reference external" href="https://ai.google.dev/docs">https://ai.google.dev/docs</a></p></li>
+<li><p><strong>Hugging Face Transformers</strong>: <a class="reference external" href="https://huggingface.co/docs/transformers/">https://huggingface.co/docs/transformers/</a></p></li>
+</ul>
+<p><strong>Application Ideas:</strong></p>
+<p>If you need inspiration, consider building one of these applications:</p>
+<ul class="simple">
+<li><p><strong>Conversational Chatbot</strong>: Web-based chat interface with context memory</p></li>
+<li><p><strong>Document Analysis Tool</strong>: Upload and analyze documents with AI insights</p></li>
+<li><p><strong>Code Assistant</strong>: Help developers with code review, generation, or debugging</p></li>
+<li><p><strong>Content Generator</strong>: Create blogs, articles, or creative writing with AI assistance</p></li>
+<li><p><strong>Q&amp;A System</strong>: Domain-specific question answering (e.g., technical support, education)</p></li>
+<li><p><strong>Translation Service</strong>: Language translation with additional context or features</p></li>
+<li><p><strong>Custom Solution</strong>: Any other LLM-powered application that solves a real problem</p></li>
+</ul>
+<p><strong>Quality Standards:</strong></p>
+<p>Your application must be production-ready with proper architecture, comprehensive error handling, structured logging, and an intuitive user interface.</p>
+<p><strong>Learning Path:</strong></p>
+<p>This project builds upon everything you’ve learned: Linux server management, dependency automation, application development, architecture design, testing, packaging, and deployment across Linux, Docker, Kubernetes, and cloud platforms.</p>
+</section>
+<section id="timeline-reviews">
+<h2>Timeline &amp; Reviews<a class="headerlink" href="#timeline-reviews" title="Link to this heading"></a></h2>
+<p><strong>Project Timeline:</strong>
+- <strong>Start</strong>: Any time during the course
+- <strong>Completion</strong>: By the end of the course
+- <strong>Peer Review</strong>: Required before instructor review
+- <strong>Final Review</strong>: Schedule with course instructors</p>
+<p><strong>Review Process:</strong>
+Before scheduling your final instructor review, you must:</p>
+<ol class="arabic simple">
+<li><p>Complete all project requirements (see checklist below)</p></li>
+<li><p>Obtain at least one peer review from a fellow student</p></li>
+<li><p>Address any feedback from the peer review</p></li>
+<li><p>Prepare your project demonstration and documentation</p></li>
+</ol>
+</section>
+<section id="project-requirements-checklist">
+<h2>Project Requirements Checklist<a class="headerlink" href="#project-requirements-checklist" title="Link to this heading"></a></h2>
+<p>Use this checklist to track your progress and ensure you meet all requirements before your final review.</p>
+</section>
+<section id="application-architecture">
+<h2>Application Architecture<a class="headerlink" href="#application-architecture" title="Link to this heading"></a></h2>
+<p><em>Core application components and design</em></p>
+<ol class="arabic simple">
+<li><p><strong>Web Application</strong>: Build a complete web application with both frontend and backend components</p>
+<ul class="simple">
+<li><p><strong>Frontend</strong>: Interactive user interface (web-based)</p></li>
+<li><p><strong>Backend</strong>: RESTful API or similar service architecture</p></li>
+<li><p><strong>Database</strong>: Optional but recommended for data persistence</p></li>
+<li><p><strong>Authentication</strong>: User login/authentication system required</p></li>
+</ul>
+</li>
+<li><p><strong>LLM Integration</strong>: Successfully integrate with at least one Large Language Model service</p>
+<ul class="simple">
+<li><p>Choose from OpenAI, Anthropic Claude, Google Gemini, or Hugging Face</p></li>
+<li><p>Implement proper API handling and error management</p></li>
+<li><p>Include rate limiting and cost management considerations</p></li>
+</ul>
+</li>
+<li><p><strong>Internet Accessibility</strong>: Application must be publicly accessible</p>
+<ul class="simple">
+<li><p>Deploy to a cloud platform (AWS, Azure, GCP, or similar)</p></li>
+<li><p>Configure HTTPS/SSL certificates for secure communication</p></li>
+<li><p>Implement proper domain and DNS configuration</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="development-testing">
+<h2>Development &amp; Testing<a class="headerlink" href="#development-testing" title="Link to this heading"></a></h2>
+<p><em>Code quality and development workflow practices</em></p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Code Quality</strong>: Follow professional development standards</p>
+<ul class="simple">
+<li><p>Use proper code structure and design patterns</p></li>
+<li><p>Implement comprehensive error handling and logging</p></li>
+<li><p>Include unit tests and integration tests</p></li>
+<li><p>Follow coding standards and best practices for chosen language</p></li>
+</ul>
+</li>
+<li><p><strong>Version Control</strong>: Demonstrate professional Git workflows</p>
+<ul class="simple">
+<li><p>Use meaningful commit messages and proper branching strategy</p></li>
+<li><p>Implement code review process with pull requests</p></li>
+<li><p>Maintain clean project history and documentation</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="deployment-operations">
+<h2>Deployment &amp; Operations<a class="headerlink" href="#deployment-operations" title="Link to this heading"></a></h2>
+<p><em>Infrastructure, containerization, and automation</em></p>
+<ol class="arabic simple" start="6">
+<li><p><strong>Containerization</strong>: Package application using Docker</p>
+<ul class="simple">
+<li><p>Create optimized Dockerfiles for each component</p></li>
+<li><p>Use multi-stage builds where appropriate</p></li>
+<li><p>Implement proper container security practices</p></li>
+</ul>
+</li>
+<li><p><strong>Orchestration</strong>: Deploy to Kubernetes cluster</p>
+<ul class="simple">
+<li><p>Create Kubernetes manifests or Helm charts</p></li>
+<li><p>Implement proper resource limits and requests</p></li>
+<li><p>Configure services, ingress, and persistent volumes as needed</p></li>
+</ul>
+</li>
+<li><p><strong>Infrastructure as Code</strong>: Automate infrastructure provisioning</p>
+<ul class="simple">
+<li><p>Use Terraform, Ansible, or similar IaC tools</p></li>
+<li><p>Create reproducible and version-controlled infrastructure</p></li>
+<li><p>Document infrastructure dependencies and requirements</p></li>
+</ul>
+</li>
+<li><p><strong>CI/CD Pipeline</strong>: Implement automated build and deployment</p>
+<ul class="simple">
+<li><p>Automated testing on code commits</p></li>
+<li><p>Automated building and packaging of applications</p></li>
+<li><p>Automated deployment to staging and production environments</p></li>
+<li><p>Include rollback capabilities for failed deployments</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="monitoring-security">
+<h2>Monitoring &amp; Security<a class="headerlink" href="#monitoring-security" title="Link to this heading"></a></h2>
+<p><em>Production readiness and operational excellence</em></p>
+<ol class="arabic simple" start="10">
+<li><p><strong>Observability</strong>: Implement comprehensive monitoring</p>
+<ul class="simple">
+<li><p>Application logging with structured logs</p></li>
+<li><p>Health checks and readiness probes</p></li>
+<li><p>Performance metrics and monitoring dashboards</p></li>
+<li><p>Alerting for critical issues</p></li>
+</ul>
+</li>
+<li><p><strong>Security</strong>: Follow security best practices</p>
+<ul class="simple">
+<li><p>Secure secret management (no hardcoded secrets)</p></li>
+<li><p>Vulnerability scanning in CI/CD pipeline</p></li>
+<li><p>Implement proper authentication and authorization</p></li>
+<li><p>Follow OWASP security guidelines</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="documentation-presentation">
+<h2>Documentation &amp; Presentation<a class="headerlink" href="#documentation-presentation" title="Link to this heading"></a></h2>
+<p><em>Communication and knowledge sharing</em></p>
+<ol class="arabic simple" start="12">
+<li><p><strong>Documentation</strong>: Create comprehensive project documentation</p>
+<ul class="simple">
+<li><p>Architecture overview and design decisions</p></li>
+<li><p>Setup and deployment instructions</p></li>
+<li><p>API documentation and user guides</p></li>
+<li><p>Troubleshooting and maintenance procedures</p></li>
+</ul>
+</li>
+<li><p><strong>Project Presentation</strong>: Prepare final project demonstration</p>
+<ul class="simple">
+<li><p>Live demo of working application</p></li>
+<li><p>Explanation of technical choices and trade-offs</p></li>
+<li><p>Discussion of challenges faced and solutions implemented</p></li>
+<li><p>Q&amp;A session with technical reviewers</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="success-tips">
+<h2>Success Tips<a class="headerlink" href="#success-tips" title="Link to this heading"></a></h2>
+<p><strong>Start Early</strong>: Begin planning and setting up your development environment as soon as possible.</p>
+<p><strong>Iterate Frequently</strong>: Build your application incrementally, testing each component as you go.</p>
+<p><strong>Document Everything</strong>: Keep detailed notes of your decisions, challenges, and solutions.</p>
+<p><strong>Ask for Help</strong>: Use the course community and instructors when you get stuck.</p>
+<p><strong>Focus on Learning</strong>: The goal is to demonstrate your understanding of DevOps concepts, not to build the perfect application.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../9_kubernetes/1_gettingstarted.html" class="btn btn-neutral float-left" title="9.1 Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
