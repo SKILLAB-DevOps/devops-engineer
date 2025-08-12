@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.4 Helm Package Manager &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.5 ArgoCD GitOps" href="5_argocd.html" />
+    <link rel="prev" title="9.3 Production Deployments" href="3_deployments.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_deployments.html">9.3 Production Deployments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9.4 Helm Package Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_argocd.html">9.5 ArgoCD GitOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_production_best_practices.html">9.6 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">9.4 Helm Package Manager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/9_kubernetes/4_helm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="helm-package-manager">
+<h1>9.4 Helm Package Manager<a class="headerlink" href="#helm-package-manager" title="Link to this heading"></a></h1>
+<p><strong>From YAML Files to Reusable Packages</strong></p>
+<p>You’ve mastered Kubernetes deployments, but managing dozens of YAML files across environments gets complex fast. Helm transforms this into package management - templated, versioned, and reusable deployments that integrate with your CI/CD pipelines.</p>
+<p>Think of Helm as the npm for Kubernetes - but beyond simple installation, it provides templating, versioning, and lifecycle management.</p>
+<section id="why-helm-matters">
+<h2>Why Helm Matters<a class="headerlink" href="#why-helm-matters" title="Link to this heading"></a></h2>
+<p><strong>Problems Helm Solves:</strong></p>
+<ul class="simple">
+<li><p><strong>Configuration Chaos</strong> - Different values for dev/staging/production</p></li>
+<li><p><strong>YAML Explosion</strong> - 10+ files become unmanageable</p></li>
+<li><p><strong>No Versioning</strong> - Can’t track or rollback application versions</p></li>
+<li><p><strong>Copy-Paste Deployments</strong> - No reusability across teams</p></li>
+<li><p><strong>Dependency Hell</strong> - Apps need databases, caches, monitoring</p></li>
+</ul>
+<p><strong>Helm Concepts:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>What It Is</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Chart</strong></p></td>
+<td><p>Templated Kubernetes package</p></td>
+<td><p>Your webapp with configurable values</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Release</strong></p></td>
+<td><p>Installed chart instance</p></td>
+<td><p>webapp-prod running in production</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Values</strong></p></td>
+<td><p>Configuration for templates</p></td>
+<td><p>Different settings per environment</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Repository</strong></p></td>
+<td><p>Chart storage</p></td>
+<td><p>Company chart registry</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="your-first-helm-chart">
+<h2>Your First Helm Chart<a class="headerlink" href="#your-first-helm-chart" title="Link to this heading"></a></h2>
+<p><strong>From Kubernetes Manifests to Templates</strong></p>
+<p>Transform your webapp deployment into a reusable Helm chart:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create chart structure</span>
+helm<span class="w"> </span>create<span class="w"> </span>webapp
+
+<span class="c1"># See what&#39;s generated</span>
+tree<span class="w"> </span>webapp
+</pre></div>
+</div>
+<p><strong>Chart Structure:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>webapp/
+├── Chart.yaml          # Chart metadata
+├── values.yaml         # Default configuration
+├── templates/          # Kubernetes templates
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── ingress.yaml
+│   └── configmap.yaml
+└── charts/             # Dependencies
+</pre></div>
+</div>
+<p><strong>Chart.yaml - Metadata:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Production-ready web application</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w">          </span><span class="c1"># Chart version</span>
+<span class="nt">appVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span><span class="w">     </span><span class="c1"># App version</span>
+
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.1.0&quot;</span>
+<span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql.enabled</span>
+</pre></div>
+</div>
+<p><strong>values.yaml - Configuration:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default configuration</span>
+<span class="nt">image</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myregistry/webapp</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span>
+<span class="w">  </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span>
+
+<span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;256Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;250m&quot;</span>
+<span class="w">  </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500m&quot;</span>
+
+<span class="nt">service</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+
+<span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp.example.com</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">autoscaling</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">minReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">  </span><span class="nt">maxReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">  </span><span class="nt">targetCPU</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">70</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LOG_LEVEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;INFO&quot;</span>
+<span class="w">  </span><span class="nt">ENVIRONMENT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;production&quot;</span>
+
+<span class="nt">postgresql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp</span>
+</pre></div>
+</div>
+</section>
+<section id="template-your-deployment">
+<h2>Template Your Deployment<a class="headerlink" href="#template-your-deployment" title="Link to this heading"></a></h2>
+<p><strong>Dynamic Kubernetes Manifests</strong></p>
+<p>Transform static YAML into dynamic templates:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># templates/deployment.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">include &quot;webapp.fullname&quot; .</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">{{</span><span class="nv">- include &quot;webapp.labels&quot; . | nindent 4</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">{{</span><span class="nv">- if not .Values.autoscaling.enabled</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.replicaCount</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="p p-Indicator">{{</span><span class="nv">- end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="w">    </span><span class="nt">rollingUpdate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">      </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">{{</span><span class="nv">- include &quot;webapp.selectorLabels&quot; . | nindent 6</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">checksum/config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">include (print $.Template.BasePath &quot;/configmap.yaml&quot;) . | sha256sum</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">{{</span><span class="nv">- include &quot;webapp.selectorLabels&quot; . | nindent 8</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Chart.Name</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">.Values.image.repository</span><span class="nv"> </span><span class="s">}}:{{</span><span class="nv"> </span><span class="s">.Values.image.tag</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.image.pullPolicy</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">          </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">{{</span><span class="nv">- range $key</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">$value</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="nv">= .Values.env</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">$key</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">$value | quote</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="p p-Indicator">{{</span><span class="nv">- end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="p p-Indicator">{{</span><span class="nv">- if .Values.postgresql.enabled</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
+<span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">include &quot;webapp.fullname&quot; .</span><span class="w"> </span><span class="p p-Indicator">}}</span><span class="l l-Scalar l-Scalar-Plain">-postgres</span>
+<span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database-url</span>
+<span class="w">        </span><span class="p p-Indicator">{{</span><span class="nv">- end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">        </span><span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/ready</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">{{</span><span class="nv">- toYaml .Values.resources | nindent 12</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+</pre></div>
+</div>
+<p><strong>Helper Templates (_helpers.tpl):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{{</span><span class="nv">/*</span>
+<span class="nv">Common labels</span>
+<span class="nv">*/</span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- define &quot;webapp.labels&quot; -</span><span class="p p-Indicator">}}</span>
+<span class="nt">helm.sh/chart</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Chart.Name</span><span class="w"> </span><span class="p p-Indicator">}}</span><span class="l l-Scalar l-Scalar-Plain">-{{ .Chart.Version }}</span>
+<span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">include &quot;webapp.selectorLabels&quot; .</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Chart.AppVersion | quote</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="nt">app.kubernetes.io/managed-by</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Release.Service</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+
+<span class="p p-Indicator">{{</span><span class="nv">/*</span>
+<span class="nv">Selector labels</span>
+<span class="nv">*/</span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- define &quot;webapp.selectorLabels&quot; -</span><span class="p p-Indicator">}}</span>
+<span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Chart.Name</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Release.Name</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+
+<span class="p p-Indicator">{{</span><span class="nv">/*</span>
+<span class="nv">Create a default fully qualified app name</span>
+<span class="nv">*/</span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- define &quot;webapp.fullname&quot; -</span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- printf &quot;%s-%s&quot; .Release.Name .Chart.Name | trunc 63 | trimSuffix &quot;-&quot;</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="p p-Indicator">{{</span><span class="nv">- end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-environment-deployment">
+<h2>Multi-Environment Deployment<a class="headerlink" href="#multi-environment-deployment" title="Link to this heading"></a></h2>
+<p><strong>Environment-Specific Values</strong></p>
+<p>Create different configurations for each environment:</p>
+<p><strong>Development (values-dev.yaml):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nt">image</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;latest&quot;</span>
+<span class="w">  </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+
+<span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;128Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100m&quot;</span>
+<span class="w">  </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;256Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200m&quot;</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LOG_LEVEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DEBUG&quot;</span>
+<span class="w">  </span><span class="nt">ENVIRONMENT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;development&quot;</span>
+
+<span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp-dev.example.com</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">autoscaling</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">postgresql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp_dev</span>
+</pre></div>
+</div>
+<p><strong>Production (values-prod.yaml):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="nt">image</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.3.0&quot;</span>
+<span class="w">  </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span>
+
+<span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500m&quot;</span>
+<span class="w">  </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1000m&quot;</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LOG_LEVEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;WARN&quot;</span>
+<span class="w">  </span><span class="nt">ENVIRONMENT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;production&quot;</span>
+
+<span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp.example.com</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/rate-limit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100&quot;</span>
+
+<span class="nt">autoscaling</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">minReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="nt">maxReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+
+<span class="nt">postgresql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">primary</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100Gi</span>
+</pre></div>
+</div>
+<p><strong>Deploy to Environments:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Development</span>
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>webapp-dev<span class="w"> </span>./webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>development<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--values<span class="w"> </span>values-dev.yaml
+
+<span class="c1"># Production</span>
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>webapp-prod<span class="w"> </span>./webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>production<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--values<span class="w"> </span>values-prod.yaml
+</pre></div>
+</div>
+</section>
+<section id="ci-cd-with-helm">
+<h2>CI/CD with Helm<a class="headerlink" href="#ci-cd-with-helm" title="Link to this heading"></a></h2>
+<p><strong>Automated Helm Deployments</strong></p>
+<p>Integrate Helm into your GitHub Actions workflow:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/helm-deploy.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and Deploy with Helm</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">develop</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">image_tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.tag.outputs.tag }}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get image tag</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tag</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;tag=sha-$(git rev-parse --short HEAD)&quot; &gt;&gt; $GITHUB_OUTPUT</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker build -t myregistry/webapp:${{ steps.tag.outputs.tag }} .</span>
+<span class="w">          </span><span class="no">docker push myregistry/webapp:${{ steps.tag.outputs.tag }}</span>
+
+<span class="w">  </span><span class="nt">deploy-dev</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/develop&#39;</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Helm</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/setup-helm@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup kubectl</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/setup-kubectl@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure kubectl</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;${{ secrets.KUBE_CONFIG }}&quot; | base64 -d &gt; ~/.kube/config</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to development</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">helm upgrade --install webapp-dev ./charts/webapp \</span>
+<span class="w">            </span><span class="no">--namespace development \</span>
+<span class="w">            </span><span class="no">--create-namespace \</span>
+<span class="w">            </span><span class="no">--values ./charts/webapp/values-dev.yaml \</span>
+<span class="w">            </span><span class="no">--set image.tag=${{ needs.build.outputs.image_tag }} \</span>
+<span class="w">            </span><span class="no">--wait --timeout=300s</span>
+
+<span class="w">  </span><span class="nt">deploy-prod</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Helm</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/setup-helm@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup kubectl</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/setup-kubectl@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure kubectl</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;${{ secrets.KUBE_CONFIG_PROD }}&quot; | base64 -d &gt; ~/.kube/config</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to production</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">helm upgrade --install webapp-prod ./charts/webapp \</span>
+<span class="w">            </span><span class="no">--namespace production \</span>
+<span class="w">            </span><span class="no">--create-namespace \</span>
+<span class="w">            </span><span class="no">--values ./charts/webapp/values-prod.yaml \</span>
+<span class="w">            </span><span class="no">--set image.tag=${{ needs.build.outputs.image_tag }} \</span>
+<span class="w">            </span><span class="no">--wait --timeout=600s</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify deployment</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">kubectl wait --for=condition=available deployment/webapp-prod -n production --timeout=300s</span>
+<span class="w">          </span><span class="no">kubectl get pods -l app.kubernetes.io/name=webapp -n production</span>
+</pre></div>
+</div>
+</section>
+<section id="chart-dependencies">
+<h2>Chart Dependencies<a class="headerlink" href="#chart-dependencies" title="Link to this heading"></a></h2>
+<p><strong>Managing Database Dependencies</strong></p>
+<p>Your app needs PostgreSQL and Redis. Helm manages these as dependencies:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chart.yaml</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.1.0&quot;</span>
+<span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql.enabled</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;17.3.0&quot;</span>
+<span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis.enabled</span>
+</pre></div>
+</div>
+<p><strong>Install Dependencies:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download dependencies</span>
+helm<span class="w"> </span>dependency<span class="w"> </span>update
+
+<span class="c1"># Deploy with dependencies</span>
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>webapp<span class="w"> </span>./webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>postgresql.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>redis.enabled<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p><strong>Override Dependency Values:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># values.yaml</span>
+<span class="nt">postgresql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secretpassword</span>
+<span class="w">  </span><span class="nt">primary</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20Gi</span>
+
+<span class="nt">redis</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">replica</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</pre></div>
+</div>
+</section>
+<section id="chart-testing-validation">
+<h2>Chart Testing &amp; Validation<a class="headerlink" href="#chart-testing-validation" title="Link to this heading"></a></h2>
+<p><strong>Ensure Chart Quality</strong></p>
+<p>Test your charts before deployment:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># templates/tests/test-connection.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">include</span><span class="nv"> </span><span class="s">&quot;</span><span class="l l-Scalar l-Scalar-Plain">webapp.fullname&quot; . }}-test&quot;</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.35</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;wget&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;{{</span><span class="nv"> </span><span class="s">include</span><span class="nv"> </span><span class="s">&quot;webapp.fullname&quot;</span><span class="nv"> </span><span class="s">.</span><span class="nv"> </span><span class="s">}}:{{</span><span class="nv"> </span><span class="s">.Values.service.port</span><span class="nv"> </span><span class="s">}}/health&#39;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>Validation Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lint chart</span>
+helm<span class="w"> </span>lint<span class="w"> </span>./webapp
+
+<span class="c1"># Dry run</span>
+helm<span class="w"> </span>install<span class="w"> </span>webapp-test<span class="w"> </span>./webapp<span class="w"> </span>--dry-run<span class="w"> </span>--debug
+
+<span class="c1"># Template validation</span>
+helm<span class="w"> </span>template<span class="w"> </span>webapp<span class="w"> </span>./webapp<span class="w"> </span>--values<span class="w"> </span>values-prod.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-f<span class="w"> </span>-
+
+<span class="c1"># Run tests</span>
+helm<span class="w"> </span><span class="nb">test</span><span class="w"> </span>webapp-prod<span class="w"> </span>-n<span class="w"> </span>production
+</pre></div>
+</div>
+</section>
+<section id="chart-repository">
+<h2>Chart Repository<a class="headerlink" href="#chart-repository" title="Link to this heading"></a></h2>
+<p><strong>Sharing Charts</strong></p>
+<p>Package and share your charts:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Package chart</span>
+helm<span class="w"> </span>package<span class="w"> </span>./webapp
+
+<span class="c1"># Create repository index</span>
+helm<span class="w"> </span>repo<span class="w"> </span>index<span class="w"> </span>.<span class="w"> </span>--url<span class="w"> </span>https://charts.mycompany.com
+
+<span class="c1"># Add custom repository</span>
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>mycompany<span class="w"> </span>https://charts.mycompany.com
+helm<span class="w"> </span>repo<span class="w"> </span>update
+
+<span class="c1"># Install from repository</span>
+helm<span class="w"> </span>install<span class="w"> </span>webapp<span class="w"> </span>mycompany/webapp<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.0.0
+</pre></div>
+</div>
+</section>
+<section id="essential-helm-commands">
+<h2>Essential Helm Commands<a class="headerlink" href="#essential-helm-commands" title="Link to this heading"></a></h2>
+<p><strong>Daily Operations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chart management</span>
+helm<span class="w"> </span>create<span class="w"> </span>mychart
+helm<span class="w"> </span>package<span class="w"> </span>./mychart
+helm<span class="w"> </span>lint<span class="w"> </span>./mychart
+
+<span class="c1"># Installation and upgrades</span>
+helm<span class="w"> </span>install<span class="w"> </span>myapp<span class="w"> </span>./mychart
+helm<span class="w"> </span>upgrade<span class="w"> </span>myapp<span class="w"> </span>./mychart
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>myapp<span class="w"> </span>./mychart<span class="w">  </span><span class="c1"># Install or upgrade</span>
+
+<span class="c1"># Release management</span>
+helm<span class="w"> </span>list
+helm<span class="w"> </span>status<span class="w"> </span>myapp
+helm<span class="w"> </span><span class="nb">history</span><span class="w"> </span>myapp
+helm<span class="w"> </span>rollback<span class="w"> </span>myapp<span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Values and templates</span>
+helm<span class="w"> </span>show<span class="w"> </span>values<span class="w"> </span>bitnami/postgresql
+helm<span class="w"> </span>template<span class="w"> </span>myapp<span class="w"> </span>./mychart<span class="w"> </span>--values<span class="w"> </span>values-prod.yaml
+
+<span class="c1"># Dependencies</span>
+helm<span class="w"> </span>dependency<span class="w"> </span>update
+helm<span class="w"> </span>dependency<span class="w"> </span>build
+
+<span class="c1"># Testing</span>
+helm<span class="w"> </span><span class="nb">test</span><span class="w"> </span>myapp
+
+<span class="c1"># Uninstall</span>
+helm<span class="w"> </span>uninstall<span class="w"> </span>myapp
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p><strong>GitOps with ArgoCD</strong></p>
+<p>You now understand Helm package management:</p>
+<ul class="simple">
+<li><p><strong>Chart Creation</strong> - Templated, reusable Kubernetes applications</p></li>
+<li><p><strong>Multi-Environment</strong> - Different configurations per environment</p></li>
+<li><p><strong>CI/CD Integration</strong> - Automated deployments with GitHub Actions</p></li>
+<li><p><strong>Dependency Management</strong> - PostgreSQL, Redis, and other services</p></li>
+<li><p><strong>Testing &amp; Validation</strong> - Quality assurance for your charts</p></li>
+<li><p><strong>Chart Repositories</strong> - Sharing and versioning charts</p></li>
+</ul>
+<p>Next: <strong>ArgoCD</strong> for GitOps workflows that take deployment automation to the next level with declarative, Git-driven deployments.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3_deployments.html" class="btn btn-neutral float-left" title="9.3 Production Deployments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_argocd.html" class="btn btn-neutral float-right" title="9.5 ArgoCD GitOps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

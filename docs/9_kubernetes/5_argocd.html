@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.5 ArgoCD GitOps &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.6 Production Best Practices" href="6_production_best_practices.html" />
+    <link rel="prev" title="9.4 Helm Package Manager" href="4_helm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_deployments.html">9.3 Production Deployments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_helm.html">9.4 Helm Package Manager</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9.5 ArgoCD GitOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_production_best_practices.html">9.6 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">9.5 ArgoCD GitOps</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/9_kubernetes/5_argocd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="argocd-gitops">
+<h1>9.5 ArgoCD GitOps<a class="headerlink" href="#argocd-gitops" title="Link to this heading"></a></h1>
+<p><strong>Git-Driven Deployments</strong></p>
+<p>Your CI/CD pipelines build and test applications. Your Helm charts package them. ArgoCD completes the automation with GitOps - where Git commits automatically trigger production deployments. No more manual kubectl commands or complex scripts.</p>
+<p>Think: <strong>Git push = Deploy to production</strong>. Every change tracked, reviewed, and auditable.</p>
+<section id="gitops-in-action">
+<h2>GitOps in Action<a class="headerlink" href="#gitops-in-action" title="Link to this heading"></a></h2>
+<p><strong>Git as Single Source of Truth</strong></p>
+<p>GitOps makes Git the control center for your infrastructure:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 35.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Traditional CI/CD</p></th>
+<th class="head"><p>GitOps with ArgoCD</p></th>
+<th class="head"><p>Benefits</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pipeline pushes to cluster</p></td>
+<td><p>Git triggers deployment</p></td>
+<td><p>Full audit trail</p></td>
+</tr>
+<tr class="row-odd"><td><p>Credentials in CI system</p></td>
+<td><p>Cluster pulls from Git</p></td>
+<td><p>Better security</p></td>
+</tr>
+<tr class="row-even"><td><p>Hard to rollback</p></td>
+<td><p>Git revert = instant rollback</p></td>
+<td><p>Easy recovery</p></td>
+</tr>
+<tr class="row-odd"><td><p>Manual drift detection</p></td>
+<td><p>Automatic drift correction</p></td>
+<td><p>Self-healing</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>How It Works:</strong>
+1. <strong>Developer</strong> pushes code → CI builds image
+2. <strong>CI system</strong> updates deployment repo with new image tag
+3. <strong>ArgoCD</strong> detects Git changes and applies them to cluster
+4. <strong>Production</strong> automatically updates to match Git state</p>
+</section>
+<section id="install-argocd">
+<h2>Install ArgoCD<a class="headerlink" href="#install-argocd" title="Link to this heading"></a></h2>
+<p><strong>Quick Setup</strong></p>
+<p>Install ArgoCD in your cluster:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create namespace</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>argocd
+
+<span class="c1"># Install ArgoCD</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+<span class="c1"># Wait for pods to be ready</span>
+kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>available<span class="w"> </span>deployment/argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>--timeout<span class="o">=</span>300s
+</pre></div>
+</div>
+<p><strong>Access ArgoCD UI:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get initial admin password</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>argocd-initial-admin-secret<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
+
+<span class="c1"># Port forward to access UI</span>
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span><span class="m">8080</span>:443
+
+<span class="c1"># Access at https://localhost:8080</span>
+<span class="c1"># Username: admin</span>
+<span class="c1"># Password: (from command above)</span>
+</pre></div>
+</div>
+<p><strong>Install ArgoCD CLI:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linux/macOS</span>
+curl<span class="w"> </span>-sSL<span class="w"> </span>-o<span class="w"> </span>argocd-linux-amd64<span class="w"> </span>https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">555</span><span class="w"> </span>argocd-linux-amd64<span class="w"> </span>/usr/local/bin/argocd
+
+<span class="c1"># Login via CLI</span>
+argocd<span class="w"> </span>login<span class="w"> </span>localhost:8080
+</pre></div>
+</div>
+</section>
+<section id="gitops-repository-structure">
+<h2>GitOps Repository Structure<a class="headerlink" href="#gitops-repository-structure" title="Link to this heading"></a></h2>
+<p><strong>Separate Config from Code</strong></p>
+<p>Organize your repositories for GitOps:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Application Repository (webapp-api)
+webapp-api/
+├── src/                    # Application code
+├── Dockerfile              # Container build
+├── .github/workflows/      # CI pipeline
+└── README.md
+
+# Configuration Repository (webapp-config)
+webapp-config/
+├── environments/
+│   ├── development/
+│   │   ├── values.yaml     # Dev configuration
+│   │   └── application.yaml
+│   ├── staging/
+│   │   ├── values.yaml     # Staging configuration
+│   │   └── application.yaml
+│   └── production/
+│       ├── values.yaml     # Production configuration
+│       └── application.yaml
+├── charts/
+│   └── webapp/             # Helm chart
+└── README.md
+</pre></div>
+</div>
+<p><strong>Why Separate Repositories?</strong></p>
+<ul class="simple">
+<li><p><strong>Security</strong>: Config repo has different access controls</p></li>
+<li><p><strong>Release Cycle</strong>: App changes != config changes</p></li>
+<li><p><strong>Clear Responsibility</strong>: Developers own code, DevOps owns config</p></li>
+<li><p><strong>Audit Trail</strong>: Clear separation of what changed where</p></li>
+</ul>
+</section>
+<section id="setup-gitops-workflow">
+<h2>Setup GitOps Workflow<a class="headerlink" href="#setup-gitops-workflow" title="Link to this heading"></a></h2>
+<p><strong>Complete CI/CD + GitOps Pipeline</strong></p>
+<p>Update your GitHub Actions to work with ArgoCD:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/ci-cd.yml (in webapp-api repo)</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI/CD Pipeline</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">develop</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test-and-build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">image_tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.tag.outputs.tag }}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">pip install -r requirements.txt</span>
+<span class="w">          </span><span class="no">pytest</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate image tag</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tag</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;tag=sha-$(git rev-parse --short HEAD)&quot; &gt;&gt; $GITHUB_OUTPUT</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker build -t myregistry/webapp:${{ steps.tag.outputs.tag }} .</span>
+<span class="w">          </span><span class="no">docker push myregistry/webapp:${{ steps.tag.outputs.tag }}</span>
+
+<span class="w">  </span><span class="nt">update-config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-and-build</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update deployment config</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fjogeleit/yaml-update-action@main</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mycompany/webapp-config</span>
+<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CONFIG_REPO_TOKEN }}</span>
+<span class="w">          </span><span class="nt">workDir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environments/development</span>
+<span class="w">          </span><span class="nt">fileName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">values.yaml</span>
+<span class="w">          </span><span class="nt">propertyPath</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;image.tag&#39;</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ needs.test-and-build.outputs.image_tag }}</span>
+<span class="w">          </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="w">          </span><span class="nt">createPR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">          </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Update</span><span class="nv"> </span><span class="s">development</span><span class="nv"> </span><span class="s">image</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">${{</span><span class="nv"> </span><span class="s">needs.test-and-build.outputs.image_tag</span><span class="nv"> </span><span class="s">}}&#39;</span>
+</pre></div>
+</div>
+<p><strong>Config Repository Structure (webapp-config):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># environments/development/values.yaml</span>
+<span class="nt">image</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myregistry/webapp</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sha-abc123&quot;</span><span class="w">  </span><span class="c1"># Updated by CI pipeline</span>
+<span class="w">  </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+
+<span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;128Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100m&quot;</span>
+
+<span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp-dev.example.com</span>
+
+<span class="nt">postgresql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># environments/production/values.yaml</span>
+<span class="nt">image</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myregistry/webapp</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sha-def456&quot;</span><span class="w">  </span><span class="c1"># Updated manually or via promotion workflow</span>
+<span class="w">  </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span>
+
+<span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500m&quot;</span>
+
+<span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp.example.com</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">postgresql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">primary</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100Gi</span>
+</pre></div>
+</div>
+</section>
+<section id="create-argocd-applications">
+<h2>Create ArgoCD Applications<a class="headerlink" href="#create-argocd-applications" title="Link to this heading"></a></h2>
+<p><strong>Configure ArgoCD to Watch Your Repos</strong></p>
+<p>Create ArgoCD applications for each environment:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># environments/development/application.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp-dev</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
+<span class="w">  </span><span class="nt">finalizers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resources-finalizer.argocd.argoproj.io</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mycompany/webapp-config.git</span>
+<span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEAD</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charts/webapp</span>
+<span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">valueFiles</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../../environments/development/values.yaml</span>
+<span class="w">  </span><span class="nt">destination</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubernetes.default.svc</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">development</span>
+<span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">automated</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">        </span><span class="c1"># Remove resources not in Git</span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">     </span><span class="c1"># Fix manual changes</span>
+<span class="w">    </span><span class="nt">syncOptions</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CreateNamespace=true</span>
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># environments/production/application.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp-prod</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
+<span class="w">  </span><span class="nt">finalizers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resources-finalizer.argocd.argoproj.io</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mycompany/webapp-config.git</span>
+<span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEAD</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charts/webapp</span>
+<span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">valueFiles</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../../environments/production/values.yaml</span>
+<span class="w">  </span><span class="nt">destination</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubernetes.default.svc</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">automated</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">syncOptions</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CreateNamespace=true</span>
+</pre></div>
+</div>
+<p><strong>Apply ArgoCD Applications:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create development application</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>environments/development/application.yaml
+
+<span class="c1"># Create production application</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>environments/production/application.yaml
+</pre></div>
+</div>
+</section>
+<section id="environment-promotion">
+<h2>Environment Promotion<a class="headerlink" href="#environment-promotion" title="Link to this heading"></a></h2>
+<p><strong>Promote Between Environments</strong></p>
+<p>Create a promotion workflow for moving changes from dev → staging → production:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/promote.yml (in webapp-config repo)</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Promote to Production</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">image_tag</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Image</span><span class="nv"> </span><span class="s">tag</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">promote&#39;</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">promote</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update production config</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no"># Update production values.yaml with new image tag</span>
+<span class="w">          </span><span class="no">sed -i &#39;s/tag: &quot;.*&quot;/tag: &quot;${{ github.event.inputs.image_tag }}&quot;/&#39; environments/production/values.yaml</span>
+
+<span class="w">          </span><span class="no"># Commit changes</span>
+<span class="w">          </span><span class="no">git config user.name &quot;GitHub Actions&quot;</span>
+<span class="w">          </span><span class="no">git config user.email &quot;actions@github.com&quot;</span>
+<span class="w">          </span><span class="no">git add environments/production/values.yaml</span>
+<span class="w">          </span><span class="no">git commit -m &quot;Promote ${{ github.event.inputs.image_tag }} to production&quot;</span>
+<span class="w">          </span><span class="no">git push</span>
+</pre></div>
+</div>
+<p><strong>Automated Promotion (Optional):</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Auto-promote successful staging deployments</span>
+<span class="nt">promote-to-production</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verify-staging</span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">success()</span>
+<span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get current staging image</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">STAGING_IMAGE=$(kubectl get deployment webapp-staging -n staging -o jsonpath=&#39;{.spec.template.spec.containers[0].image}&#39;)</span>
+<span class="w">        </span><span class="no">echo &quot;STAGING_IMAGE=$STAGING_IMAGE&quot; &gt;&gt; $GITHUB_ENV</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update production config</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fjogeleit/yaml-update-action@main</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mycompany/webapp-config</span>
+<span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CONFIG_REPO_TOKEN }}</span>
+<span class="w">        </span><span class="nt">workDir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environments/production</span>
+<span class="w">        </span><span class="nt">fileName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">values.yaml</span>
+<span class="w">        </span><span class="nt">propertyPath</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;image.tag&#39;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ env.STAGING_IMAGE }}</span>
+<span class="w">        </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Auto-promote</span><span class="nv"> </span><span class="s">${{</span><span class="nv"> </span><span class="s">env.STAGING_IMAGE</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">production&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="argocd-dashboard-operations">
+<h2>ArgoCD Dashboard &amp; Operations<a class="headerlink" href="#argocd-dashboard-operations" title="Link to this heading"></a></h2>
+<p><strong>Monitor Your Deployments</strong></p>
+<p>ArgoCD provides a comprehensive dashboard:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access ArgoCD UI</span>
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span><span class="m">8080</span>:443
+
+<span class="c1"># View applications</span>
+argocd<span class="w"> </span>app<span class="w"> </span>list
+
+<span class="c1"># Get application details</span>
+argocd<span class="w"> </span>app<span class="w"> </span>get<span class="w"> </span>webapp-dev
+
+<span class="c1"># Sync application manually</span>
+argocd<span class="w"> </span>app<span class="w"> </span>sync<span class="w"> </span>webapp-dev
+
+<span class="c1"># View application history</span>
+argocd<span class="w"> </span>app<span class="w"> </span><span class="nb">history</span><span class="w"> </span>webapp-dev
+</pre></div>
+</div>
+<p><strong>Key Dashboard Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Application Health</strong>: Green/Yellow/Red status for each app</p></li>
+<li><p><strong>Sync Status</strong>: Whether cluster matches Git state</p></li>
+<li><p><strong>Resource Tree</strong>: Visual representation of all Kubernetes resources</p></li>
+<li><p><strong>Deployment History</strong>: Timeline of all changes</p></li>
+<li><p><strong>Rollback Capability</strong>: One-click rollback to previous versions</p></li>
+</ul>
+</section>
+<section id="disaster-recovery">
+<h2>Disaster Recovery<a class="headerlink" href="#disaster-recovery" title="Link to this heading"></a></h2>
+<p><strong>Self-Healing Infrastructure</strong></p>
+<p>ArgoCD automatically fixes configuration drift:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Someone manually changes production</span>
+kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>webapp-prod<span class="w"> </span>--replicas<span class="o">=</span><span class="m">10</span><span class="w"> </span>-n<span class="w"> </span>production
+
+<span class="c1"># ArgoCD detects drift and fixes it automatically</span>
+<span class="c1"># (if selfHeal is enabled)</span>
+
+<span class="c1"># Manual sync if needed</span>
+argocd<span class="w"> </span>app<span class="w"> </span>sync<span class="w"> </span>webapp-prod
+</pre></div>
+</div>
+<p><strong>Rollback Scenarios:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad deployment? Revert Git commit</span>
+git<span class="w"> </span>revert<span class="w"> </span>HEAD
+git<span class="w"> </span>push
+<span class="c1"># ArgoCD automatically rolls back</span>
+
+<span class="c1"># Emergency rollback via ArgoCD</span>
+argocd<span class="w"> </span>app<span class="w"> </span>rollback<span class="w"> </span>webapp-prod
+
+<span class="c1"># Or via UI: Select previous version and sync</span>
+</pre></div>
+</div>
+</section>
+<section id="security-best-practices">
+<h2>Security Best Practices<a class="headerlink" href="#security-best-practices" title="Link to this heading"></a></h2>
+<p><strong>Secure GitOps Setup</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ArgoCD RBAC configuration</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-rbac-cm</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">policy.default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">role:readonly</span>
+<span class="w">  </span><span class="nt">policy.csv</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no"># Developer role - can view and sync dev apps</span>
+<span class="w">    </span><span class="no">p, role:developer, applications, get, default/webapp-dev, allow</span>
+<span class="w">    </span><span class="no">p, role:developer, applications, sync, default/webapp-dev, allow</span>
+
+<span class="w">    </span><span class="no"># DevOps role - full access to all environments</span>
+<span class="w">    </span><span class="no">p, role:devops, applications, *, *, allow</span>
+<span class="w">    </span><span class="no">p, role:devops, clusters, *, *, allow</span>
+
+<span class="w">    </span><span class="no"># Bind users to roles</span>
+<span class="w">    </span><span class="no">g, dev-team, role:developer</span>
+<span class="w">    </span><span class="no">g, devops-team, role:devops</span>
+</pre></div>
+</div>
+<p><strong>Repository Access:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ArgoCD repository credentials</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp-config-repo</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">argocd.argoproj.io/secret-type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repository</span>
+<span class="nt">stringData</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mycompany/webapp-config.git</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">your-github-token</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not-used</span>
+</pre></div>
+</div>
+</section>
+<section id="essential-argocd-commands">
+<h2>Essential ArgoCD Commands<a class="headerlink" href="#essential-argocd-commands" title="Link to this heading"></a></h2>
+<p><strong>Daily Operations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Application management</span>
+argocd<span class="w"> </span>app<span class="w"> </span>create<span class="w"> </span>webapp-dev<span class="w"> </span>--repo<span class="w"> </span>https://github.com/mycompany/webapp-config.git<span class="w"> </span>--path<span class="w"> </span>charts/webapp<span class="w"> </span>--dest-server<span class="w"> </span>https://kubernetes.default.svc<span class="w"> </span>--dest-namespace<span class="w"> </span>development
+argocd<span class="w"> </span>app<span class="w"> </span>list
+argocd<span class="w"> </span>app<span class="w"> </span>get<span class="w"> </span>webapp-dev
+argocd<span class="w"> </span>app<span class="w"> </span>delete<span class="w"> </span>webapp-dev
+
+<span class="c1"># Sync operations</span>
+argocd<span class="w"> </span>app<span class="w"> </span>sync<span class="w"> </span>webapp-dev<span class="w">              </span><span class="c1"># Manual sync</span>
+argocd<span class="w"> </span>app<span class="w"> </span>sync<span class="w"> </span>webapp-dev<span class="w"> </span>--prune<span class="w">      </span><span class="c1"># Sync and remove extra resources</span>
+argocd<span class="w"> </span>app<span class="w"> </span>refresh<span class="w"> </span>webapp-dev<span class="w">           </span><span class="c1"># Refresh Git cache</span>
+
+<span class="c1"># History and rollbacks</span>
+argocd<span class="w"> </span>app<span class="w"> </span><span class="nb">history</span><span class="w"> </span>webapp-dev
+argocd<span class="w"> </span>app<span class="w"> </span>rollback<span class="w"> </span>webapp-dev<span class="w"> </span><span class="m">5</span><span class="w">        </span><span class="c1"># Rollback to revision 5</span>
+
+<span class="c1"># Configuration</span>
+argocd<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>https://github.com/mycompany/webapp-config.git<span class="w"> </span>--username<span class="w"> </span>youruser<span class="w"> </span>--password<span class="w"> </span>yourtoken
+argocd<span class="w"> </span>cluster<span class="w"> </span>add<span class="w"> </span>kubernetes-context-name
+
+<span class="c1"># Troubleshooting</span>
+argocd<span class="w"> </span>app<span class="w"> </span>logs<span class="w"> </span>webapp-dev
+argocd<span class="w"> </span>app<span class="w"> </span>diff<span class="w"> </span>webapp-dev<span class="w">               </span><span class="c1"># Show what would change</span>
+argocd<span class="w"> </span>app<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>webapp-dev<span class="w">               </span><span class="c1"># Wait for sync to complete</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-gitops-example">
+<h2>Complete GitOps Example<a class="headerlink" href="#complete-gitops-example" title="Link to this heading"></a></h2>
+<p><strong>End-to-End Workflow</strong></p>
+<p>Here’s how everything works together:</p>
+<p><strong>1. Developer Workflow:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Developer makes changes</span>
+git<span class="w"> </span>add<span class="w"> </span>src/app.py
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add new feature&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<p><strong>2. CI Pipeline (Auto-triggered):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># GitHub Actions runs:</span>
+<span class="c1"># 1. Tests pass</span>
+<span class="c1"># 2. Builds image: myregistry/webapp:sha-abc123</span>
+<span class="c1"># 3. Updates webapp-config/environments/development/values.yaml</span>
+<span class="c1"># 4. Commits to config repo</span>
+</pre></div>
+</div>
+<p><strong>3. ArgoCD (Auto-sync):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ArgoCD detects Git change</span>
+<span class="c1"># Applies new configuration to development namespace</span>
+<span class="c1"># Developer sees changes in dev environment</span>
+</pre></div>
+</div>
+<p><strong>4. Production Promotion:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Manual approval process</span>
+<span class="c1"># Update production values.yaml with tested image tag</span>
+<span class="c1"># ArgoCD automatically deploys to production</span>
+</pre></div>
+</div>
+<p><strong>Benefits Achieved:</strong></p>
+<ul class="simple">
+<li><p><strong>Full Automation</strong> - Git push → production deployment</p></li>
+<li><p><strong>Complete Audit Trail</strong> - Every change tracked in Git</p></li>
+<li><p><strong>Easy Rollbacks</strong> - Git revert = instant rollback</p></li>
+<li><p><strong>Self-Healing</strong> - Cluster automatically matches Git state</p></li>
+<li><p><strong>Security</strong> - No cluster credentials in CI systems</p></li>
+<li><p><strong>Multi-Environment</strong> - Consistent process across all environments</p></li>
+</ul>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p><strong>Production Best Practices</strong></p>
+<p>You now understand GitOps with ArgoCD:</p>
+<ul class="simple">
+<li><p><strong>GitOps Principles</strong> - Git as single source of truth</p></li>
+<li><p><strong>ArgoCD Setup</strong> - Installation and configuration</p></li>
+<li><p><strong>Repository Structure</strong> - Separate code from config</p></li>
+<li><p><strong>Automated Workflows</strong> - CI/CD + GitOps integration</p></li>
+<li><p><strong>Environment Promotion</strong> - Safe production deployments</p></li>
+<li><p><strong>Security &amp; RBAC</strong> - Secure access controls</p></li>
+<li><p><strong>Disaster Recovery</strong> - Rollbacks and self-healing</p></li>
+</ul>
+<p>Next: <strong>Production Best Practices</strong> for monitoring, logging, security, and operational excellence in Kubernetes environments.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_helm.html" class="btn btn-neutral float-left" title="9.4 Helm Package Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="6_production_best_practices.html" class="btn btn-neutral float-right" title="9.6 Production Best Practices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
