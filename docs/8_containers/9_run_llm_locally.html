@@ -1,0 +1,538 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.9 Run LLM Locally in Docker &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TODO" href="TODO.html" />
+    <link rel="prev" title="8.8 Container Best Practices" href="8_best_practices.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8.9 Run LLM Locally in Docker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/8_containers/9_run_llm_locally.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="run-llm-locally-in-docker">
+<h1>8.9 Run LLM Locally in Docker<a class="headerlink" href="#run-llm-locally-in-docker" title="Link to this heading"></a></h1>
+<section id="why-run-llms-locally">
+<h2>Why Run LLMs Locally?<a class="headerlink" href="#why-run-llms-locally" title="Link to this heading"></a></h2>
+<p>Running Large Language Models (LLMs) locally offers several advantages for developers and organizations:</p>
+<p><strong>Privacy &amp; Security</strong></p>
+<ul class="simple">
+<li><p>Your data never leaves your infrastructure</p></li>
+<li><p>No risk of sensitive information being sent to third-party APIs</p></li>
+<li><p>Complete control over data handling and storage</p></li>
+</ul>
+<p><strong>Cost Efficiency</strong></p>
+<ul class="simple">
+<li><p>No per-token charges or API fees</p></li>
+<li><p>Predictable resource costs</p></li>
+<li><p>Better for high-volume applications</p></li>
+</ul>
+<p><strong>Performance &amp; Reliability</strong></p>
+<ul class="simple">
+<li><p>No network latency or internet dependency</p></li>
+<li><p>Guaranteed availability</p></li>
+<li><p>Consistent response times</p></li>
+</ul>
+<p><strong>Development &amp; Testing</strong></p>
+<ul class="simple">
+<li><p>Experiment with different models freely</p></li>
+<li><p>Debug without external API limitations</p></li>
+<li><p>Create reproducible testing environments</p></li>
+</ul>
+<p><strong>Compliance</strong></p>
+<ul class="simple">
+<li><p>Meet strict data governance requirements</p></li>
+<li><p>Maintain regulatory compliance (GDPR, HIPAA, etc.)</p></li>
+<li><p>Keep intellectual property secure</p></li>
+</ul>
+</section>
+<section id="method-1-ollama">
+<h2>Method 1: Ollama<a class="headerlink" href="#method-1-ollama" title="Link to this heading"></a></h2>
+<p><strong>What is Ollama?</strong></p>
+<p>Ollama is a lightweight, extensible framework for running large language models locally. It provides:</p>
+<ul class="simple">
+<li><p>Simple command-line interface for model management</p></li>
+<li><p>Optimized inference engine with quantization support</p></li>
+<li><p>RESTful API for integration with applications</p></li>
+<li><p>Support for popular models (Llama, Mistral, CodeLlama, etc.)</p></li>
+<li><p>Automatic GPU acceleration when available</p></li>
+</ul>
+<p><strong>Setting Up Ollama</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run Ollama container with GPU support (if available)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>ollama<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gpus<span class="w"> </span>all<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>ollama:/root/.ollama<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-p<span class="w"> </span><span class="m">11434</span>:11434<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ollama/ollama:latest
+
+<span class="c1"># For systems without GPU, omit the --gpus flag</span>
+<span class="c1"># docker run -d --name ollama -v ollama:/root/.ollama -p 11434:11434 ollama/ollama:latest</span>
+
+<span class="c1"># Wait for the API to be ready</span>
+curl<span class="w"> </span>-sf<span class="w"> </span>http://localhost:11434/api/version
+
+<span class="c1"># Access the container to manage models</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>ollama<span class="w"> </span>bash
+
+<span class="c1"># Pull and run a lightweight model (good for testing)</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>qwen2:1.5b
+ollama<span class="w"> </span>run<span class="w"> </span>qwen2:1.5b
+</pre></div>
+</div>
+<p><strong>Finding and Choosing Models</strong></p>
+<p>Ollama supports many popular models. You can:</p>
+<ol class="arabic simple">
+<li><p><strong>Browse available models</strong>: Visit <a class="reference external" href="https://ollama.com/library">https://ollama.com/library</a></p></li>
+<li><p><strong>Popular models by size</strong>:</p>
+<ul class="simple">
+<li><p><strong>Small (1-3B parameters)</strong>: Good for basic tasks, fast inference</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">qwen2:1.5b</span></code> - General purpose, multilingual</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phi3:mini</span></code> - Microsoft’s efficient model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gemma2:2b</span></code> - Google’s lightweight model</p></li>
+</ul>
+</li>
+<li><p><strong>Medium (7-8B parameters)</strong>: Balanced performance and speed</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">llama3:8b</span></code> - Meta’s general purpose model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mistral:7b</span></code> - Excellent for code and reasoning</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">codellama:7b</span></code> - Specialized for code generation</p></li>
+</ul>
+</li>
+<li><p><strong>Large (13B+ parameters)</strong>: Best quality, requires more resources</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">llama3:70b</span></code> - High-quality responses (requires significant RAM)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mixtral:8x7b</span></code> - Mixture of experts architecture</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Check model requirements</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List installed models</span>
+ollama<span class="w"> </span>list
+
+<span class="c1"># Get model information</span>
+ollama<span class="w"> </span>show<span class="w"> </span>qwen2:1.5b
+</pre></div>
+</div>
+<p><strong>Managing Models</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pull a specific model</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>llama3:8b
+
+<span class="c1"># Remove a model to save space</span>
+ollama<span class="w"> </span>rm<span class="w"> </span>qwen2:1.5b
+
+<span class="c1"># Update a model</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>llama3:8b<span class="w">  </span><span class="c1"># Re-pulling updates the model</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-ollama-deployment">
+<h2>Testing Ollama Deployment<a class="headerlink" href="#testing-ollama-deployment" title="Link to this heading"></a></h2>
+<p><strong>Interactive Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start an interactive session</span>
+ollama<span class="w"> </span>run<span class="w"> </span>qwen2:1.5b
+<span class="c1"># Type your questions and press Enter</span>
+<span class="c1"># Use /bye to exit</span>
+</pre></div>
+</div>
+<p><strong>Command Line Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single prompt execution</span>
+ollama<span class="w"> </span>run<span class="w"> </span>qwen2:1.5b<span class="w"> </span><span class="s2">&quot;Write a 2-line poem about containers.&quot;</span>
+</pre></div>
+</div>
+<p><strong>API Testing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple API call</span>
+curl<span class="w"> </span>http://localhost:11434/api/generate<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;model&quot;: &quot;qwen2:1.5b&quot;,</span>
+<span class="s1">    &quot;prompt&quot;: &quot;Explain what a tensor is in one sentence.&quot;,</span>
+<span class="s1">    &quot;stream&quot;: false</span>
+<span class="s1">}&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Streaming response (real-time output)</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:11434/api/generate<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;model&quot;: &quot;qwen2:1.5b&quot;,</span>
+<span class="s1">    &quot;prompt&quot;: &quot;Explain DevOps in simple terms.&quot;,</span>
+<span class="s1">    &quot;stream&quot;: true</span>
+<span class="s1">}&#39;</span>
+</pre></div>
+</div>
+<p><strong>Integration Example (Python)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ask_ollama</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen2:1.5b&quot;</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;http://localhost:11434/api/generate&quot;</span><span class="p">,</span>
+                           <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+                               <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+                               <span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+                               <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="kc">False</span>
+                           <span class="p">})</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;response&quot;</span><span class="p">]</span>
+
+<span class="c1"># Usage</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">ask_ollama</span><span class="p">(</span><span class="s2">&quot;What is Docker?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="method-2-hugging-face-text-generation-inference-tgi">
+<h2>Method 2: Hugging Face Text Generation Inference (TGI)<a class="headerlink" href="#method-2-hugging-face-text-generation-inference-tgi" title="Link to this heading"></a></h2>
+<p><strong>What is TGI?</strong></p>
+<p>Text Generation Inference (TGI) is Hugging Face’s production-ready inference server for large language models. It offers:</p>
+<ul class="simple">
+<li><p><strong>Optimized Performance</strong>: Highly optimized inference engine with batching and caching</p></li>
+<li><p><strong>Production Ready</strong>: Built for high-throughput, low-latency serving</p></li>
+<li><p><strong>Quantization Support</strong>: Built-in support for 4-bit and 8-bit quantization</p></li>
+<li><p><strong>Streaming</strong>: Real-time token streaming for better user experience</p></li>
+<li><p><strong>Enterprise Features</strong>: Metrics, health checks, and monitoring endpoints</p></li>
+</ul>
+<p><strong>One-liner Deployment with TGI</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set model and cache directory</span>
+<span class="nv">MODEL</span><span class="o">=</span>Qwen/Qwen2-1.5B-Instruct
+<span class="nv">VOL</span><span class="o">=</span><span class="nv">$HOME</span>/hf-cache
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>tgi<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>--shm-size<span class="w"> </span>1g<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VOL</span><span class="s2">&quot;</span>:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/huggingface/text-generation-inference:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-id<span class="w"> </span><span class="nv">$MODEL</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--quantize<span class="w"> </span>eetq<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-input-tokens<span class="w"> </span><span class="m">2048</span><span class="w"> </span>--max-total-tokens<span class="w"> </span><span class="m">4096</span>
+</pre></div>
+</div>
+<p><strong>For Different Hardware Configurations</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For 4GB GPU (GTX 1050 Ti, RTX 3050)</span>
+<span class="c1"># Uses 4-bit quantization for extreme VRAM savings</span>
+<span class="nv">MODEL</span><span class="o">=</span>Qwen/Qwen2-1.5B-Instruct
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>tgi<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>--shm-size<span class="w"> </span>1g<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/hf-cache&quot;</span>:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/huggingface/text-generation-inference:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-id<span class="w"> </span><span class="nv">$MODEL</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--quantize<span class="w"> </span>bitsandbytes-nf4<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-input-tokens<span class="w"> </span><span class="m">1024</span><span class="w"> </span>--max-total-tokens<span class="w"> </span><span class="m">2048</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For CPU-only deployment (no GPU)</span>
+<span class="nv">MODEL</span><span class="o">=</span>Qwen/Qwen2-1.5B-Instruct
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>tgi<span class="w"> </span>--shm-size<span class="w"> </span>1g<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/hf-cache&quot;</span>:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/huggingface/text-generation-inference:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-id<span class="w"> </span><span class="nv">$MODEL</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-input-tokens<span class="w"> </span><span class="m">1024</span><span class="w"> </span>--max-total-tokens<span class="w"> </span><span class="m">2048</span>
+</pre></div>
+</div>
+<p><strong>Using Private/Gated Models</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For models requiring authentication (get token from https://huggingface.co/settings/tokens)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HF_TOKEN</span><span class="o">=</span>your_token_here
+
+<span class="nv">MODEL</span><span class="o">=</span>meta-llama/Llama-2-7b-chat-hf<span class="w">  </span><span class="c1"># Example gated model</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>tgi<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>--shm-size<span class="w"> </span>1g<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/hf-cache&quot;</span>:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">HF_TOKEN</span><span class="o">=</span><span class="nv">$HF_TOKEN</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/huggingface/text-generation-inference:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model-id<span class="w"> </span><span class="nv">$MODEL</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--quantize<span class="w"> </span>eetq
+</pre></div>
+</div>
+<p><strong>Testing TGI Deployment</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Wait for the model to load (check logs)</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>tgi
+
+<span class="c1"># Health check</span>
+curl<span class="w"> </span>http://localhost:8080/health
+
+<span class="c1"># Get model info</span>
+curl<span class="w"> </span>http://localhost:8080/info
+</pre></div>
+</div>
+<p><strong>API Usage Examples</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple completion (non-streaming)</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8080/generate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;inputs&quot;: &quot;What is DevOps?&quot;,</span>
+<span class="s1">    &quot;parameters&quot;: {</span>
+<span class="s1">      &quot;max_new_tokens&quot;: 128,</span>
+<span class="s1">      &quot;temperature&quot;: 0.7</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;stream&quot;: false</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Streaming response (real-time tokens)</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/generate_stream<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;inputs&quot;: &quot;Explain containers in simple terms:&quot;,</span>
+<span class="s1">    &quot;parameters&quot;: {</span>
+<span class="s1">      &quot;max_new_tokens&quot;: 200,</span>
+<span class="s1">      &quot;temperature&quot;: 0.8,</span>
+<span class="s1">      &quot;top_p&quot;: 0.9</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chat completion format</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8080/generate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;inputs&quot;: &quot;&lt;|im_start|&gt;system\nYou are a helpful DevOps assistant.&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat is Docker?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n&quot;,</span>
+<span class="s1">    &quot;parameters&quot;: {</span>
+<span class="s1">      &quot;max_new_tokens&quot;: 150,</span>
+<span class="s1">      &quot;temperature&quot;: 0.7,</span>
+<span class="s1">      &quot;stop&quot;: [&quot;&lt;|im_end|&gt;&quot;]</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;stream&quot;: false</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+<p><strong>Method Comparison</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Ollama</p></th>
+<th class="head"><p>TGI</p></th>
+<th class="head"><p>Recommendation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Ease of Use</strong></p></td>
+<td><p>Excellent
+(CLI interface)</p></td>
+<td><p>Good
+(One command)</p></td>
+<td><p>Ollama for
+beginners</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>Very Good
+(Optimized)</p></td>
+<td><p>Excellent
+(Production)</p></td>
+<td><p>TGI for
+production</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Model Variety</strong></p></td>
+<td><p>Good
+(Curated)</p></td>
+<td><p>Extensive
+(Any HF model)</p></td>
+<td><p>TGI for
+variety</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Quantization</strong></p></td>
+<td><p>Built-in
+(GGML/GGUF)</p></td>
+<td><p>Advanced
+(Multiple types)</p></td>
+<td><p>TGI for
+optimization</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Production</strong>
+<strong>Features</strong></p></td>
+<td><p>Good
+(Basic API)</p></td>
+<td><p>Excellent
+(Full featured)</p></td>
+<td><p>TGI for
+enterprise</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Resource</strong>
+<strong>Usage</strong></p></td>
+<td><p>Lower
+(Efficient)</p></td>
+<td><p>Medium
+(Optimized)</p></td>
+<td><p>Ollama for
+limited hardware</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Streaming</strong></p></td>
+<td><p>Yes
+(Built-in)</p></td>
+<td><p>Yes
+(Built-in)</p></td>
+<td><p>Both support
+real-time apps</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to Use Each Method:</strong></p>
+<ul class="simple">
+<li><p><strong>Ollama</strong>: Perfect for learning, experimentation, simple applications, and resource-constrained environments</p></li>
+<li><p><strong>TGI</strong>: Best for production deployments, high performance requirements, enterprise use, and access to the full Hugging Face model ecosystem</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="8_best_practices.html" class="btn btn-neutral float-left" title="8.8 Container Best Practices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TODO.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -131,6 +131,7 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    8_containers/6_orchestration
    8_containers/7_test
    8_containers/8_best_practices
+   8_containers/9_run_llm_locally
    8_containers/TODO
    8_containers/ANSWERS
 
@@ -142,12 +143,20 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    9_kubernetes/0_introduction
    9_kubernetes/1_gettingstarted
    9_kubernetes/2_core_concepts
-   9_kubernetes/3_deployments
-   9_kubernetes/4_helm
-   9_kubernetes/5_argocd
-   9_kubernetes/6_production_best_practices
+   9_kubernetes/3_workloads_and_scheduling
+   9_kubernetes/4_networking_and_services
+   9_kubernetes/5_storage_and_persistence
+   9_kubernetes/6_configuration_management
+   9_kubernetes/7_security_and_rbac
+   9_kubernetes/8_observability_and_monitoring
+   9_kubernetes/9_helm_package_management
+   9_kubernetes/10_gitops_with_argocd
+   9_kubernetes/11_production_best_practices
+   9_kubernetes/12_troubleshooting_and_debugging
+   9_kubernetes/13_kubernetes_operators
    9_kubernetes/TODO
    9_kubernetes/ANSWERS
+
 
 .. toctree::
    :hidden:

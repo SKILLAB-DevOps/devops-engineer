@@ -4,14 +4,6 @@ TODO
 
 **Mastering Container Orchestration in Production**
 
-This chapter's assignments test your understanding of Kubernetes concepts and your ability to deploy, manage, and troubleshoot containerized applications in production environments. Complete all theoretical questions before moving to practical deployments.
-
-**Time Allocation:**
-
-- Theoretical Questions: 60-90 minutes total
-- Easy Deployments: 30 minutes each (150 minutes total)
-- Advanced Deployments: 30 minutes each (90 minutes total)
-
 =====================
 Theoretical Questions
 =====================

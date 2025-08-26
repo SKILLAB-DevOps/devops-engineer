@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.12 Troubleshooting and Debugging &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.13 Kubernetes Operators" href="13_kubernetes_operators.html" />
+    <link rel="prev" title="9.11 Production Best Practices" href="11_production_best_practices.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">9.12 Troubleshooting and Debugging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/9_kubernetes/12_troubleshooting_and_debugging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting-and-debugging">
+<h1>9.12 Troubleshooting and Debugging<a class="headerlink" href="#troubleshooting-and-debugging" title="Link to this heading"></a></h1>
+<p><strong>Diagnosing and Fixing Kubernetes Issues</strong></p>
+<p>Effective troubleshooting requires systematic approaches and the right tools to identify and resolve problems quickly.</p>
+<section id="pod-troubleshooting">
+<h2>Pod Troubleshooting<a class="headerlink" href="#pod-troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Common Pod Issues</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check pod status</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods
+kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>problematic-pod
+kubectl<span class="w"> </span>logs<span class="w"> </span>problematic-pod
+kubectl<span class="w"> </span>logs<span class="w"> </span>problematic-pod<span class="w"> </span>--previous
+
+<span class="c1"># Multiple containers</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>pod-name<span class="w"> </span>-c<span class="w"> </span>container-name
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pod-name<span class="w"> </span>-c<span class="w"> </span>container-name<span class="w"> </span>--<span class="w"> </span>sh
+</pre></div>
+</div>
+<p><strong>Pod Debugging</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debug pod with tools</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nicolaka/netshoot</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;sleep&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;3600&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debug running pod</span>
+kubectl<span class="w"> </span>debug<span class="w"> </span>pod-name<span class="w"> </span>-it<span class="w"> </span>--image<span class="o">=</span>busybox
+</pre></div>
+</div>
+</section>
+<section id="service-and-networking">
+<h2>Service and Networking<a class="headerlink" href="#service-and-networking" title="Link to this heading"></a></h2>
+<p><strong>Network Connectivity Issues</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test service connectivity</span>
+kubectl<span class="w"> </span>run<span class="w"> </span>test-pod<span class="w"> </span>--image<span class="o">=</span>busybox<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>sh
+nslookup<span class="w"> </span>service-name
+wget<span class="w"> </span>-qO-<span class="w"> </span>service-name:port
+
+<span class="c1"># Check endpoints</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>service-name
+kubectl<span class="w"> </span>describe<span class="w"> </span>service<span class="w"> </span>service-name
+</pre></div>
+</div>
+<p><strong>Network Policy Debugging</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check network policies</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>networkpolicies
+kubectl<span class="w"> </span>describe<span class="w"> </span>networkpolicy<span class="w"> </span>policy-name
+
+<span class="c1"># Test connectivity between pods</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>pod1<span class="w"> </span>--<span class="w"> </span>ping<span class="w"> </span>pod2-ip
+</pre></div>
+</div>
+</section>
+<section id="resource-issues">
+<h2>Resource Issues<a class="headerlink" href="#resource-issues" title="Link to this heading"></a></h2>
+<p><strong>Resource Constraints</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check resource usage</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>--all-namespaces
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>node-name
+
+<span class="c1"># Check events for resource issues</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.metadata.creationTimestamp
+kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pending-pod
+</pre></div>
+</div>
+<p><strong>Storage Issues</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check PVC status</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pvc
+kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>my-pvc
+kubectl<span class="w"> </span>get<span class="w"> </span>pv
+
+<span class="c1"># Check storage class</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>describe<span class="w"> </span>storageclass<span class="w"> </span>standard
+</pre></div>
+</div>
+</section>
+<section id="application-issues">
+<h2>Application Issues<a class="headerlink" href="#application-issues" title="Link to this heading"></a></h2>
+<p><strong>Health Check Failures</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check probe configurations</span>
+kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>app-pod
+kubectl<span class="w"> </span>logs<span class="w"> </span>app-pod
+
+<span class="c1"># Test health endpoints manually</span>
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>pod/app-pod<span class="w"> </span><span class="m">8080</span>:8080
+curl<span class="w"> </span>localhost:8080/health
+</pre></div>
+</div>
+<p><strong>Configuration Problems</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check ConfigMaps and Secrets</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>configmaps
+kubectl<span class="w"> </span>describe<span class="w"> </span>configmap<span class="w"> </span>app-config
+kubectl<span class="w"> </span>get<span class="w"> </span>secrets
+
+<span class="c1"># Verify environment variables</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>pod-name<span class="w"> </span>--<span class="w"> </span>env
+</pre></div>
+</div>
+</section>
+<section id="cluster-level-issues">
+<h2>Cluster-Level Issues<a class="headerlink" href="#cluster-level-issues" title="Link to this heading"></a></h2>
+<p><strong>Node Problems</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check node status</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>node-name
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--field-selector<span class="w"> </span>involvedObject.kind<span class="o">=</span>Node
+
+<span class="c1"># Check node resources</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>node<span class="w"> </span>node-name
+</pre></div>
+</div>
+<p><strong>API Server Issues</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check cluster components</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>componentstatuses
+kubectl<span class="w"> </span>cluster-info
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--all-namespaces
+</pre></div>
+</div>
+</section>
+<section id="essential-debugging-commands">
+<h2>Essential Debugging Commands<a class="headerlink" href="#essential-debugging-commands" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># General debugging</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.metadata.creationTimestamp
+kubectl<span class="w"> </span>describe<span class="w"> </span>&lt;resource-type&gt;<span class="w"> </span>&lt;resource-name&gt;
+kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/app-name
+
+<span class="c1"># Resource inspection</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>&lt;resource&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+kubectl<span class="w"> </span>get<span class="w"> </span>&lt;resource&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes/pods
+
+<span class="c1"># Interactive debugging</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pod-name<span class="w"> </span>--<span class="w"> </span>/bin/bash
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>pod/pod-name<span class="w"> </span><span class="m">8080</span>:8080
+kubectl<span class="w"> </span>debug<span class="w"> </span>node/node-name<span class="w"> </span>-it<span class="w"> </span>--image<span class="o">=</span>busybox
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>Finally, we’ll explore <strong>Kubernetes Operators</strong> for extending Kubernetes functionality.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="11_production_best_practices.html" class="btn btn-neutral float-left" title="9.11 Production Best Practices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="13_kubernetes_operators.html" class="btn btn-neutral float-right" title="9.13 Kubernetes Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

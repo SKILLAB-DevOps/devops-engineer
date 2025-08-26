@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
 </ul>
@@ -103,10 +104,18 @@
 <li class="toctree-l1"><a class="reference internal" href="0_introduction.html">9.0 Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">9.1 Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_core_concepts.html">9.2 Core Concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_deployments.html">9.3 Production Deployments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_helm.html">9.4 Helm Package Manager</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_argocd.html">9.5 ArgoCD GitOps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_production_best_practices.html">9.6 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
 </ul>
@@ -143,7 +152,48 @@
 <h1>9.1 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
 <p><strong>From Theory to Practice</strong></p>
 <p>Now that you understand what Kubernetes is and why it matters for production applications, let’s get hands-on. In this section, you’ll set up a local cluster and deploy your first application, experiencing the power of container orchestration firsthand.</p>
-<p>By the end of this section, you’ll have Kubernetes running locally and understand the basic workflow for deploying applications - setting the foundation for the more advanced concepts in subsequent chapters.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p><strong>By the end of this section, you will:</strong></p>
+<ol class="arabic simple">
+<li><p>Set up a local Kubernetes cluster using Docker Desktop</p></li>
+<li><p>Understand the basic Kubernetes architecture and key components</p></li>
+<li><p>Deploy applications using kubectl commands and YAML manifests</p></li>
+<li><p>Transition smoothly from Docker containers to Kubernetes pods</p></li>
+<li><p>Troubleshoot common deployment issues</p></li>
+<li><p>Verify and validate your Kubernetes deployments</p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p><strong>Before You Begin</strong></p>
+<p>Ensure you have completed:
+- Chapter 8: Containerization with Docker
+- Basic understanding of YAML syntax
+- Terminal/command line comfort</p>
+<p><strong>Required Tools:</strong>
+- Docker Desktop (or Rancher Desktop as alternative)
+- Terminal access
+- Text editor or IDE</p>
+</section>
+<section id="understanding-the-basics">
+<h2>Understanding the Basics<a class="headerlink" href="#understanding-the-basics" title="Link to this heading"></a></h2>
+<p><strong>Key Kubernetes Concepts</strong></p>
+<p>Before diving into commands, let’s understand the fundamental building blocks:</p>
+<ul class="simple">
+<li><p><strong>Cluster:</strong> Your complete Kubernetes environment (like a data center)</p></li>
+<li><p><strong>Node:</strong> A machine (physical or virtual) in your cluster that runs containers</p></li>
+<li><p><strong>Pod:</strong> The smallest deployable unit - contains one or more containers that share storage and network</p></li>
+<li><p><strong>Deployment:</strong> Manages multiple pod replicas and handles updates</p></li>
+<li><p><strong>Service:</strong> Provides stable network access to pods (like a load balancer)</p></li>
+<li><p><strong>Namespace:</strong> Virtual clusters within your physical cluster for organization</p></li>
+</ul>
+<p><strong>The Container-to-Pod Journey:</strong></p>
+<p>Think of it this way:
+- Docker runs <strong>containers</strong>
+- Kubernetes runs <strong>pods</strong> (which contain containers)
+- A pod is like a “wrapper” around your container with additional Kubernetes features</p>
+</section>
 <section id="quick-setup">
 <h2>Quick Setup<a class="headerlink" href="#quick-setup" title="Link to this heading"></a></h2>
 <p><strong>Install the Tools</strong></p>
@@ -156,30 +206,114 @@
 <li><p>Click “Apply &amp; Restart”</p></li>
 </ol>
 <p><em>Verify Installation:</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>cluster-info
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check kubectl is installed and cluster is running</span>
+kubectl<span class="w"> </span>version<span class="w"> </span>--client
+kubectl<span class="w"> </span>cluster-info
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </pre></div>
 </div>
 <p>You should see your cluster running with one node.</p>
+<p><em>Complete Setup Verification:</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify all system pods are running</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--all-namespaces
+
+<span class="c1"># Check Docker resources</span>
+docker<span class="w"> </span>system<span class="w"> </span>df
+
+<span class="c1"># Test basic functionality</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test-nginx<span class="w"> </span>--image<span class="o">=</span>nginx
+kubectl<span class="w"> </span>get<span class="w"> </span>deployments
+kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>test-nginx
+</pre></div>
+</div>
+</section>
+<section id="common-setup-issues">
+<h2>Common Setup Issues<a class="headerlink" href="#common-setup-issues" title="Link to this heading"></a></h2>
+<p><strong>Troubleshooting Your Installation</strong></p>
+<p>If you encounter issues, here are the most common problems and solutions:</p>
+<p><strong>Kubectl command not found:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On macOS with Homebrew</span>
+brew<span class="w"> </span>install<span class="w"> </span>kubectl
+
+<span class="c1"># On Windows, ensure kubectl is in your PATH</span>
+<span class="c1"># Check Docker Desktop settings: General &gt; &quot;Add the *.docker.internal names to the host&#39;s /etc/hosts file&quot;</span>
+</pre></div>
+</div>
+<p><strong>Cluster not starting:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reset Kubernetes in Docker Desktop</span>
+<span class="c1"># Settings &gt; Kubernetes &gt; Reset Kubernetes Cluster</span>
+
+<span class="c1"># Check Docker is running and has enough resources</span>
+<span class="c1"># Minimum: 2GB RAM, 2 CPU cores</span>
+</pre></div>
+</div>
+<p><strong>Pods stuck in Pending state:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
+<span class="c1"># Look for resource constraints or image pull errors</span>
+
+<span class="c1"># Check node resources</span>
+kubectl<span class="w"> </span>describe<span class="w"> </span>nodes
+</pre></div>
+</div>
+<p><strong>Service not accessible:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints
+kubectl<span class="w"> </span>describe<span class="w"> </span>service<span class="w"> </span>&lt;service-name&gt;
+
+<span class="c1"># Verify port-forward is working</span>
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>service/&lt;service-name&gt;<span class="w"> </span><span class="m">8080</span>:80
+</pre></div>
+</div>
 </section>
 <section id="deploy-your-first-app">
 <h2>Deploy Your First App<a class="headerlink" href="#deploy-your-first-app" title="Link to this heading"></a></h2>
 <p><strong>From docker run to kubectl</strong></p>
-<p>Remember running containers with Docker? Kubernetes is similar but more powerful:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instead of: docker run -p 8080:80 nginx</span>
-<span class="c1"># Use Kubernetes:</span>
+<p>Let’s start with what you know from Docker and gradually transition to Kubernetes:</p>
+<p><strong>Step 1: The Docker Way (Review)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># What you learned in Chapter 8</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>nginx
+docker<span class="w"> </span>ps
+</pre></div>
+</div>
+<p><strong>Step 2: The Kubernetes Pod Way</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a single pod (closest to docker run)</span>
+kubectl<span class="w"> </span>run<span class="w"> </span>nginx-pod<span class="w"> </span>--image<span class="o">=</span>nginx<span class="w"> </span>--port<span class="o">=</span><span class="m">80</span>
 
-<span class="c1"># 1. Create a deployment</span>
+<span class="c1"># Check the pod status</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods
+
+<span class="c1"># Access the pod directly</span>
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>pod/nginx-pod<span class="w"> </span><span class="m">8080</span>:80
+</pre></div>
+</div>
+<p><strong>Step 3: The Production Way (Deployments)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a deployment (manages multiple pods)</span>
 kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>web<span class="w"> </span>--image<span class="o">=</span>nginx
 
-<span class="c1"># 2. Expose it as a service</span>
+<span class="c1"># Expose it as a service</span>
 kubectl<span class="w"> </span>expose<span class="w"> </span>deployment<span class="w"> </span>web<span class="w"> </span>--port<span class="o">=</span><span class="m">80</span><span class="w"> </span>--type<span class="o">=</span>NodePort
 
-<span class="c1"># 3. Access your app</span>
+<span class="c1"># Access your app</span>
 kubectl<span class="w"> </span>port-forward<span class="w"> </span>service/web<span class="w"> </span><span class="m">8080</span>:80
 </pre></div>
 </div>
 <p>Open <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> - you’re running nginx on Kubernetes!</p>
+<p><strong>Understanding the Progression:</strong></p>
+<ul class="simple">
+<li><p><strong>Pod:</strong> Single container instance (like docker run)</p></li>
+<li><p><strong>Deployment:</strong> Manages multiple pods with scaling and updates</p></li>
+<li><p><strong>Service:</strong> Provides stable network access to pods</p></li>
+</ul>
+<p><strong>Checkpoint: Verify Your Progress</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check everything is running</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>all
+
+<span class="c1"># See the pod details</span>
+kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
+
+<span class="c1"># Check the service</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>services
+</pre></div>
+</div>
 </section>
 <section id="infrastructure-as-code">
 <h2>Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Link to this heading"></a></h2>
@@ -335,408 +469,73 @@ kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </spa
 - Migrate from Docker Compose</p>
 <p>Next, we’ll explore Kubernetes core concepts: Pods, Services, ConfigMaps, and Secrets. You’ll learn to build production-ready applications with proper configuration management and health checks.</p>
 <p><strong>Try This:</strong>
-Deploy one of your containerized applications from Chapter 8 using the patterns you just learned!
-- May not support all Kubernetes features
-- Performance can be impacted on resource-constrained machines</p>
+Deploy one of your containerized applications from Chapter 8 using the patterns you just learned!</p>
+</section>
+<section id="check-your-understanding">
+<h2>Check Your Understanding<a class="headerlink" href="#check-your-understanding" title="Link to this heading"></a></h2>
+<p><strong>Self-Assessment Questions:</strong></p>
+<ol class="arabic simple">
+<li><p>What’s the difference between a Pod and a Deployment?</p></li>
+<li><p>How would you scale your application to 5 replicas?</p></li>
+<li><p>What command shows you the logs of all pods in a deployment?</p></li>
+<li><p>How do you update your application to a new image version?</p></li>
+</ol>
+<p><strong>Practice Exercise:</strong></p>
+<p>Try to deploy a simple web application with the following requirements:
+- Use the <code class="docutils literal notranslate"><span class="pre">httpd:latest</span></code> image
+- Scale it to 3 replicas
+- Expose it on port 8080
+- Verify it’s working by accessing the service</p>
+<p><strong>Solutions:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Pod vs Deployment: Pods are single instances, Deployments manage multiple pods</span>
+<span class="c1"># 2. Scale to 5 replicas:</span>
+kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>web<span class="w"> </span>--replicas<span class="o">=</span><span class="m">5</span>
+
+<span class="c1"># 3. Show deployment logs:</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>deployment/web
+
+<span class="c1"># 4. Update image:</span>
+kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span>deployment/web<span class="w"> </span><span class="nv">nginx</span><span class="o">=</span>nginx:1.21
+</pre></div>
+</div>
+</section>
+<section id="what-s-coming-next">
+<h2>What’s Coming Next<a class="headerlink" href="#what-s-coming-next" title="Link to this heading"></a></h2>
+<p><strong>Chapter 9.2: Core Concepts</strong></p>
+<ul class="simple">
+<li><p>Deep dive into Pods, Services, and Deployments</p></li>
+<li><p>ConfigMaps and Secrets for configuration management</p></li>
+<li><p>Namespaces for resource organization</p></li>
+</ul>
+<p><strong>Chapter 9.3: Production Deployment</strong></p>
+<ul class="simple">
+<li><p>Ingress controllers and load balancing</p></li>
+<li><p>Health checks and monitoring</p></li>
+<li><p>Resource quotas and limits</p></li>
+<li><p>May not support all Kubernetes features</p></li>
+<li><p>Performance can be impacted on resource-constrained machines</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Migration Path:</strong> Docker Desktop Kubernetes is perfect for learning and development. When you’re ready for production-like environments, you can use the same kubectl commands and YAML manifests with managed Kubernetes services like EKS, GKE, or AKS.</p>
 </div>
 </section>
-<section id="rancher-desktop">
-<h2>Rancher Desktop<a class="headerlink" href="#rancher-desktop" title="Link to this heading"></a></h2>
-<p><strong>Container Management with Kubernetes First</strong></p>
-<p>Rancher Desktop takes a different approach - it’s designed around Kubernetes rather than Docker, while still supporting Docker workflows. This makes it excellent for teams transitioning from Docker-focused to Kubernetes-focused development.</p>
-<p><strong>Installation:</strong></p>
-<p>Download from: <a class="reference external" href="https://rancherdesktop.io/">https://rancherdesktop.io/</a></p>
-<p><strong>Key Advantages:</strong></p>
-<ul class="simple">
-<li><p><strong>Container runtime choice</strong> - Switch between containerd and dockerd</p></li>
-<li><p><strong>Kubernetes distributions</strong> - Choose from different K8s versions</p></li>
-<li><p><strong>Resource management</strong> - Better control over CPU and memory allocation</p></li>
-<li><p><strong>Volume mounting</strong> - Improved file sharing between host and containers</p></li>
-</ul>
-</section>
-<section id="essential-kubectl-configuration">
-<h2>Essential kubectl Configuration<a class="headerlink" href="#essential-kubectl-configuration" title="Link to this heading"></a></h2>
-<p><strong>Your Command Center for Kubernetes</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">kubectl</span></code> is to Kubernetes what <code class="docutils literal notranslate"><span class="pre">docker</span></code> is to containers - your primary interface for all cluster operations. Understanding kubectl is essential for effective Kubernetes development and operations.</p>
-<p><strong>Initial Setup and Context Management:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View all available contexts</span>
-kubectl<span class="w"> </span>config<span class="w"> </span>get-contexts
+<section id="using-better-tools-k9s">
+<h2>Using Better Tools: k9s<a class="headerlink" href="#using-better-tools-k9s" title="Link to this heading"></a></h2>
+<p><strong>Enhanced Cluster Management</strong></p>
+<p>While <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> is essential, <code class="docutils literal notranslate"><span class="pre">k9s</span></code> provides a more intuitive interface for debugging and monitoring:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install k9s</span>
+brew<span class="w"> </span>install<span class="w"> </span>derailed/k9s/k9s
 
-<span class="c1"># Switch between different clusters</span>
-kubectl<span class="w"> </span>config<span class="w"> </span>use-context<span class="w"> </span>docker-desktop
-kubectl<span class="w"> </span>config<span class="w"> </span>use-context<span class="w"> </span>kind-development
-
-<span class="c1"># Set default namespace to avoid repetitive -n flags</span>
-kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>development
+<span class="c1"># Run k9s</span>
+k9s
 </pre></div>
 </div>
-<p><strong>Essential kubectl Commands for DevOps:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cluster information and health</span>
-kubectl<span class="w"> </span>cluster-info
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="w">  </span><span class="c1"># Requires metrics-server</span>
-
-<span class="c1"># Application deployment and management</span>
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/
-kubectl<span class="w"> </span>get<span class="w"> </span>deployments,services,pods
-kubectl<span class="w"> </span>describe<span class="w"> </span>deployment<span class="w"> </span>web-app
-kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/web-app
-
-<span class="c1"># Troubleshooting and debugging</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.metadata.creationTimestamp
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pod/web-app-xxx<span class="w"> </span>--<span class="w"> </span>/bin/bash
-kubectl<span class="w"> </span>port-forward<span class="w"> </span>service/web-app<span class="w"> </span><span class="m">8080</span>:80
-</pre></div>
-</div>
-<p><strong>Creating kubectl Aliases for Productivity:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add to ~/.bashrc or ~/.zshrc</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">k</span><span class="o">=</span>kubectl
-<span class="nb">alias</span><span class="w"> </span><span class="nv">kgp</span><span class="o">=</span><span class="s1">&#39;kubectl get pods&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">kgs</span><span class="o">=</span><span class="s1">&#39;kubectl get services&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">kgd</span><span class="o">=</span><span class="s1">&#39;kubectl get deployments&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">kdp</span><span class="o">=</span><span class="s1">&#39;kubectl describe pod&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">kaf</span><span class="o">=</span><span class="s1">&#39;kubectl apply -f&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">kdel</span><span class="o">=</span><span class="s1">&#39;kubectl delete&#39;</span>
-</pre></div>
-</div>
-</section>
-<section id="from-docker-compose-to-kubernetes-manifests">
-<h2>From Docker Compose to Kubernetes Manifests<a class="headerlink" href="#from-docker-compose-to-kubernetes-manifests" title="Link to this heading"></a></h2>
-<p><strong>Translating Your Container Knowledge</strong></p>
-<p>Your Docker Compose skills translate directly to Kubernetes, but with additional capabilities for production environments. Let’s take a real application from the containers chapter and deploy it to Kubernetes.</p>
-<p><strong>Docker Compose Recap (from Chapter 8):</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># docker-compose.yml</span>
-<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">web</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp:latest</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL=postgresql://user:pass@db:5432/myapp</span>
-<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
-
-<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_DB=myapp</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_USER=user</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=pass</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_data:/var/lib/postgresql/data</span>
-
-<span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7-alpine</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6379:6379&quot;</span>
-</pre></div>
-</div>
-<p><strong>Kubernetes Equivalent:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># web-deployment.yaml</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
-<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">  </span><span class="c1"># Scale beyond single container</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
-<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
-<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web</span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webapp:latest</span>
-<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
-<span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-secret</span>
-<span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database-url</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REDIS_URL</span>
-<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;redis://redis:6379&quot;</span>
-<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;256Mi&quot;</span>
-<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;250m&quot;</span>
-<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
-<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500m&quot;</span>
-<span class="w">        </span><span class="nt">livenessProbe</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
-<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
-<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
-
-<span class="nn">---</span>
-<span class="c1"># web-service.yaml</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
-<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
-</pre></div>
-</div>
-<p><strong>Key Differences from Docker Compose:</strong></p>
-<ul class="simple">
-<li><p><strong>Explicit resource management</strong> - Define CPU and memory requirements</p></li>
-<li><p><strong>Health checks</strong> - Built-in liveness and readiness probes</p></li>
-<li><p><strong>Scaling</strong> - Multiple replicas distribute load and provide redundancy</p></li>
-<li><p><strong>Secret management</strong> - Secure handling of sensitive configuration</p></li>
-<li><p><strong>Service discovery</strong> - Automatic DNS resolution between services</p></li>
-</ul>
-</section>
-<section id="integrating-with-ci-cd-pipelines">
-<h2>Integrating with CI/CD Pipelines<a class="headerlink" href="#integrating-with-ci-cd-pipelines" title="Link to this heading"></a></h2>
-<p><strong>Connecting Your Pipeline to Kubernetes</strong></p>
-<p>Your CI/CD pipelines from Chapter 7 can deploy directly to Kubernetes, creating a complete automation workflow from code commit to production deployment.</p>
-<p><strong>GitHub Actions Kubernetes Deployment:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/deploy-k8s.yml</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Kubernetes</span>
-<span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push container</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">docker build -t webapp:${{ github.sha }} .</span>
-<span class="w">          </span><span class="no">echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin</span>
-<span class="w">          </span><span class="no">docker push webapp:${{ github.sha }}</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up kubectl</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/setup-kubectl@v3</span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;v1.29.0&#39;</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure kubectl</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">echo &quot;${{ secrets.KUBE_CONFIG }}&quot; | base64 -d &gt; ~/.kube/config</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update deployment image</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">kubectl set image deployment/web-app web=webapp:${{ github.sha }}</span>
-<span class="w">          </span><span class="no">kubectl rollout status deployment/web-app</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify deployment</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">kubectl get services</span>
-<span class="w">          </span><span class="no">kubectl get pods</span>
-</pre></div>
-</div>
-<p><strong>Development Workflow Integration:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local development script</span>
-<span class="c1">#!/bin/bash</span>
-<span class="c1"># deploy-local.sh</span>
-
-<span class="c1"># Build container from current code</span>
-docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>webapp:dev<span class="w"> </span>.
-
-<span class="c1"># Load into KIND cluster</span>
-kind<span class="w"> </span>load<span class="w"> </span>docker-image<span class="w"> </span>webapp:dev<span class="w"> </span>--name<span class="w"> </span>development
-
-<span class="c1"># Update Kubernetes deployment</span>
-kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span>deployment/web-app<span class="w"> </span><span class="nv">web</span><span class="o">=</span>webapp:dev
-
-<span class="c1"># Follow deployment progress</span>
-kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/web-app
-
-<span class="c1"># Show application logs</span>
-kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/web-app
-</pre></div>
-</div>
-</section>
-<section id="troubleshooting-and-debugging">
-<h2>Troubleshooting and Debugging<a class="headerlink" href="#troubleshooting-and-debugging" title="Link to this heading"></a></h2>
-<p><strong>Essential Skills for Kubernetes Operations</strong></p>
-<p>Kubernetes troubleshooting requires different approaches than traditional debugging. The distributed nature means issues can occur at multiple layers: infrastructure, cluster, node, or application level.</p>
-<p><strong>Common Issues and Solutions:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pod won&#39;t start - check events and logs</span>
-kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
-kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--previous<span class="w">  </span><span class="c1"># Previous container logs</span>
-
-<span class="c1"># Service not accessible - verify endpoints</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>endpoints
-kubectl<span class="w"> </span>describe<span class="w"> </span>service<span class="w"> </span>&lt;service-name&gt;
-
-<span class="c1"># Image pull problems - check secrets and registries</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>secrets
-kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>Events
-
-<span class="c1"># Resource constraints - check node capacity</span>
-kubectl<span class="w"> </span>top<span class="w"> </span>nodes
-kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;
-</pre></div>
-</div>
-<p><strong>Health Check Setup:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add to deployment spec</span>
-<span class="nt">livenessProbe</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
-<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
-<span class="w">  </span><span class="nt">timeoutSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-
-<span class="nt">readinessProbe</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/ready</span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-</pre></div>
-</div>
-<dl>
-<dt>This foundation prepares you for the advanced Kubernetes concepts covered in the following sections, including production deployments, GitOps workflows, and cluster management.</dt><dd><p>kubectl [flags] [options]</p>
-<p>Use “kubectl &lt;command&gt; –help” for more information about a given command.
-Use “kubectl options” for a list of global command-line options (applies to all commands).</p>
-</dd>
-</dl>
-<p>Verify the cluster with the following command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-NAME<span class="w">             </span>STATUS<span class="w">   </span>ROLES<span class="w">           </span>AGE<span class="w">    </span>VERSION
-docker-desktop<span class="w">   </span>Ready<span class="w">    </span>control-plane<span class="w">   </span>6m2s<span class="w">   </span>v1.25.4
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> configuration file is called config and lives in a hidden directory called <code class="docutils literal notranslate"><span class="pre">kube</span></code> in your home directory <code class="docutils literal notranslate"><span class="pre">$HOME/.kube/config</span></code>. We normally call it the <code class="docutils literal notranslate"><span class="pre">kubeconfig</span></code> file, and it contains definitions for</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Clusters</p></li>
-<li><p>Users (credentials)</p></li>
-<li><p>Contexts</p></li>
-</ol>
-</div></blockquote>
-<p>You can view your <code class="docutils literal notranslate"><span class="pre">kubeconfig</span></code> using the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> config view command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>config<span class="w"> </span>view
-apiVersion:<span class="w"> </span>v1
-clusters:
--<span class="w"> </span>cluster:
-<span class="w">    </span>certificate-authority-data:<span class="w"> </span>DATA+OMITTED
-<span class="w">    </span>server:<span class="w"> </span>https://kubernetes.docker.internal:6443
-name:<span class="w"> </span>docker-desktop
-contexts:
--<span class="w"> </span>context:
-<span class="w">    </span>cluster:<span class="w"> </span>docker-desktop
-<span class="w">    </span>user:<span class="w"> </span>docker-desktop
-name:<span class="w"> </span>docker-desktop
-current-context:<span class="w"> </span>docker-desktop
-kind:<span class="w"> </span>Config
-preferences:<span class="w"> </span><span class="o">{}</span>
-users:
--<span class="w"> </span>name:<span class="w"> </span>docker-desktop
-user:
-<span class="w">    </span>client-certificate-data:<span class="w"> </span>REDACTED
-<span class="w">    </span>client-key-data:<span class="w"> </span>REDACTED
-</pre></div>
-</div>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> config current-context to see your current context. The following example shows a system where <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> is configured to use the cluster and user-defined in a context called docker-desktop.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>config<span class="w"> </span>current-context
-docker-desktop
-</pre></div>
-</div>
-<p>Run a <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> explain pods command to list all possible Pod attributes.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>explain<span class="w"> </span>pods<span class="w"> </span>--recursive
-KIND:<span class="w">     </span>Pod
-VERSION:<span class="w">  </span>v1
-
-DESCRIPTION:
-<span class="w">    </span>Pod<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>collection<span class="w"> </span>of<span class="w"> </span>containers<span class="w"> </span>that<span class="w"> </span>can<span class="w"> </span>run<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>host.<span class="w"> </span>This<span class="w"> </span>resource<span class="w"> </span>is
-<span class="w">    </span>created<span class="w"> </span>by<span class="w"> </span>clients<span class="w"> </span>and<span class="w"> </span>scheduled<span class="w"> </span>onto<span class="w"> </span>hosts.
-
-FIELDS:
-apiVersion<span class="w">   </span>&lt;string&gt;
-kind<span class="w"> </span>&lt;string&gt;
-metadata<span class="w">     </span>&lt;Object&gt;
-<span class="w">    </span>annotations<span class="w">       </span>&lt;map<span class="o">[</span>string<span class="o">]</span>string&gt;
-<span class="w">    </span>creationTimestamp<span class="w"> </span>&lt;string&gt;
-<span class="w">    </span>deletionGracePeriodSeconds<span class="w">        </span>&lt;integer&gt;
-<span class="w">    </span>deletionTimestamp<span class="w"> </span>&lt;string&gt;
-<span class="w">    </span>finalizers<span class="w">        </span>&lt;<span class="o">[]</span>string&gt;
-<span class="w">    </span>generateName<span class="w">      </span>&lt;string&gt;
-<span class="w">    </span>generation<span class="w">        </span>&lt;integer&gt;
-<span class="w">    </span>labels<span class="w">    </span>&lt;map<span class="o">[</span>string<span class="o">]</span>string&gt;
-<span class="w">    </span>managedFields<span class="w">     </span>&lt;<span class="o">[]</span>Object&gt;
-<span class="w">        </span>apiVersion<span class="w">     </span>&lt;string&gt;
-<span class="w">        </span>fieldsType<span class="w">     </span>&lt;string&gt;
-<span class="w">        </span>fieldsV1<span class="w">       </span>&lt;map<span class="o">[</span>string<span class="o">]</span>&gt;
-<span class="w">        </span>manager<span class="w">        </span>&lt;string&gt;
-<span class="w">        </span>operation<span class="w">      </span>&lt;string&gt;
-<span class="w">        </span>subresource<span class="w">    </span>&lt;string&gt;
-<span class="w">        </span><span class="nb">time</span><span class="w">   </span>&lt;string&gt;
-<span class="w">    </span>name<span class="w">      </span>&lt;string&gt;
-<span class="w">    </span>namespace<span class="w"> </span>&lt;string&gt;
-<span class="w">    </span>ownerReferences<span class="w">   </span>&lt;<span class="o">[]</span>Object&gt;
-<span class="w">        </span>apiVersion<span class="w">     </span>&lt;string&gt;
-<span class="w">        </span>blockOwnerDeletion<span class="w">     </span>&lt;boolean&gt;
-<span class="w">        </span>controller<span class="w">     </span>&lt;boolean&gt;
-<span class="w">        </span>kind<span class="w">   </span>&lt;string&gt;
-<span class="w">        </span>name<span class="w">   </span>&lt;string&gt;
-<span class="w">        </span>uid<span class="w">    </span>&lt;string&gt;
-<span class="w">    </span>resourceVersion<span class="w">   </span>&lt;string&gt;
-<span class="w">    </span>selfLink<span class="w">  </span>&lt;string&gt;
-<span class="w">    </span>uid<span class="w">       </span>&lt;string&gt;
-spec<span class="w"> </span>&lt;Object&gt;
-</pre></div>
-</div>
-<p>To find out more about different attributes, you can use</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>explain<span class="w"> </span>pod.spec
-</pre></div>
-</div>
-</section>
-<section id="is-there-a-better-way">
-<h2>Is there a better way?<a class="headerlink" href="#is-there-a-better-way" title="Link to this heading"></a></h2>
-<p>Using <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> to create deployment is perfect but for debugging and testing purposes, it is not the best way to do it.</p>
-<p>We use better cli tools, like <code class="docutils literal notranslate"><span class="pre">k9s</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>derailed/k9s/k9s
-</pre></div>
-</div>
-<p>Run <code class="docutils literal notranslate"><span class="pre">k9s</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>k9s
-</pre></div>
-</div>
-</section>
-<section id="creating-our-first-hello-world">
-<h2>Creating our first hello world<a class="headerlink" href="#creating-our-first-hello-world" title="Link to this heading"></a></h2>
-<p>We’ve used the Python Fast API application in the previous chapter. We will use it again to create our first hello world application.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fastapi/
-├──<span class="w"> </span>Dockerfile
-├──<span class="w"> </span>requirements.txt
-└──<span class="w"> </span>app
-<span class="w">    </span>├──<span class="w"> </span>__init__.py
-<span class="w">    </span>└──<span class="w"> </span>main.py
-└──k8s
-<span class="w">    </span>└──<span class="w"> </span>Chart.yaml
-<span class="w">    </span>└──<span class="w"> </span>values.yaml
-<span class="w">    </span>└──<span class="w"> </span>templates
-<span class="w">        </span>└──<span class="w"> </span>deployment.yaml
-<span class="w">        </span>└──<span class="w"> </span>service.yaml
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">k9s</span></code> gives you a real-time dashboard to:
+- View all resources in your cluster
+- Monitor pod logs and events
+- Edit resources in place
+- Navigate between namespaces easily</p>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
@@ -745,13 +544,10 @@ spec<span class="w"> </span>&lt;Object&gt;
 <li><p>Set up a local Kubernetes cluster</p></li>
 <li><p>Deployed your first application using both imperative commands and declarative YAML</p></li>
 <li><p>Learned essential kubectl commands for daily operations</p></li>
-<li><p>Migrated a Docker Compose application to Kubernetes</p></li>
+<li><p>Migrated from Docker containers to Kubernetes pods</p></li>
 </ul>
 <p>You now have hands-on experience with Kubernetes basics, but we’ve only scratched the surface. The commands and YAML files you’ve used contain powerful concepts like Pods, Deployments, and Services that deserve deeper exploration.</p>
 <p>In the next chapter, we’ll dive into these core concepts, understanding not just the “how” but the “why” behind each component. This foundation will be crucial as we progress to production deployment strategies and advanced Kubernetes features.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </section>
 </section>
 
