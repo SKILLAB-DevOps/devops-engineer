@@ -49,8 +49,6 @@ Metrics with Prometheus
             ports:
             - name: metrics
               containerPort: 9090
-            - name: http
-              containerPort: 8080
 
 =======
 Logging

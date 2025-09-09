@@ -142,6 +142,7 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
 
    9_kubernetes/0_introduction
    9_kubernetes/1_gettingstarted
+   9_kubernetes/1_installing_k3s_and_rancher
    9_kubernetes/2_core_concepts
    9_kubernetes/3_workloads_and_scheduling
    9_kubernetes/4_networking_and_services
@@ -154,6 +155,9 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    9_kubernetes/11_production_best_practices
    9_kubernetes/12_troubleshooting_and_debugging
    9_kubernetes/13_kubernetes_operators
+   9_kubernetes/14_cicd_integration
+   9_kubernetes/15_service_mesh
+   9_kubernetes/16_advanced_networking
    9_kubernetes/TODO
    9_kubernetes/ANSWERS
 

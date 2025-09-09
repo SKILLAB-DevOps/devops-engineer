@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.1 Installing k3s and Rancher &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.2 Core Concepts" href="2_core_concepts.html" />
+    <link rel="prev" title="9.1 Getting Started" href="1_gettingstarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">9.1 Installing k3s and Rancher</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/9_kubernetes/1_installing_k3s_and_rancher.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-k3s-and-rancher">
+<h1>9.1 Installing k3s and Rancher<a class="headerlink" href="#installing-k3s-and-rancher" title="Link to this heading"></a></h1>
+<p><strong>Complete Guide for Rocky Linux 10</strong></p>
+<p>This section provides a comprehensive step-by-step manual for installing k3s (lightweight Kubernetes) and Rancher (Kubernetes management platform) on Rocky Linux 10.</p>
+<section id="what-is-k3s">
+<h2>What is k3s?<a class="headerlink" href="#what-is-k3s" title="Link to this heading"></a></h2>
+<p>k3s is a lightweight Kubernetes distribution designed for:</p>
+<ul class="simple">
+<li><p><strong>Edge computing</strong> and IoT devices</p></li>
+<li><p><strong>Development environments</strong> and CI/CD</p></li>
+<li><p><strong>Resource-constrained environments</strong></p></li>
+<li><p><strong>Easy installation</strong> with minimal dependencies</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p><strong>System Requirements</strong></p>
+<ul class="simple">
+<li><p>Rocky Linux 10 server (physical or virtual)</p></li>
+<li><p>Minimum 4GB RAM (8GB recommended)</p></li>
+<li><p>Minimum 2 CPU cores</p></li>
+<li><p>20GB free disk space</p></li>
+<li><p>Root or sudo access</p></li>
+<li><p>Internet connectivity</p></li>
+</ul>
+<p><strong>Network Requirements</strong></p>
+<ul class="simple">
+<li><p>Ports 6443 (Kubernetes API)</p></li>
+<li><p>Ports 80/443 (Rancher UI)</p></li>
+<li><p>Port 10250 (kubelet)</p></li>
+</ul>
+</section>
+<section id="step-1-system-setup">
+<h2>Step 1: System Setup<a class="headerlink" href="#step-1-system-setup" title="Link to this heading"></a></h2>
+<p><strong>1.1 Update the System</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update all packages</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
+
+<span class="c1"># Reboot to ensure kernel updates take effect</span>
+sudo<span class="w"> </span>reboot
+</pre></div>
+</div>
+<p><strong>1.2 Configure Firewall</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check firewall status</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>firewalld
+
+<span class="c1"># If firewall is active, open required ports</span>
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">6443</span>/tcp
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">443</span>/tcp
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">80</span>/tcp
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">10250</span>/tcp
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
+
+<span class="c1"># Verify open ports</span>
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--list-ports
+</pre></div>
+</div>
+<p><strong>1.3 Disable SELinux (Optional)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check SELinux status</span>
+sestatus
+
+<span class="c1"># Temporarily disable (for current session)</span>
+sudo<span class="w"> </span>setenforce<span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># Permanently disable (edit config file)</span>
+sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^SELINUX=enforcing$/SELINUX=permissive/&#39;</span><span class="w"> </span>/etc/selinux/config
+</pre></div>
+</div>
+<p><strong>1.4 Install Required Packages</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install essential tools</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>vim
+</pre></div>
+</div>
+<p><strong>1.5 Configure System Settings</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable IP forwarding</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;net.ipv4.ip_forward = 1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/sysctl.conf
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;net.bridge.bridge-nf-call-iptables = 1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/sysctl.conf
+
+<span class="c1"># Apply changes</span>
+sudo<span class="w"> </span>sysctl<span class="w"> </span>-p
+</pre></div>
+</div>
+</section>
+<section id="step-2-install-k3s">
+<h2>Step 2: Install k3s<a class="headerlink" href="#step-2-install-k3s" title="Link to this heading"></a></h2>
+<p><strong>2.1 Download and Install k3s</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download and install k3s with default settings</span>
+curl<span class="w"> </span>-sfL<span class="w"> </span>https://get.k3s.io<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-
+</pre></div>
+</div>
+<p><strong>Expected Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[INFO]  Finding release for channel stable
+[INFO]  Using v1.28.2+k3s1 as release
+[INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.28.2+k3s1/sha256sum-amd64.txt
+[INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.28.2+k3s1/k3s
+[INFO]  Verifying binary download
+[INFO]  Installing k3s to /usr/local/bin/k3s
+[INFO]  Skipping installation of SELinux RPM
+[INFO]  Creating /usr/local/bin/kubectl symlink to k3s
+[INFO]  Creating /usr/local/bin/crictl symlink to k3s
+[INFO]  Creating /usr/local/bin/ctr symlink to k3s
+[INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+[INFO]  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+[INFO]  env: Creating environment file /etc/systemd/system/k3s.service.env
+[INFO]  systemd: Creating service file /etc/systemd/system/k3s.service
+[INFO]  systemd: Enabling k3s unit
+[INFO]  systemd: Starting k3s
+</pre></div>
+</div>
+<p><strong>2.2 Verify k3s Installation</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check k3s service status</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>k3s
+
+<span class="c1"># Check if k3s is running</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>is-active<span class="w"> </span>k3s
+
+<span class="c1"># View k3s logs</span>
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>k3s<span class="w"> </span>-f
+</pre></div>
+</div>
+<p><strong>2.3 Configure kubectl Access</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create .kube directory for current user</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/.kube
+
+<span class="c1"># Copy k3s kubeconfig to standard location</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>/etc/rancher/k3s/k3s.yaml<span class="w"> </span>~/.kube/config
+
+<span class="c1"># Change ownership to current user</span>
+sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>:<span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span>~/.kube/config
+
+<span class="c1"># Set proper permissions</span>
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.kube/config
+
+<span class="c1"># Set KUBECONFIG environment variable</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export KUBECONFIG=~/.kube/config&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p><strong>2.4 Test kubectl</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check cluster info</span>
+kubectl<span class="w"> </span>cluster-info
+
+<span class="c1"># List nodes</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+
+<span class="c1"># List all pods in all namespaces</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+
+<span class="c1"># Check node details</span>
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span><span class="k">$(</span>hostname<span class="k">)</span>
+</pre></div>
+</div>
+<p><strong>Expected kubectl Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>NAME           STATUS   ROLES                  AGE   VERSION
+rocky-server   Ready    control-plane,master   2m    v1.28.2+k3s1
+
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS   AGE
+kube-system   local-path-provisioner-6c86858495-xyz    1/1     Running     0          2m
+kube-system   coredns-96cc4f57d-abc                     1/1     Running     0          2m
+kube-system   metrics-server-67c658944b-def             1/1     Running     0          2m
+kube-system   helm-install-traefik-crd-ghi              0/1     Completed   0          2m
+kube-system   helm-install-traefik-jkl                  0/1     Completed   0          2m
+kube-system   traefik-7d5f6474df-mno                    1/1     Running     0          2m
+</pre></div>
+</div>
+</section>
+<section id="step-3-install-helm">
+<h2>Step 3: Install Helm<a class="headerlink" href="#step-3-install-helm" title="Link to this heading"></a></h2>
+<p><strong>3.1 Download and Install Helm</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download Helm installation script</span>
+curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>get_helm.sh<span class="w"> </span>https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
+<span class="c1"># Make script executable</span>
+chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>get_helm.sh
+
+<span class="c1"># Run installation script</span>
+./get_helm.sh
+
+<span class="c1"># Remove installation script</span>
+rm<span class="w"> </span>get_helm.sh
+</pre></div>
+</div>
+<p><strong>3.2 Verify Helm Installation</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Helm version</span>
+helm<span class="w"> </span>version
+
+<span class="c1"># Add stable repository</span>
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>stable<span class="w"> </span>https://charts.helm.sh/stable
+
+<span class="c1"># Update repositories</span>
+helm<span class="w"> </span>repo<span class="w"> </span>update
+
+<span class="c1"># List repositories</span>
+helm<span class="w"> </span>repo<span class="w"> </span>list
+</pre></div>
+</div>
+<p><strong>Expected Helm Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>version.BuildInfo{Version:&quot;v3.12.3&quot;, GitCommit:&quot;3a31588ad33fe3b89af5a2a54ee1d25bfe6eaa5e&quot;, GitTreeState:&quot;clean&quot;, GoVersion:&quot;go1.20.7&quot;}
+</pre></div>
+</div>
+</section>
+<section id="step-4-install-rancher">
+<h2>Step 4: Install Rancher<a class="headerlink" href="#step-4-install-rancher" title="Link to this heading"></a></h2>
+<p><strong>4.1 Add Rancher Helm Repository</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add Rancher stable repository</span>
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>rancher-stable<span class="w"> </span>https://releases.rancher.com/server-charts/stable
+
+<span class="c1"># Update Helm repositories</span>
+helm<span class="w"> </span>repo<span class="w"> </span>update
+
+<span class="c1"># Verify Rancher repository</span>
+helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>rancher
+</pre></div>
+</div>
+<p><strong>4.2 Create Rancher Namespace</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create cattle-system namespace for Rancher</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>cattle-system
+
+<span class="c1"># Verify namespace creation</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>namespaces
+</pre></div>
+</div>
+<p><strong>4.3 Install cert-manager (Required for SSL)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add cert-manager repository</span>
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>jetstack<span class="w"> </span>https://charts.jetstack.io
+
+<span class="c1"># Update repositories</span>
+helm<span class="w"> </span>repo<span class="w"> </span>update
+
+<span class="c1"># Install cert-manager</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.crds.yaml
+
+<span class="c1"># Create cert-manager namespace</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>cert-manager
+
+<span class="c1"># Install cert-manager using Helm</span>
+helm<span class="w"> </span>install<span class="w"> </span>cert-manager<span class="w"> </span>jetstack/cert-manager<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>cert-manager<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--version<span class="w"> </span>v1.13.0
+</pre></div>
+</div>
+<p><strong>4.4 Verify cert-manager Installation</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Wait for cert-manager pods to be ready</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--namespace<span class="w"> </span>cert-manager
+
+<span class="c1"># Check cert-manager status</span>
+kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>ready<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>cert-manager<span class="w"> </span>--namespace<span class="w"> </span>cert-manager<span class="w"> </span>--timeout<span class="o">=</span>60s
+</pre></div>
+</div>
+<p><strong>4.5 Install Rancher</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Rancher with hostname (replace with your domain/IP)</span>
+helm<span class="w"> </span>install<span class="w"> </span>rancher<span class="w"> </span>rancher-stable/rancher<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>cattle-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">hostname</span><span class="o">=</span>rancher.local<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">bootstrapPassword</span><span class="o">=</span>admin123<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>ingress.tls.source<span class="o">=</span>rancher<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">replicas</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p><strong>For Production with Custom Domain:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace rancher.yourdomain.com with your actual domain</span>
+helm<span class="w"> </span>install<span class="w"> </span>rancher<span class="w"> </span>rancher-stable/rancher<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>cattle-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">hostname</span><span class="o">=</span>rancher.yourdomain.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">bootstrapPassword</span><span class="o">=</span>SecurePassword123!<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>ingress.tls.source<span class="o">=</span>letsEncrypt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>letsEncrypt.email<span class="o">=</span>your-email@domain.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>letsEncrypt.environment<span class="o">=</span>production<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">replicas</span><span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p><strong>4.6 Verify Rancher Installation</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch Rancher deployment</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deploy/rancher
+
+<span class="c1"># Check Rancher pods</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>pods
+
+<span class="c1"># Check services</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>svc
+
+<span class="c1"># Get Rancher URL</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Rancher URL: https://</span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>rancher<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.rules[0].host}&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-5-access-rancher-ui">
+<h2>Step 5: Access Rancher UI<a class="headerlink" href="#step-5-access-rancher-ui" title="Link to this heading"></a></h2>
+<p><strong>5.1 Wait for Rancher to be Ready</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monitor Rancher deployment progress</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-w
+
+<span class="c1"># Wait for all pods to be running (press Ctrl+C to exit watch)</span>
+<span class="c1"># You should see output similar to:</span>
+<span class="c1"># rancher-xxx-yyy   1/1     Running   0          2m</span>
+<span class="c1"># rancher-webhook-xxx-yyy   1/1     Running   0          1m</span>
+</pre></div>
+</div>
+<p><strong>5.2 Access Methods</strong></p>
+<p><strong>Method 1: Using Local Domain (Development)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add entry to /etc/hosts file</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;127.0.0.1 rancher.local&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/hosts
+
+<span class="c1"># Access via browser: https://rancher.local</span>
+</pre></div>
+</div>
+<p><strong>Method 2: Using Server IP</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get server IP</span>
+ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;inet &quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="m">127</span>.0.0.1
+
+<span class="c1"># Access via browser: https://YOUR_SERVER_IP</span>
+<span class="c1"># Accept self-signed certificate warning</span>
+</pre></div>
+</div>
+<p><strong>Method 3: Port Forwarding (Testing)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Forward local port to Rancher service</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>port-forward<span class="w"> </span>svc/rancher<span class="w"> </span><span class="m">8443</span>:443
+
+<span class="c1"># Access via browser: https://localhost:8443</span>
+</pre></div>
+</div>
+<p><strong>5.3 Initial Rancher Setup</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Open Browser</strong>: Navigate to your Rancher URL</p></li>
+<li><p><strong>Accept Certificate</strong>: Accept the self-signed certificate warning</p></li>
+<li><p><strong>Bootstrap Password</strong>: Enter the password you set during installation (default: admin123)</p></li>
+<li><p><strong>Set New Password</strong>: Create a new secure password</p></li>
+<li><p><strong>Server URL</strong>: Confirm the server URL for Rancher</p></li>
+</ol>
+</section>
+<section id="step-6-troubleshooting">
+<h2>Step 6: Troubleshooting<a class="headerlink" href="#step-6-troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>6.1 Common Issues and Solutions</strong></p>
+<p><strong>Issue: k3s Service Not Starting</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check service status</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>k3s
+
+<span class="c1"># View detailed logs</span>
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>k3s<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span>
+
+<span class="c1"># Restart k3s service</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>k3s
+</pre></div>
+</div>
+<p><strong>Issue: kubectl Command Not Found</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if kubectl symlink exists</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/usr/local/bin/kubectl
+
+<span class="c1"># If missing, recreate symlink</span>
+sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/bin/k3s<span class="w"> </span>/usr/local/bin/kubectl
+
+<span class="c1"># Add to PATH</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=$PATH:/usr/local/bin&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p><strong>Issue: Rancher Pods Not Starting</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check pod status and events</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>describe<span class="w"> </span>pods
+
+<span class="c1"># Check cert-manager pods</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cert-manager<span class="w"> </span>get<span class="w"> </span>pods
+
+<span class="c1"># Check for certificate issues</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>certificates
+</pre></div>
+</div>
+<p><strong>Issue: Cannot Access Rancher UI</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check ingress configuration</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>ingress
+
+<span class="c1"># Check Traefik (k3s default ingress controller)</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>traefik
+
+<span class="c1"># Check service endpoints</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>endpoints
+</pre></div>
+</div>
+<p><strong>6.2 Useful Debug Commands</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check cluster health</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>componentstatuses
+
+<span class="c1"># Check node resources</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+
+<span class="c1"># Check pod resources</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
+
+<span class="c1"># Check events</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
+
+<span class="c1"># Check k3s configuration</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/etc/rancher/k3s/k3s.yaml
+</pre></div>
+</div>
+</section>
+<section id="step-7-next-steps">
+<h2>Step 7: Next Steps<a class="headerlink" href="#step-7-next-steps" title="Link to this heading"></a></h2>
+<p><strong>7.1 Security Hardening</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable RBAC (already enabled in k3s by default)</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>clusterrolebindings
+
+<span class="c1"># Create network policies</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>networkpolicies<span class="w"> </span>-A
+
+<span class="c1"># Configure pod security standards</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>podsecuritypolicies
+</pre></div>
+</div>
+<p><strong>7.2 Backup Configuration</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create backup directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/k3s-backup
+
+<span class="c1"># Backup k3s configuration</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>/etc/rancher/k3s/k3s.yaml<span class="w"> </span>~/k3s-backup/
+
+<span class="c1"># Backup Rancher configuration</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>~/k3s-backup/rancher-backup.yaml
+</pre></div>
+</div>
+<p><strong>7.3 Adding Worker Nodes</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get node token from master</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/var/lib/rancher/k3s/server/node-token
+
+<span class="c1"># On worker node, run:</span>
+<span class="c1"># curl -sfL https://get.k3s.io | K3S_URL=https://MASTER_IP:6443 K3S_TOKEN=NODE_TOKEN sh -</span>
+</pre></div>
+</div>
+</section>
+<section id="useful-commands">
+<h2>Useful Commands<a class="headerlink" href="#useful-commands" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># k3s Management</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>k3s
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>k3s
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>k3s
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>k3s
+
+<span class="c1"># Uninstall k3s (if needed)</span>
+sudo<span class="w"> </span>/usr/local/bin/k3s-uninstall.sh
+
+<span class="c1"># Rancher Management</span>
+helm<span class="w"> </span>list<span class="w"> </span>-n<span class="w"> </span>cattle-system
+helm<span class="w"> </span>status<span class="w"> </span>rancher<span class="w"> </span>-n<span class="w"> </span>cattle-system
+helm<span class="w"> </span>upgrade<span class="w"> </span>rancher<span class="w"> </span>rancher-stable/rancher<span class="w"> </span>-n<span class="w"> </span>cattle-system
+
+<span class="c1"># Reset Rancher admin password</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rancher<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;1/1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ print $1 }&#39;</span><span class="k">)</span><span class="w"> </span>--<span class="w"> </span>reset-password
+
+<span class="c1"># View Rancher logs</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>cattle-system<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>deployment/rancher
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>Now that you have k3s and Rancher installed, you can:</p>
+<ol class="arabic simple">
+<li><p><strong>Import existing clusters</strong> into Rancher</p></li>
+<li><p><strong>Deploy applications</strong> using Rancher’s catalog</p></li>
+<li><p><strong>Set up monitoring</strong> and logging</p></li>
+<li><p><strong>Configure backup strategies</strong></p></li>
+<li><p><strong>Implement GitOps workflows</strong></p></li>
+</ol>
+<p>Next, we’ll explore <strong>Kubernetes Core Concepts</strong> to understand the fundamental building blocks of Kubernetes.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_gettingstarted.html" class="btn btn-neutral float-left" title="9.1 Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_core_concepts.html" class="btn btn-neutral float-right" title="9.2 Core Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
