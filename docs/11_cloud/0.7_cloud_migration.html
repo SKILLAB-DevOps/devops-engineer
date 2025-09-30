@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.7 Cloud Migration Strategy &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.2 Cloud Strategy: Native vs. Agnostic" href="1_agnostic_vs_native.html" />
+    <link rel="prev" title="11.6 Cloud Providers" href="0.6_cloud_providers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.6 Cloud Providers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.2 Cloud Strategy: Native vs. Agnostic</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.7 Cloud Migration Strategy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud/0.7_cloud_migration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cloud-migration-strategy">
+<h1>11.7 Cloud Migration Strategy<a class="headerlink" href="#cloud-migration-strategy" title="Link to this heading"></a></h1>
+<p>Moving to the cloud is a journey, not a destination. Let’s explore smart migration strategies that build on your container expertise.</p>
+<section id="the-6-rs-of-cloud-migration">
+<h2>The 6 Rs of Cloud Migration<a class="headerlink" href="#the-6-rs-of-cloud-migration" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Moving to the cloud is a process that involves planning, preparation, and execution. It can be a complex and challenging undertaking, but it offers many benefits, including scalability, flexibility, cost savings, and ease of use.</p>
+</div>
+<p><strong>Migration Approaches Overview:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The 6 Rs Migration Strategy:
+
+Rehost     (Lift and Shift)
+Replatform (Lift, Tinker, and Shift)
+Refactor   (Re-architect)
+Retire     (Turn off)
+Retain     (Keep as is)
+Repurchase (Buy new)
+</pre></div>
+</div>
+</section>
+<section id="rehost-lift-and-shift">
+<h2>1. Rehost (Lift and Shift)<a class="headerlink" href="#rehost-lift-and-shift" title="Link to this heading"></a></h2>
+<p><strong>What it means:</strong> Move applications to cloud with minimal changes</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traditional Approach:
+┌─────────────────────────────────────┐
+│ Physical Server                     │
+│ ├─ Windows Server 2019              │
+│ ├─ IIS Web Server                   │
+│ ├─ .NET Application                 │
+│ └─ SQL Server Database              │
+└─────────────────────────────────────┘
+        │ (Rehost)
+        ▼
+┌─────────────────────────────────────┐
+│ Cloud Virtual Machine               │
+│ ├─ Windows Server 2019              │
+│ ├─ IIS Web Server                   │
+│ ├─ .NET Application                 │
+│ └─ SQL Server Database              │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Container-First Rehost:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Smart rehost using containers</span>
+
+<span class="c1"># 1. Containerize your existing application</span>
+FROM<span class="w"> </span>mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR<span class="w"> </span>/app
+COPY<span class="w"> </span>published-app/<span class="w"> </span>.
+ENTRYPOINT<span class="w"> </span><span class="o">[</span><span class="s2">&quot;dotnet&quot;</span>,<span class="w"> </span><span class="s2">&quot;MyApp.dll&quot;</span><span class="o">]</span>
+
+<span class="c1"># 2. Deploy to cloud Kubernetes</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: Deployment</span>
+<span class="s">metadata:</span>
+<span class="s">  name: legacy-app-rehosted</span>
+<span class="s">spec:</span>
+<span class="s">  replicas: 3</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: legacy-app</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        app: legacy-app</span>
+<span class="s">    spec:</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: app</span>
+<span class="s">        image: myregistry/legacy-app:v1.0</span>
+<span class="s">        ports:</span>
+<span class="s">        - containerPort: 80</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Fastest migration path</p></li>
+<li><p>Minimal risk and disruption</p></li>
+<li><p>Immediate cloud benefits (scaling, reliability)</p></li>
+<li><p>Good starting point for further optimization</p></li>
+</ul>
+<p><strong>Best for:</strong></p>
+<ul class="simple">
+<li><p>Legacy applications</p></li>
+<li><p>Quick cloud adoption</p></li>
+<li><p>Proof of concept migrations</p></li>
+<li><p>Applications with minimal changes needed</p></li>
+</ul>
+</section>
+<section id="replatform-lift-tinker-and-shift">
+<h2>2. Replatform (Lift, Tinker, and Shift)<a class="headerlink" href="#replatform-lift-tinker-and-shift" title="Link to this heading"></a></h2>
+<p><strong>What it means:</strong> Make a few cloud optimizations without changing core architecture</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Before (On-premises):
+┌─────────────────────────────────────┐
+│ Application Server                  │
+│ ├─ Self-managed database            │
+│ ├─ File storage on local disk       │
+│ └─ Manual backups                   │
+└─────────────────────────────────────┘
+        │ (Replatform)
+        ▼
+┌─────────────────────────────────────┐
+│ Cloud Application                   │
+│ ├─ Managed cloud database (RDS/SQL) │
+│ ├─ Cloud object storage (S3/Blob)   │
+│ └─ Automated backups                │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Container Replatform Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Original: Single container with embedded database</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monolith-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:v1.0</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_HOST</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w">  </span><span class="c1"># Embedded database</span>
+
+<span class="nn">---</span>
+<span class="c1"># Replatformed: Use cloud managed database</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replatformed-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:v1.1</span><span class="w">  </span><span class="c1"># Minor changes for cloud DB</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_HOST</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-cluster.cluster-xyz.us-west-2.rds.amazonaws.com&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_USER</span>
+<span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-credentials</span>
+<span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_PASSWORD</span>
+<span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-credentials</span>
+<span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+</pre></div>
+</div>
+<p><strong>Cloud Services to Adopt:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Replace Self-Managed → Use Cloud Managed
+
+┌─────────────────────────────────────┐
+│ Database servers                    │ → RDS, Azure SQL, Cloud SQL
+│ File servers                        │ → S3, Blob Storage, Cloud Storage
+│ Message queues                      │ → SQS, Service Bus, Pub/Sub
+│ Caching servers                     │ → ElastiCache, Redis, Memorystore
+│ Load balancers                      │ → ALB, Azure LB, Cloud Load Balancing
+│ Monitoring systems                  │ → CloudWatch, Azure Monitor, Cloud Monitoring
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Reduced operational overhead</p></li>
+<li><p>Better reliability and security</p></li>
+<li><p>Cost optimization through managed services</p></li>
+<li><p>Foundation for further modernization</p></li>
+</ul>
+</section>
+<section id="refactor-re-architect">
+<h2>3. Refactor (Re-architect)<a class="headerlink" href="#refactor-re-architect" title="Link to this heading"></a></h2>
+<p><strong>What it means:</strong> Redesign applications to be cloud-native</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Before (Monolith):
+┌─────────────────────────────────────┐
+│ Single Large Application            │
+│ ├─ User Management                  │
+│ ├─ Product Catalog                  │
+│ ├─ Order Processing                 │
+│ ├─ Payment System                   │
+│ └─ Notifications                    │
+└─────────────────────────────────────┘
+        │ (Refactor)
+        ▼
+┌─────────────────────────────────────┐
+│ Microservices Architecture          │
+│ ┌─────────┐ ┌─────────┐ ┌─────────┐ │
+│ │  User   │ │Product  │ │ Order   │ │
+│ │ Service │ │Catalog  │ │Processing│ │
+│ └─────────┘ └─────────┘ └─────────┘ │
+│ ┌─────────┐ ┌─────────────────────┐ │
+│ │Payment  │ │   Notifications     │ │
+│ │Service  │ │     Service         │ │
+│ └─────────┘ └─────────────────────┘ │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Microservices with Kubernetes:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># User Service</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user-service</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user-service</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp/user-service:v2.0</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql://user-db:5432/users&quot;</span>
+
+<span class="nn">---</span>
+<span class="c1"># Product Catalog Service</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalog-service</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">  </span><span class="c1"># Can scale independently</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalog-service</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp/catalog-service:v2.0</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CACHE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;redis://catalog-cache:6379&quot;</span>
+</pre></div>
+</div>
+<p><strong>Cloud-Native Patterns to Adopt:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traditional Patterns → Cloud-Native Patterns
+
+┌─────────────────────────────────────┐
+│ Scheduled cron jobs                 │ → Serverless functions (Lambda, Cloud Functions)
+│ Background workers                  │ → Event-driven processing (SQS, Pub/Sub)
+│ Session storage                     │ → Stateless with external state (Redis)
+│ File uploads                        │ → Direct-to-cloud storage (S3, Blob)
+│ Email sending                       │ → Cloud email services (SES, SendGrid)
+│ Log files                           │ → Centralized logging (CloudWatch, Stackdriver)
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Maximum cloud benefits</p></li>
+<li><p>Better scalability and resilience</p></li>
+<li><p>Faster feature development</p></li>
+<li><p>Cost optimization through auto-scaling</p></li>
+</ul>
+</section>
+<section id="retire-turn-off">
+<h2>4. Retire (Turn Off)<a class="headerlink" href="#retire-turn-off" title="Link to this heading"></a></h2>
+<p><strong>What it means:</strong> Shut down applications that are no longer needed</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Application Portfolio Analysis:
+
+┌─────────────────────────────────────┐
+│ Legacy System A                     │ → Active users: 5, Usage: Low
+│ Legacy System B                     │ → Duplicate functionality
+│ Legacy System C                     │ → Regulatory requirement ended
+│ Legacy System D                     │ → Replaced by SaaS solution
+└─────────────────────────────────────┘
+        │ (Retire)
+        ▼
+┌─────────────────────────────────────┐
+│ Cost Savings: $50,000/year          │
+│ Reduced complexity                  │
+│ Security risk reduction             │
+│ Focus on valuable systems           │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Smart Retirement Process:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Identify retirement candidates</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>deployments<span class="w"> </span>--all-namespaces
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>--all-namespaces<span class="w">  </span><span class="c1"># Check resource usage</span>
+
+<span class="c1"># 2. Analyze usage patterns</span>
+<span class="c1"># Check application logs and metrics</span>
+
+<span class="c1"># 3. Graceful shutdown</span>
+kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>legacy-app<span class="w"> </span>--replicas<span class="o">=</span><span class="m">0</span>
+<span class="c1"># Monitor for any issues</span>
+
+<span class="c1"># 4. Data archival</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>job<span class="w"> </span>data-export<span class="w"> </span>--image<span class="o">=</span>data-exporter:latest
+
+<span class="c1"># 5. Complete removal</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>legacy-app
+kubectl<span class="w"> </span>delete<span class="w"> </span>service<span class="w"> </span>legacy-app
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Immediate cost reduction</p></li>
+<li><p>Reduced security surface</p></li>
+<li><p>Simplified architecture</p></li>
+<li><p>Focus resources on valuable systems</p></li>
+</ul>
+</section>
+<section id="retain-keep-as-is">
+<h2>5. Retain (Keep as is)<a class="headerlink" href="#retain-keep-as-is" title="Link to this heading"></a></h2>
+<p><strong>What it means:</strong> Keep applications on-premises for specific reasons</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Valid Reasons to Retain:
+
+- Regulatory requirements (data locality)
+- High-performance computing needs
+- Legacy systems too risky to move
+- Very low usage (not worth migrating)
+- Pending retirement in near future
+- Custom hardware dependencies
+</pre></div>
+</div>
+<p><strong>Hybrid Architecture:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cloud application connecting to on-premises</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hybrid-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-app</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp/web:v3.0</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LEGACY_SYSTEM_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://onprem.company.com/api&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLOUD_DB_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql://cloud-db:5432/myapp&quot;</span>
+</pre></div>
+</div>
+<p><strong>Benefits:</strong>
+- Reduced migration risk
+- Compliance maintenance
+- Cost control for low-value systems
+- Gradual migration approach</p>
+</section>
+<section id="repurchase-buy-new">
+<h2>6. Repurchase (Buy New)<a class="headerlink" href="#repurchase-buy-new" title="Link to this heading"></a></h2>
+<p><strong>What it means:</strong> Replace with cloud-native or SaaS solutions</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Replace Custom Solutions → Use SaaS/Cloud Services
+
+┌─────────────────────────────────────┐
+│ Custom email server                 │ → Google Workspace, Office 365
+│ Custom CRM system                   │ → Salesforce, HubSpot
+│ Custom monitoring                   │ → DataDog, New Relic
+│ Custom CI/CD system                 │ → GitHub Actions, GitLab CI
+│ Custom backup solution              │ → Cloud backup services
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Integration with Containers:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your application integrating with SaaS</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">modern-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:v4.0</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="c1"># Use SaaS services instead of self-hosted</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EMAIL_SERVICE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.sendgrid.com/v3&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CRM_API_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.salesforce.com&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MONITORING_ENDPOINT</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.datadoghq.com&quot;</span>
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Reduced maintenance overhead</p></li>
+<li><p>Professional support and SLAs</p></li>
+<li><p>Regular feature updates</p></li>
+<li><p>Better security and compliance</p></li>
+</ul>
+</section>
+<section id="migration-strategy-framework">
+<h2>Migration Strategy Framework<a class="headerlink" href="#migration-strategy-framework" title="Link to this heading"></a></h2>
+<p><strong>Phase-Based Approach:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Phase 1: Foundation (Months 1-3)
+┌─────────────────────────────────────┐
+│ Set up cloud accounts and billing   │
+│ Establish network connectivity      │
+│ Migrate development environments    │
+│ Train team on cloud basics          │
+│ Containerize applications locally   │
+└─────────────────────────────────────┘
+
+Phase 2: Quick Wins (Months 3-6)
+┌─────────────────────────────────────┐
+│ Rehost non-critical applications    │
+│ Migrate test environments           │
+│ Set up monitoring and logging       │
+│ Implement backup strategies         │
+│ Deploy containers to cloud          │
+└─────────────────────────────────────┘
+
+Phase 3: Core Systems (Months 6-12)
+┌─────────────────────────────────────┐
+│ Replatform key applications         │
+│ Migrate production databases        │
+│ Implement auto-scaling              │
+│ Optimize costs and performance      │
+│ Establish CI/CD pipelines           │
+└─────────────────────────────────────┘
+
+Phase 4: Optimization (Months 12+)
+┌─────────────────────────────────────┐
+│ Refactor to microservices           │
+│ Implement serverless functions      │
+│ Advanced security and compliance    │
+│ Multi-region deployments            │
+│ Cloud-native architecture           │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="container-first-migration-benefits">
+<h2>Container-First Migration Benefits<a class="headerlink" href="#container-first-migration-benefits" title="Link to this heading"></a></h2>
+<p><strong>Why Start with Containers:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traditional Migration Challenges:
+
+- &quot;Works on my machine&quot; syndrome
+- Environment configuration drift
+- Complex application dependencies
+- Difficult rollbacks
+- Vendor lock-in concerns
+
+Container-First Advantages:
+
++ Consistent environments everywhere
++ Simplified dependency management
++ Easy rollbacks and blue-green deployments
++ Cloud portability (avoid lock-in)
++ Kubernetes works on all clouds
+</pre></div>
+</div>
+<p><strong>Migration Workflow with Containers:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Containerize locally</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp:v1.0<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>myapp:v1.0
+
+<span class="c1"># 2. Test with docker-compose</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<span class="c1"># Validate functionality</span>
+
+<span class="c1"># 3. Deploy to local Kubernetes</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>k8s/
+kubectl<span class="w"> </span>port-forward<span class="w"> </span>service/myapp<span class="w"> </span><span class="m">8080</span>:80
+
+<span class="c1"># 4. Push to cloud registry</span>
+docker<span class="w"> </span>push<span class="w"> </span>myregistry.azurecr.io/myapp:v1.0
+
+<span class="c1"># 5. Deploy to cloud Kubernetes</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>k8s/
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">  </span><span class="c1"># Same commands work everywhere!</span>
+</pre></div>
+</div>
+</section>
+<section id="risk-management-and-rollback">
+<h2>Risk Management and Rollback<a class="headerlink" href="#risk-management-and-rollback" title="Link to this heading"></a></h2>
+<p><strong>Migration Risk Mitigation:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Blue-Green Deployment for Safe Migration</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rollout</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safe-migration</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">blueGreen</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">activeService</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp-active</span>
+<span class="w">      </span><span class="nt">previewService</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp-preview</span>
+<span class="w">      </span><span class="nt">autoPromotionEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># Manual approval</span>
+<span class="w">      </span><span class="nt">scaleDownDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">      </span><span class="nt">prePromotionAnalysis</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">templates</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">templateName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">success-rate</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service-name</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp-preview</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:v2.0</span><span class="w">  </span><span class="c1"># New cloud-optimized version</span>
+</pre></div>
+</div>
+<p><strong>Rollback Strategy:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Always have a rollback plan</span>
+
+<span class="c1"># 1. Tag known good versions</span>
+docker<span class="w"> </span>tag<span class="w"> </span>myapp:v1.0<span class="w"> </span>myapp:stable
+
+<span class="c1"># 2. Quick rollback capability</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/myapp
+
+<span class="c1"># 3. Database migration rollback scripts</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>rollback-scripts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-file<span class="o">=</span>rollback.sql
+
+<span class="c1"># 4. Monitor key metrics during migration</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>monitoring/alerts.yaml
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization-during-migration">
+<h2>Cost Optimization During Migration<a class="headerlink" href="#cost-optimization-during-migration" title="Link to this heading"></a></h2>
+<p><strong>Smart Cost Management:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Development Environment Cost Optimization:
+
+┌─────────────────────────────────────┐
+│ Auto-shutdown non-production        │
+│ ├─ Weekends: Scale to 0             │
+│ ├─ Nights: Scale down 50%           │
+│ └─ Use spot/preemptible instances   │
+├─────────────────────────────────────┤
+│ Right-size resources                │
+│ ├─ Start small, scale up if needed  │
+│ ├─ Monitor actual usage patterns    │
+│ └─ Use horizontal pod autoscaling   │
+├─────────────────────────────────────┤
+│ Use cloud-native services           │
+│ ├─ Managed databases                │
+│ ├─ Serverless for batch jobs        │
+│ └─ Object storage for static files  │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Container Advantage in Migration:</strong></p>
+<p>Your containerization skills make cloud migration much easier:</p>
+<ul class="simple">
+<li><p><strong>Portability</strong>: Same containers work on any cloud</p></li>
+<li><p><strong>Consistency</strong>: No “works on my machine” problems</p></li>
+<li><p><strong>Rollback</strong>: Easy to revert to previous versions</p></li>
+<li><p><strong>Testing</strong>: Identical environments for dev/test/prod</p></li>
+<li><p><strong>Skills Transfer</strong>: Kubernetes knowledge applies everywhere</p></li>
+</ul>
+<p>Start containerizing NOW, even before choosing your cloud provider!</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0.6_cloud_providers.html" class="btn btn-neutral float-left" title="11.6 Cloud Providers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1_agnostic_vs_native.html" class="btn btn-neutral float-right" title="11.2 Cloud Strategy: Native vs. Agnostic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

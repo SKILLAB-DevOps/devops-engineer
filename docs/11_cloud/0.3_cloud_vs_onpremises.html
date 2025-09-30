@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.3 Cloud vs On-Premises &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.4 Cloud Benefits" href="0.4_cloud_benefits.html" />
+    <link rel="prev" title="11.2 Cloud Deployment Models" href="0.2_deployment_models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.2 Cloud Strategy: Native vs. Agnostic</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.3 Cloud vs On-Premises</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud/0.3_cloud_vs_onpremises.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cloud-vs-on-premises">
+<h1>11.3 Cloud vs On-Premises<a class="headerlink" href="#cloud-vs-on-premises" title="Link to this heading"></a></h1>
+<section id="the-big-decision-build-or-rent">
+<h2>The Big Decision: Build or Rent?<a class="headerlink" href="#the-big-decision-build-or-rent" title="Link to this heading"></a></h2>
+<p>Think about transportation:</p>
+<p><strong>On-Premises = Owning a Car</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You buy it ($30,000+)</p></li>
+<li><p>You maintain it (oil changes, repairs)</p></li>
+<li><p>You insure it</p></li>
+<li><p>It sits in your garage when not used</p></li>
+<li><p>You control everything</p></li>
+<li><p>When it breaks, you’re stuck!</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Cloud = Using Uber/Taxi</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Pay only when you need a ride</p></li>
+<li><p>No maintenance worries</p></li>
+<li><p>Always available</p></li>
+<li><p>Different car for different needs</p></li>
+<li><p>Don’t need parking</p></li>
+<li><p>If one breaks, another comes!</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="detailed-comparison">
+<h2>Detailed Comparison<a class="headerlink" href="#detailed-comparison" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌──────────────────────────────────────────────────────────────┐
+│                    ON-PREMISES vs CLOUD                      │
+├────────────────────────┬─────────────────────────────────────┤
+│   On-Premises (Your    │    Cloud (Provider&#39;s Servers)       │
+│      Own Servers)      │                                     │
+└────────────────────────┴─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Cost Structure</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>On-Premises</p></th>
+<th class="head"><p>Cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>High upfront cost</p></td>
+<td><p>No upfront cost</p></td>
+</tr>
+<tr class="row-odd"><td><p>($50,000-$500,000 for servers)</p></td>
+<td><p>(Start for free!)</p></td>
+</tr>
+<tr class="row-even"><td><p>Fixed monthly costs</p></td>
+<td><p>Variable monthly costs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pay whether you use it or not</p></td>
+<td><p>Pay only for what you use</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> Want to start a website?</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>On-Premises:
+- Buy server: $5,000
+- Networking: $2,000
+- Setup: $3,000
+- Power/Cooling: $200/month
+- IT person: $8,000/month
+────────────────────────
+Total Year 1: $110,400
+
+Cloud:
+- Small server: $50/month
+- Storage: $50/month
+- Network: $10/month
+- Maintenance: $0 (included!)
+────────────────────────
+Total Year 1: $1320
+</pre></div>
+</div>
+<p><strong>Time to Deploy</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>On-Premises</p></th>
+<th class="head"><p>Cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Order servers: 2-4 weeks</p></td>
+<td><p>Click button: 30 seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>Delivery: 1-2 weeks</p></td>
+<td><p>Already available!</p></td>
+</tr>
+<tr class="row-even"><td><p>Setup: 1-2 weeks</p></td>
+<td><p>Automatic</p></td>
+</tr>
+<tr class="row-odd"><td><p>Testing: 1 week</p></td>
+<td><p>Ready to use</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total: 1-2 months</strong></p></td>
+<td><p><strong>Total: Less than 1 minute</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Container Deployment Comparison</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>On-Premises Container Setup:
+┌────────────────────────────────────────┐
+│ Week 1: Order hardware                 │
+│ Week 2-3: Hardware delivery &amp; setup    │
+│ Week 4: Install OS and Docker          │
+│ Week 5: Set up Kubernetes cluster      │
+│ Week 6: Configure networking           │
+│ Week 7: Set up monitoring              │
+│ Week 8: Security hardening             │
+│ Week 9: Finally deploy your app!       │
+└────────────────────────────────────────┘
+
+Cloud Container Setup:
+┌────────────────────────────────────────┐
+│ Minute 1: Create EKS/AKS/GKE cluster   │
+│ Minute 2: kubectl apply -f app.yaml    │
+│ Minute 3: Your app is running!         │
+└────────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Maintenance &amp; Updates</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>On-Premises</p></th>
+<th class="head"><p>Cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>You do everything</p></td>
+<td><p>Provider does infrastructure</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hardware failures = Your problem</p></td>
+<td><p>Provider replaces hardware</p></td>
+</tr>
+<tr class="row-even"><td><p>Security patches = Your job</p></td>
+<td><p>Automatic security updates</p></td>
+</tr>
+<tr class="row-odd"><td><p>Software updates = Your time</p></td>
+<td><p>Managed by provider</p></td>
+</tr>
+<tr class="row-even"><td><p>Night/weekend emergencies = You!</p></td>
+<td><p>24/7 support team</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Geographic Reach</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>On-Premises</p></th>
+<th class="head"><p>Cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>One location (your office)</p></td>
+<td><p>Global locations available</p></td>
+</tr>
+<tr class="row-odd"><td><p>Want another city? Build new</p></td>
+<td><p>Want another city? Click button</p></td>
+</tr>
+<tr class="row-even"><td><p>datacenter</p></td>
+<td><p>and select region</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cost: $$$$$</p></td>
+<td><p>Cost: Same price!</p></td>
+</tr>
+<tr class="row-even"><td><p>Time: 6-12 months</p></td>
+<td><p>Time: Seconds</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scalability</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>On-Premises</p></th>
+<th class="head"><p>Cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Need more power?</p></td>
+<td><p>Need more power?</p></td>
+</tr>
+<tr class="row-odd"><td><p>→ Buy more servers</p></td>
+<td><p>→ Slide a scale up</p></td>
+</tr>
+<tr class="row-even"><td><p>→ Wait for delivery</p></td>
+<td><p>→ Get it instantly</p></td>
+</tr>
+<tr class="row-odd"><td><p>→ Install and configure</p></td>
+<td><p>→ Automatic</p></td>
+</tr>
+<tr class="row-even"><td><p>→ Weeks/months</p></td>
+<td><p>→ Seconds</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Real-World Story:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Gaming Company Example:
+
+OLD WAY (On-Premises):
+- New game launches
+- Everyone wants to play!
+- Servers crash
+- Players angry
+- Can&#39;t add servers fast enough
+- Lost players = Lost money
+
+NEW WAY (Cloud):
+- New game launches
+- Set auto-scaling: &quot;Add servers when load &gt; 80%&quot;
+- System automatically adds 50 more servers
+- Everyone happy!
+- Game finishes trending?
+- Scales back down automatically
+- Only paid for extra servers during peak!
+</pre></div>
+</div>
+</section>
+<section id="kubernetes-specific-comparison">
+<h2>Kubernetes-Specific Comparison<a class="headerlink" href="#kubernetes-specific-comparison" title="Link to this heading"></a></h2>
+<p><strong>On-Premises Kubernetes:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># What YOU have to manage</span>
+<span class="nt">cluster-setup</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">master-nodes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Install</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">configure&quot;</span>
+<span class="w">  </span><span class="nt">worker-nodes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Install</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">configure&quot;</span>
+<span class="w">  </span><span class="nt">networking</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Set</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">CNI</span><span class="nv"> </span><span class="s">(Calico,</span><span class="nv"> </span><span class="s">Flannel)&quot;</span>
+<span class="w">  </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Configure</span><span class="nv"> </span><span class="s">persistent</span><span class="nv"> </span><span class="s">volumes&quot;</span>
+<span class="w">  </span><span class="nt">load-balancer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Install</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">configure</span><span class="nv"> </span><span class="s">(HAProxy,</span><span class="nv"> </span><span class="s">nginx)&quot;</span>
+<span class="w">  </span><span class="nt">monitoring</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Set</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">Prometheus</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">Grafana&quot;</span>
+<span class="w">  </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Set</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">ELK</span><span class="nv"> </span><span class="s">stack&quot;</span>
+<span class="w">  </span><span class="nt">backup</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Configure</span><span class="nv"> </span><span class="s">etcd</span><span class="nv"> </span><span class="s">backups&quot;</span>
+<span class="w">  </span><span class="nt">updates</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Manually</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">Kubernetes&quot;</span>
+<span class="w">  </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Configure</span><span class="nv"> </span><span class="s">RBAC,</span><span class="nv"> </span><span class="s">network</span><span class="nv"> </span><span class="s">policies&quot;</span>
+</pre></div>
+</div>
+<p><strong>Cloud Managed Kubernetes:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># What the CLOUD PROVIDER manages for you</span>
+<span class="nt">cluster-setup</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">master-nodes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fully</span><span class="nv"> </span><span class="s">managed</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">provider&quot;</span>
+<span class="w">  </span><span class="nt">worker-nodes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Auto-scaling</span><span class="nv"> </span><span class="s">node</span><span class="nv"> </span><span class="s">groups&quot;</span>
+<span class="w">  </span><span class="nt">networking</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pre-configured</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">networking&quot;</span>
+<span class="w">  </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Integrated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">storage&quot;</span>
+<span class="w">  </span><span class="nt">load-balancer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Cloud</span><span class="nv"> </span><span class="s">load</span><span class="nv"> </span><span class="s">balancer</span><span class="nv"> </span><span class="s">integration&quot;</span>
+<span class="w">  </span><span class="nt">monitoring</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Built-in</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">monitoring&quot;</span>
+<span class="w">  </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Integrated</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">logging&quot;</span>
+<span class="w">  </span><span class="nt">backup</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Automatic</span><span class="nv"> </span><span class="s">backups&quot;</span>
+<span class="w">  </span><span class="nt">updates</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Automatic</span><span class="nv"> </span><span class="s">Kubernetes</span><span class="nv"> </span><span class="s">updates&quot;</span>
+<span class="w">  </span><span class="nt">security</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Cloud</span><span class="nv"> </span><span class="s">IAM</span><span class="nv"> </span><span class="s">integration&quot;</span>
+</pre></div>
+</div>
+<p><strong>Your GitHub Actions Pipeline Stays the Same!</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This workflow works with both on-premises and cloud Kubernetes</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Kubernetes</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Docker image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t myapp:${{ github.sha }} .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Push to registry</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no"># On-premises: docker push private-registry.company.com/myapp:${{ github.sha }}</span>
+<span class="w">          </span><span class="no"># Cloud: docker push gcr.io/project/myapp:${{ github.sha }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Kubernetes</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">kubectl set image deployment/myapp myapp=myapp:${{ github.sha }}</span>
+<span class="w">          </span><span class="no">kubectl rollout status deployment/myapp</span>
+</pre></div>
+</div>
+</section>
+<section id="responsibility-model">
+<h2>Responsibility Model<a class="headerlink" href="#responsibility-model" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>YOUR RESPONSIBILITY LEVELS:
+
+On-Premises (You manage everything):
+┌─────────────────────────┐
+│  Your Application       │ ← You
+├─────────────────────────┤
+│  Runtime &amp; Framework    │ ← You
+├─────────────────────────┤
+│  Operating System       │ ← You
+├─────────────────────────┤
+│  Virtual Machine        │ ← You
+├─────────────────────────┤
+│  Physical Servers       │ ← You
+├─────────────────────────┤
+│  Networking             │ ← You
+├─────────────────────────┤
+│  Storage                │ ← You
+├─────────────────────────┤
+│  Data Center Building   │ ← You
+└─────────────────────────┘
+
+Cloud (Shared responsibility):
+┌─────────────────────────┐
+│  Your Application       │ ← You
+├─────────────────────────┤
+│  Runtime &amp; Framework    │ ← You
+├─────────────────────────┤
+│  Operating System       │ ← Provider
+├─────────────────────────┤
+│  Virtual Machine        │ ← Provider
+├─────────────────────────┤
+│  Physical Servers       │ ← Provider
+├─────────────────────────┤
+│  Networking             │ ← Provider
+├─────────────────────────┤
+│  Storage                │ ← Provider
+├─────────────────────────┤
+│  Data Center Building   │ ← Provider
+└─────────────────────────┘
+
+You focus on your app!
+Provider handles infrastructure!
+</pre></div>
+</div>
+</section>
+<section id="when-to-use-each">
+<h2>When to Use Each?<a class="headerlink" href="#when-to-use-each" title="Link to this heading"></a></h2>
+<p><strong>Use On-Premises when:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>VERY strict data regulations (some government/financial)
+Already invested millions in infrastructure
+Unique hardware requirements (specialized chips)
+Existing staff and expertise
+Internet connectivity is unreliable
+Predictable, steady workloads
+Complete control required
+</pre></div>
+</div>
+<p><strong>Use Cloud when:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Starting something new (startup, new project)
+Want to launch quickly
+Usage varies (peaks and valleys)
+Want global reach
+Don&#39;t want to manage infrastructure
+Want to try new technologies easily
+Focus on application development
+Need automatic scaling
+</pre></div>
+</div>
+</section>
+<section id="migration-strategy-the-smart-way">
+<h2>Migration Strategy: The Smart Way<a class="headerlink" href="#migration-strategy-the-smart-way" title="Link to this heading"></a></h2>
+<p><strong>Don’t Move Everything at Once!</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Phase 1: Start Small (Lift and Shift)
+┌────────────────────────────────────┐
+│ Move: Development/Test environments│
+│ Keep: Production on-premises       │
+│ Learn: Cloud basics safely         │
+│ Risk: Low                          │
+└────────────────────────────────────┘
+
+Phase 2: Cloud-Native (Re-platform)
+┌────────────────────────────────────┐
+│ Move: New applications to cloud    │
+│ Use: Managed databases, Kubernetes │
+│ Keep: Critical legacy systems      │
+│ Risk: Medium                       │
+└────────────────────────────────────┘
+
+Phase 3: Full Cloud (Modernize)
+┌────────────────────────────────────┐
+│ Move: All suitable workloads       │
+│ Use: Serverless, AI/ML services    │
+│ Keep: Only compliance-required     │
+│ Risk: Managed                      │
+└────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Container-First Migration Strategy:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Step 1: Containerize Applications Locally
+- Package apps in Docker containers
+- Test with docker-compose
+- Validate functionality
+
+Step 2: Deploy to Local Kubernetes
+- Use minikube or k3s
+- Learn Kubernetes basics
+- Create deployment manifests
+
+Step 3: Move to Cloud Kubernetes
+- Same YAML manifests work!
+- Just change image registry
+- Configure cloud-specific features
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization-strategies">
+<h2>Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Link to this heading"></a></h2>
+<p><strong>Smart Cloud Cost Management:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Development Environment:
+┌─────────────────────────────────┐
+│ Auto-shutdown at night          │
+│ Weekend shutdown                │
+│ Use spot/preemptible instances  │
+│ Monitor and set budget alerts   │
+└─────────────────────────────────┘
+
+Production Environment:
+┌─────────────────────────────────┐
+│ Auto-scaling based on metrics   │
+│ Use appropriate storage tiers   │
+│ Choose optimal regions          │
+│ Right-size your containers      │
+└─────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>GitHub Actions Cost Optimization:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimize CI/CD costs</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost-Efficient Pipeline</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w">  </span><span class="c1"># Free for public repos</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/main&#39;</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build only on main branch</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t myapp .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy only during business hours</span>
+<span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">github.event_name == &#39;push&#39; &amp;&amp;</span>
+<span class="w">          </span><span class="no">contains(fromJSON(&#39;[&quot;main&quot;, &quot;production&quot;]&#39;), github.ref_name) &amp;&amp;</span>
+<span class="w">          </span><span class="no">contains(fromJSON(&#39;[1,2,3,4,5]&#39;), fromJSON(format(&#39;{0}&#39;, github.event.head_commit.timestamp)))</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubectl apply -f k8s/</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Most modern companies use cloud!</strong> Even if they have some on-premises infrastructure, they’re moving to cloud for new projects.</p>
+<p>The trend is clear: Cloud is the future!</p>
+<p><strong>Your containerization skills make you cloud-ready!</strong></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Important:</strong> Moving to cloud doesn’t automatically save money!</p>
+<ul class="simple">
+<li><p>Monitor your spending actively</p></li>
+<li><p>Use cost management tools</p></li>
+<li><p>Set up budget alerts</p></li>
+<li><p>Regularly review and optimize</p></li>
+<li><p>Turn off unused resources</p></li>
+</ul>
+<p>Think of it like leaving lights on:
+- Leave resources on 24/7 = High cloud bill
+- Turn off when not needed = Low cloud bill</p>
+<p>Same principle applies!</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0.2_deployment_models.html" class="btn btn-neutral float-left" title="11.2 Cloud Deployment Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="0.4_cloud_benefits.html" class="btn btn-neutral float-right" title="11.4 Cloud Benefits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

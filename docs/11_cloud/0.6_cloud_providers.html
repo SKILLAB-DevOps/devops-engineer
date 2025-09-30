@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.6 Cloud Providers &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.7 Cloud Migration Strategy" href="0.7_cloud_migration.html" />
+    <link rel="prev" title="11.5 Cloud Service Models" href="0.5_service_models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.5 Cloud Service Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.2 Cloud Strategy: Native vs. Agnostic</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.6 Cloud Providers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud/0.6_cloud_providers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cloud-providers">
+<h1>11.6 Cloud Providers<a class="headerlink" href="#cloud-providers" title="Link to this heading"></a></h1>
+<section id="market-landscape-overview">
+<h2>Market Landscape Overview<a class="headerlink" href="#market-landscape-overview" title="Link to this heading"></a></h2>
+<p><strong>Major Cloud Providers Q3 2024:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Market Share by Revenue:
+
+1 Amazon Web Services (AWS)     - 32%
+2 Microsoft Azure               - 23%
+3 Google Cloud Platform (GCP)   - 11%
+──────────────────────────────────────
+4 Alibaba Cloud                 - 4%
+5 IBM Cloud                     - 3%
+6 Salesforce                    - 3%
+7 Oracle Cloud                  - 2%
+8 Tencent Cloud                 - 2%
+9 Others                        - 20%
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This course provides comprehensive hands-on tutorials for the <strong>top three cloud providers</strong>:</p>
+<ul class="simple">
+<li><p><strong>AWS</strong> (Chapter 11.3) - Market leader with broadest service catalog</p></li>
+<li><p><strong>Azure</strong> (Chapter 11.6) - Enterprise-focused with strong hybrid capabilities</p></li>
+<li><p><strong>GCP</strong> (Chapter 11.8) - Innovation leader in data analytics, ML, and Kubernetes</p></li>
+</ul>
+<p>Each chapter includes practical examples of deploying your containerized applications.</p>
+</div>
+</section>
+<section id="the-big-three-deep-dive">
+<h2>The Big Three: Deep Dive<a class="headerlink" href="#the-big-three-deep-dive" title="Link to this heading"></a></h2>
+</section>
+<section id="amazon-web-services-aws">
+<h2>1. Amazon Web Services (AWS)<a class="headerlink" href="#amazon-web-services-aws" title="Link to this heading"></a></h2>
+<p><strong>The Pioneer (Launched 2006)</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AWS Strengths:
+
++ Largest service catalog (200+ services)
++ Most mature platform
++ Biggest global presence (84+ regions)
++ Largest partner ecosystem
++ Best documentation and community
++ Most third-party integrations
+</pre></div>
+</div>
+<p><strong>Container Services:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AWS Container Stack:
+┌─────────────────────────────────────┐
+│ Amazon EKS (Managed Kubernetes)     │
+│ ├─ Fully managed control plane      │
+│ ├─ Integrates with AWS services     │
+│ └─ Supports Fargate (serverless)    │
+├─────────────────────────────────────┤
+│ Amazon ECS (Container Service)      │
+│ ├─ AWS-native orchestration         │
+│ ├─ Simpler than Kubernetes          │
+│ └─ Good for AWS-only deployments    │
+├─────────────────────────────────────┤
+│ Amazon ECR (Container Registry)     │
+│ ├─ Private Docker registry          │
+│ ├─ Vulnerability scanning           │
+│ └─ Integrates with CI/CD            │
+├─────────────────────────────────────┤
+│ AWS Fargate (Serverless Containers) │
+│ ├─ No server management             │
+│ ├─ Pay per container execution      │
+│ └─ Works with EKS and ECS           │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Your GitHub Actions Integration:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/aws-deploy.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to AWS EKS</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure AWS credentials</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-actions/configure-aws-credentials@v1</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">aws-access-key-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.AWS_ACCESS_KEY_ID }}</span>
+<span class="w">          </span><span class="nt">aws-secret-access-key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.AWS_SECRET_ACCESS_KEY }}</span>
+<span class="w">          </span><span class="nt">aws-region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Login to Amazon ECR</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">aws ecr get-login-password --region us-west-2 |</span>
+<span class="w">          </span><span class="no">docker login --username AWS --password-stdin $ECR_REGISTRY</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push Docker image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker build -t $ECR_REGISTRY/myapp:$GITHUB_SHA .</span>
+<span class="w">          </span><span class="no">docker push $ECR_REGISTRY/myapp:$GITHUB_SHA</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to EKS</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">aws eks update-kubeconfig --name my-cluster --region us-west-2</span>
+<span class="w">          </span><span class="no">kubectl set image deployment/myapp myapp=$ECR_REGISTRY/myapp:$GITHUB_SHA</span>
+<span class="w">          </span><span class="no">kubectl rollout status deployment/myapp</span>
+</pre></div>
+</div>
+<p><strong>Best For:</strong></p>
+<ul class="simple">
+<li><p>Enterprises needing comprehensive services</p></li>
+<li><p>Applications requiring AWS-specific features</p></li>
+<li><p>Teams with AWS expertise</p></li>
+<li><p>Projects needing maximum flexibility</p></li>
+</ul>
+<p><strong>Popular Services:</strong></p>
+<ul class="simple">
+<li><p><strong>EC2</strong> (Virtual machines)</p></li>
+<li><p><strong>S3</strong> (Object storage)</p></li>
+<li><p><strong>RDS</strong> (Managed databases)</p></li>
+<li><p><strong>Lambda</strong> (Serverless functions)</p></li>
+<li><p><strong>EKS</strong> (Managed Kubernetes)</p></li>
+</ul>
+</section>
+<section id="microsoft-azure">
+<h2>2. Microsoft Azure<a class="headerlink" href="#microsoft-azure" title="Link to this heading"></a></h2>
+<p><strong>The Enterprise Champion</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Azure Strengths:
+
++ Best Microsoft integration (Office 365, Active Directory)
++ Strong hybrid cloud capabilities
++ Enterprise security and compliance
++ Excellent Windows support
++ Strong .NET and Microsoft stack integration
++ Competitive pricing
+</pre></div>
+</div>
+<p><strong>Container Services:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Azure Container Stack:
+┌──────────────────────────────────────┐
+│ Azure Kubernetes Service (AKS)       │
+│ ├─ Free control plane                │
+│ ├─ Azure Active Directory integration│
+│ └─ Virtual nodes (serverless)        │
+├───────────────────────────────────── ┤
+│ Azure Container Instances (ACI)      │
+│ ├─ Serverless containers             │
+│ ├─ Per-second billing                │
+│ └─ Quick container deployment        │
+├───────────────────────────────────── ┤
+│ Azure Container Registry (ACR)       │
+│ ├─ Private Docker registry           │
+│ ├─ Geo-replication                   │
+│ └─ Security scanning built-in        │
+├───────────────────────────────────── ┤
+│ Azure DevOps Integration             │
+│ ├─ Native CI/CD pipelines            │
+│ ├─ Work item tracking                │
+│ └─ Release management                │
+└──────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Your GitHub Actions Integration:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/azure-deploy.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Azure AKS</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Login to Azure</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/login@v1</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">creds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.AZURE_CREDENTIALS }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Login to Azure Container Registry</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">az acr login --name ${{ env.ACR_NAME }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push Docker image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker build -t $ACR_NAME.azurecr.io/myapp:$GITHUB_SHA .</span>
+<span class="w">          </span><span class="no">docker push $ACR_NAME.azurecr.io/myapp:$GITHUB_SHA</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to AKS</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME</span>
+<span class="w">          </span><span class="no">kubectl set image deployment/myapp myapp=$ACR_NAME.azurecr.io/myapp:$GITHUB_SHA</span>
+<span class="w">          </span><span class="no">kubectl rollout status deployment/myapp</span>
+</pre></div>
+</div>
+<p><strong>Best For:</strong></p>
+<ul class="simple">
+<li><p>Microsoft-centric organizations</p></li>
+<li><p>Hybrid cloud deployments</p></li>
+<li><p>Enterprise applications with strict compliance</p></li>
+<li><p>.NET applications</p></li>
+<li><p>Organizations using Office 365</p></li>
+</ul>
+<p><strong>Popular Services:</strong></p>
+<ul class="simple">
+<li><p><strong>Virtual Machines</strong> (Compute)</p></li>
+<li><p><strong>Blob Storage</strong> (Object storage)</p></li>
+<li><p><strong>Azure SQL Database</strong> (Managed database)</p></li>
+<li><p><strong>Azure Functions</strong> (Serverless)</p></li>
+<li><p><strong>AKS</strong> (Managed Kubernetes)</p></li>
+</ul>
+</section>
+<section id="google-cloud-platform-gcp">
+<h2>3. Google Cloud Platform (GCP)<a class="headerlink" href="#google-cloud-platform-gcp" title="Link to this heading"></a></h2>
+<p><strong>The Innovation Leader</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GCP Strengths:
+
++ Best-in-class data analytics and AI/ML
++ Kubernetes originated here (Google created it)
++ Competitive pricing and sustained-use discounts
++ Excellent network performance
++ Strong open-source commitment
++ Clean, intuitive interfaces
+</pre></div>
+</div>
+<p><strong>Container Services:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GCP Container Stack:
+┌─────────────────────────────────────┐
+│ Google Kubernetes Engine (GKE)      │
+│ ├─ Most advanced Kubernetes service │
+│ ├─ Autopilot mode (fully managed)   │
+│ └─ Native Kubernetes experience     │
+├─────────────────────────────────────┤
+│ Cloud Run (Serverless Containers)   │
+│ ├─ Deploy containers without K8s    │
+│ ├─ Auto-scaling to zero             │
+│ └─ Pay per request                  │
+├─────────────────────────────────────┤
+│ Artifact Registry                   │
+│ ├─ Universal package manager        │
+│ ├─ Docker, Helm, npm support        │
+│ └─ Vulnerability scanning           │
+├─────────────────────────────────────┤
+│ Cloud Build (Native CI/CD)          │
+│ ├─ Build containers in cloud        │
+│ ├─ Trigger from Git commits         │
+│ └─ Deploy to GKE automatically      │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Your GitHub Actions Integration:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/gcp-deploy.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Google GKE</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Google Cloud CLI</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/setup-gcloud@v1</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">service_account_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_SA_KEY }}</span>
+<span class="w">          </span><span class="nt">project_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ env.PROJECT_ID }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure Docker for Artifact Registry</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push Docker image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA .</span>
+<span class="w">          </span><span class="no">docker push $REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GKE</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE</span>
+<span class="w">          </span><span class="no">kubectl set image deployment/myapp myapp=$REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA</span>
+<span class="w">          </span><span class="no">kubectl rollout status deployment/myapp</span>
+</pre></div>
+</div>
+<p><strong>Best For:</strong></p>
+<ul class="simple">
+<li><p>Data-heavy applications</p></li>
+<li><p>AI/ML projects</p></li>
+<li><p>Kubernetes-native applications</p></li>
+<li><p>Startups and cost-conscious organizations</p></li>
+<li><p>Applications needing global performance</p></li>
+</ul>
+<p><strong>Popular Services:</strong></p>
+<ul class="simple">
+<li><p><strong>Compute Engine</strong> (Virtual machines)</p></li>
+<li><p><strong>Cloud Storage</strong> (Object storage)</p></li>
+<li><p><strong>BigQuery</strong> (Data warehouse)</p></li>
+<li><p><strong>Cloud Functions</strong> (Serverless)</p></li>
+<li><p><strong>GKE</strong> (Managed Kubernetes)</p></li>
+</ul>
+</section>
+<section id="side-by-side-comparison">
+<h2>Side-by-Side Comparison<a class="headerlink" href="#side-by-side-comparison" title="Link to this heading"></a></h2>
+<p><strong>Container Platform Comparison:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────┬─────────────┬─────────────┬─────────────┐
+│ Feature         │     AWS     │    Azure    │     GCP     │
+├─────────────────┼─────────────┼─────────────┼─────────────┤
+│ Kubernetes      │ EKS         │ AKS         │ GKE         │
+│ Control Plane   │ $0.10/hour  │ Free        │ Free*       │
+│ Registry        │ ECR         │ ACR         │ Artifact    │
+│ Serverless      │ Fargate     │ ACI         │ Cloud Run   │
+│ CI/CD           │ CodePipeline│ DevOps      │ Cloud Build │
+│ Monitoring      │ CloudWatch  │ Monitor     │ Operations  │
+│ Auto-scaling    │ Good        │ Good        │ Best       │
+│ Multi-region    │ Excellent   │ Good        │ Excellent  │
+│ Documentation   │ Excellent   │ Good        │ Good       │
+└─────────────────┴─────────────┴─────────────┴─────────────┘
+
+* GKE Autopilot is pay-per-pod
+</pre></div>
+</div>
+<p><strong>Pricing Comparison (Similar Workload):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Small Web App (2 CPU, 4GB RAM, 3 replicas):
+
+AWS EKS:
+├─ Control plane: $73/month
+├─ Worker nodes: $150/month
+├─ Load balancer: $18/month
+└─ Total: ~$241/month
+
+Azure AKS:
+├─ Control plane: $0/month
+├─ Worker nodes: $140/month
+├─ Load balancer: $20/month
+└─ Total: ~$160/month
+
+GCP GKE Autopilot:
+├─ Pay per pod: $120/month
+├─ Load balancer: $18/month
+├─ No node management
+└─ Total: ~$138/month
+</pre></div>
+</div>
+</section>
+<section id="regional-strengths-and-focus">
+<h2>Regional Strengths and Focus<a class="headerlink" href="#regional-strengths-and-focus" title="Link to this heading"></a></h2>
+<p><strong>Geographic Presence:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Global Reach:
+
+AWS: 84 Availability Zones across 26 regions
+├─ Strongest in: North America, Europe
+├─ Growing in: Asia Pacific, Latin America
+└─ First mover advantage globally
+
+Azure: 60+ regions worldwide
+├─ Strongest in: Europe, North America
+├─ Growing in: Government/compliance markets
+└─ Excellent hybrid connectivity
+
+GCP: 35 regions and 106 zones
+├─ Strongest in: Asia Pacific, data centers
+├─ Growing in: Europe, enterprise
+└─ Excellent network performance
+</pre></div>
+</div>
+<p><strong>Industry Focus:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AWS:
++ Startups and unicorns (Netflix, Airbnb)
++ E-commerce and retail
++ Media and entertainment
++ Financial services
+
+Azure:
++ Enterprise and Fortune 500
++ Government and public sector
++ Healthcare and manufacturing
++ Traditional IT organizations
+
+GCP:
++ Tech companies and startups
++ Data analytics companies
++ AI/ML research organizations
++ Gaming and media companies
+</pre></div>
+</div>
+</section>
+<section id="choosing-your-cloud-provider">
+<h2>Choosing Your Cloud Provider<a class="headerlink" href="#choosing-your-cloud-provider" title="Link to this heading"></a></h2>
+<p><strong>Decision Framework:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Start with these questions:
+
+1. &quot;What&#39;s our primary use case?&quot;
+├─ General purpose → AWS
+├─ Microsoft integration → Azure
+├─ Data/AI focus → GCP
+└─ Cost optimization → Compare all three
+
+2. &quot;What&#39;s our team&#39;s experience?&quot;
+├─ AWS certified → AWS
+├─ Microsoft background → Azure
+├─ Google/open source → GCP
+└─ No preference → Start with free tiers
+
+3. &quot;What&#39;s our compliance needs?&quot;
+├─ Government → Azure or AWS GovCloud
+├─ Healthcare → All three (check specific certs)
+├─ Financial → AWS or Azure
+└─ General → Any provider
+
+4. &quot;What&#39;s our budget?&quot;
+├─ Startup → GCP (best discounts)
+├─ Enterprise → Azure (volume discounts)
+├─ Variable workload → AWS (most options)
+└─ Predictable → Compare reserved instances
+</pre></div>
+</div>
+<p><strong>Multi-Cloud Strategy:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Smart Multi-Cloud Approach:
+
+Primary Cloud (70% of workloads):
+├─ Choose based on team expertise
+├─ Focus on this for deep knowledge
+└─ Get volume discounts
+
+Secondary Cloud (20% of workloads):
+├─ For specific use cases
+├─ Disaster recovery
+└─ Avoid vendor lock-in
+
+Third Cloud (10% of workloads):
+├─ Experimental workloads
+├─ Special requirements
+└─ Future options
+</pre></div>
+</div>
+</section>
+<section id="getting-started-free-tiers">
+<h2>Getting Started: Free Tiers<a class="headerlink" href="#getting-started-free-tiers" title="Link to this heading"></a></h2>
+<p><strong>All Three Offer Free Tiers:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AWS Free Tier:
+├─ 12 months free for new accounts
+├─ 750 hours/month of t2.micro EC2
+├─ 5GB S3 storage
+├─ Some services always free
+└─ Credit card required
+
+Azure Free Tier:
+├─ 12 months free for new accounts
+├─ $200 credit for first 30 days
+├─ B1S virtual machine (750 hours)
+├─ Some services always free
+└─ Credit card required
+
+GCP Free Tier:
+├─ $300 credit for new accounts (90 days)
+├─ Always free tier (limited usage)
+├─ f1-micro instance (1 per region)
+├─ 5GB Cloud Storage
+└─ Credit card required for verification
+</pre></div>
+</div>
+<p><strong>Recommendation for Learning:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try all three with the same application!</span>
+
+<span class="c1"># 1. Start with GCP (most generous credits)</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create<span class="w"> </span>learning-cluster
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>your-app.yaml
+
+<span class="c1"># 2. Try Azure (free control plane)</span>
+az<span class="w"> </span>aks<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>learning-cluster
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>your-app.yaml
+
+<span class="c1"># 3. Test AWS (largest ecosystem)</span>
+eksctl<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--name<span class="w"> </span>learning-cluster
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>your-app.yaml
+
+<span class="c1"># Compare experiences and costs!</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Your Container Skills Work Everywhere!</strong></p>
+<p>The same Docker images and Kubernetes YAML files work on all three clouds:</p>
+<ul class="simple">
+<li><p>Same <cite>kubectl</cite> commands</p></li>
+<li><p>Same container concepts</p></li>
+<li><p>Same monitoring approaches</p></li>
+<li><p>Same CI/CD patterns</p></li>
+</ul>
+<p>Focus on learning cloud-specific services (networking, storage, databases) rather than relearning containers!</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0.5_service_models.html" class="btn btn-neutral float-left" title="11.5 Cloud Service Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="0.7_cloud_migration.html" class="btn btn-neutral float-right" title="11.7 Cloud Migration Strategy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

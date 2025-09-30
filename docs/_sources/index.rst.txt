@@ -165,6 +165,20 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
 .. toctree::
    :hidden:
    :titlesonly:
+   :caption: Cloud
+
+   11_cloud/0.1_what_is_cloud
+   11_cloud/0.2_deployment_models
+   11_cloud/0.3_cloud_vs_onpremises
+   11_cloud/0.4_cloud_benefits
+   11_cloud/0.5_service_models
+   11_cloud/0.6_cloud_providers
+   11_cloud/0.7_cloud_migration
+   11_cloud/1_agnostic_vs_native
+
+.. toctree::
+   :hidden:
+   :titlesonly:
    :caption: Project
 
    12_project/introduction

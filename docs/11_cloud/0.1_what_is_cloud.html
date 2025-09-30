@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.1 What is Cloud Computing? &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.2 Cloud Deployment Models" href="0.2_deployment_models.html" />
+    <link rel="prev" title="ANSWERS" href="../9_kubernetes/ANSWERS.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.2 Cloud Strategy: Native vs. Agnostic</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.1 What is Cloud Computing?</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud/0.1_what_is_cloud.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="what-is-cloud-computing">
+<h1>11.1 What is Cloud Computing?<a class="headerlink" href="#what-is-cloud-computing" title="Link to this heading"></a></h1>
+<section id="the-simple-answer-from-dvds-to-netflix">
+<h2>The Simple Answer: From DVDs to Netflix<a class="headerlink" href="#the-simple-answer-from-dvds-to-netflix" title="Link to this heading"></a></h2>
+<p>Imagine you want to watch a movie. You have two options:</p>
+<p><strong>Option 1: The Old Way (Buy a DVD)</strong>
+- Go to a store, pay $20 to <strong>own</strong> a physical disc.
+- You are responsible for storing it, maintaining it, and protecting it from scratches.
+- If you want a new movie, you have to buy another disc.</p>
+<p><strong>Option 2: The New Way (Stream on Netflix)</strong>
+- Pay a monthly fee for <strong>access</strong> to thousands of movies.
+- Watch instantly, from anywhere, on any device.
+- The provider (Netflix) handles all storage, updates, and maintenance.</p>
+<p><strong>Cloud computing is the “Netflix model” for technology.</strong></p>
+<p>Instead of buying and managing your own physical servers (the “DVDs”), you <strong>rent</strong> computing power, storage, and services from a cloud provider. You get instant access and only pay for what you use.</p>
+</section>
+<section id="the-technical-definition">
+<h2>The Technical Definition<a class="headerlink" href="#the-technical-definition" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Cloud computing</strong> is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing.</p>
+</div>
+<p>Let’s break that down:</p>
+<ul class="simple">
+<li><p><strong>On-Demand</strong>: Get resources in minutes, not months. No waiting for hardware to be ordered and installed.</p></li>
+<li><p><strong>IT Resources</strong>: All the building blocks you need—virtual servers, storage, databases, networking, AI services, and more.</p></li>
+<li><p><strong>Over the Internet</strong>: Access and manage your infrastructure from anywhere in the world.</p></li>
+<li><p><strong>Pay-As-You-Go</strong>: Pay only for what you use, like an electricity bill. Stop paying the moment you turn it off.</p></li>
+</ul>
+</section>
+<section id="the-evolution-from-server-rooms-to-global-scale">
+<h2>The Evolution: From Server Rooms to Global Scale<a class="headerlink" href="#the-evolution-from-server-rooms-to-global-scale" title="Link to this heading"></a></h2>
+<p>How did we get here?</p>
+<p><strong>1. The 1990s: The Server Room Era</strong></p>
+<ul class="simple">
+<li><p>Every company had its own “server closet” with expensive, noisy hardware.</p></li>
+<li><p><strong>You managed everything</strong>: hardware, cooling, power, security, and software.</p></li>
+<li><p>Scaling up meant buying more hardware, a slow and costly process.</p></li>
+</ul>
+<p><strong>2. The 2000s: The Virtualization Era</strong></p>
+<ul class="simple">
+<li><p><strong>Virtual Machines (VMs)</strong> allowed one physical server to run multiple virtual “computers.”</p></li>
+<li><p>This improved efficiency but didn’t solve the core problem: you still owned and managed all the hardware.</p></li>
+</ul>
+<p><strong>3. 2006: The Cloud is Born</strong></p>
+<ul class="simple">
+<li><p>Amazon Web Services (AWS) had a revolutionary idea: what if we rented our massive, efficient infrastructure to others?</p></li>
+<li><p>This marked the shift from <strong>owning hardware</strong> to <strong>renting services</strong>.</p></li>
+</ul>
+<p><strong>4. Today: Cloud is the Standard</strong></p>
+<ul class="simple">
+<li><p>Cloud is the default choice for new applications, from startups to global enterprises.</p></li>
+<li><p>It powers everything from your favorite streaming services and mobile apps to banking and healthcare systems.</p></li>
+</ul>
+</section>
+<section id="from-your-local-docker-to-the-global-cloud">
+<h2>From Your Local Docker to the Global Cloud<a class="headerlink" href="#from-your-local-docker-to-the-global-cloud" title="Link to this heading"></a></h2>
+<p>This is where your journey connects. You’ve already mastered the core concepts that power the cloud.</p>
+<p><strong>Remember Your Docker &amp; Kubernetes Workflow?</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Your Local Machine:
+┌────────────────────────────────────┐
+│ 1. Write a Dockerfile              │
+│ 2. Build an image: `docker build`  │
+│ 3. Run a container: `docker run`   │
+│ 4. Orchestrate with `kubectl`      │
+└────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Now, Let’s Take it to the Cloud:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The Cloud-Native Workflow:
+┌──────────────────────────────────────────┐
+│ 1. Your code and Dockerfile (no changes!)│
+│ 2. CI/CD pipeline builds the image       │
+│ 3. Image is pushed to a Cloud Registry   │
+│ 4. `kubectl apply` deploys to a cluster  │
+│    spanning multiple data centers        │
+└──────────────────────────────────────────┘
+</pre></div>
+</div>
+<p>The cloud simply provides a globally-scaled, resilient, and managed environment to run the containers and Kubernetes deployments you already know how to build.</p>
+</section>
+<section id="your-python-cli-app-the-next-step">
+<h2>Your Python CLI App: The Next Step<a class="headerlink" href="#your-python-cli-app-the-next-step" title="Link to this heading"></a></h2>
+<p>Let’s trace the path of the application you’ve been working on:</p>
+<p><strong>Current State (Your Laptop):</strong></p>
+<ul class="simple">
+<li><p>A Python application running inside a Docker container.</p></li>
+<li><p>Managed by <cite>kubectl</cite> and <cite>minikube</cite> or a similar local cluster.</p></li>
+<li><p>Code is stored in a GitHub repository.</p></li>
+</ul>
+<p><strong>Cloud-Native State (Global Deployment):</strong></p>
+<ul class="simple">
+<li><p>The <strong>same application</strong> and <strong>same Docker image</strong>.</p></li>
+<li><p>A <strong>GitHub Actions pipeline</strong> automatically builds and tests your code.</p></li>
+<li><p>The image is stored in a secure, private <strong>cloud container registry</strong> (like AWS ECR, Azure ACR, or Google Artifact Registry).</p></li>
+<li><p>The container is deployed to a <strong>managed Kubernetes service</strong> (EKS, AKS, or GKE) that handles the complexity of running master nodes, scaling, and failover.</p></li>
+<li><p>Your application is now accessible to users worldwide, protected by a cloud load balancer and firewall.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Key Insight:</strong> The cloud doesn’t force you to relearn everything. It empowers you to apply your existing skills in Docker, Kubernetes, and CI/CD at a massive, global scale. You already have the keys—now you’ll learn how to drive the car.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../9_kubernetes/ANSWERS.html" class="btn btn-neutral float-left" title="ANSWERS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="0.2_deployment_models.html" class="btn btn-neutral float-right" title="11.2 Cloud Deployment Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
