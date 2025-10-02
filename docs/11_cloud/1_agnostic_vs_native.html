@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11.2 Cloud Strategy: Native vs. Agnostic &mdash; DevOps 3 documentation</title>
+  <title>11.1 Cloud Strategy: Native vs. Agnostic &mdash; DevOps 3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.0 Project" href="../12_project/introduction.html" />
-    <link rel="prev" title="11.7 Cloud Migration Strategy" href="0.7_cloud_migration.html" /> 
+    <link rel="next" title="11.2 Cloud Provider Comparison &amp; Strategic Decision Guide" href="2_cloud_battle.html" />
+    <link rel="prev" title="11.0.7 Cloud Migration Strategy" href="0.7_cloud_migration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -125,14 +125,21 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.1 What is Cloud Computing?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.2 Cloud Deployment Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.3 Cloud vs On-Premises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.4 Cloud Benefits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.5 Cloud Service Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.6 Cloud Providers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.7 Cloud Migration Strategy</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11.2 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -153,7 +160,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">11.2 Cloud Strategy: Native vs. Agnostic</li>
+      <li class="breadcrumb-item active">11.1 Cloud Strategy: Native vs. Agnostic</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/11_cloud/1_agnostic_vs_native.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -164,7 +171,7 @@
            <div itemprop="articleBody">
              
   <section id="cloud-strategy-native-vs-agnostic">
-<h1>11.2 Cloud Strategy: Native vs. Agnostic<a class="headerlink" href="#cloud-strategy-native-vs-agnostic" title="Link to this heading"></a></h1>
+<h1>11.1 Cloud Strategy: Native vs. Agnostic<a class="headerlink" href="#cloud-strategy-native-vs-agnostic" title="Link to this heading"></a></h1>
 <p>So far, you’ve learned how to package applications into containers with Docker and manage them at scale with Kubernetes. You’ve even built CI/CD pipelines to automate the whole process.</p>
 <p>The next logical question is: <strong>Where do we run all this?</strong></p>
 <p>This chapter explores the two dominant strategies for deploying applications in the cloud: <strong>Cloud Native</strong> and <strong>Cloud Agnostic</strong>. Understanding these approaches is crucial for making architectural decisions that will impact your application’s performance, cost, and flexibility for years to come.</p>
@@ -445,8 +452,8 @@ This approach gives you the freedom to move workloads between clouds to optimize
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="0.7_cloud_migration.html" class="btn btn-neutral float-left" title="11.7 Cloud Migration Strategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../12_project/introduction.html" class="btn btn-neutral float-right" title="12.0 Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="0.7_cloud_migration.html" class="btn btn-neutral float-left" title="11.0.7 Cloud Migration Strategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_cloud_battle.html" class="btn btn-neutral float-right" title="11.2 Cloud Provider Comparison &amp; Strategic Decision Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.1 Identity and Access Management (IAM) &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.8.2 VPC and Networking" href="2_networking.html" />
+    <link rel="prev" title="11.0 Introduction to Google Cloud Platform" href="0_introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.1 Identity and Access Management (IAM)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/1_iam.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="identity-and-access-management-iam">
+<h1>11.1 Identity and Access Management (IAM)<a class="headerlink" href="#identity-and-access-management-iam" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Google Cloud IAM (Identity and Access Management) provides unified access control across all GCP services. It allows you to manage who (identity) has what access (role) to which resources. IAM follows the principle of least privilege and uses a role-based access control (RBAC) model.</p>
+</div>
+<section id="iam-core-concepts">
+<h2>IAM Core Concepts<a class="headerlink" href="#iam-core-concepts" title="Link to this heading"></a></h2>
+<p><strong>Members (Who)</strong></p>
+<p>Members are the identities that can access your Google Cloud resources. There are five types of members:</p>
+<ol class="arabic simple">
+<li><p><strong>Google Account</strong>: Represents a developer, administrator, or any other person who interacts with GCP
+- Example: <a class="reference external" href="mailto:alice&#37;&#52;&#48;example&#46;com">alice<span>&#64;</span>example<span>&#46;</span>com</a></p></li>
+<li><p><strong>Service Account</strong>: Special account for applications and VMs
+- Example: <a class="reference external" href="mailto:my-service&#37;&#52;&#48;project-id&#46;iam&#46;gserviceaccount&#46;com">my-service<span>&#64;</span>project-id<span>&#46;</span>iam<span>&#46;</span>gserviceaccount<span>&#46;</span>com</a></p></li>
+<li><p><strong>Google Group</strong>: Named collection of Google Accounts and service accounts
+- Example: <a class="reference external" href="mailto:admins&#37;&#52;&#48;example&#46;com">admins<span>&#64;</span>example<span>&#46;</span>com</a></p></li>
+<li><p><strong>Google Workspace Domain</strong>: Represents all Google Accounts in an organization
+- Example: example.com</p></li>
+<li><p><strong>Cloud Identity Domain</strong>: Like Google Workspace but without access to Workspace applications
+- Example: example.com</p></li>
+</ol>
+<p><strong>Roles (What)</strong></p>
+<p>Roles are collections of permissions. You grant roles to members to allow them to perform actions on resources.</p>
+<p>Three types of roles:</p>
+<ol class="arabic simple">
+<li><p><strong>Basic Roles</strong> (Legacy - use sparingly):</p>
+<ul class="simple">
+<li><p>Owner: Full control including managing access</p></li>
+<li><p>Editor: Modify and delete access</p></li>
+<li><p>Viewer: Read-only access</p></li>
+</ul>
+</li>
+<li><p><strong>Predefined Roles</strong>: Fine-grained access control managed by Google
+- Example: <cite>roles/compute.instanceAdmin.v1</cite> - Full control of Compute Engine instances</p></li>
+<li><p><strong>Custom Roles</strong>: User-defined roles with specific permissions
+- Created for specific organizational needs</p></li>
+</ol>
+<p><strong>Resources (Where)</strong></p>
+<p>Resources are GCP entities that you can grant access to:</p>
+<ul class="simple">
+<li><p>Projects</p></li>
+<li><p>Compute Engine instances</p></li>
+<li><p>Cloud Storage buckets</p></li>
+<li><p>BigQuery datasets</p></li>
+<li><p>And more…</p></li>
+</ul>
+<p><strong>Permissions</strong></p>
+<p>Permissions determine what operations are allowed on a resource. They follow this format:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;service&gt;.&lt;resource&gt;.&lt;verb&gt;
+
+Examples:
+- compute.instances.create
+- storage.buckets.get
+- bigquery.datasets.update
+</pre></div>
+</div>
+</section>
+<section id="iam-policy-structure">
+<h2>IAM Policy Structure<a class="headerlink" href="#iam-policy-structure" title="Link to this heading"></a></h2>
+<p>An IAM policy is a collection of role bindings that bind one or more members to roles.</p>
+<p><strong>Policy JSON Format:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;bindings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;roles/storage.objectViewer&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;members&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;serviceAccount:my-service@project.iam.gserviceaccount.com&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;group:admins@example.com&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;roles/storage.objectAdmin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;members&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;user:bob@example.com&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Expires in 2024&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;request.time &lt; timestamp(&#39;2024-12-31T23:59:59Z&#39;)&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;etag&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BwXhFxF7dqE=&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-up-iam-access">
+<h2>Setting Up IAM Access<a class="headerlink" href="#setting-up-iam-access" title="Link to this heading"></a></h2>
+<p><strong>Prerequisites:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Google Cloud CLI if not already installed</span>
+curl<span class="w"> </span>https://sdk.cloud.google.com<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<span class="nb">exec</span><span class="w"> </span>-l<span class="w"> </span><span class="nv">$SHELL</span>
+
+<span class="c1"># Authenticate</span>
+gcloud<span class="w"> </span>auth<span class="w"> </span>login
+
+<span class="c1"># Set your project</span>
+gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project<span class="w"> </span>PROJECT_ID
+</pre></div>
+</div>
+<p><strong>View Current IAM Policy:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View project IAM policy</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID
+
+<span class="c1"># View IAM policy in readable format</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span>--format<span class="o">=</span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+
+<span class="c1"># View IAM policy for a specific resource (e.g., storage bucket)</span>
+gsutil<span class="w"> </span>iam<span class="w"> </span>get<span class="w"> </span>gs://BUCKET_NAME
+</pre></div>
+</div>
+<p><strong>Grant IAM Roles:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grant a role to a user at project level</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/compute.viewer&quot;</span>
+
+<span class="c1"># Grant a role to a service account</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:my-service@PROJECT_ID.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/storage.objectAdmin&quot;</span>
+
+<span class="c1"># Grant a role to a Google Group</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;group:developers@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/editor&quot;</span>
+
+<span class="c1"># Grant a role to all authenticated users</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;allAuthenticatedUsers&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/viewer&quot;</span>
+</pre></div>
+</div>
+<p><strong>Remove IAM Roles:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove a role from a user</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>remove-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/compute.viewer&quot;</span>
+</pre></div>
+</div>
+<p><strong>Grant Roles with Conditions:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grant time-bound access</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:temp-contractor@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/viewer&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--condition<span class="o">=</span><span class="s1">&#39;expression=request.time &lt; timestamp(&quot;2024-12-31T23:59:59Z&quot;),title=Temporary Access,description=Access expires at end of 2024&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="service-accounts">
+<h2>Service Accounts<a class="headerlink" href="#service-accounts" title="Link to this heading"></a></h2>
+<p>Service accounts are special Google accounts that represent applications or VMs, not individual users.</p>
+<p><strong>Create a Service Account:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create service account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>create<span class="w"> </span>my-service-account<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display-name<span class="o">=</span><span class="s2">&quot;My Service Account&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--description<span class="o">=</span><span class="s2">&quot;Service account for application authentication&quot;</span>
+
+<span class="c1"># List service accounts</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>list
+
+<span class="c1"># Get service account email</span>
+<span class="nv">SA_EMAIL</span><span class="o">=</span><span class="k">$(</span>gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="o">=</span><span class="s2">&quot;displayName:My Service Account&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span><span class="s2">&quot;value(email)&quot;</span><span class="k">)</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$SA_EMAIL</span>
+</pre></div>
+</div>
+<p><strong>Grant Roles to Service Account:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grant roles at project level</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="nv">$SA_EMAIL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/storage.objectViewer&quot;</span>
+
+<span class="c1"># Grant multiple roles</span>
+<span class="k">for</span><span class="w"> </span>role<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;roles/compute.viewer&quot;</span><span class="w"> </span><span class="s2">&quot;roles/storage.objectAdmin&quot;</span><span class="w"> </span><span class="s2">&quot;roles/logging.logWriter&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="nv">$SA_EMAIL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--role<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$role</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p><strong>Create and Manage Service Account Keys:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a JSON key file</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>create<span class="w"> </span>~/key.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span><span class="nv">$SA_EMAIL</span>
+
+<span class="c1"># List keys for service account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span><span class="nv">$SA_EMAIL</span>
+
+<span class="c1"># Delete a key</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>delete<span class="w"> </span>KEY_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span><span class="nv">$SA_EMAIL</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Service account keys are powerful credentials. Store them securely and rotate them regularly. Consider using Workload Identity or service account impersonation instead of downloading keys when possible.</p>
+</div>
+<p><strong>Use Service Account Authentication:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authenticate using service account key</span>
+gcloud<span class="w"> </span>auth<span class="w"> </span>activate-service-account<span class="w"> </span>--key-file<span class="o">=</span>~/key.json
+
+<span class="c1"># Set as environment variable for application authentication</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;/path/to/key.json&quot;</span>
+</pre></div>
+</div>
+<p><strong>Service Account Impersonation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grant user permission to impersonate service account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="nv">$SA_EMAIL</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/iam.serviceAccountUser&quot;</span>
+
+<span class="c1"># Use impersonation in gcloud commands</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--impersonate-service-account<span class="o">=</span><span class="nv">$SA_EMAIL</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-roles">
+<h2>Custom Roles<a class="headerlink" href="#custom-roles" title="Link to this heading"></a></h2>
+<p>Create custom roles when predefined roles don’t meet your needs.</p>
+<p><strong>Create a Custom Role:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create role definition file</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>custom-role.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">title: &quot;Custom Instance Operator&quot;</span>
+<span class="s">description: &quot;Can start and stop instances but not delete&quot;</span>
+<span class="s">stage: &quot;GA&quot;</span>
+<span class="s">includedPermissions:</span>
+<span class="s">- compute.instances.start</span>
+<span class="s">- compute.instances.stop</span>
+<span class="s">- compute.instances.get</span>
+<span class="s">- compute.instances.list</span>
+<span class="s">- compute.zones.get</span>
+<span class="s">- compute.zones.list</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Create custom role at project level</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>create<span class="w"> </span>customInstanceOperator<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--file<span class="o">=</span>custom-role.yaml
+
+<span class="c1"># Create custom role at organization level</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>create<span class="w"> </span>customInstanceOperator<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--file<span class="o">=</span>custom-role.yaml
+</pre></div>
+</div>
+<p><strong>Update a Custom Role:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add permissions to existing role</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>update<span class="w"> </span>customInstanceOperator<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--add-permissions<span class="o">=</span>compute.instances.reset
+
+<span class="c1"># Remove permissions</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>update<span class="w"> </span>customInstanceOperator<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--remove-permissions<span class="o">=</span>compute.instances.reset
+</pre></div>
+</div>
+<p><strong>List and Describe Roles:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all roles</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>list
+
+<span class="c1"># List project custom roles</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>list<span class="w"> </span>--project<span class="o">=</span>PROJECT_ID
+
+<span class="c1"># Describe a specific role</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>describe<span class="w"> </span>roles/compute.instanceAdmin.v1
+
+<span class="c1"># Describe custom role</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>roles<span class="w"> </span>describe<span class="w"> </span>customInstanceOperator<span class="w"> </span>--project<span class="o">=</span>PROJECT_ID
+</pre></div>
+</div>
+</section>
+<section id="iam-policy-management">
+<h2>IAM Policy Management<a class="headerlink" href="#iam-policy-management" title="Link to this heading"></a></h2>
+<p><strong>Export and Import Policies:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export current policy to file</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span>&gt;<span class="w"> </span>policy.json
+
+<span class="c1"># Edit policy.json as needed, then import</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>set-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span>policy.json
+</pre></div>
+</div>
+<p><strong>Using Policy Analyzer:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze who has access to a resource</span>
+gcloud<span class="w"> </span>asset<span class="w"> </span>analyze-iam-policy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--full-resource-name<span class="o">=</span><span class="s2">&quot;//compute.googleapis.com/projects/PROJECT_ID/zones/us-central1-a/instances/INSTANCE_NAME&quot;</span>
+
+<span class="c1"># Find all resources a user has access to</span>
+gcloud<span class="w"> </span>asset<span class="w"> </span>analyze-iam-policy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--identity<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="iam-conditions">
+<h2>IAM Conditions<a class="headerlink" href="#iam-conditions" title="Link to this heading"></a></h2>
+<p>IAM Conditions allow you to define and enforce conditional, attribute-based access control for GCP resources.</p>
+<p><strong>Common Condition Examples:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time-based access</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:contractor@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/viewer&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--condition<span class="o">=</span><span class="s1">&#39;expression=request.time &lt; timestamp(&quot;2024-06-30T00:00:00Z&quot;),title=Access until June 2024&#39;</span>
+
+<span class="c1"># Resource-based access (only specific instances)</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:developer@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/compute.instanceAdmin.v1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--condition<span class="o">=</span><span class="s1">&#39;expression=resource.name.startsWith(&quot;projects/PROJECT_ID/zones/us-central1-a/instances/dev-&quot;),title=Dev instances only&#39;</span>
+
+<span class="c1"># IP-based access</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:admin@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/owner&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--condition<span class="o">=</span><span class="s1">&#39;expression=origin.ip in [&quot;203.0.113.0/24&quot;],title=Office IP only&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Use Principle of Least Privilege:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad: Granting Editor role when only read access is needed</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/editor&quot;</span>
+
+<span class="c1"># Good: Grant specific role for the task</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/storage.objectViewer&quot;</span>
+</pre></div>
+</div>
+<p><strong>2. Use Groups Instead of Individual Users:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a group in Google Workspace or Cloud Identity</span>
+<span class="c1"># Then grant access to the group</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;group:developers@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/editor&quot;</span>
+</pre></div>
+</div>
+<p><strong>3. Separate Environments:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use separate projects for dev, staging, production</span>
+<span class="c1"># Grant different access levels to each</span>
+
+<span class="c1"># Development project - broader access</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>dev-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;group:developers@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/editor&quot;</span>
+
+<span class="c1"># Production project - restricted access</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>prod-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;group:developers@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/viewer&quot;</span>
+</pre></div>
+</div>
+<p><strong>4. Regular Access Reviews:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export IAM policy for review</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span>json<span class="w"> </span>&gt;<span class="w"> </span>iam-audit-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.json
+
+<span class="c1"># List all service accounts and their keys</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>list
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>list<span class="w"> </span>--iam-account<span class="o">=</span>SA_EMAIL
+</pre></div>
+</div>
+<p><strong>5. Enable Audit Logging:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View admin activity logs</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;resource.type=project AND protoPayload.methodName=SetIamPolicy&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="w"> </span>json
+
+<span class="c1"># Monitor for privilege escalation</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;protoPayload.methodName=google.iam.admin.v1.CreateRole&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<p><strong>6. Use Workload Identity for GKE:</strong></p>
+<p>Instead of downloading service account keys for applications running in GKE, use Workload Identity:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Workload Identity on GKE cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>update<span class="w"> </span>CLUSTER_NAME<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--workload-pool<span class="o">=</span>PROJECT_ID.svc.id.goog
+
+<span class="c1"># Bind Kubernetes service account to GCP service account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="nv">$SA_EMAIL</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="w"> </span>roles/iam.workloadIdentityUser<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="w"> </span><span class="s2">&quot;serviceAccount:PROJECT_ID.svc.id.goog[NAMESPACE/KSA_NAME]&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-iam-scenarios">
+<h2>Practical IAM Scenarios<a class="headerlink" href="#practical-iam-scenarios" title="Link to this heading"></a></h2>
+<p><strong>Scenario 1: Onboarding a New Developer</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add to developers group</span>
+<span class="c1"># (Done via Google Workspace or Cloud Identity admin console)</span>
+
+<span class="c1"># Grant group access to development project</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>dev-project-id<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;group:developers@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/editor&quot;</span>
+
+<span class="c1"># Grant read-only access to production</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>prod-project-id<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;group:developers@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/viewer&quot;</span>
+</pre></div>
+</div>
+<p><strong>Scenario 2: Application Service Account</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create service account for application</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>create<span class="w"> </span>webapp-backend<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display-name<span class="o">=</span><span class="s2">&quot;Web Application Backend&quot;</span>
+
+<span class="c1"># Grant necessary permissions</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:webapp-backend@PROJECT_ID.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/datastore.user&quot;</span>
+
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:webapp-backend@PROJECT_ID.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/storage.objectViewer&quot;</span>
+
+<span class="c1"># For Cloud Run, assign service account</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/webapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--service-account<span class="w"> </span>webapp-backend@PROJECT_ID.iam.gserviceaccount.com
+</pre></div>
+</div>
+<p><strong>Scenario 3: External Auditor Access</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grant time-limited read-only access</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:auditor@external-company.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/viewer&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--condition<span class="o">=</span><span class="s1">&#39;expression=request.time &lt; timestamp(&quot;2024-01-31T23:59:59Z&quot;),title=Audit Access Q1 2024&#39;</span>
+</pre></div>
+</div>
+<p><strong>Scenario 4: Cross-Project Access</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Service account in Project A needs access to storage in Project B</span>
+
+<span class="c1"># In Project B, grant access to Project A&#39;s service account</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>project-b-id<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:service-a@project-a-id.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/storage.objectViewer&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-iam-issues">
+<h2>Troubleshooting IAM Issues<a class="headerlink" href="#troubleshooting-iam-issues" title="Link to this heading"></a></h2>
+<p><strong>Check Permissions:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test if you have a specific permission</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--flatten<span class="o">=</span><span class="s2">&quot;bindings[].members&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="o">=</span><span class="s2">&quot;bindings.members:user:YOUR_EMAIL&quot;</span>
+
+<span class="c1"># Check what you can do on a resource</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>test-iam-permissions<span class="w"> </span>INSTANCE_NAME<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>ZONE<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--permissions<span class="o">=</span>compute.instances.start,compute.instances.stop
+</pre></div>
+</div>
+<p><strong>Common IAM Errors:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Error 403: Permission Denied</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if user has necessary role</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--flatten<span class="o">=</span><span class="s2">&quot;bindings[].members&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="o">=</span><span class="s2">&quot;bindings.members:user:alice@example.com&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Error: Service Account Key Rotation</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all keys</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span>SA_EMAIL
+
+<span class="c1"># Create new key</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>create<span class="w"> </span>new-key.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span>SA_EMAIL
+
+<span class="c1"># Delete old key after updating applications</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>delete<span class="w"> </span>OLD_KEY_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span>SA_EMAIL
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>IAM Policy Sync Issues</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force policy refresh</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>PROJECT_ID<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+
+<span class="c1"># Wait a few seconds for propagation</span>
+sleep<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># Try operation again</span>
+</pre></div>
+</div>
+</section>
+<section id="iam-security-scanner">
+<h2>IAM Security Scanner<a class="headerlink" href="#iam-security-scanner" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Security Command Center (requires organization)</span>
+gcloud<span class="w"> </span>scc<span class="w"> </span>findings<span class="w"> </span>list<span class="w"> </span>ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="o">=</span><span class="s2">&quot;category=&#39;PUBLIC_IP_ADDRESS&#39;&quot;</span>
+
+<span class="c1"># Check for overly permissive IAM bindings</span>
+gcloud<span class="w"> </span>asset<span class="w"> </span>search-all-iam-policies<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--scope<span class="o">=</span>organizations/ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--query<span class="o">=</span><span class="s2">&quot;policy:roles/owner OR policy:roles/editor&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Official IAM Documentation: <a class="reference external" href="https://cloud.google.com/iam/docs">https://cloud.google.com/iam/docs</a></p></li>
+<li><p>IAM Best Practices: <a class="reference external" href="https://cloud.google.com/iam/docs/best-practices">https://cloud.google.com/iam/docs/best-practices</a></p></li>
+<li><p>Predefined Roles Reference: <a class="reference external" href="https://cloud.google.com/iam/docs/understanding-roles">https://cloud.google.com/iam/docs/understanding-roles</a></p></li>
+<li><p>IAM Conditions: <a class="reference external" href="https://cloud.google.com/iam/docs/conditions-overview">https://cloud.google.com/iam/docs/conditions-overview</a></p></li>
+<li><p>Service Accounts Best Practices: <a class="reference external" href="https://cloud.google.com/iam/docs/best-practices-service-accounts">https://cloud.google.com/iam/docs/best-practices-service-accounts</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0_introduction.html" class="btn btn-neutral float-left" title="11.0 Introduction to Google Cloud Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_networking.html" class="btn btn-neutral float-right" title="11.8.2 VPC and Networking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

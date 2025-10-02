@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11.1 What is Cloud Computing? &mdash; DevOps 3 documentation</title>
+  <title>11.0. 1 What is Cloud Computing? &mdash; DevOps 3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -23,7 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11.2 Cloud Deployment Models" href="0.2_deployment_models.html" />
+    <link rel="next" title="11.0.2 Cloud Deployment Models" href="0.2_deployment_models.html" />
     <link rel="prev" title="ANSWERS" href="../9_kubernetes/ANSWERS.html" /> 
 </head>
 
@@ -125,14 +125,21 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11.1 What is Cloud Computing?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.2 Cloud Deployment Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.3 Cloud vs On-Premises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.4 Cloud Benefits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.5 Cloud Service Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.6 Cloud Providers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.7 Cloud Migration Strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.2 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -153,7 +160,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">11.1 What is Cloud Computing?</li>
+      <li class="breadcrumb-item active">11.0. 1 What is Cloud Computing?</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/11_cloud/0.1_what_is_cloud.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -164,18 +171,22 @@
            <div itemprop="articleBody">
              
   <section id="what-is-cloud-computing">
-<h1>11.1 What is Cloud Computing?<a class="headerlink" href="#what-is-cloud-computing" title="Link to this heading"></a></h1>
+<h1>11.0. 1 What is Cloud Computing?<a class="headerlink" href="#what-is-cloud-computing" title="Link to this heading"></a></h1>
 <section id="the-simple-answer-from-dvds-to-netflix">
 <h2>The Simple Answer: From DVDs to Netflix<a class="headerlink" href="#the-simple-answer-from-dvds-to-netflix" title="Link to this heading"></a></h2>
 <p>Imagine you want to watch a movie. You have two options:</p>
-<p><strong>Option 1: The Old Way (Buy a DVD)</strong>
-- Go to a store, pay $20 to <strong>own</strong> a physical disc.
-- You are responsible for storing it, maintaining it, and protecting it from scratches.
-- If you want a new movie, you have to buy another disc.</p>
-<p><strong>Option 2: The New Way (Stream on Netflix)</strong>
-- Pay a monthly fee for <strong>access</strong> to thousands of movies.
-- Watch instantly, from anywhere, on any device.
-- The provider (Netflix) handles all storage, updates, and maintenance.</p>
+<p><strong>Option 1: The Old Way (Buy a DVD)</strong></p>
+<ul class="simple">
+<li><p>Go to a store, pay $20 to <strong>own</strong> a physical disc.</p></li>
+<li><p>You are responsible for storing it, maintaining it, and protecting it from scratches.</p></li>
+<li><p>If you want a new movie, you have to buy another disc.</p></li>
+</ul>
+<p><strong>Option 2: The New Way (Stream on Netflix)</strong></p>
+<ul class="simple">
+<li><p>Pay a monthly fee for <strong>access</strong> to thousands of movies.</p></li>
+<li><p>Watch instantly, from anywhere, on any device.</p></li>
+<li><p>The provider (Netflix) handles all storage, updates, and maintenance.</p></li>
+</ul>
 <p><strong>Cloud computing is the “Netflix model” for technology.</strong></p>
 <p>Instead of buying and managing your own physical servers (the “DVDs”), you <strong>rent</strong> computing power, storage, and services from a cloud provider. You get instant access and only pay for what you use.</p>
 </section>
@@ -273,7 +284,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../9_kubernetes/ANSWERS.html" class="btn btn-neutral float-left" title="ANSWERS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="0.2_deployment_models.html" class="btn btn-neutral float-right" title="11.2 Cloud Deployment Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="0.2_deployment_models.html" class="btn btn-neutral float-right" title="11.0.2 Cloud Deployment Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

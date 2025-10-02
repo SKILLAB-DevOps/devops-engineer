@@ -1,6 +1,6 @@
-#############################
-11.7 Cloud Migration Strategy
-#############################
+###############################
+11.0.7 Cloud Migration Strategy
+###############################
 
 Moving to the cloud is a journey, not a destination. Let's explore smart migration strategies that build on your container expertise.
 

@@ -1,6 +1,6 @@
-##############################
-11.1 What is Cloud Computing?
-##############################
+################################
+11.0. 1 What is Cloud Computing?
+################################
 
 =======================================
 The Simple Answer: From DVDs to Netflix
@@ -9,11 +9,13 @@ The Simple Answer: From DVDs to Netflix
 Imagine you want to watch a movie. You have two options:
 
 **Option 1: The Old Way (Buy a DVD)**
+
 - Go to a store, pay $20 to **own** a physical disc.
 - You are responsible for storing it, maintaining it, and protecting it from scratches.
 - If you want a new movie, you have to buy another disc.
 
 **Option 2: The New Way (Stream on Netflix)**
+
 - Pay a monthly fee for **access** to thousands of movies.
 - Watch instantly, from anywhere, on any device.
 - The provider (Netflix) handles all storage, updates, and maintenance.

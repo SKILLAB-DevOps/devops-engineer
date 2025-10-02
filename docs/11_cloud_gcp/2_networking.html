@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.8.2 VPC and Networking &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.8.3 Compute Engine - Virtual Machines" href="3_compute_engine.html" />
+    <link rel="prev" title="11.1 Identity and Access Management (IAM)" href="1_iam.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.8.2 VPC and Networking</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/2_networking.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vpc-and-networking">
+<h1>11.8.2 VPC and Networking<a class="headerlink" href="#vpc-and-networking" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Google Cloud Virtual Private Cloud (VPC) provides networking functionality for your cloud-based resources and services. VPC networks are global resources that consist of regional subnets, connected by a global wide area network. GCP’s network infrastructure is one of the largest and most advanced in the world, offering high performance, reliability, and security.</p>
+</div>
+<section id="vpc-core-concepts">
+<h2>VPC Core Concepts<a class="headerlink" href="#vpc-core-concepts" title="Link to this heading"></a></h2>
+<p><strong>VPC Network</strong></p>
+<p>A VPC network is a virtual version of a physical network within Google Cloud. It provides:</p>
+<ul class="simple">
+<li><p>Global scope spanning all GCP regions</p></li>
+<li><p>No IP subnet limitations</p></li>
+<li><p>Built-in security with firewall rules</p></li>
+<li><p>Automatic or custom subnet modes</p></li>
+</ul>
+<p><strong>Subnets</strong></p>
+<p>Subnets are regional resources. Each subnet is associated with a region and has a contiguous private IP address range.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul class="simple">
+<li><p><strong>Regional</strong>: Subnets exist in a single region</p></li>
+<li><p><strong>Expandable</strong>: Can expand IP ranges without recreation</p></li>
+<li><p><strong>Private Google Access</strong>: Access Google services without external IP</p></li>
+<li><p><strong>Flow Logs</strong>: Monitor network traffic</p></li>
+</ul>
+<p><strong>IP Addressing</strong></p>
+<ul class="simple">
+<li><p><strong>Internal IP</strong>: Private IP address for communication within the VPC</p></li>
+<li><p><strong>External IP</strong>: Public IP address for internet communication</p></li>
+<li><p><strong>IP Ranges</strong>: RFC 1918 private address spaces</p></li>
+</ul>
+</section>
+<section id="creating-a-vpc-network">
+<h2>Creating a VPC Network<a class="headerlink" href="#creating-a-vpc-network" title="Link to this heading"></a></h2>
+<p><strong>Auto Mode VPC (Default):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create auto-mode VPC (automatically creates subnets in all regions)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>create<span class="w"> </span>my-auto-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--subnet-mode<span class="o">=</span>auto<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bgp-routing-mode<span class="o">=</span>regional<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--mtu<span class="o">=</span><span class="m">1460</span>
+
+<span class="c1"># List all networks</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>list
+
+<span class="c1"># Describe network</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>describe<span class="w"> </span>my-auto-vpc
+</pre></div>
+</div>
+<p>Auto mode networks automatically create one subnet per region with predefined IP ranges:</p>
+<ul class="simple">
+<li><p>10.128.0.0/20 in us-west1</p></li>
+<li><p>10.138.0.0/20 in us-central1</p></li>
+<li><p>10.148.0.0/20 in us-east1</p></li>
+<li><p>And so on…</p></li>
+</ul>
+<p><strong>Custom Mode VPC (Recommended for Production):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create custom-mode VPC</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>create<span class="w"> </span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--subnet-mode<span class="o">=</span>custom<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bgp-routing-mode<span class="o">=</span>global<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--mtu<span class="o">=</span><span class="m">1460</span>
+
+<span class="c1"># Create custom subnets</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>create<span class="w"> </span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--range<span class="o">=</span><span class="m">10</span>.0.1.0/24<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-ip-google-access<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-flow-logs
+
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>create<span class="w"> </span>my-subnet-us-east1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-east1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--range<span class="o">=</span><span class="m">10</span>.0.2.0/24<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-ip-google-access<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-flow-logs
+
+<span class="c1"># Create subnet with secondary ranges (for GKE)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>create<span class="w"> </span>gke-subnet<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--range<span class="o">=</span><span class="m">10</span>.0.10.0/24<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--secondary-range<span class="w"> </span><span class="nv">pods</span><span class="o">=</span><span class="m">10</span>.1.0.0/16,services<span class="o">=</span><span class="m">10</span>.2.0.0/20<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-ip-google-access
+</pre></div>
+</div>
+<p><strong>List and Describe Subnets:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all subnets</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>list
+
+<span class="c1"># List subnets in specific network</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>list<span class="w"> </span>--network<span class="o">=</span>my-custom-vpc
+
+<span class="c1"># Describe subnet</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>describe<span class="w"> </span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+</pre></div>
+</div>
+<p><strong>Expand Subnet Range:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Expand subnet IP range (can only expand, not shrink)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>expand-ip-range<span class="w"> </span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--prefix-length<span class="o">=</span><span class="m">23</span><span class="w">  </span><span class="c1"># Changes from /24 to /23</span>
+</pre></div>
+</div>
+</section>
+<section id="firewall-rules">
+<h2>Firewall Rules<a class="headerlink" href="#firewall-rules" title="Link to this heading"></a></h2>
+<p>Firewall rules control traffic to and from instances in your VPC.</p>
+<p><strong>Firewall Rule Components:</strong></p>
+<ul class="simple">
+<li><p><strong>Priority</strong>: 0-65535 (lower number = higher priority)</p></li>
+<li><p><strong>Direction</strong>: INGRESS (incoming) or EGRESS (outgoing)</p></li>
+<li><p><strong>Action</strong>: ALLOW or DENY</p></li>
+<li><p><strong>Targets</strong>: All instances, specific instances, or instances with tags</p></li>
+<li><p><strong>Source/Destination</strong>: IP ranges, tags, or service accounts</p></li>
+<li><p><strong>Protocols and Ports</strong>: TCP, UDP, ICMP, etc.</p></li>
+</ul>
+<p><strong>Create Firewall Rules:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Allow HTTP traffic</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:80<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">0</span>.0.0.0/0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>http-server
+
+<span class="c1"># Allow HTTPS traffic</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-https<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:443<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">0</span>.0.0.0/0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>https-server
+
+<span class="c1"># Allow SSH from specific IP range</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-ssh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:22<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">203</span>.0.113.0/24<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>ssh-access
+
+<span class="c1"># Allow internal communication between instances</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-internal<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:0-65535,udp:0-65535,icmp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">10</span>.0.0.0/8
+
+<span class="c1"># Allow health checks from Google load balancers</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-health-checks<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:80,tcp:443<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">35</span>.191.0.0/16,130.211.0.0/22<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>lb-backend
+</pre></div>
+</div>
+<p><strong>Deny Rules (Higher Priority):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deny SSH from everywhere except office IP</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>deny-ssh-except-office<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">900</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>DENY<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:22<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">0</span>.0.0.0/0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>production
+</pre></div>
+</div>
+<p><strong>Service Account Based Rules:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Allow traffic from specific service account</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-from-sa<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:3306<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-service-accounts<span class="o">=</span>webapp@PROJECT_ID.iam.gserviceaccount.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>database
+</pre></div>
+</div>
+<p><strong>List and Manage Firewall Rules:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all firewall rules</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>list
+
+<span class="c1"># List rules for specific network</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">&quot;network:my-custom-vpc&quot;</span>
+
+<span class="c1"># Describe firewall rule</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>describe<span class="w"> </span>allow-http
+
+<span class="c1"># Update firewall rule</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>update<span class="w"> </span>allow-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">0</span>.0.0.0/0,10.0.0.0/8
+
+<span class="c1"># Delete firewall rule</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>delete<span class="w"> </span>allow-http
+</pre></div>
+</div>
+</section>
+<section id="cloud-nat">
+<h2>Cloud NAT<a class="headerlink" href="#cloud-nat" title="Link to this heading"></a></h2>
+<p>Cloud NAT (Network Address Translation) allows instances without external IP addresses to access the internet.</p>
+<p><strong>Create Cloud Router:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cloud Router is required for Cloud NAT</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>create<span class="w"> </span>my-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--asn<span class="o">=</span><span class="m">65001</span>
+</pre></div>
+</div>
+<p><strong>Create Cloud NAT:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create NAT configuration</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>nats<span class="w"> </span>create<span class="w"> </span>my-nat<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--router<span class="o">=</span>my-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat-all-subnet-ip-ranges<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auto-allocate-nat-external-ips
+
+<span class="c1"># Create NAT with specific IP addresses</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>addresses<span class="w"> </span>create<span class="w"> </span>nat-ip-1<span class="w"> </span>--region<span class="o">=</span>us-central1
+gcloud<span class="w"> </span>compute<span class="w"> </span>addresses<span class="w"> </span>create<span class="w"> </span>nat-ip-2<span class="w"> </span>--region<span class="o">=</span>us-central1
+
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>nats<span class="w"> </span>create<span class="w"> </span>my-nat-static<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--router<span class="o">=</span>my-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat-all-subnet-ip-ranges<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat-external-ip-pool<span class="o">=</span>nat-ip-1,nat-ip-2
+
+<span class="c1"># Enable logging</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>nats<span class="w"> </span>update<span class="w"> </span>my-nat<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--router<span class="o">=</span>my-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-logging
+</pre></div>
+</div>
+<p><strong>List and Describe NAT:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List Cloud NAT configurations</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>nats<span class="w"> </span>list<span class="w"> </span>--router<span class="o">=</span>my-router<span class="w"> </span>--region<span class="o">=</span>us-central1
+
+<span class="c1"># Describe NAT configuration</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>nats<span class="w"> </span>describe<span class="w"> </span>my-nat<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--router<span class="o">=</span>my-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-load-balancing">
+<h2>Cloud Load Balancing<a class="headerlink" href="#cloud-load-balancing" title="Link to this heading"></a></h2>
+<p>GCP offers several types of load balancers:</p>
+<ul class="simple">
+<li><p><strong>Global External Load Balancer</strong>: HTTP(S), SSL Proxy, TCP Proxy</p></li>
+<li><p><strong>Regional External Load Balancer</strong>: Network TCP/UDP, Internal TCP/UDP</p></li>
+<li><p><strong>Internal Load Balancer</strong>: HTTP(S), TCP/UDP</p></li>
+</ul>
+<p><strong>Create HTTP(S) Load Balancer:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Create instance group</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<span class="w"> </span>managed<span class="w"> </span>create<span class="w"> </span>web-backend-group<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--template<span class="o">=</span>web-server-template<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--size<span class="o">=</span><span class="m">3</span>
+
+<span class="c1"># Set named port</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<span class="w"> </span>managed<span class="w"> </span>set-named-ports<span class="w"> </span>web-backend-group<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--named-ports<span class="o">=</span>http:80<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+
+<span class="c1"># 2. Create health check</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>health-checks<span class="w"> </span>create<span class="w"> </span>http<span class="w"> </span>web-health-check<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--port<span class="o">=</span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--request-path<span class="o">=</span>/health<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--check-interval<span class="o">=</span>10s<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--timeout<span class="o">=</span>5s<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--healthy-threshold<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--unhealthy-threshold<span class="o">=</span><span class="m">3</span>
+
+<span class="c1"># 3. Create backend service</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>backend-services<span class="w"> </span>create<span class="w"> </span>web-backend-service<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--protocol<span class="o">=</span>HTTP<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--health-checks<span class="o">=</span>web-health-check<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--global<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-cdn<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--connection-draining-timeout<span class="o">=</span><span class="m">300</span>
+
+<span class="c1"># Add instance group to backend</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>backend-services<span class="w"> </span>add-backend<span class="w"> </span>web-backend-service<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--instance-group<span class="o">=</span>web-backend-group<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--instance-group-zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--balancing-mode<span class="o">=</span>UTILIZATION<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-utilization<span class="o">=</span><span class="m">0</span>.8<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--global
+
+<span class="c1"># 4. Create URL map</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>url-maps<span class="w"> </span>create<span class="w"> </span>web-url-map<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--default-service<span class="o">=</span>web-backend-service
+
+<span class="c1"># 5. Create SSL certificate (for HTTPS)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>ssl-certificates<span class="w"> </span>create<span class="w"> </span>web-ssl-cert<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domains<span class="o">=</span>www.example.com
+
+<span class="c1"># Or use managed certificate</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>ssl-certificates<span class="w"> </span>create<span class="w"> </span>web-ssl-cert<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domains<span class="o">=</span>www.example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--global
+
+<span class="c1"># 6. Create target HTTPS proxy</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>target-https-proxies<span class="w"> </span>create<span class="w"> </span>web-https-proxy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--url-map<span class="o">=</span>web-url-map<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ssl-certificates<span class="o">=</span>web-ssl-cert
+
+<span class="c1"># 7. Create forwarding rule</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>forwarding-rules<span class="w"> </span>create<span class="w"> </span>web-https-rule<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--address<span class="o">=</span>web-lb-ip<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--global<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-https-proxy<span class="o">=</span>web-https-proxy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ports<span class="o">=</span><span class="m">443</span>
+</pre></div>
+</div>
+<p><strong>Create Network Load Balancer:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create target pool</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>target-pools<span class="w"> </span>create<span class="w"> </span>web-pool<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--health-check<span class="o">=</span>web-health-check
+
+<span class="c1"># Add instances to target pool</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>target-pools<span class="w"> </span>add-instances<span class="w"> </span>web-pool<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--instances<span class="o">=</span>web-server-1,web-server-2,web-server-3<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+
+<span class="c1"># Create forwarding rule</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>forwarding-rules<span class="w"> </span>create<span class="w"> </span>web-lb-rule<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ports<span class="o">=</span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-pool<span class="o">=</span>web-pool
+</pre></div>
+</div>
+</section>
+<section id="vpc-peering">
+<h2>VPC Peering<a class="headerlink" href="#vpc-peering" title="Link to this heading"></a></h2>
+<p>VPC Network Peering allows private connectivity between two VPC networks.</p>
+<p><strong>Create VPC Peering:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From VPC-A to VPC-B</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>peerings<span class="w"> </span>create<span class="w"> </span>vpc-a-to-vpc-b<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>vpc-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-project<span class="o">=</span>PROJECT_B_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-network<span class="o">=</span>vpc-b<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auto-create-routes
+
+<span class="c1"># From VPC-B to VPC-A (must be done in PROJECT_B)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>peerings<span class="w"> </span>create<span class="w"> </span>vpc-b-to-vpc-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>vpc-b<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-project<span class="o">=</span>PROJECT_A_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-network<span class="o">=</span>vpc-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auto-create-routes
+
+<span class="c1"># List peering connections</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>peerings<span class="w"> </span>list
+
+<span class="c1"># Describe peering</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>peerings<span class="w"> </span>list<span class="w"> </span>--network<span class="o">=</span>vpc-a
+</pre></div>
+</div>
+</section>
+<section id="cloud-vpn">
+<h2>Cloud VPN<a class="headerlink" href="#cloud-vpn" title="Link to this heading"></a></h2>
+<p>Cloud VPN securely connects your on-premises network to your GCP VPC.</p>
+<p><strong>Create HA VPN:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Create VPN gateway</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>vpn-gateways<span class="w"> </span>create<span class="w"> </span>my-ha-vpn-gateway<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+
+<span class="c1"># 2. Create external VPN gateway (represents on-prem device)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>external-vpn-gateways<span class="w"> </span>create<span class="w"> </span>on-prem-gateway<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--interfaces<span class="o">=</span><span class="nv">0</span><span class="o">=</span>ON_PREM_IP_ADDRESS
+
+<span class="c1"># 3. Create Cloud Router</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>create<span class="w"> </span>vpn-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--asn<span class="o">=</span><span class="m">65001</span>
+
+<span class="c1"># 4. Create VPN tunnels</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>vpn-tunnels<span class="w"> </span>create<span class="w"> </span>tunnel-1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-external-gateway<span class="o">=</span>on-prem-gateway<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-external-gateway-interface<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ike-version<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--shared-secret<span class="o">=</span>SHARED_SECRET<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--router<span class="o">=</span>vpn-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--vpn-gateway<span class="o">=</span>my-ha-vpn-gateway<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--interface<span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 5. Create BGP sessions</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>add-interface<span class="w"> </span>vpn-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--interface-name<span class="o">=</span>tunnel-1-int<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ip-address<span class="o">=</span><span class="m">169</span>.254.1.1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--mask-length<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--vpn-tunnel<span class="o">=</span>tunnel-1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>add-bgp-peer<span class="w"> </span>vpn-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-name<span class="o">=</span>bgp-peer-1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--interface<span class="o">=</span>tunnel-1-int<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-ip-address<span class="o">=</span><span class="m">169</span>.254.1.2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--peer-asn<span class="o">=</span><span class="m">65002</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="private-google-access">
+<h2>Private Google Access<a class="headerlink" href="#private-google-access" title="Link to this heading"></a></h2>
+<p>Allow instances without external IPs to access Google services.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Private Google Access on subnet</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>update<span class="w"> </span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-ip-google-access
+
+<span class="c1"># Verify</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>describe<span class="w"> </span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span><span class="s2">&quot;get(privateIpGoogleAccess)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="cloud-dns">
+<h2>Cloud DNS<a class="headerlink" href="#cloud-dns" title="Link to this heading"></a></h2>
+<p><strong>Create DNS Zone:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create public DNS zone</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>managed-zones<span class="w"> </span>create<span class="w"> </span>my-zone<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dns-name<span class="o">=</span>example.com.<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--description<span class="o">=</span><span class="s2">&quot;My DNS zone&quot;</span>
+
+<span class="c1"># Create private DNS zone</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>managed-zones<span class="w"> </span>create<span class="w"> </span>my-private-zone<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dns-name<span class="o">=</span>internal.example.com.<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--description<span class="o">=</span><span class="s2">&quot;Internal DNS zone&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--visibility<span class="o">=</span>private<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--networks<span class="o">=</span>my-custom-vpc
+</pre></div>
+</div>
+<p><strong>Add DNS Records:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start transaction</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>record-sets<span class="w"> </span>transaction<span class="w"> </span>start<span class="w"> </span>--zone<span class="o">=</span>my-zone
+
+<span class="c1"># Add A record</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>record-sets<span class="w"> </span>transaction<span class="w"> </span>add<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>my-zone<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="o">=</span>www.example.com.<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--type<span class="o">=</span>A<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ttl<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">&quot;203.0.113.10&quot;</span>
+
+<span class="c1"># Add CNAME record</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>record-sets<span class="w"> </span>transaction<span class="w"> </span>add<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>my-zone<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="o">=</span>blog.example.com.<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--type<span class="o">=</span>CNAME<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ttl<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">&quot;www.example.com.&quot;</span>
+
+<span class="c1"># Execute transaction</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>record-sets<span class="w"> </span>transaction<span class="w"> </span>execute<span class="w"> </span>--zone<span class="o">=</span>my-zone
+
+<span class="c1"># List records</span>
+gcloud<span class="w"> </span>dns<span class="w"> </span>record-sets<span class="w"> </span>list<span class="w"> </span>--zone<span class="o">=</span>my-zone
+</pre></div>
+</div>
+</section>
+<section id="network-monitoring">
+<h2>Network Monitoring<a class="headerlink" href="#network-monitoring" title="Link to this heading"></a></h2>
+<p><strong>Enable VPC Flow Logs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable on existing subnet</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>update<span class="w"> </span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-flow-logs<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--logging-aggregation-interval<span class="o">=</span>interval-5-sec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--logging-flow-sampling<span class="o">=</span><span class="m">0</span>.5<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--logging-metadata<span class="o">=</span>include-all
+</pre></div>
+</div>
+<p><strong>View Flow Logs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query flow logs</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;resource.type=gce_subnetwork&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span>json
+</pre></div>
+</div>
+<p><strong>Network Intelligence Center:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get connectivity test</span>
+gcloud<span class="w"> </span>network-management<span class="w"> </span>connectivity-tests<span class="w"> </span>create<span class="w"> </span>my-test<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-instance<span class="o">=</span>source-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--destination-ip-address<span class="o">=</span><span class="m">10</span>.0.1.10<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--protocol<span class="o">=</span>TCP<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--destination-port<span class="o">=</span><span class="m">80</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Network Design:</strong></p>
+<ul class="simple">
+<li><p>Use custom VPC for production workloads</p></li>
+<li><p>Plan IP addressing carefully (use RFC 1918 ranges)</p></li>
+<li><p>Separate environments into different VPCs</p></li>
+<li><p>Use VPC peering or Shared VPC for multi-project architectures</p></li>
+<li><p>Implement least-privilege firewall rules</p></li>
+</ul>
+<p><strong>2. Security:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use default-deny firewall rules</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>deny-all-ingress<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">65534</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>DENY<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>all
+
+<span class="c1"># Allow only specific traffic</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-specific<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--direction<span class="o">=</span>INGRESS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>ALLOW<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>tcp:443<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">203</span>.0.113.0/24
+</pre></div>
+</div>
+<p><strong>3. High Availability:</strong></p>
+<ul class="simple">
+<li><p>Use multiple zones for instances and load balancers</p></li>
+<li><p>Implement health checks for all backend services</p></li>
+<li><p>Use managed instance groups with autoscaling</p></li>
+<li><p>Configure connection draining for graceful shutdowns</p></li>
+</ul>
+<p><strong>4. Cost Optimization:</strong></p>
+<ul class="simple">
+<li><p>Use Cloud NAT instead of external IPs</p></li>
+<li><p>Implement network tiers (Premium vs Standard)</p></li>
+<li><p>Use committed use discounts for VPN and load balancers</p></li>
+<li><p>Monitor egress traffic costs</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Test Connectivity:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From an instance, test connectivity</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>ssh<span class="w"> </span>my-instance<span class="w"> </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span>--command<span class="o">=</span><span class="s2">&quot;ping -c 3 8.8.8.8&quot;</span>
+
+<span class="c1"># Test internal connectivity</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>ssh<span class="w"> </span>my-instance<span class="w"> </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span>--command<span class="o">=</span><span class="s2">&quot;ping -c 3 10.0.1.10&quot;</span>
+
+<span class="c1"># Test DNS resolution</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>ssh<span class="w"> </span>my-instance<span class="w"> </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span>--command<span class="o">=</span><span class="s2">&quot;nslookup google.com&quot;</span>
+</pre></div>
+</div>
+<p><strong>Check Firewall Rules:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List applicable firewall rules for an instance</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>describe<span class="w"> </span>my-instance<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span><span class="s2">&quot;get(tags.items)&quot;</span>
+
+<span class="c1"># Find firewall rules for specific tags</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="o">=</span><span class="s2">&quot;targetTags:http-server&quot;</span>
+</pre></div>
+</div>
+<p><strong>Packet Mirroring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create packet mirroring policy for troubleshooting</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>packet-mirrorings<span class="w"> </span>create<span class="w"> </span>my-mirror<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>my-custom-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--mirrored-subnets<span class="o">=</span>my-subnet-us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--collector-ilb<span class="o">=</span>my-collector-forwarding-rule
+</pre></div>
+</div>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>VPC Documentation: <a class="reference external" href="https://cloud.google.com/vpc/docs">https://cloud.google.com/vpc/docs</a></p></li>
+<li><p>Firewall Rules Guide: <a class="reference external" href="https://cloud.google.com/vpc/docs/firewalls">https://cloud.google.com/vpc/docs/firewalls</a></p></li>
+<li><p>Load Balancing Documentation: <a class="reference external" href="https://cloud.google.com/load-balancing/docs">https://cloud.google.com/load-balancing/docs</a></p></li>
+<li><p>VPC Network Peering: <a class="reference external" href="https://cloud.google.com/vpc/docs/vpc-peering">https://cloud.google.com/vpc/docs/vpc-peering</a></p></li>
+<li><p>Cloud VPN Documentation: <a class="reference external" href="https://cloud.google.com/network-connectivity/docs/vpn">https://cloud.google.com/network-connectivity/docs/vpn</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_iam.html" class="btn btn-neutral float-left" title="11.1 Identity and Access Management (IAM)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3_compute_engine.html" class="btn btn-neutral float-right" title="11.8.3 Compute Engine - Virtual Machines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

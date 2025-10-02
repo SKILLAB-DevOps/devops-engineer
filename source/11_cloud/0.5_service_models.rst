@@ -1,6 +1,6 @@
-#########################
-11.5 Cloud Service Models
-#########################
+###########################
+11.0.5 Cloud Service Models
+###########################
 
 Think of cloud services like different levels of a restaurant experience:
 

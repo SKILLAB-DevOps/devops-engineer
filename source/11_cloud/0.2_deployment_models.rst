@@ -1,6 +1,6 @@
-############################
-11.2 Cloud Deployment Models
-############################
+##############################
+11.0.2 Cloud Deployment Models
+##############################
 
 Just like ice cream comes in different flavors, clouds come in different types!
 

@@ -1,5 +1,5 @@
 ########################################
-11.2 Cloud Strategy: Native vs. Agnostic
+11.1 Cloud Strategy: Native vs. Agnostic
 ########################################
 
 So far, you've learned how to package applications into containers with Docker and manage them at scale with Kubernetes. You've even built CI/CD pipelines to automate the whole process.
