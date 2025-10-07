@@ -161,6 +161,17 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    9_kubernetes/TODO
    9_kubernetes/ANSWERS
 
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Infrastructure as Code
+
+   10_infrastructure_as_code/0_introduction_iac
+   10_infrastructure_as_code/1_terraform_introduction
+   10_infrastructure_as_code/2_terraform_core_concepts
+   10_infrastructure_as_code/3_terraform_workflow_gcp
+   10_infrastructure_as_code/4_terraform_production_challenges
+
 
 .. toctree::
    :hidden:

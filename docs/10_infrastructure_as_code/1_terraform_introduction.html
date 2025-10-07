@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.1 Terraform &amp; OpenTofu - Introduction &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.2 Terraform Core Concepts" href="2_terraform_core_concepts.html" />
+    <link rel="prev" title="10. Infrastructure as Code - Introduction" href="0_introduction_iac.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">10.1 Terraform &amp; OpenTofu - Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/10_infrastructure_as_code/1_terraform_introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="terraform-opentofu-introduction">
+<h1>10.1 Terraform &amp; OpenTofu - Introduction<a class="headerlink" href="#terraform-opentofu-introduction" title="Link to this heading"></a></h1>
+<section id="what-is-terraform">
+<h2>What is Terraform?<a class="headerlink" href="#what-is-terraform" title="Link to this heading"></a></h2>
+<p>Terraform is an infrastructure as code tool originally created by HashiCorp in 2014. It enables you to define, provision, and manage infrastructure across multiple cloud providers using a declarative configuration language called HCL (HashiCorp Configuration Language).</p>
+<p><strong>Core Value Proposition:</strong></p>
+<p>Terraform allows you to build, change, and version infrastructure safely and efficiently. Instead of manually creating resources through web consoles or CLI commands, you declare what you want in configuration files, and Terraform handles the creation and management of those resources.</p>
+<p><strong>What Terraform is Used For:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Multi-Cloud Infrastructure Provisioning</strong></p>
+<ul class="simple">
+<li><p>Create virtual machines, networks, storage, and databases across AWS, GCP, Azure, and 3000+ other provider resources</p></li>
+<li><p>Manage DNS records, CDN configurations, and load balancers</p></li>
+<li><p>Provision Kubernetes clusters and container registries</p></li>
+</ul>
+</li>
+<li><p><strong>Infrastructure Lifecycle Management</strong></p>
+<ul class="simple">
+<li><p>Create, update, and destroy infrastructure resources</p></li>
+<li><p>Track infrastructure changes over time with state management</p></li>
+<li><p>Plan changes before applying them to prevent unwanted modifications</p></li>
+</ul>
+</li>
+<li><p><strong>Compliance and Governance</strong></p>
+<ul class="simple">
+<li><p>Enforce organizational policies through code</p></li>
+<li><p>Standardize infrastructure patterns across teams</p></li>
+<li><p>Audit infrastructure changes through version control</p></li>
+</ul>
+</li>
+<li><p><strong>Cost Optimization</strong></p>
+<ul class="simple">
+<li><p>Automatically provision resources only when needed</p></li>
+<li><p>Schedule infrastructure creation/destruction</p></li>
+<li><p>Right-size resources based on actual usage patterns</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Terraform treats infrastructure as code, meaning you can version control it, review changes through pull requests, and apply software development best practices to your infrastructure.</p>
+</div>
+</section>
+<section id="what-is-opentofu">
+<h2>What is OpenTofu?<a class="headerlink" href="#what-is-opentofu" title="Link to this heading"></a></h2>
+<p><strong>OpenTofu</strong> is an open-source fork of Terraform, created in 2023 by the OpenTofu Foundation after HashiCorp changed Terraform’s license from MPL 2.0 to the Business Source License (BSL).</p>
+<p><strong>Why OpenTofu Was Created:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>License Concerns</strong>: HashiCorp’s license change meant Terraform could no longer be used by competing commercial products</p></li>
+<li><p><strong>Community Control</strong>: Ensure the tool remains truly open-source and community-driven</p></li>
+<li><p><strong>Vendor Independence</strong>: Prevent single-vendor control over critical infrastructure tooling</p></li>
+</ol>
+<p><strong>Who Created OpenTofu:</strong></p>
+<ul class="simple">
+<li><p><strong>Linux Foundation</strong> hosts the project</p></li>
+<li><p><strong>Major Contributors</strong>: Spacelift, env0, Scalr, Digger, Terramate, and hundreds of community contributors</p></li>
+<li><p><strong>Industry Support</strong>: Backed by major cloud providers and infrastructure companies</p></li>
+</ul>
+<p><strong>When to Use OpenTofu vs Terraform:</strong></p>
+<p><strong>Use OpenTofu When:</strong></p>
+<ul class="simple">
+<li><p>You need guaranteed open-source licensing</p></li>
+<li><p>Your organization requires vendor-neutral tooling</p></li>
+<li><p>You want to contribute to community-driven development</p></li>
+<li><p>You’re building commercial products that compete with HashiCorp</p></li>
+</ul>
+<p><strong>Use Terraform When:</strong></p>
+<ul class="simple">
+<li><p>You need HashiCorp’s commercial support and enterprise features</p></li>
+<li><p>Your organization already has established Terraform workflows</p></li>
+<li><p>You require specific HashiCorp ecosystem integrations (Vault, Consul)</p></li>
+<li><p>You prefer stability over cutting-edge features</p></li>
+</ul>
+<p><strong>Compatibility:</strong></p>
+<p>OpenTofu maintains <strong>100% compatibility</strong> with Terraform 1.5.x configurations and state files, making migration seamless.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch from Terraform to OpenTofu</span>
+terraform<span class="w"> </span>--version
+tofu<span class="w"> </span>--version
+
+<span class="c1"># Same commands, same syntax</span>
+tofu<span class="w"> </span>init
+tofu<span class="w"> </span>plan
+tofu<span class="w"> </span>apply
+</pre></div>
+</div>
+</section>
+<section id="hashicorp-configuration-language">
+<h2>HashiCorp Configuration Language<a class="headerlink" href="#hashicorp-configuration-language" title="Link to this heading"></a></h2>
+<p>Terraform uses <strong>HCL (HashiCorp Configuration Language)</strong>, a declarative language designed to be human-readable and machine-friendly. HCL is similar to JSON but more concise and easier to read.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a comprehensive comparison between Terraform and Pulumi, including syntax examples, architectural differences, and decision criteria for choosing between declarative (HCL) and imperative (programming languages) approaches, see <strong>Chapter 10.0: Infrastructure as Code Introduction</strong>, section “Infrastructure Provisioning: Terraform vs Pulumi”.</p>
+</div>
+<p><strong>Example: Creating a GCP Compute Instance</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the provider</span>
+<span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;google&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-gcp-project&quot;</span>
+<span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a VPC network</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_network&quot;</span><span class="w"> </span><span class="nv">&quot;main&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;main-network&quot;</span>
+<span class="w">  </span><span class="na">auto_create_subnetworks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+<span class="w">  </span><span class="na">description</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Main production network&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a subnet</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_subnetwork&quot;</span><span class="w"> </span><span class="nv">&quot;public&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;public-subnet&quot;</span>
+<span class="w">  </span><span class="na">network</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_network.main.id</span>
+<span class="w">  </span><span class="na">ip_cidr_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10.0.1.0/24&quot;</span>
+<span class="w">  </span><span class="na">region</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+
+<span class="w">  </span><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Public subnet for web servers&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a firewall rule</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_firewall&quot;</span><span class="w"> </span><span class="nv">&quot;web&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;allow-web-traffic&quot;</span>
+<span class="w">  </span><span class="na">network</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_network.main.name</span>
+
+<span class="w">  </span><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Allow HTTP and HTTPS traffic&quot;</span>
+
+<span class="w">  </span><span class="nb">allow</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tcp&quot;</span>
+<span class="w">    </span><span class="na">ports</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;80&quot;, &quot;443&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="na">source_ranges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;0.0.0.0/0&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="na">target_tags</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;web-server&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a Compute Engine instance</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;web_server&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server&quot;</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+<span class="w">  </span><span class="na">zone</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+
+<span class="w">  </span><span class="na">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;web-server&quot;</span><span class="p">]</span>
+
+<span class="w">  </span><span class="nb">boot_disk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">initialize_params</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ubuntu-os-cloud/ubuntu-2204-lts&quot;</span>
+<span class="w">      </span><span class="na">size</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">network_interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">network</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_network.main.id</span>
+<span class="w">    </span><span class="na">subnetwork</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_subnetwork.public.id</span>
+
+<span class="w">    </span><span class="nb">access_config</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">      # Ephemeral public IP</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">Environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;production&quot;</span>
+<span class="w">    </span><span class="na">ManagedBy</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="key-benefits-of-iac-with-terraform">
+<h2>Key Benefits of IaC with Terraform<a class="headerlink" href="#key-benefits-of-iac-with-terraform" title="Link to this heading"></a></h2>
+<p><strong>1. Declarative Approach</strong></p>
+<p>You describe the desired end state, not the steps to get there:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># You declare what you want</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;web&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server&quot;</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Terraform figures out how to create it</span>
+</pre></div>
+</div>
+<p><strong>2. Infrastructure as Code</strong></p>
+<ul class="simple">
+<li><p><strong>Version Control</strong>: Track every infrastructure change in Git</p></li>
+<li><p><strong>Code Reviews</strong>: Peer review infrastructure changes like application code</p></li>
+<li><p><strong>Automation</strong>: Integrate with CI/CD pipelines</p></li>
+<li><p><strong>Documentation</strong>: The code documents the infrastructure</p></li>
+</ul>
+<p><strong>3. Plan Before Apply</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Always preview changes before applying</span>
+terraform<span class="w"> </span>plan
+<span class="c1"># Shows exactly what will be created, modified, or destroyed</span>
+
+terraform<span class="w"> </span>apply
+<span class="c1"># Only executes the planned changes</span>
+</pre></div>
+</div>
+<p><strong>4. State Management</strong></p>
+<p>Terraform tracks the current state of your infrastructure:</p>
+<ul class="simple">
+<li><p><strong>Drift Detection</strong>: Knows when manual changes occur</p></li>
+<li><p><strong>Dependency Management</strong>: Understands resource relationships</p></li>
+<li><p><strong>Incremental Changes</strong>: Only modifies what needs to change</p></li>
+</ul>
+<p><strong>5. Multi-Provider Support</strong></p>
+<p>Manage resources across different providers in a single configuration:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># GCP resources</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;app&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">  # ... configuration</span>
+<span class="p">}</span>
+
+<span class="c1"># AWS resources for backup</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;backup&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">  # ... configuration</span>
+<span class="p">}</span>
+
+<span class="c1"># DNS from Cloudflare</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;cloudflare_record&quot;</span><span class="w"> </span><span class="nv">&quot;app&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">  # ... configuration</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="learning-path-overview">
+<h2>Learning Path Overview<a class="headerlink" href="#learning-path-overview" title="Link to this heading"></a></h2>
+<p>This Infrastructure as Code section is structured for progressive learning:</p>
+<ol class="arabic simple">
+<li><p><strong>Introduction</strong> (This Chapter)</p>
+<ul class="simple">
+<li><p>Understanding Terraform vs OpenTofu</p></li>
+<li><p>Basic HCL syntax and concepts</p></li>
+<li><p>Value proposition of IaC</p></li>
+</ul>
+</li>
+<li><p><strong>Core Concepts</strong> (Chapter 10.2)</p>
+<ul class="simple">
+<li><p>Providers and resources</p></li>
+<li><p>Variables and outputs</p></li>
+<li><p>Data sources and locals</p></li>
+</ul>
+</li>
+<li><p><strong>Terraform Workflow &amp; GCP</strong> (Chapter 10.3)</p>
+<ul class="simple">
+<li><p>The terraform init/plan/apply cycle</p></li>
+<li><p>GCP-specific considerations</p></li>
+<li><p>Authentication and setup</p></li>
+</ul>
+</li>
+<li><p><strong>Production Challenges</strong> (Chapter 10.4)</p>
+<ul class="simple">
+<li><p>Common problems and solutions</p></li>
+<li><p>State management issues</p></li>
+<li><p>Security and compliance</p></li>
+</ul>
+</li>
+<li><p><strong>Practical Examples</strong> (Chapter 10.5)</p>
+<ul class="simple">
+<li><p>14 hands-on GCP examples</p></li>
+<li><p>From simple storage to Kubernetes</p></li>
+<li><p>Real-world deployment patterns</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each chapter builds upon the previous one. It’s recommended to work through them in order and complete the practical examples as you progress.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0_introduction_iac.html" class="btn btn-neutral float-left" title="10. Infrastructure as Code - Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_terraform_core_concepts.html" class="btn btn-neutral float-right" title="10.2 Terraform Core Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.3 Terraform Workflow &amp; GCP &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.4 Terraform Production Challenges" href="4_terraform_production_challenges.html" />
+    <link rel="prev" title="10.2 Terraform Core Concepts" href="2_terraform_core_concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">10.3 Terraform Workflow &amp; GCP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/10_infrastructure_as_code/3_terraform_workflow_gcp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="terraform-workflow-gcp">
+<h1>10.3 Terraform Workflow &amp; GCP<a class="headerlink" href="#terraform-workflow-gcp" title="Link to this heading"></a></h1>
+<p>This chapter covers the Terraform workflow and Google Cloud Platform-specific considerations for real-world deployments.</p>
+<section id="the-terraform-workflow">
+<h2>The Terraform Workflow<a class="headerlink" href="#the-terraform-workflow" title="Link to this heading"></a></h2>
+<p>Terraform follows a consistent workflow that makes infrastructure changes predictable and safe:</p>
+<p><strong>1. Write</strong></p>
+<p>Define your infrastructure in configuration files (.tf files).</p>
+<p><strong>2. Initialize (terraform init)</strong></p>
+<p>Download provider plugins and prepare the working directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>terraform<span class="w"> </span>init
+
+Initializing<span class="w"> </span>the<span class="w"> </span>backend...
+Initializing<span class="w"> </span>provider<span class="w"> </span>plugins...
+-<span class="w"> </span>Finding<span class="w"> </span>latest<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>hashicorp/google...
+-<span class="w"> </span>Installing<span class="w"> </span>hashicorp/google<span class="w"> </span>v4.84.0...
+
+Terraform<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>successfully<span class="w"> </span>initialized!
+</pre></div>
+</div>
+<p><strong>3. Plan (terraform plan)</strong></p>
+<p>Preview the changes Terraform will make to match your configuration.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>terraform<span class="w"> </span>plan
+
+Terraform<span class="w"> </span>will<span class="w"> </span>perform<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>actions:
+
+<span class="w">  </span><span class="c1"># google_compute_instance.web_server will be created</span>
+<span class="w">  </span>+<span class="w"> </span>resource<span class="w"> </span><span class="s2">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="s2">&quot;web_server&quot;</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span>+<span class="w"> </span><span class="nv">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server&quot;</span>
+<span class="w">      </span>+<span class="w"> </span><span class="nv">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+<span class="w">      </span>+<span class="w"> </span><span class="nv">zone</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+<span class="w">      </span>+<span class="w"> </span><span class="nv">self_link</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>known<span class="w"> </span>after<span class="w"> </span>apply<span class="o">)</span>
+<span class="w">      </span>...
+<span class="w">    </span><span class="o">}</span>
+
+Plan:<span class="w"> </span><span class="m">1</span><span class="w"> </span>to<span class="w"> </span>add,<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span>change,<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span>destroy.
+</pre></div>
+</div>
+<p><strong>4. Apply (terraform apply)</strong></p>
+<p>Execute the planned changes to create, update, or delete infrastructure.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>terraform<span class="w"> </span>apply
+
+Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>perform<span class="w"> </span>these<span class="w"> </span>actions?
+<span class="w">  </span>Terraform<span class="w"> </span>will<span class="w"> </span>perform<span class="w"> </span>the<span class="w"> </span>actions<span class="w"> </span>described<span class="w"> </span>above.
+<span class="w">  </span>Only<span class="w"> </span><span class="s1">&#39;yes&#39;</span><span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>accepted<span class="w"> </span>to<span class="w"> </span>approve.
+
+<span class="w">  </span>Enter<span class="w"> </span>a<span class="w"> </span>value:<span class="w"> </span>yes
+
+google_compute_instance.web_server:<span class="w"> </span>Creating...
+google_compute_instance.web_server:<span class="w"> </span>Creation<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>after<span class="w"> </span>45s
+
+Apply<span class="w"> </span>complete!<span class="w"> </span>Resources:<span class="w"> </span><span class="m">1</span><span class="w"> </span>added,<span class="w"> </span><span class="m">0</span><span class="w"> </span>changed,<span class="w"> </span><span class="m">0</span><span class="w"> </span>destroyed.
+</pre></div>
+</div>
+<p><strong>5. Destroy (terraform destroy)</strong></p>
+<p>Remove all infrastructure managed by the configuration (use with caution).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>terraform<span class="w"> </span>destroy
+
+<span class="c1"># Destroy specific resources</span>
+$<span class="w"> </span>terraform<span class="w"> </span>destroy<span class="w"> </span>-target<span class="o">=</span>google_compute_instance.web_server
+</pre></div>
+</div>
+</section>
+<section id="gcp-specific-terraform-considerations">
+<h2>GCP-Specific Terraform Considerations<a class="headerlink" href="#gcp-specific-terraform-considerations" title="Link to this heading"></a></h2>
+<p>Google Cloud Platform has unique characteristics that affect how you use Terraform effectively.</p>
+<p><strong>1. GCP Authentication and Setup</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authenticate with Google Cloud</span>
+gcloud<span class="w"> </span>auth<span class="w"> </span>login
+gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>login
+
+<span class="c1"># Set default project</span>
+gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project<span class="w"> </span>my-gcp-project-id
+
+<span class="c1"># Enable required APIs (Terraform cannot enable these automatically)</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>compute.googleapis.com
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>storage.googleapis.com
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>container.googleapis.com
+</pre></div>
+</div>
+<p><strong>2. Service Account Best Practices</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a service account for Terraform</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_service_account&quot;</span><span class="w"> </span><span class="nv">&quot;terraform&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">account_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform-automation&quot;</span>
+<span class="w">  </span><span class="na">display_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Terraform Service Account&quot;</span>
+<span class="w">  </span><span class="na">description</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Service account for Terraform infrastructure automation&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Grant minimal required permissions</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_project_iam_member&quot;</span><span class="w"> </span><span class="nv">&quot;terraform_compute&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_id</span>
+<span class="w">  </span><span class="na">role</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;roles/compute.instanceAdmin.v1&quot;</span>
+<span class="w">  </span><span class="na">member</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;serviceAccount:${google_service_account.terraform.email}&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_project_iam_member&quot;</span><span class="w"> </span><span class="nv">&quot;terraform_storage&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_id</span>
+<span class="w">  </span><span class="na">role</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;roles/storage.admin&quot;</span>
+<span class="w">  </span><span class="na">member</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;serviceAccount:${google_service_account.terraform.email}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Service Account Key Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create service account key</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>keys<span class="w"> </span>create<span class="w"> </span>terraform-key.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iam-account<span class="o">=</span>terraform-automation@PROJECT_ID.iam.gserviceaccount.com
+
+<span class="c1"># Set environment variable</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;terraform-key.json&quot;</span>
+
+<span class="c1"># Or use in provider block</span>
+provider<span class="w"> </span><span class="s2">&quot;google&quot;</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nv">credentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>file<span class="o">(</span><span class="s2">&quot;terraform-key.json&quot;</span><span class="o">)</span>
+<span class="w">  </span><span class="nv">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-project-id&quot;</span>
+<span class="w">  </span><span class="nv">region</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>3. GCP Resource Naming and Organization</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># GCP has strict naming conventions</span>
+<span class="nb">locals</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">  # Resource names must be lowercase, contain only letters, numbers, and hyphens</span>
+<span class="w">  </span><span class="na">resource_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lower</span><span class="p">(</span><span class="s2">&quot;${var.environment}-${var.project_name}&quot;</span><span class="p">)</span>
+
+<span class="c1">  # GCP labels are different from AWS tags</span>
+<span class="w">  </span><span class="nb">common_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.environment</span>
+<span class="w">    </span><span class="na">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_name</span>
+<span class="w">    </span><span class="na">managed_by</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform&quot;</span>
+<span class="w">    </span><span class="na">team</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">var.team_name</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;app&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${local.resource_prefix}-app-server&quot;</span>
+
+<span class="c1">  # Use labels, not tags (AWS terminology)</span>
+<span class="w">  </span><span class="na">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">local.common_labels</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>GCP Naming Rules:</strong></p>
+<ul class="simple">
+<li><p><strong>Lowercase only</strong>: All GCP resource names must be lowercase</p></li>
+<li><p><strong>Length limits</strong>: Most resources have 63-character limits</p></li>
+<li><p><strong>Valid characters</strong>: Letters, numbers, hyphens (no underscores in names)</p></li>
+<li><p><strong>Start/end</strong>: Must start and end with letter or number</p></li>
+</ul>
+<p><strong>4. GCP-Specific State Backend Configuration</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a GCS bucket for Terraform state</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;terraform_state&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-terraform-state-bucket&quot;</span>
+<span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;US&quot;</span>
+
+<span class="w">  </span><span class="na">uniform_bucket_level_access</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+
+<span class="w">  </span><span class="nb">versioning</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">lifecycle_rule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">condition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nb">action</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Delete&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Configure backend in separate configuration</span>
+<span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">backend</span><span class="w"> </span><span class="nv">&quot;gcs&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-terraform-state-bucket&quot;</span>
+<span class="w">    </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;production&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>State Backend Security:</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Secure state bucket</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;terraform_state&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${var.project_id}-terraform-state&quot;</span>
+<span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;US&quot;</span>
+
+<span class="c1">  # Prevent public access</span>
+<span class="w">  </span><span class="na">uniform_bucket_level_access</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+
+<span class="c1">  # Enable versioning for state history</span>
+<span class="w">  </span><span class="nb">versioning</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">  # Encrypt at rest</span>
+<span class="w">  </span><span class="nb">encryption</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">default_kms_key_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_kms_crypto_key.terraform_state.id</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">  # Lifecycle management</span>
+<span class="w">  </span><span class="nb">lifecycle_rule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">condition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">age</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="m">90</span>
+<span class="w">      </span><span class="na">matches_storage_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;COLDLINE&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nb">action</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Delete&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>5. GCP Quota and API Limitations</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check current quotas</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>project-info<span class="w"> </span>describe<span class="w"> </span>--project<span class="o">=</span>my-project
+
+<span class="c1"># Request quota increases through Console</span>
+<span class="c1"># Plan for API rate limits in large deployments</span>
+</pre></div>
+</div>
+<p><strong>Handling Quotas in Terraform:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Use timeouts for slow operations
+resource &quot;google_compute_instance&quot; &quot;app&quot; {
+  name         = &quot;app-server&quot;
+  machine_type = &quot;e2-micro&quot;
+
+  timeouts {
+    create = &quot;10m&quot;
+    update = &quot;10m&quot;
+    delete = &quot;10m&quot;
+  }
+}
+
+# Use depends_on to control resource creation order
+resource &quot;google_compute_instance&quot; &quot;app&quot; {
+  count = var.instance_count
+
+  depends_on = [
+    google_compute_network.main,
+    google_compute_subnetwork.public
+  ]
+
+  name = &quot;app-server-${count.index + 1}&quot;
+  # Spread across zones to avoid single-zone limits
+  zone = data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]
+}
+</pre></div>
+</div>
+<p><strong>6. GCP Multi-Region Deployments</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># GCP regions and zones</span>
+<span class="kr">variable</span><span class="w"> </span><span class="nv">&quot;regions&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;List of GCP regions for deployment&quot;</span>
+<span class="w">  </span><span class="na">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span>
+<span class="w">  </span><span class="na">default</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;us-central1&quot;, &quot;us-east1&quot;, &quot;europe-west1&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Get available zones for each region</span>
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;google_compute_zones&quot;</span><span class="w"> </span><span class="nv">&quot;available&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">for_each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">toset</span><span class="p">(</span><span class="nv">var.regions</span><span class="p">)</span>
+
+<span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">each.key</span>
+<span class="w">  </span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;UP&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Deploy across multiple regions</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;app&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">for_each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">toset</span><span class="p">(</span><span class="nv">var.regions</span><span class="p">)</span>
+
+<span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;app-server-${each.key}&quot;</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+<span class="w">  </span><span class="na">zone</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">data.google_compute_zones.available[each.key].names[0</span><span class="p">]</span>
+
+<span class="w">  </span><span class="nb">boot_disk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">initialize_params</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.google_compute_image.ubuntu.self_link</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">network_interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">network</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_network.main.id</span>
+<span class="w">    </span><span class="na">subnetwork</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_subnetwork.regional[each.key].id</span>
+
+<span class="w">    </span><span class="nb">access_config</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">      # Ephemeral public IP</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">each.key</span>
+<span class="w">    </span><span class="na">app</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-terraform-workflows">
+<h2>Advanced Terraform Workflows<a class="headerlink" href="#advanced-terraform-workflows" title="Link to this heading"></a></h2>
+<p><strong>1. Environment Management</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Directory structure for environments</span>
+environments/
+├──<span class="w"> </span>dev/
+│<span class="w">   </span>├──<span class="w"> </span>main.tf
+│<span class="w">   </span>├──<span class="w"> </span>terraform.tfvars
+│<span class="w">   </span>└──<span class="w"> </span>backend.tf
+├──<span class="w"> </span>staging/
+│<span class="w">   </span>├──<span class="w"> </span>main.tf
+│<span class="w">   </span>├──<span class="w"> </span>terraform.tfvars
+│<span class="w">   </span>└──<span class="w"> </span>backend.tf
+└──<span class="w"> </span>production/
+<span class="w">    </span>├──<span class="w"> </span>main.tf
+<span class="w">    </span>├──<span class="w"> </span>terraform.tfvars
+<span class="w">    </span>└──<span class="w"> </span>backend.tf
+</pre></div>
+</div>
+<p><strong>Environment-Specific Configuration:</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># environments/production/terraform.tfvars</span>
+<span class="na">environment</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;production&quot;</span>
+<span class="na">instance_type</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-medium&quot;</span>
+<span class="na">min_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="na">max_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="na">enable_backup</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="na">backup_schedule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0 2 * * *&quot;</span>
+
+<span class="c1"># environments/dev/terraform.tfvars</span>
+<span class="na">environment</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;development&quot;</span>
+<span class="na">instance_type</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+<span class="na">min_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="na">max_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="na">enable_backup</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</pre></div>
+</div>
+<p><strong>2. Terraform Workspaces</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and switch to workspace</span>
+terraform<span class="w"> </span>workspace<span class="w"> </span>new<span class="w"> </span>production
+terraform<span class="w"> </span>workspace<span class="w"> </span>new<span class="w"> </span>staging
+terraform<span class="w"> </span>workspace<span class="w"> </span>new<span class="w"> </span>development
+
+<span class="c1"># List workspaces</span>
+terraform<span class="w"> </span>workspace<span class="w"> </span>list
+
+<span class="c1"># Switch workspace</span>
+terraform<span class="w"> </span>workspace<span class="w"> </span><span class="k">select</span><span class="w"> </span>production
+
+<span class="c1"># Use workspace in configuration</span>
+locals<span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nv">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>terraform.workspace
+<span class="w">  </span><span class="nv">instance_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>terraform.workspace<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;production&quot;</span><span class="w"> </span>?<span class="w"> </span><span class="m">3</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>3. State Management Strategies</strong></p>
+<p><strong>Remote State Sharing:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># In networking project
+output &quot;vpc_id&quot; {
+  value = google_compute_network.main.id
+}
+
+output &quot;subnet_ids&quot; {
+  value = {
+    for subnet in google_compute_subnetwork.subnets :
+    subnet.name =&gt; subnet.id
+  }
+}
+
+# In application project
+data &quot;terraform_remote_state&quot; &quot;networking&quot; {
+  backend = &quot;gcs&quot;
+  config = {
+    bucket = &quot;company-terraform-state&quot;
+    prefix = &quot;networking&quot;
+  }
+}
+
+resource &quot;google_compute_instance&quot; &quot;app&quot; {
+  network    = data.terraform_remote_state.networking.outputs.vpc_id
+  subnetwork = data.terraform_remote_state.networking.outputs.subnet_ids[&quot;public&quot;]
+}
+</pre></div>
+</div>
+<p><strong>4. Module Development</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># modules/gcp-web-server/main.tf
+resource &quot;google_compute_instance&quot; &quot;web&quot; {
+  name         = var.instance_name
+  machine_type = var.machine_type
+  zone         = var.zone
+
+  boot_disk {
+    initialize_params {
+      image = var.boot_disk_image
+      size  = var.boot_disk_size
+    }
+  }
+
+  network_interface {
+    network = var.network
+    subnetwork = var.subnetwork
+
+    dynamic &quot;access_config&quot; {
+      for_each = var.assign_public_ip ? [1] : []
+      content {
+        # Ephemeral public IP
+      }
+    }
+  }
+
+  metadata_startup_script = var.startup_script
+
+  labels = var.labels
+  tags   = var.network_tags
+}
+
+# Using the module
+module &quot;web_servers&quot; {
+  source = &quot;./modules/gcp-web-server&quot;
+
+  instance_name     = &quot;web-server&quot;
+  machine_type      = &quot;e2-micro&quot;
+  zone              = &quot;us-central1-a&quot;
+  network           = google_compute_network.main.id
+  subnetwork        = google_compute_subnetwork.public.id
+  assign_public_ip  = true
+  startup_script    = file(&quot;${path.module}/scripts/install-nginx.sh&quot;)
+
+  labels = {
+    environment = var.environment
+    component   = &quot;web-server&quot;
+  }
+
+  network_tags = [&quot;web-server&quot;, &quot;http-allowed&quot;]
+}
+</pre></div>
+</div>
+<p><strong>5. CI/CD Integration</strong></p>
+<p><strong>GitHub Actions Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/terraform.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Terraform&#39;</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;infrastructure/**&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;infrastructure/**&#39;</span><span class="p p-Indicator">]</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">TF_VAR_project_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_PROJECT_ID }}</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">terraform</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Terraform&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">        </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./infrastructure</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Terraform</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hashicorp/setup-terraform@v2</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">terraform_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.5.0</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authenticate to Google Cloud</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/auth@v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">credentials_json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_SA_KEY }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terraform Format</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform fmt -check</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terraform Init</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform init</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terraform Validate</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform validate</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terraform Plan</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform plan -no-color</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terraform Apply</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform apply -auto-approve</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="terraform-best-practices">
+<h2>Terraform Best Practices<a class="headerlink" href="#terraform-best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. State File Security</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Never commit state files</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;*.tfstate&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;*.tfstate.*&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.terraform/&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;terraform.tfvars&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+</pre></div>
+</div>
+<p><strong>2. Resource Tagging/Labeling</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="nb">locals</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">common_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.environment</span>
+<span class="w">    </span><span class="na">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_name</span>
+<span class="w">    </span><span class="na">managed_by</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform&quot;</span>
+<span class="w">    </span><span class="na">team</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">var.team_name</span>
+<span class="w">    </span><span class="na">cost_center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.cost_center</span>
+<span class="w">    </span><span class="na">created_by</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform&quot;</span>
+<span class="w">    </span><span class="na">created_on</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nf">formatdate</span><span class="p">(</span><span class="s2">&quot;YYYY-MM-DD&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">timestamp</span><span class="p">())</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Apply to all resources</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;app&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span>
+<span class="w">    </span><span class="nv">local.common_labels</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="na">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;application-server&quot;</span>
+<span class="w">      </span><span class="na">tier</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>3. Security Practices</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use Google Secret Manager for sensitive data</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret&quot;</span><span class="w"> </span><span class="nv">&quot;db_password&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">secret_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;database-password&quot;</span>
+
+<span class="w">  </span><span class="nb">replication</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">automatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret_version&quot;</span><span class="w"> </span><span class="nv">&quot;db_password&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">secret</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">google_secret_manager_secret.db_password.id</span>
+<span class="w">  </span><span class="na">secret_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.db_password</span>
+<span class="p">}</span>
+
+<span class="c1"># Reference secrets in resources</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_sql_database_instance&quot;</span><span class="w"> </span><span class="nv">&quot;main&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">settings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">user_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">password_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_secret_manager_secret.db_password.secret_id</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>4. Error Handling and Validation</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>variable &quot;environment&quot; {
+  description = &quot;Environment name&quot;
+  type        = string
+
+  validation {
+    condition     = contains([&quot;dev&quot;, &quot;staging&quot;, &quot;production&quot;], var.environment)
+    error_message = &quot;Environment must be one of: dev, staging, production.&quot;
+  }
+}
+
+variable &quot;instance_count&quot; {
+  description = &quot;Number of instances&quot;
+  type        = number
+
+  validation {
+    condition     = var.instance_count &gt;= 1 &amp;&amp; var.instance_count &lt;= 10
+    error_message = &quot;Instance count must be between 1 and 10.&quot;
+  }
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Always run <cite>terraform plan</cite> before <cite>terraform apply</cite> to review changes. Use <cite>terraform validate</cite> and <cite>terraform fmt</cite> to catch errors early and maintain consistent formatting.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_terraform_core_concepts.html" class="btn btn-neutral float-left" title="10.2 Terraform Core Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_terraform_production_challenges.html" class="btn btn-neutral float-right" title="10.4 Terraform Production Challenges" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
