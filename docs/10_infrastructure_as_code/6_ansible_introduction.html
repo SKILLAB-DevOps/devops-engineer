@@ -1,0 +1,1040 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.6 Ansible - Configuration Management &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.7 Ansible Core Concepts" href="7_ansible_core_concepts.html" />
+    <link rel="prev" title="10.4 Terraform Production Challenges" href="4_terraform_production_challenges.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">10.6 Ansible - Configuration Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/10_infrastructure_as_code/6_ansible_introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ansible-configuration-management">
+<h1>10.6 Ansible - Configuration Management<a class="headerlink" href="#ansible-configuration-management" title="Link to this heading"></a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p><strong>Define</strong> configuration management and understand its role in the IaC ecosystem</p></li>
+<li><p><strong>Install</strong> and configure Ansible for managing Google Cloud Platform resources</p></li>
+<li><p><strong>Write</strong> Ansible playbooks using YAML syntax and best practices</p></li>
+<li><p><strong>Manage</strong> inventory files for different environments and cloud deployments</p></li>
+<li><p><strong>Implement</strong> Ansible roles for modular and reusable configuration management</p></li>
+<li><p><strong>Apply</strong> Ansible security practices including Ansible Vault for secrets management</p></li>
+<li><p><strong>Integrate</strong> Ansible with Terraform workflows for complete infrastructure automation</p></li>
+<li><p><strong>Troubleshoot</strong> common Ansible issues and connectivity problems</p></li>
+<li><p><strong>Design</strong> scalable Ansible architectures for production environments</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Understanding of basic Linux administration, SSH connectivity, and familiarity with YAML syntax. Knowledge of Terraform from previous chapters is recommended.</p>
+<p><strong>Chapter Focus:</strong> This chapter focuses on <strong>Ansible for configuration management</strong> with practical examples using Google Cloud Platform infrastructure provisioned by Terraform.</p>
+</section>
+<section id="what-is-configuration-management">
+<h2>What is Configuration Management?<a class="headerlink" href="#what-is-configuration-management" title="Link to this heading"></a></h2>
+<p>Configuration management is the practice of handling changes to a system in a way that maintains integrity over time. In the context of infrastructure, it ensures that servers and applications are configured consistently and remain in their desired state.</p>
+<p><strong>The Configuration Management Problem</strong></p>
+<p>After infrastructure is provisioned (using tools like Terraform), you need to:</p>
+<ul class="simple">
+<li><p>Install and configure software packages</p></li>
+<li><p>Set up application services and dependencies</p></li>
+<li><p>Configure security settings and user accounts</p></li>
+<li><p>Deploy applications and manage their lifecycle</p></li>
+<li><p>Ensure configurations remain consistent over time</p></li>
+</ul>
+<p><strong>Without Configuration Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Manual approach - error-prone and not scalable</span>
+ssh<span class="w"> </span>user@server1<span class="w"> </span><span class="s2">&quot;sudo apt update &amp;&amp; sudo apt install nginx&quot;</span>
+ssh<span class="w"> </span>user@server2<span class="w"> </span><span class="s2">&quot;sudo apt update &amp;&amp; sudo apt install nginx&quot;</span>
+ssh<span class="w"> </span>user@server3<span class="w"> </span><span class="s2">&quot;sudo apt update &amp;&amp; sudo apt install nginx&quot;</span>
+
+<span class="c1"># Different results on each server:</span>
+<span class="c1"># - Server1: nginx 1.18.0, different config</span>
+<span class="c1"># - Server2: nginx 1.20.1, default config</span>
+<span class="c1"># - Server3: nginx failed to install</span>
+</pre></div>
+</div>
+<p><strong>With Ansible Configuration Management:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declarative approach - consistent and scalable</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure web servers</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web_servers</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Nginx</span>
+<span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<span class="w">        </span><span class="nt">update_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure Nginx</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx.conf.j2</span>
+<span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
+<span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restart nginx</span>
+
+<span class="c1"># Result: All servers have identical configuration</span>
+</pre></div>
+</div>
+</section>
+<section id="what-is-ansible">
+<h2>What is Ansible?<a class="headerlink" href="#what-is-ansible" title="Link to this heading"></a></h2>
+<p>Ansible is an open-source automation tool that automates software provisioning, configuration management, and application deployment. Created by Michael DeHaan in 2012 and acquired by Red Hat in 2015.</p>
+<p><strong>Core Ansible Principles:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Simple</strong>: Uses YAML syntax that’s easy to read and write</p></li>
+<li><p><strong>Agentless</strong>: No agents to install or manage on target systems</p></li>
+<li><p><strong>Powerful</strong>: Can manage everything from packages to complex deployments</p></li>
+<li><p><strong>Flexible</strong>: Works with any system that can run Python and accept SSH connections</p></li>
+<li><p><strong>Efficient</strong>: Push-based model with parallel execution</p></li>
+</ol>
+<p><strong>Key Ansible Characteristics:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Characteristic</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Communication</strong></p></td>
+<td><p>SSH for Linux/Unix, WinRM for Windows</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Language</strong></p></td>
+<td><p>YAML for playbooks, Python for modules</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Architecture</strong></p></td>
+<td><p>Push-based (control node pushes)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>State</strong></p></td>
+<td><p>Stateless (no central database)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Execution</strong></p></td>
+<td><p>Sequential task execution</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Idempotency</strong></p></td>
+<td><p>Tasks can be run multiple times safely</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ansible vs Other Configuration Management Tools:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Feature</strong></p></th>
+<th class="head"><p><strong>Ansible</strong></p></th>
+<th class="head"><p><strong>Chef</strong></p></th>
+<th class="head" colspan="3"><p><strong>Puppet</strong> | <strong>Salt</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Agent Required</strong></p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td colspan="3"><p>Yes        | Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Language</strong></p></td>
+<td><p>YAML</p></td>
+<td><p>Ruby</p></td>
+<td colspan="3"><p>Puppet DSL | YAML/Python</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Architecture</strong></p></td>
+<td><p>Push</p></td>
+<td><p>Pull</p></td>
+<td colspan="3"><p>Pull       | Push/Pull</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Learning Curve</strong></p></td>
+<td><p>Easy</p></td>
+<td><p>Steep</p></td>
+<td colspan="3"><p>Moderate   | Moderate</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Setup Time</strong></p></td>
+<td><p>Minutes</p></td>
+<td><p>Hours</p></td>
+<td colspan="3"><p>Hours      | Hours</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a detailed comparison between Ansible and Puppet, including architectural differences, configuration syntax examples, and decision criteria, see <strong>Chapter 10.0: Infrastructure as Code Introduction</strong>, section “Configuration Management: Ansible vs Puppet”.</p>
+</div>
+</section>
+<section id="ansible-architecture-and-components">
+<h2>Ansible Architecture and Components<a class="headerlink" href="#ansible-architecture-and-components" title="Link to this heading"></a></h2>
+<p><strong>Ansible Control Node</strong></p>
+<p>The machine where Ansible is installed and from which automation is executed:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Control Node (Your laptop/CI server)
+├── Ansible Core Engine
+├── Inventory Files (defines target hosts)
+├── Playbooks (automation scripts)
+├── Roles (reusable automation)
+└── Configuration (ansible.cfg)
+</pre></div>
+</div>
+<p><strong>Managed Nodes</strong></p>
+<p>The target machines that Ansible manages:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Managed Nodes (GCP Compute Engine instances)
+├── SSH Server (for connectivity)
+├── Python (for module execution)
+└── Target Applications/Services
+</pre></div>
+</div>
+<p><strong>Core Ansible Components:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Inventory</strong>: Defines which machines to manage</p></li>
+</ol>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[web_servers]</span>
+<span class="na">web1.example.com</span>
+<span class="na">web2.example.com</span>
+
+<span class="k">[databases]</span>
+<span class="na">db1.example.com</span>
+
+<span class="k">[production:children]</span>
+<span class="na">web_servers</span>
+<span class="na">databases</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Playbooks</strong>: YAML files that define automation workflows</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure web servers</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web_servers</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install packages</span>
+<span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<span class="w">      </span><span class="nt">loop</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curl</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Modules</strong>: Reusable units of code that perform specific tasks</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Manage files</span>
+<span class="w">  </span><span class="nt">file</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/html</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">directory</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">www-data</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">www-data</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0755&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Roles</strong>: Organized collections of playbooks, variables, and files</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>roles/
+└── webserver/
+    ├── tasks/main.yml      # Main task list
+    ├── handlers/main.yml   # Event handlers
+    ├── templates/          # Jinja2 templates
+    ├── files/             # Static files
+    ├── vars/main.yml      # Role variables
+    └── defaults/main.yml  # Default variables
+</pre></div>
+</div>
+</section>
+<section id="ansible-in-the-modern-devops-toolchain">
+<h2>Ansible in the Modern DevOps Toolchain<a class="headerlink" href="#ansible-in-the-modern-devops-toolchain" title="Link to this heading"></a></h2>
+<p>Ansible fits into the broader DevOps ecosystem as the configuration management layer:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>DevOps Toolchain Integration:
+
+1. Version Control (Git)
+   ├── Infrastructure code (Terraform)
+   ├── Configuration code (Ansible)
+   └── Application code
+
+2. CI/CD Pipeline
+   ├── Test infrastructure code
+   ├── Apply infrastructure changes (Terraform)
+   ├── Configure infrastructure (Ansible)
+   └── Deploy applications (Ansible)
+
+3. Monitoring &amp; Observability
+   ├── Infrastructure monitoring
+   ├── Application monitoring
+   └── Configuration drift detection
+</pre></div>
+</div>
+<p><strong>Typical Workflow: Terraform + Ansible</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Developer commits infrastructure changes</span>
+git<span class="w"> </span>add<span class="w"> </span>infrastructure/<span class="w"> </span>configuration/
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add load balancer and update web server config&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+
+<span class="c1"># 2. CI/CD pipeline triggers</span>
+<span class="c1"># 2a. Provision infrastructure</span>
+terraform<span class="w"> </span>init
+terraform<span class="w"> </span>plan
+terraform<span class="w"> </span>apply
+
+<span class="c1"># 2b. Configure infrastructure</span>
+ansible-playbook<span class="w"> </span>-i<span class="w"> </span>gcp_inventory.yml<span class="w"> </span>site.yml
+
+<span class="c1"># 2c. Deploy applications</span>
+ansible-playbook<span class="w"> </span>-i<span class="w"> </span>gcp_inventory.yml<span class="w"> </span>deploy.yml
+</pre></div>
+</div>
+<p><strong>Example: Complete Web Application Setup</strong></p>
+<p><strong>Step 1: Terraform provisions the infrastructure</strong></p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create GCP compute instances</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;web_servers&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">count</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-${count.index + 1}&quot;</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-standard-2&quot;</span>
+<span class="w">  </span><span class="na">zone</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+
+<span class="w">  </span><span class="nb">boot_disk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">initialize_params</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ubuntu-os-cloud/ubuntu-2204-lts&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">network_interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">network</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_network.main.id</span>
+<span class="w">    </span><span class="nb">access_config</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nb">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">ssh-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ubuntu:${file(&quot;~/.ssh/id_rsa.pub&quot;)}&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Ansible configures the servers</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure web application stack</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web_servers</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">common</span><span class="w">        </span><span class="c1"># Basic server setup</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span><span class="w">      </span><span class="c1"># Security hardening</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="w">         </span><span class="c1"># Web server configuration</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application</span><span class="w">   </span><span class="c1"># App deployment</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monitoring</span><span class="w">    </span><span class="c1"># Observability setup</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Ansible deploys and manages applications</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy web application</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web_servers</span>
+
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pull latest application code</span>
+<span class="w">      </span><span class="nt">git</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/company/webapp.git</span>
+<span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/html</span>
+<span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">app_version</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">default(&#39;main&#39;)</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restart nginx</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install application dependencies</span>
+<span class="w">      </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requirements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/html/requirements.txt</span>
+<span class="w">        </span><span class="nt">virtualenv</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/html/venv</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update application configuration</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app_config.py.j2</span>
+<span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/html/config.py</span>
+<span class="w">        </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">www-data</span>
+<span class="w">        </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">www-data</span>
+<span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0644&#39;</span>
+<span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restart application</span>
+</pre></div>
+</div>
+</section>
+<section id="ansible-use-cases-and-when-to-use-it">
+<h2>Ansible Use Cases and When to Use It<a class="headerlink" href="#ansible-use-cases-and-when-to-use-it" title="Link to this heading"></a></h2>
+<p><strong>Primary Ansible Use Cases:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Configuration Management</strong></p>
+<ul class="simple">
+<li><p>Installing and configuring software packages</p></li>
+<li><p>Managing system configurations and settings</p></li>
+<li><p>Ensuring configuration consistency across environments</p></li>
+</ul>
+</li>
+<li><p><strong>Application Deployment</strong></p>
+<ul class="simple">
+<li><p>Deploying web applications and services</p></li>
+<li><p>Managing application lifecycle (start, stop, restart)</p></li>
+<li><p>Rolling updates and blue-green deployments</p></li>
+</ul>
+</li>
+<li><p><strong>Orchestration</strong></p>
+<ul class="simple">
+<li><p>Complex multi-step procedures</p></li>
+<li><p>Coordinating actions across multiple systems</p></li>
+<li><p>Managing dependencies between services</p></li>
+</ul>
+</li>
+<li><p><strong>Continuous Delivery</strong></p>
+<ul class="simple">
+<li><p>Automated deployment pipelines</p></li>
+<li><p>Integration with CI/CD systems</p></li>
+<li><p>Environment promotion workflows</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>When to Use Ansible:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Use Ansible When</strong></p></th>
+<th class="head"><p><strong>Example Scenarios</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Infrastructure**</p></td>
+<td><ul class="simple">
+<li><p>Configure SSL certificates</p></li>
+<li><p>Set up monitoring agents</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Application Deployment</strong></p></td>
+<td><ul class="simple">
+<li><p>Deploy web applications</p></li>
+<li><p>Update database schemas</p></li>
+<li><p>Manage application configs</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Operational Tasks</strong></p></td>
+<td><ul class="simple">
+<li><p>Backup procedures</p></li>
+<li><p>Security patching</p></li>
+<li><p>Log rotation and cleanup</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Multi-step Workflows</strong></p></td>
+<td><ul class="simple">
+<li><p>Blue-green deployments</p></li>
+<li><p>Database migration workflows</p></li>
+<li><p>Disaster recovery procedures</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When NOT to Use Ansible:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Don’t Use Ansible For</strong></p></th>
+<th class="head"><p><strong>Use Instead</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="2"><p><strong>Infrastructure
+Provisioning</strong></p></td>
+<td><ul class="simple">
+<li><p>Terraform/OpenTofu</p></li>
+<li><p>CloudFormation</p></li>
+<li><p>Google Cloud Deployment Mgr</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Real-time Monitoring</strong></p></td>
+<td><ul class="simple">
+<li><p>Prometheus + Grafana</p></li>
+<li><p>Google Cloud Monitoring</p></li>
+<li><p>Datadog, New Relic</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Container Orchestration</strong></p></td>
+<td><ul class="simple">
+<li><p>Kubernetes</p></li>
+<li><p>Docker Swarm</p></li>
+<li><p>Google Kubernetes Engine</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="3"><dl>
+<dt><strong>Secrets Management</strong>     | • HashiCorp Vault</dt><dd><div class="line-block">
+<div class="line">• Google Secret Manager</div>
+<div class="line">• AWS Secrets Manager</div>
+</div>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ansible-installation-and-setup">
+<h2>Ansible Installation and Setup<a class="headerlink" href="#ansible-installation-and-setup" title="Link to this heading"></a></h2>
+<p><strong>Installation Options:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Option 1: Using pip (recommended)</span>
+pip3<span class="w"> </span>install<span class="w"> </span>ansible
+
+<span class="c1"># Option 2: Using package manager (Ubuntu/Debian)</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ansible
+
+<span class="c1"># Option 3: Using package manager (macOS)</span>
+brew<span class="w"> </span>install<span class="w"> </span>ansible
+
+<span class="c1"># Verify installation</span>
+ansible<span class="w"> </span>--version
+ansible-playbook<span class="w"> </span>--version
+</pre></div>
+</div>
+<p><strong>Initial Configuration:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Ansible configuration file</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ansible
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.ansible/ansible.cfg<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">[defaults]</span>
+<span class="s">inventory = ./inventory</span>
+<span class="s">remote_user = ubuntu</span>
+<span class="s">private_key_file = ~/.ssh/id_rsa</span>
+<span class="s">host_key_checking = False</span>
+<span class="s">timeout = 30</span>
+
+<span class="s">[privilege_escalation]</span>
+<span class="s">become = True</span>
+<span class="s">become_method = sudo</span>
+<span class="s">become_user = root</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>Google Cloud Platform Integration:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install GCP collection</span>
+ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>google.cloud
+
+<span class="c1"># Install required Python libraries</span>
+pip3<span class="w"> </span>install<span class="w"> </span>requests<span class="w"> </span>google-auth
+</pre></div>
+</div>
+<p><strong>Testing Ansible Installation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test with localhost</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>inventory
+ansible<span class="w"> </span>localhost<span class="w"> </span>-m<span class="w"> </span>ping
+
+<span class="c1"># Expected output:</span>
+localhost<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">SUCCESS</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;changed&quot;</span>:<span class="w"> </span>false,
+<span class="w">    </span><span class="s2">&quot;ping&quot;</span>:<span class="w"> </span><span class="s2">&quot;pong&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ansible-ad-hoc-commands">
+<h2>Ansible Ad Hoc Commands<a class="headerlink" href="#ansible-ad-hoc-commands" title="Link to this heading"></a></h2>
+<p>Ad hoc commands are one-time commands you run against your hosts without writing a playbook. They’re perfect for quick tasks, troubleshooting, and getting immediate results.</p>
+<p><strong>Ad Hoc Command Syntax:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansible<span class="w"> </span>&lt;host-pattern&gt;<span class="w"> </span>-m<span class="w"> </span>&lt;module-name&gt;<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;&lt;module-arguments&gt;&quot;</span>
+
+<span class="c1"># Basic structure:</span>
+<span class="c1"># ansible: The command</span>
+<span class="c1"># host-pattern: Which hosts to target</span>
+<span class="c1"># -m: Module to use</span>
+<span class="c1"># -a: Module arguments</span>
+</pre></div>
+</div>
+<p><strong>Basic Ad Hoc Commands</strong></p>
+<p><strong>1. Connectivity and System Information:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test connectivity to all hosts</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping
+
+<span class="c1"># Check uptime on web servers</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;uptime&quot;</span>
+
+<span class="c1"># Get system facts (detailed system information)</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>setup
+
+<span class="c1"># Get specific fact (like IP address)</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>setup<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;filter=ansible_default_ipv4&quot;</span>
+
+<span class="c1"># Check disk space</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;df -h&quot;</span>
+
+<span class="c1"># Check memory usage</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;free -h&quot;</span>
+
+<span class="c1"># Get OS information</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>setup<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;filter=ansible_distribution*&quot;</span>
+</pre></div>
+</div>
+<p><strong>2. Package Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update package cache (Ubuntu/Debian)</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;update_cache=yes&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Install a package</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=present&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Install multiple packages</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=htop,vim,curl state=present&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Remove a package</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=apache2 state=absent&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Upgrade all packages</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;upgrade=dist&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Check if a package is installed</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;dpkg -l | grep nginx&quot;</span>
+</pre></div>
+</div>
+<p><strong>3. Service Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start a service</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=started&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Stop a service</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=apache2 state=stopped&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Restart a service</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=restarted&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Enable service at boot</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx enabled=yes&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Check service status</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;systemctl status nginx&quot;</span>
+
+<span class="c1"># List all running services</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;systemctl list-units --type=service --state=running&quot;</span>
+</pre></div>
+</div>
+<p><strong>4. File Operations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a directory</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/opt/myapp state=directory mode=0755&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Create a file with content</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>copy<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;content=&#39;Hello World&#39; dest=/tmp/hello.txt&quot;</span>
+
+<span class="c1"># Copy a local file to remote hosts</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>copy<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=./config.txt dest=/etc/myapp/config.txt backup=yes&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Change file ownership</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/var/www/html owner=www-data group=www-data&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Change file permissions</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/opt/scripts/backup.sh mode=0755&quot;</span>
+
+<span class="c1"># Remove a file</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/tmp/oldfile.txt state=absent&quot;</span>
+
+<span class="c1"># Create a symbolic link</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=/opt/app/current dest=/opt/app/latest state=link&quot;</span>
+
+<span class="c1"># Check if file exists</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>stat<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/etc/nginx/nginx.conf&quot;</span>
+</pre></div>
+</div>
+<p><strong>5. User Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a user</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>user<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=deployuser shell=/bin/bash&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Create user with specific UID and home directory</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>user<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=appuser uid=1001 home=/opt/appuser createhome=yes&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Add user to sudo group</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>user<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=deployuser groups=sudo append=yes&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Set user password (encrypted)</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>user<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=deployuser password={{ &#39;mypassword&#39; | password_hash(&#39;sha512&#39;) }}&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Remove a user</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>user<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=olduser state=absent remove=yes&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Lock a user account</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>user<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=tempuser password_lock=yes&quot;</span><span class="w"> </span>--become
+</pre></div>
+</div>
+<p><strong>6. SSH Key Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add SSH public key to user</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>authorized_key<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;user=ubuntu key=&#39;{{ lookup(&#39;file&#39;, &#39;~/.ssh/id_rsa.pub&#39;) }}&#39;&quot;</span>
+
+<span class="c1"># Add SSH key from URL</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>authorized_key<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;user=deployuser key=https://github.com/username.keys&quot;</span>
+
+<span class="c1"># Remove SSH key</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>authorized_key<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;user=ubuntu key=&#39;ssh-rsa AAAA...&#39; state=absent&quot;</span>
+</pre></div>
+</div>
+<p><strong>7. Process Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List running processes</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;ps aux&quot;</span>
+
+<span class="c1"># Find processes by name</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;pgrep -f nginx&quot;</span>
+
+<span class="c1"># Kill a process by PID</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;kill -9 1234&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Kill processes by name</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;pkill -f &#39;old-service&#39;&quot;</span><span class="w"> </span>--become
+</pre></div>
+</div>
+<p><strong>8. Network Operations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test network connectivity</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;ping -c 4 google.com&quot;</span>
+
+<span class="c1"># Check open ports</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;netstat -tlnp&quot;</span>
+
+<span class="c1"># Check network interfaces</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;ip addr show&quot;</span>
+
+<span class="c1"># Download a file</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>get_url<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;url=https://releases.ubuntu.com/22.04/ubuntu-22.04.3-live-server-amd64.iso dest=/tmp/&quot;</span>
+</pre></div>
+</div>
+<p><strong>9. System Monitoring and Logs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check system load</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;cat /proc/loadavg&quot;</span>
+
+<span class="c1"># View last few lines of log file</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;tail -n 20 /var/log/syslog&quot;</span>
+
+<span class="c1"># Check journal logs</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;journalctl -n 10&quot;</span>
+
+<span class="c1"># Find large files</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;find /var/log -type f -size +100M&quot;</span>
+
+<span class="c1"># Check CPU info</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;cat /proc/cpuinfo | grep &#39;model name&#39; | head -1&quot;</span>
+</pre></div>
+</div>
+<p><strong>10. Archive and Compression:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create tar archive</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>archive<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/var/www/html dest=/tmp/website-backup.tar.gz&quot;</span>
+
+<span class="c1"># Extract archive</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>unarchive<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=/tmp/backup.tar.gz dest=/opt/ remote_src=yes&quot;</span>
+
+<span class="c1"># Download and extract from URL</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>unarchive<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=https://example.com/app.tar.gz dest=/opt/ remote_src=yes&quot;</span>
+</pre></div>
+</div>
+<p><strong>Advanced Ad Hoc Patterns</strong></p>
+<p><strong>1. Using Variables:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use extra variables</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>template<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=nginx.conf.j2 dest=/etc/nginx/nginx.conf&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s2">&quot;server_name=myapp.com worker_processes=4&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Use variables from file</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>debug<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;var=ansible_hostname&quot;</span><span class="w"> </span>--extra-vars<span class="w"> </span><span class="s2">&quot;@vars.yml&quot;</span>
+</pre></div>
+</div>
+<p><strong>2. Conditional Execution:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run only on Ubuntu systems</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=htop state=present&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--limit<span class="w"> </span><span class="s2">&quot;ansible_distribution==&#39;Ubuntu&#39;&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Run on specific hosts</span>
+ansible<span class="w"> </span>web_servers<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=restarted&quot;</span><span class="w"> </span>--become
+</pre></div>
+</div>
+<p><strong>3. Parallel Execution:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run on 10 hosts in parallel (default is 5)</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>-f<span class="w"> </span><span class="m">10</span>
+
+<span class="c1"># Run with increased timeout</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;sleep 30&quot;</span><span class="w"> </span>-T<span class="w"> </span><span class="m">60</span>
+</pre></div>
+</div>
+<p><strong>4. Output Formatting:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># One line output</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>--one-line
+
+<span class="c1"># Tree format output</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>setup<span class="w"> </span>--tree<span class="w"> </span>/tmp/facts
+
+<span class="c1"># JSON output</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>setup<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.&#39;</span>
+</pre></div>
+</div>
+<p><strong>5. Dry Run and Check Mode:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check what would change (dry run)</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=present&quot;</span><span class="w"> </span>--check<span class="w"> </span>--become
+
+<span class="c1"># Show differences</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>copy<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=config.txt dest=/etc/app/config.txt&quot;</span><span class="w"> </span>--check<span class="w"> </span>--diff<span class="w"> </span>--become
+</pre></div>
+</div>
+<p><strong>Practical Ad Hoc Workflows</strong></p>
+<p><strong>Quick Server Health Check:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># health_check.sh - Quick server health assessment</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Connectivity Check ===&quot;</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>--one-line
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Disk Space ===&quot;</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;df -h /&quot;</span><span class="w"> </span>--one-line
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Memory Usage ===&quot;</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;free -h&quot;</span><span class="w"> </span>--one-line
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Load Average ===&quot;</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;uptime&quot;</span><span class="w"> </span>--one-line
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Service Status ===&quot;</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;systemctl is-active nginx&quot;</span><span class="w"> </span>--one-line
+</pre></div>
+</div>
+<p><strong>Emergency Response Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stop all web services immediately</span>
+ansible<span class="w"> </span>web_servers<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=stopped&quot;</span><span class="w"> </span>--become<span class="w"> </span>-f<span class="w"> </span><span class="m">20</span>
+
+<span class="c1"># Clear cache across all servers</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Restart all application servers</span>
+ansible<span class="w"> </span>app_servers<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=myapp state=restarted&quot;</span><span class="w"> </span>--become
+
+<span class="c1"># Check for security updates</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;apt list --upgradable | grep -i security&quot;</span><span class="w"> </span>--become
+</pre></div>
+</div>
+<p><strong>Log Collection:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect error logs from all servers</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>fetch<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=/var/log/nginx/error.log dest=/tmp/logs/{{ inventory_hostname }}/ flat=yes&quot;</span>
+
+<span class="c1"># Search for errors in logs</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;grep -i error /var/log/syslog | tail -10&quot;</span>
+
+<span class="c1"># Check log file sizes</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;du -sh /var/log/*&quot;</span><span class="w"> </span>--one-line
+</pre></div>
+</div>
+<p><strong>Troubleshooting Ad Hoc Commands</strong></p>
+<p><strong>Common Issues and Solutions:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># SSH connection issues</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>-vvv<span class="w">  </span><span class="c1"># Verbose output for debugging</span>
+
+<span class="c1"># Permission issues</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;whoami&quot;</span><span class="w">  </span><span class="c1"># Check current user</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;sudo whoami&quot;</span><span class="w"> </span>--become<span class="w">  </span><span class="c1"># Check sudo access</span>
+
+<span class="c1"># Python issues</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;which python3&quot;</span><span class="w">  </span><span class="c1"># Check Python location</span>
+
+<span class="c1"># Module not found</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>setup<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;filter=ansible_python*&quot;</span><span class="w">  </span><span class="c1"># Check Python interpreter</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ad hoc commands are powerful for immediate tasks, but for complex operations or repeated tasks, consider writing playbooks. They provide better documentation, error handling, and reusability.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The examples in this section assume you have infrastructure provisioned by Terraform from the previous chapters. If you haven’t completed the Terraform chapters, you can still follow along by manually creating GCP compute instances for practice.</p>
+</div>
+<p><strong>Next Steps:</strong></p>
+<p>Continue to <strong>Chapter 10.7: Ansible Core Concepts</strong> to start writing your first playbooks and learn essential Ansible patterns for configuration management.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_terraform_production_challenges.html" class="btn btn-neutral float-left" title="10.4 Terraform Production Challenges" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="7_ansible_core_concepts.html" class="btn btn-neutral float-right" title="10.7 Ansible Core Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

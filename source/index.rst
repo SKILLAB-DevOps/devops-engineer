@@ -171,7 +171,10 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    10_infrastructure_as_code/2_terraform_core_concepts
    10_infrastructure_as_code/3_terraform_workflow_gcp
    10_infrastructure_as_code/4_terraform_production_challenges
-
+   10_infrastructure_as_code/6_ansible_introduction
+   10_infrastructure_as_code/7_ansible_core_concepts
+   10_infrastructure_as_code/8_ansible_advanced_features
+   10_infrastructure_as_code/9_ansible_production_patterns
 
 .. toctree::
    :hidden:
