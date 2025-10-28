@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11.8.3 Compute Engine - Virtual Machines &mdash; DevOps 3 documentation</title>
+  <title>11.4 Compute Engine - Virtual Machines &mdash; DevOps 3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.0 Project" href="../12_project/introduction.html" />
-    <link rel="prev" title="11.8.2 VPC and Networking" href="2_networking.html" /> 
+    <link rel="next" title="11.5 Cloud Storage" href="5_cloud_storage.html" />
+    <link rel="prev" title="11.3 GCP Compute Services Overview" href="3_compute_services_overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -144,14 +144,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11.8.3 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -172,9 +178,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">11.8.3 Compute Engine - Virtual Machines</li>
+      <li class="breadcrumb-item active">11.4 Compute Engine - Virtual Machines</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/11_cloud_gcp/3_compute_engine.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/11_cloud_gcp/4_compute_engine.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -183,7 +189,7 @@
            <div itemprop="articleBody">
              
   <section id="compute-engine-virtual-machines">
-<h1>11.8.3 Compute Engine - Virtual Machines<a class="headerlink" href="#compute-engine-virtual-machines" title="Link to this heading"></a></h1>
+<h1>11.4 Compute Engine - Virtual Machines<a class="headerlink" href="#compute-engine-virtual-machines" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Google Compute Engine provides scalable, high-performance virtual machines (VMs) running on Google’s infrastructure. Compute Engine offers predefined machine types, custom machine types, and the ability to run containers directly on VMs. It’s Google Cloud’s IaaS offering, equivalent to AWS EC2.</p>
@@ -1578,8 +1584,8 @@ gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<spa
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="2_networking.html" class="btn btn-neutral float-left" title="11.8.2 VPC and Networking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../12_project/introduction.html" class="btn btn-neutral float-right" title="12.0 Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="3_compute_services_overview.html" class="btn btn-neutral float-left" title="11.3 GCP Compute Services Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_cloud_storage.html" class="btn btn-neutral float-right" title="11.5 Cloud Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

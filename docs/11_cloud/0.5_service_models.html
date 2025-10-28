@@ -144,14 +144,20 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">11.0.5 Cloud Service Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -224,12 +230,31 @@
 <span class="l l-Scalar l-Scalar-Plain">5. Manage everything yourself</span>
 </pre></div>
 </div>
+<p><strong>Modern Container Evolution (2024):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>IaaS → CaaS (Container as a Service) → Serverless Containers
+
+Traditional IaaS:          Managed CaaS:           Serverless:
+├─ You manage VMs         ├─ Provider manages      ├─ No infrastructure
+├─ Install Kubernetes     │  Kubernetes control    │   management
+├─ Patch and update       │  plane                 ├─ Pay per request
+└─ Monitor everything     ├─ You deploy pods       └─ Auto-scaling to zero
+                          └─ Shared responsibility
+</pre></div>
+</div>
 <p><strong>Examples:</strong></p>
+<p><strong>Pure IaaS:</strong></p>
 <ul class="simple">
 <li><p><strong>AWS EC2</strong> (Elastic Compute Cloud)</p></li>
 <li><p><strong>Google Compute Engine</strong> (GCE)</p></li>
 <li><p><strong>Azure Virtual Machines</strong></p></li>
 <li><p><strong>DigitalOcean Droplets</strong></p></li>
+</ul>
+<p><strong>Container-Focused IaaS (CaaS):</strong></p>
+<ul class="simple">
+<li><p><strong>AWS EKS</strong> (Managed Kubernetes control plane)</p></li>
+<li><p><strong>Google GKE</strong> (Google Kubernetes Engine)</p></li>
+<li><p><strong>Azure AKS</strong> (Azure Kubernetes Service)</p></li>
+<li><p><strong>AWS Fargate</strong> (Serverless containers)</p></li>
 </ul>
 <p><strong>Use Cases:</strong></p>
 <ul class="simple">
@@ -422,11 +447,129 @@ Monitoring SaaS:
 + Storage limits
 + Premium features
 
-Example:
+Example (2024 pricing):
 
 GitHub: Free for public repos, $4/user/month for private
-Slack: Free for small teams, $7.25/user/month for pro
-Microsoft 365: $6/user/month for basic plan
+Slack: Free for small teams, $8.75/user/month for pro
+Microsoft 365: $6-22/user/month depending on plan
+Docker Hub: Free tier, $5/month for pro features
+</pre></div>
+</div>
+</section>
+<section id="function-as-a-service-faas-serverless">
+<h2>4. Function as a Service (FaaS) / Serverless<a class="headerlink" href="#function-as-a-service-faas-serverless" title="Link to this heading"></a></h2>
+<p><strong>Restaurant Analogy: Food Truck</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Order from a food truck:
+
++ Truck appears when you need food
++ Pay only for the meal you eat
++ No setup or cleanup required
++ Scales automatically (more trucks for events)
+- Limited menu options
+- Can&#39;t customize the kitchen
+</pre></div>
+</div>
+<p><strong>In Cloud Terms:</strong></p>
+<p>FaaS lets you run code without thinking about servers at all. You upload a function, and it runs only when triggered.</p>
+<p><strong>What You Get:</strong></p>
+<ul class="simple">
+<li><p>Event-driven execution (HTTP requests, file uploads, database changes)</p></li>
+<li><p>Automatic scaling (from 0 to thousands of instances)</p></li>
+<li><p>Pay-per-execution pricing</p></li>
+<li><p>Built-in high availability</p></li>
+</ul>
+<p><strong>What You Manage:</strong></p>
+<ul class="simple">
+<li><p>Just your application code</p></li>
+<li><p>Function configuration</p></li>
+<li><p>Event triggers and integrations</p></li>
+</ul>
+<p><strong>Perfect for Microservices:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># AWS Lambda function example</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="c1"># Your containerized app logic here</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Process business logic</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">process_user_data</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;statusCode&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Serverless Container Services (2024):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Modern Serverless Evolution:
+
+Traditional Serverless:           Serverless Containers:
+├─ Limited runtime support       ├─ Any container image
+├─ Function size limits          ├─ Larger applications
+├─ Cold start latency            ├─ Improved cold starts
+└─ Vendor lock-in                └─ More portable
+
+Examples:
+├─ AWS Lambda + Custom Runtime   → AWS Fargate
+├─ Google Cloud Functions        → Google Cloud Run
+├─ Azure Functions               → Azure Container Instances
+└─ Vercel Functions              → Vercel Edge Runtime
+</pre></div>
+</div>
+<p><strong>Examples:</strong></p>
+<p><strong>Pure FaaS:</strong></p>
+<ul class="simple">
+<li><p><strong>AWS Lambda</strong> (most popular)</p></li>
+<li><p><strong>Google Cloud Functions</strong></p></li>
+<li><p><strong>Azure Functions</strong></p></li>
+<li><p><strong>Vercel Functions</strong> (web-focused)</p></li>
+</ul>
+<p><strong>Serverless Containers:</strong></p>
+<ul class="simple">
+<li><p><strong>AWS Fargate</strong> (serverless EKS/ECS)</p></li>
+<li><p><strong>Google Cloud Run</strong> (serverless containers)</p></li>
+<li><p><strong>Azure Container Instances</strong></p></li>
+<li><p><strong>Railway, Render</strong> (developer-friendly platforms)</p></li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul class="simple">
+<li><p>API endpoints and webhooks</p></li>
+<li><p>Image/file processing</p></li>
+<li><p>Real-time data processing</p></li>
+<li><p>Scheduled tasks and cron jobs</p></li>
+<li><p>Event-driven microservices</p></li>
+</ul>
+<p><strong>Pricing Model:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Pay for:
++ Function execution time (milliseconds)
++ Memory allocation during execution
++ Number of requests
+
+Example (AWS Lambda 2024):
+
+Free Tier: 1M requests + 400,000 GB-seconds/month
+After free tier:
+├─ $0.20 per 1M requests
+├─ $0.0000166667 per GB-second
+└─ Example: 10M requests/month ≈ $25-50
+</pre></div>
+</div>
+</section>
+<section id="service-model-evolution-the-abstraction-spectrum">
+<h2>Service Model Evolution: The Abstraction Spectrum<a class="headerlink" href="#service-model-evolution-the-abstraction-spectrum" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2024 Service Landscape:
+
+Low Abstraction → High Abstraction
+
+IaaS          CaaS            PaaS            FaaS/Serverless    SaaS
+│             │               │               │                  │
+├─ Raw VMs    ├─ Managed K8s  ├─ App Platform ├─ Functions       ├─ Ready Apps
+├─ You manage ├─ Shared mgmt  ├─ Code focus   ├─ Event-driven    ├─ Just use it
+│  everything │  (nodes+pods) │  (runtime)    │  (no servers)    │  (config only)
+│             │               │               │                  │
+Examples:     Examples:       Examples:       Examples:           Examples:
+├─ AWS EC2    ├─ AWS EKS      ├─ Heroku       ├─ AWS Lambda      ├─ GitHub
+├─ GCP GCE    ├─ GCP GKE      ├─ Vercel       ├─ Vercel Funcs    ├─ Slack
+└─ Azure VMs  └─ Azure AKS    └─ Railway      └─ Cloudflare      └─ Zoom
 </pre></div>
 </div>
 </section>
@@ -544,13 +687,13 @@ IaaS:
 ├─ VM costs: $50/month
 ├─ Storage: $10/month
 ├─ Networking: $5/month
-├─ Management time: 20 hours/month × $50/hour = $1000
+├─ Management time: 20 hours/month x $50/hour = $1000
 └─ Total: $1,065/month
 
 PaaS Approach:
 ├─ Platform usage: $80/month
 ├─ Database service: $25/month
-├─ Management time: 2 hours/month × $50/hour = $100
+├─ Management time: 2 hours/month x $50/hour = $100
 └─ Total: $205/month
 
 SaaS Approach:

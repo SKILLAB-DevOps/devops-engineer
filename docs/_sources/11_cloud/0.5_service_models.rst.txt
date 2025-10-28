@@ -51,12 +51,34 @@ IaaS provides the basic building blocks for cloud IT. You get virtual machines, 
    4. Deploy your containers
    5. Manage everything yourself
 
+**Modern Container Evolution (2024):**
+
+.. code-block:: text
+
+   IaaS → CaaS (Container as a Service) → Serverless Containers
+   
+   Traditional IaaS:          Managed CaaS:           Serverless:
+   ├─ You manage VMs         ├─ Provider manages      ├─ No infrastructure 
+   ├─ Install Kubernetes     │  Kubernetes control    │   management
+   ├─ Patch and update       │  plane                 ├─ Pay per request
+   └─ Monitor everything     ├─ You deploy pods       └─ Auto-scaling to zero
+                             └─ Shared responsibility
+
 **Examples:**
+
+**Pure IaaS:**
 
 - **AWS EC2** (Elastic Compute Cloud)
 - **Google Compute Engine** (GCE)
 - **Azure Virtual Machines**
 - **DigitalOcean Droplets**
+
+**Container-Focused IaaS (CaaS):**
+
+- **AWS EKS** (Managed Kubernetes control plane)
+- **Google GKE** (Google Kubernetes Engine)
+- **Azure AKS** (Azure Kubernetes Service)
+- **AWS Fargate** (Serverless containers)
 
 **Use Cases:**
 
@@ -272,11 +294,143 @@ SaaS provides complete, ready-to-use applications. You just log in and use them.
    + Storage limits
    + Premium features
    
-   Example:
+   Example (2024 pricing):
 
    GitHub: Free for public repos, $4/user/month for private
-   Slack: Free for small teams, $7.25/user/month for pro
-   Microsoft 365: $6/user/month for basic plan
+   Slack: Free for small teams, $8.75/user/month for pro
+   Microsoft 365: $6-22/user/month depending on plan
+   Docker Hub: Free tier, $5/month for pro features
+
+============================================
+4. Function as a Service (FaaS) / Serverless
+============================================
+
+**Restaurant Analogy: Food Truck**
+
+.. code-block:: text
+
+   Order from a food truck:
+
+   + Truck appears when you need food
+   + Pay only for the meal you eat
+   + No setup or cleanup required
+   + Scales automatically (more trucks for events)
+   - Limited menu options
+   - Can't customize the kitchen
+
+**In Cloud Terms:**
+
+FaaS lets you run code without thinking about servers at all. You upload a function, and it runs only when triggered.
+
+**What You Get:**
+
+- Event-driven execution (HTTP requests, file uploads, database changes)
+- Automatic scaling (from 0 to thousands of instances)
+- Pay-per-execution pricing
+- Built-in high availability
+
+**What You Manage:**
+
+- Just your application code
+- Function configuration
+- Event triggers and integrations
+
+**Perfect for Microservices:**
+
+.. code-block:: python
+
+   # AWS Lambda function example
+   def lambda_handler(event, context):
+       # Your containerized app logic here
+       user_id = event['user_id']
+       
+       # Process business logic
+       result = process_user_data(user_id)
+       
+       return {
+           'statusCode': 200,
+           'body': json.dumps(result)
+       }
+
+**Serverless Container Services (2024):**
+
+.. code-block:: text
+
+   Modern Serverless Evolution:
+   
+   Traditional Serverless:           Serverless Containers:
+   ├─ Limited runtime support       ├─ Any container image
+   ├─ Function size limits          ├─ Larger applications
+   ├─ Cold start latency            ├─ Improved cold starts
+   └─ Vendor lock-in                └─ More portable
+
+   Examples:
+   ├─ AWS Lambda + Custom Runtime   → AWS Fargate
+   ├─ Google Cloud Functions        → Google Cloud Run  
+   ├─ Azure Functions               → Azure Container Instances
+   └─ Vercel Functions              → Vercel Edge Runtime
+
+**Examples:**
+
+**Pure FaaS:**
+
+- **AWS Lambda** (most popular)
+- **Google Cloud Functions**
+- **Azure Functions**
+- **Vercel Functions** (web-focused)
+
+**Serverless Containers:**
+
+- **AWS Fargate** (serverless EKS/ECS)
+- **Google Cloud Run** (serverless containers)
+- **Azure Container Instances**
+- **Railway, Render** (developer-friendly platforms)
+
+**Use Cases:**
+
+- API endpoints and webhooks
+- Image/file processing
+- Real-time data processing
+- Scheduled tasks and cron jobs
+- Event-driven microservices
+
+**Pricing Model:**
+
+.. code-block:: text
+
+   Pay for:
+   + Function execution time (milliseconds)
+   + Memory allocation during execution  
+   + Number of requests
+   
+   Example (AWS Lambda 2024):
+   
+   Free Tier: 1M requests + 400,000 GB-seconds/month
+   After free tier:
+   ├─ $0.20 per 1M requests
+   ├─ $0.0000166667 per GB-second
+   └─ Example: 10M requests/month ≈ $25-50
+
+=================================================
+Service Model Evolution: The Abstraction Spectrum  
+=================================================
+
+.. code-block:: text
+
+   2024 Service Landscape:
+   
+   Low Abstraction → High Abstraction
+   
+   IaaS          CaaS            PaaS            FaaS/Serverless    SaaS
+   │             │               │               │                  │
+   ├─ Raw VMs    ├─ Managed K8s  ├─ App Platform ├─ Functions       ├─ Ready Apps
+   ├─ You manage ├─ Shared mgmt  ├─ Code focus   ├─ Event-driven    ├─ Just use it
+   │  everything │  (nodes+pods) │  (runtime)    │  (no servers)    │  (config only)
+   │             │               │               │                  │
+   Examples:     Examples:       Examples:       Examples:           Examples:
+   ├─ AWS EC2    ├─ AWS EKS      ├─ Heroku       ├─ AWS Lambda      ├─ GitHub
+   ├─ GCP GCE    ├─ GCP GKE      ├─ Vercel       ├─ Vercel Funcs    ├─ Slack  
+   └─ Azure VMs  └─ Azure AKS    └─ Railway      └─ Cloudflare      └─ Zoom
 
 ========================
 Service Model Comparison
@@ -409,13 +563,13 @@ Cost Comparison by Service Model
    ├─ VM costs: $50/month
    ├─ Storage: $10/month
    ├─ Networking: $5/month
-   ├─ Management time: 20 hours/month × $50/hour = $1000
+   ├─ Management time: 20 hours/month x $50/hour = $1000
    └─ Total: $1,065/month
    
    PaaS Approach:
    ├─ Platform usage: $80/month
    ├─ Database service: $25/month
-   ├─ Management time: 2 hours/month × $50/hour = $100
+   ├─ Management time: 2 hours/month x $50/hour = $100
    └─ Total: $205/month
    
    SaaS Approach:

@@ -1,0 +1,1028 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.8 FinOps and Cost Optimization &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.9 Security Best Practices" href="9_security.html" />
+    <link rel="prev" title="11.7 Google Kubernetes Engine (GKE)" href="7_gke.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.8 FinOps and Cost Optimization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/8_finops.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finops-and-cost-optimization">
+<h1>11.8 FinOps and Cost Optimization<a class="headerlink" href="#finops-and-cost-optimization" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>FinOps (Financial Operations) is the practice of bringing financial accountability to cloud spending. Google Cloud provides numerous tools and strategies to help you monitor, analyze, and optimize your cloud costs. This chapter covers cost management best practices, monitoring tools, and optimization strategies specific to GCP.</p>
+</div>
+<section id="understanding-gcp-pricing">
+<h2>Understanding GCP Pricing<a class="headerlink" href="#understanding-gcp-pricing" title="Link to this heading"></a></h2>
+<p><strong>Key Pricing Concepts:</strong></p>
+<ul class="simple">
+<li><p><strong>Pay-as-you-go</strong>: Pay only for what you use</p></li>
+<li><p><strong>Per-second billing</strong>: Most services billed per second (minimum 1 minute)</p></li>
+<li><p><strong>Sustained use discounts</strong>: Automatic discounts for long-running workloads</p></li>
+<li><p><strong>Committed use discounts</strong>: Discounts for 1 or 3-year commitments</p></li>
+<li><p><strong>Free tier</strong>: Always free and trial offerings</p></li>
+<li><p><strong>Network egress</strong>: Data leaving GCP incurs charges</p></li>
+</ul>
+<p><strong>Major Cost Categories:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Compute</p></td>
+<td><p>VMs, GKE nodes, Cloud Run</p></td>
+</tr>
+<tr class="row-odd"><td><p>Storage</p></td>
+<td><p>Cloud Storage, Persistent Disks</p></td>
+</tr>
+<tr class="row-even"><td><p>Networking</p></td>
+<td><p>Load Balancers, Egress traffic</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Processing</p></td>
+<td><p>BigQuery, Dataflow</p></td>
+</tr>
+<tr class="row-even"><td><p>Databases</p></td>
+<td><p>Cloud SQL, Firestore</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cost-management-tools">
+<h2>Cost Management Tools<a class="headerlink" href="#cost-management-tools" title="Link to this heading"></a></h2>
+<p><strong>1. Cloud Billing Reports:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Cloud Billing API</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cloudbilling.googleapis.com
+
+<span class="c1"># List billing accounts</span>
+gcloud<span class="w"> </span>billing<span class="w"> </span>accounts<span class="w"> </span>list
+
+<span class="c1"># View billing account details</span>
+gcloud<span class="w"> </span>billing<span class="w"> </span>accounts<span class="w"> </span>describe<span class="w"> </span>BILLING_ACCOUNT_ID
+</pre></div>
+</div>
+<p><strong>Access Billing Reports:</strong></p>
+<ul class="simple">
+<li><p>Navigate to Cloud Console → Billing → Reports</p></li>
+<li><p>View costs by:
+- Project
+- Service
+- SKU (Stock Keeping Unit)
+- Location
+- Label</p></li>
+<li><p>Filter by time range</p></li>
+<li><p>Group and filter data</p></li>
+<li><p>Export to BigQuery for analysis</p></li>
+</ul>
+<p><strong>2. Cost Table:</strong></p>
+<p>View detailed cost breakdown:</p>
+<ul class="simple">
+<li><p>Navigate to Billing → Cost table</p></li>
+<li><p>See itemized costs</p></li>
+<li><p>Drill down into specific resources</p></li>
+<li><p>Identify cost drivers</p></li>
+</ul>
+<p><strong>3. Pricing Calculator:</strong></p>
+<p>Estimate costs before deployment:</p>
+<ul class="simple">
+<li><p>Visit: <a class="reference external" href="https://cloud.google.com/products/calculator">https://cloud.google.com/products/calculator</a></p></li>
+<li><p>Select services and configurations</p></li>
+<li><p>Get monthly cost estimates</p></li>
+<li><p>Save and share estimates</p></li>
+</ul>
+</section>
+<section id="setting-up-budgets-and-alerts">
+<h2>Setting Up Budgets and Alerts<a class="headerlink" href="#setting-up-budgets-and-alerts" title="Link to this heading"></a></h2>
+<p><strong>Create Budget via Console:</strong></p>
+<ol class="arabic simple">
+<li><p>Navigate to Billing → Budgets &amp; alerts</p></li>
+<li><p>Click “Create budget”</p></li>
+<li><p>Set budget scope (all projects or specific)</p></li>
+<li><p>Set budget amount</p></li>
+<li><p>Configure threshold alerts</p></li>
+</ol>
+<p><strong>Create Budget via gcloud:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create budget with alerts</span>
+gcloud<span class="w"> </span>billing<span class="w"> </span>budgets<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--billing-account<span class="o">=</span>BILLING_ACCOUNT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display-name<span class="o">=</span><span class="s2">&quot;Monthly Budget&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--budget-amount<span class="o">=</span>1000USD<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--threshold-rule<span class="o">=</span><span class="nv">percent</span><span class="o">=</span><span class="m">50</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--threshold-rule<span class="o">=</span><span class="nv">percent</span><span class="o">=</span><span class="m">90</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--threshold-rule<span class="o">=</span><span class="nv">percent</span><span class="o">=</span><span class="m">100</span>
+</pre></div>
+</div>
+<p><strong>Budget Alert Configuration:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># budget.yaml</span>
+<span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Production</span><span class="nv"> </span><span class="s">Environment</span><span class="nv"> </span><span class="s">Budget&quot;</span>
+<span class="nt">budgetFilter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">projects</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projects/my-prod-project</span>
+<span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">services/95FF-2EF5-5EA1</span><span class="w">  </span><span class="c1"># Compute Engine</span>
+<span class="nt">amount</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">specifiedAmount</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">currencyCode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USD</span>
+<span class="w">    </span><span class="nt">units</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">thresholdRules</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">thresholdPercent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">  </span><span class="nt">spendBasis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CURRENT_SPEND</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">thresholdPercent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span>
+<span class="w">  </span><span class="nt">spendBasis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CURRENT_SPEND</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">thresholdPercent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">  </span><span class="nt">spendBasis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CURRENT_SPEND</span>
+</pre></div>
+</div>
+<p><strong>Programmatic Budget Alerts:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Pub/Sub topic for budget alerts</span>
+gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>create<span class="w"> </span>budget-alerts
+
+<span class="c1"># Create Cloud Function to process alerts</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>main.py<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">import base64</span>
+<span class="s">import json</span>
+
+<span class="s">def process_budget_alert(event, context):</span>
+<span class="s">    &quot;&quot;&quot;Process budget alert from Pub/Sub.&quot;&quot;&quot;</span>
+<span class="s">    pubsub_message = base64.b64decode(event[&#39;data&#39;]).decode(&#39;utf-8&#39;)</span>
+<span class="s">    notification = json.loads(pubsub_message)</span>
+
+<span class="s">    cost_amount = notification[&#39;costAmount&#39;]</span>
+<span class="s">    budget_amount = notification[&#39;budgetAmount&#39;]</span>
+
+<span class="s">    if cost_amount &gt;= budget_amount:</span>
+<span class="s">        print(f&quot;ALERT: Budget exceeded! Cost: ${cost_amount}, Budget: ${budget_amount}&quot;)</span>
+<span class="s">        # Add your notification logic here</span>
+<span class="s">        # - Send email</span>
+<span class="s">        # - Send Slack message</span>
+<span class="s">        # - Create incident ticket</span>
+<span class="s">        # - Shutdown non-critical resources</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization-strategies">
+<h2>Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Link to this heading"></a></h2>
+<p><strong>1. Compute Engine Optimization:</strong></p>
+<p><strong>Right-sizing VMs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get VM recommendations</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.compute.instance.MachineTypeRecommender
+
+<span class="c1"># View specific recommendation</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>describe<span class="w"> </span>RECOMMENDATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.compute.instance.MachineTypeRecommender
+</pre></div>
+</div>
+<p><strong>Use Committed Use Discounts:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 1-year commitment for VMs</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>commitments<span class="w"> </span>create<span class="w"> </span>my-commitment<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--plan<span class="o">=</span><span class="m">12</span>-month<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resources<span class="o">=</span><span class="nv">vcpu</span><span class="o">=</span><span class="m">20</span>,memory<span class="o">=</span>40GB
+</pre></div>
+</div>
+<p><strong>Use Preemptible/Spot VMs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create preemptible VM (up to 80% cheaper)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>preemptible-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--machine-type<span class="o">=</span>n1-standard-4<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--preemptible
+
+<span class="c1"># Create Spot VM (even more flexible)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>spot-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--machine-type<span class="o">=</span>n1-standard-4<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--provisioning-model<span class="o">=</span>SPOT
+</pre></div>
+</div>
+<p><strong>Auto-stopping Idle VMs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create schedule to stop VMs</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>stop-schedule.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">name: stop-dev-vms</span>
+<span class="s">schedule:</span>
+<span class="s">  cron: &quot;0 18 * * 1-5&quot;  # 6 PM weekdays</span>
+<span class="s">action:</span>
+<span class="s">  instances:</span>
+<span class="s">  - projects/PROJECT_ID/zones/us-central1-a/instances/dev-vm-1</span>
+<span class="s">  - projects/PROJECT_ID/zones/us-central1-a/instances/dev-vm-2</span>
+<span class="s">  command: stop</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>2. Storage Optimization:</strong></p>
+<p><strong>Cloud Storage Lifecycle Policies:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="c1">// lifecycle-policy.json</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;lifecycle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;rule&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SetStorageClass&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;storageClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NEARLINE&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;matchesPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;logs/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;backups/&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SetStorageClass&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;storageClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLDLINE&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SetStorageClass&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;storageClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ARCHIVE&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Delete&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">730</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;isLive&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply lifecycle policy</span>
+gsutil<span class="w"> </span>lifecycle<span class="w"> </span><span class="nb">set</span><span class="w"> </span>lifecycle-policy.json<span class="w"> </span>gs://my-bucket
+</pre></div>
+</div>
+<p><strong>Persistent Disk Optimization:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Take snapshots and delete disk</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>snapshot<span class="w"> </span>my-disk<span class="w"> </span>--zone<span class="o">=</span>us-central1-a
+gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>delete<span class="w"> </span>my-disk<span class="w"> </span>--zone<span class="o">=</span>us-central1-a
+
+<span class="c1"># Create disk from snapshot when needed</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>create<span class="w"> </span>restored-disk<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-snapshot<span class="o">=</span>my-snapshot<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+
+<span class="c1"># Use balanced persistent disk (cheaper than SSD)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>create<span class="w"> </span>balanced-disk<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--type<span class="o">=</span>pd-balanced<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--size<span class="o">=</span>100GB<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+</pre></div>
+</div>
+<p><strong>3. GKE Optimization:</strong></p>
+<p><strong>Use Autopilot Mode:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Autopilot automatically optimizes resource allocation</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create-auto<span class="w"> </span>my-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+</pre></div>
+</div>
+<p><strong>Enable Cluster Autoscaler:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable autoscaling to match demand</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>update<span class="w"> </span>my-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-autoscaling<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--min-nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-nodes<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+</pre></div>
+</div>
+<p><strong>Use Preemptible Nodes:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create node pool with preemptible nodes</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>node-pools<span class="w"> </span>create<span class="w"> </span>preemptible-pool<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cluster<span class="o">=</span>my-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--preemptible<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--num-nodes<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-autoscaling<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--min-nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-nodes<span class="o">=</span><span class="m">10</span>
+</pre></div>
+</div>
+<p><strong>Set Resource Limits:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure pods request only needed resources</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optimized-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:1.0</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;64Mi&quot;</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100m&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;128Mi&quot;</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200m&quot;</span>
+</pre></div>
+</div>
+<p><strong>4. Cloud Run Optimization:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use minimum instances only when needed</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>update<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--min-instances<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-instances<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cpu<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--memory<span class="o">=</span>512Mi
+</pre></div>
+</div>
+<p><strong>5. Networking Optimization:</strong></p>
+<p><strong>Minimize Egress Traffic:</strong></p>
+<ul class="simple">
+<li><p>Use Cloud CDN for static content</p></li>
+<li><p>Keep data transfers within GCP</p></li>
+<li><p>Use regional resources over global</p></li>
+<li><p>Compress data before transfer</p></li>
+</ul>
+<p><strong>Delete Unused Load Balancers:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List forwarding rules</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>forwarding-rules<span class="w"> </span>list
+
+<span class="c1"># Delete unused load balancer</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>forwarding-rules<span class="w"> </span>delete<span class="w"> </span>my-lb<span class="w"> </span>--global
+</pre></div>
+</div>
+</section>
+<section id="cost-analysis-and-reporting">
+<h2>Cost Analysis and Reporting<a class="headerlink" href="#cost-analysis-and-reporting" title="Link to this heading"></a></h2>
+<p><strong>Export Billing Data to BigQuery:</strong></p>
+<ol class="arabic simple">
+<li><p>Navigate to Billing → Billing export</p></li>
+<li><p>Enable “Detailed usage cost” export</p></li>
+<li><p>Select BigQuery dataset</p></li>
+<li><p>Data updates daily</p></li>
+</ol>
+<p><strong>Query Cost Data:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Top 10 most expensive services</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="n">service</span><span class="p">.</span><span class="n">description</span><span class="p">,</span>
+<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_cost</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">_PARTITIONTIME</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">service</span><span class="p">.</span><span class="n">description</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">total_cost</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="c1">-- Daily cost trend</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="nb">DATE</span><span class="p">(</span><span class="n">usage_start_time</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
+<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">daily_cost</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">_PARTITIONTIME</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">TIMESTAMP_SUB</span><span class="p">(</span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(),</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">DAY</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="nb">date</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="nb">date</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- Cost by project</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="n">project</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_cost</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">_PARTITIONTIME</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">TIMESTAMP_SUB</span><span class="p">(</span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(),</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="k">DAY</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">project</span><span class="p">.</span><span class="n">name</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">total_cost</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- Cost by labels</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="n">labels</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span>
+<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_cost</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span><span class="p">,</span>
+<span class="w">  </span><span class="k">UNNEST</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">labels</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">labels</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;environment&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">_PARTITIONTIME</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">TIMESTAMP_SUB</span><span class="p">(</span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(),</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">DAY</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">environment</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">total_cost</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Create Cost Dashboard:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Create view for dashboard</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">cost_summary</span><span class="o">`</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="nb">DATE</span><span class="p">(</span><span class="n">usage_start_time</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
+<span class="w">  </span><span class="n">service</span><span class="p">.</span><span class="n">description</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">service</span><span class="p">,</span>
+<span class="w">  </span><span class="n">project</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">project</span><span class="p">,</span>
+<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cost</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">_PARTITIONTIME</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">TIMESTAMP_SUB</span><span class="p">(</span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(),</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="k">DAY</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">service</span><span class="p">,</span><span class="w"> </span><span class="n">project</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Use Data Studio for Visualization:</strong></p>
+<ol class="arabic simple">
+<li><p>Navigate to Data Studio (<a class="reference external" href="https://datastudio.google.com">https://datastudio.google.com</a>)</p></li>
+<li><p>Create new report</p></li>
+<li><p>Connect to BigQuery billing export</p></li>
+<li><p>Create charts:
+- Line chart for cost trends
+- Pie chart for service breakdown
+- Table for detailed costs
+- Scorecard for total spend</p></li>
+</ol>
+</section>
+<section id="resource-labeling-strategy">
+<h2>Resource Labeling Strategy<a class="headerlink" href="#resource-labeling-strategy" title="Link to this heading"></a></h2>
+<p><strong>Why Use Labels:</strong></p>
+<ul class="simple">
+<li><p>Track costs by team, project, or environment</p></li>
+<li><p>Automate resource management</p></li>
+<li><p>Improve cost allocation</p></li>
+<li><p>Enable chargeback/showback</p></li>
+</ul>
+<p><strong>Labeling Best Practices:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard label structure</span>
+<span class="c1"># environment: dev, staging, prod</span>
+<span class="c1"># team: engineering, data, platform</span>
+<span class="c1"># cost-center: cc-1001, cc-1002</span>
+<span class="c1"># application: web-app, api-service</span>
+<span class="c1"># owner: alice, bob</span>
+
+<span class="c1"># Label a VM instance</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>update<span class="w"> </span>my-instance<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-labels<span class="o">=</span><span class="nv">environment</span><span class="o">=</span>prod,team<span class="o">=</span>engineering,cost-center<span class="o">=</span>cc-1001
+
+<span class="c1"># Label a GCS bucket</span>
+gsutil<span class="w"> </span>label<span class="w"> </span>ch<span class="w"> </span>-l<span class="w"> </span>environment:prod<span class="w"> </span>gs://my-bucket
+gsutil<span class="w"> </span>label<span class="w"> </span>ch<span class="w"> </span>-l<span class="w"> </span>team:data<span class="w"> </span>gs://my-bucket
+
+<span class="c1"># Label a GKE cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>update<span class="w"> </span>my-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-labels<span class="o">=</span><span class="nv">environment</span><span class="o">=</span>prod,team<span class="o">=</span>platform
+</pre></div>
+</div>
+<p><strong>Query by Labels:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List resources with specific label</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">&quot;labels.environment=prod&quot;</span>
+
+<span class="c1"># List all labels on a resource</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>describe<span class="w"> </span>my-instance<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span><span class="s2">&quot;value(labels)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization-automation">
+<h2>Cost Optimization Automation<a class="headerlink" href="#cost-optimization-automation" title="Link to this heading"></a></h2>
+<p><strong>Automated Shutdown Script:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># stop-idle-vms.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_v1</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">stop_idle_vms</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">zone</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stop VMs that have been idle for &gt; 1 hour.&quot;&quot;&quot;</span>
+    <span class="n">compute_client</span> <span class="o">=</span> <span class="n">compute_v1</span><span class="o">.</span><span class="n">InstancesClient</span><span class="p">()</span>
+
+    <span class="n">instances</span> <span class="o">=</span> <span class="n">compute_client</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span> <span class="n">zone</span><span class="o">=</span><span class="n">zone</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">:</span>
+        <span class="c1"># Check if instance has &#39;auto-stop&#39; label</span>
+        <span class="k">if</span> <span class="s1">&#39;auto-stop&#39;</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">labels</span><span class="p">:</span>
+            <span class="c1"># Check CPU usage (simplified)</span>
+            <span class="c1"># In production, query Cloud Monitoring API</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stopping idle instance: </span><span class="si">{</span><span class="n">instance</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">operation</span> <span class="o">=</span> <span class="n">compute_client</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span>
+                <span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span>
+                <span class="n">zone</span><span class="o">=</span><span class="n">zone</span><span class="p">,</span>
+                <span class="n">instance</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">)</span>
+            <span class="n">operation</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>  <span class="c1"># Wait for completion</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">stop_idle_vms</span><span class="p">(</span><span class="s1">&#39;my-project&#39;</span><span class="p">,</span> <span class="s1">&#39;us-central1-a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Automated Snapshot Cleanup:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># cleanup-old-snapshots.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_v1</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">delete_old_snapshots</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">days_old</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete snapshots older than specified days.&quot;&quot;&quot;</span>
+    <span class="n">snapshots_client</span> <span class="o">=</span> <span class="n">compute_v1</span><span class="o">.</span><span class="n">SnapshotsClient</span><span class="p">()</span>
+
+    <span class="n">cutoff_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">days_old</span><span class="p">)</span>
+
+    <span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots_client</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">snapshot</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">:</span>
+        <span class="n">creation_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span>
+            <span class="n">snapshot</span><span class="o">.</span><span class="n">creation_timestamp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;+00:00&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">creation_time</span> <span class="o">&lt;</span> <span class="n">cutoff_date</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting old snapshot: </span><span class="si">{</span><span class="n">snapshot</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">operation</span> <span class="o">=</span> <span class="n">snapshots_client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+                <span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span>
+                <span class="n">snapshot</span><span class="o">=</span><span class="n">snapshot</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">)</span>
+            <span class="n">operation</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Schedule with Cloud Scheduler:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy Cloud Function</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>stop-idle-vms<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python39<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>stop_idle_vms
+
+<span class="c1"># Create schedule (daily at 2 AM)</span>
+gcloud<span class="w"> </span>scheduler<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>create<span class="w"> </span>http<span class="w"> </span>stop-vms-daily<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--schedule<span class="o">=</span><span class="s2">&quot;0 2 * * *&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--uri<span class="o">=</span><span class="s2">&quot;https://REGION-PROJECT_ID.cloudfunctions.net/stop-idle-vms&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--http-method<span class="o">=</span>GET
+</pre></div>
+</div>
+</section>
+<section id="cost-optimization-checklist">
+<h2>Cost Optimization Checklist<a class="headerlink" href="#cost-optimization-checklist" title="Link to this heading"></a></h2>
+<p><strong>Daily:</strong></p>
+<p>Monitor budget alerts
+Review cost anomalies
+Check for unused resources</p>
+<p><strong>Weekly:</strong></p>
+<p>Review cost reports
+Analyze top cost drivers
+Validate resource utilization
+Delete unused disks and snapshots
+Review GKE cluster efficiency</p>
+<p><strong>Monthly:</strong></p>
+<p>Review and adjust budgets
+Analyze cost trends
+Review committed use discounts
+Update resource labels
+Conduct cost optimization review
+Review and implement recommendations</p>
+<p><strong>Quarterly:</strong></p>
+<p>Review architecture for cost optimization
+Evaluate committed use discount opportunities
+Review pricing changes
+Conduct FinOps training
+Update cost allocation methods</p>
+</section>
+<section id="recommendations-engine">
+<h2>Recommendations Engine<a class="headerlink" href="#recommendations-engine" title="Link to this heading"></a></h2>
+<p><strong>View All Recommendations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all cost recommendations</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.compute.instance.MachineTypeRecommender
+
+<span class="c1"># List idle VM recommendations</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.compute.instance.IdleResourceRecommender
+
+<span class="c1"># List idle disk recommendations</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.compute.disk.IdleResourceRecommender
+</pre></div>
+</div>
+<p><strong>Apply Recommendations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mark recommendation as applied</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>mark-claimed<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>RECOMMENDATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.compute.instance.MachineTypeRecommender
+</pre></div>
+</div>
+</section>
+<section id="cost-allocation-and-chargeback">
+<h2>Cost Allocation and Chargeback<a class="headerlink" href="#cost-allocation-and-chargeback" title="Link to this heading"></a></h2>
+<p><strong>Setup Cost Allocation:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Label Resources Consistently:</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define labeling policy</span>
+<span class="c1"># cost-center: Department code</span>
+<span class="c1"># project: Project identifier</span>
+<span class="c1"># environment: dev/staging/prod</span>
+
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>update<span class="w"> </span>vm-1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-labels<span class="o">=</span>cost-center<span class="o">=</span>eng-001,project<span class="o">=</span>web-app,environment<span class="o">=</span>prod
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Create Billing Reports by Label:</strong></p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cost by cost center</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="n">labels</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cost_center</span><span class="p">,</span>
+<span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_cost</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span><span class="p">,</span>
+<span class="w">  </span><span class="k">UNNEST</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">labels</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">labels</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cost-center&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">usage_start_time</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="p">())</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">cost_center</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">total_cost</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Generate Chargeback Reports:</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate-chargeback.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">bigquery</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_chargeback_report</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">table_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate monthly chargeback report.&quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT</span>
+<span class="s2">      labels.value as department,</span>
+<span class="s2">      service.description as service,</span>
+<span class="s2">      SUM(cost) as cost</span>
+<span class="s2">    FROM</span>
+<span class="s2">      `</span><span class="si">{</span><span class="n">project_id</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">table_id</span><span class="si">}</span><span class="s2">`,</span>
+<span class="s2">      UNNEST(labels) as labels</span>
+<span class="s2">    WHERE</span>
+<span class="s2">      labels.key = &#39;cost-center&#39;</span>
+<span class="s2">      AND EXTRACT(MONTH FROM usage_start_time) = EXTRACT(MONTH FROM CURRENT_DATE())</span>
+<span class="s2">    GROUP BY</span>
+<span class="s2">      department, service</span>
+<span class="s2">    ORDER BY</span>
+<span class="s2">      department, cost DESC</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+
+    <span class="c1"># Export to CSV</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;chargeback_</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report generated: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Organization:</strong></p>
+<ul class="simple">
+<li><p>Establish clear project structure</p></li>
+<li><p>Use folders and labels consistently</p></li>
+<li><p>Implement proper IAM policies</p></li>
+<li><p>Document cost allocation methods</p></li>
+</ul>
+<p><strong>2. Monitoring:</strong></p>
+<ul class="simple">
+<li><p>Set up budget alerts</p></li>
+<li><p>Review costs regularly</p></li>
+<li><p>Monitor cost anomalies</p></li>
+<li><p>Track cost trends</p></li>
+</ul>
+<p><strong>3. Optimization:</strong></p>
+<ul class="simple">
+<li><p>Right-size resources regularly</p></li>
+<li><p>Use committed use discounts</p></li>
+<li><p>Implement auto-scaling</p></li>
+<li><p>Delete unused resources</p></li>
+<li><p>Use appropriate storage classes</p></li>
+</ul>
+<p><strong>4. Governance:</strong></p>
+<ul class="simple">
+<li><p>Define approval processes for new resources</p></li>
+<li><p>Implement resource quotas</p></li>
+<li><p>Require cost estimates for new projects</p></li>
+<li><p>Conduct regular cost reviews</p></li>
+</ul>
+<p><strong>5. Culture:</strong></p>
+<ul class="simple">
+<li><p>Educate teams on cloud costs</p></li>
+<li><p>Make cost data transparent</p></li>
+<li><p>Reward cost-conscious behavior</p></li>
+<li><p>Include cost in architectural decisions</p></li>
+</ul>
+</section>
+<section id="common-cost-pitfalls">
+<h2>Common Cost Pitfalls<a class="headerlink" href="#common-cost-pitfalls" title="Link to this heading"></a></h2>
+<p><strong>1. Idle Resources:</strong></p>
+<ul class="simple">
+<li><p>Stopped VMs still incur disk costs</p></li>
+<li><p>Unused load balancers</p></li>
+<li><p>Orphaned persistent disks</p></li>
+<li><p>Old snapshots</p></li>
+</ul>
+<p><strong>2. Over-Provisioning:</strong></p>
+<ul class="simple">
+<li><p>VMs larger than needed</p></li>
+<li><p>Excessive storage allocation</p></li>
+<li><p>Too many always-on instances</p></li>
+</ul>
+<p><strong>3. Network Costs:</strong></p>
+<ul class="simple">
+<li><p>Unnecessary cross-region traffic</p></li>
+<li><p>High egress costs</p></li>
+<li><p>Multiple NAT gateways</p></li>
+</ul>
+<p><strong>4. Missing Discounts:</strong></p>
+<ul class="simple">
+<li><p>Not using committed use discounts</p></li>
+<li><p>Not using sustained use discounts</p></li>
+<li><p>Paying for Standard when Preemptible works</p></li>
+</ul>
+</section>
+<section id="cost-optimization-tools-summary">
+<h2>Cost Optimization Tools Summary<a class="headerlink" href="#cost-optimization-tools-summary" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cloud Billing Reports</p></td>
+<td><p>View and analyze costs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Budgets &amp; Alerts</p></td>
+<td><p>Control spending</p></td>
+</tr>
+<tr class="row-even"><td><p>Recommender</p></td>
+<td><p>Get optimization suggestions</p></td>
+</tr>
+<tr class="row-odd"><td><p>BigQuery Export</p></td>
+<td><p>Detailed cost analysis</p></td>
+</tr>
+<tr class="row-even"><td><p>Pricing Calculator</p></td>
+<td><p>Estimate costs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resource Labels</p></td>
+<td><p>Track and allocate costs</p></td>
+</tr>
+<tr class="row-even"><td><p>Committed Use Discounts</p></td>
+<td><p>Save on long-term workloads</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cloud Monitoring</p></td>
+<td><p>Track resource utilization</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>GCP Pricing: <a class="reference external" href="https://cloud.google.com/pricing">https://cloud.google.com/pricing</a></p></li>
+<li><p>Pricing Calculator: <a class="reference external" href="https://cloud.google.com/products/calculator">https://cloud.google.com/products/calculator</a></p></li>
+<li><p>Cost Management Guide: <a class="reference external" href="https://cloud.google.com/cost-management">https://cloud.google.com/cost-management</a></p></li>
+<li><p>FinOps Foundation: <a class="reference external" href="https://www.finops.org/">https://www.finops.org/</a></p></li>
+<li><p>Billing Documentation: <a class="reference external" href="https://cloud.google.com/billing/docs">https://cloud.google.com/billing/docs</a></p></li>
+<li><p>Cost Optimization Best Practices: <a class="reference external" href="https://cloud.google.com/blog/topics/cost-management">https://cloud.google.com/blog/topics/cost-management</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="7_gke.html" class="btn btn-neutral float-left" title="11.7 Google Kubernetes Engine (GKE)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="9_security.html" class="btn btn-neutral float-right" title="11.9 Security Best Practices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

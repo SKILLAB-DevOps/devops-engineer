@@ -6,29 +6,33 @@
 Market Landscape Overview
 =========================
 
-**Major Cloud Providers Q3 2024:**
+**Major Cloud Providers Q4 2024:**
 
 .. code-block:: text
 
-   Market Share by Revenue:
+   Market Share by Revenue (Latest):
    
-   1 Amazon Web Services (AWS)     - 32%
-   2 Microsoft Azure               - 23%  
-   3 Google Cloud Platform (GCP)   - 11%
+   1 Amazon Web Services (AWS)     - 31%
+   2 Microsoft Azure               - 25%  
+   3 Google Cloud Platform (GCP)   - 12%
    ──────────────────────────────────────
    4 Alibaba Cloud                 - 4%
-   5 IBM Cloud                     - 3%
-   6 Salesforce                    - 3%
-   7 Oracle Cloud                  - 2%
-   8 Tencent Cloud                 - 2%
-   9 Others                        - 20%
+   5 IBM Cloud                     - 2%
+   6 Oracle Cloud                  - 2%
+   7 Salesforce                    - 2%
+   8 Others                        - 22%
+
+.. note::
+   **Key Trend (2024)**: Azure is closing the gap with AWS, while GCP
+   is growing fastest in AI/ML workloads. All three now offer similar
+   core services but with different strengths.
 
 .. note::
    This course provides comprehensive hands-on tutorials for the **top three cloud providers**:
    
-   - **AWS** (Chapter 11.3) - Market leader with broadest service catalog
-   - **Azure** (Chapter 11.6) - Enterprise-focused with strong hybrid capabilities  
-   - **GCP** (Chapter 11.8) - Innovation leader in data analytics, ML, and Kubernetes
+   - **AWS** (Chapter 11_cloud_aws) - Market leader with broadest service catalog
+   - **Azure** (Chapter 11_cloud_azure) - Enterprise-focused with strong hybrid capabilities  
+   - **GCP** (Chapter 11_cloud_gcp) - Innovation leader in data analytics, ML, and Kubernetes
    
    Each chapter includes practical examples of deploying your containerized applications.
 
@@ -156,28 +160,32 @@ The Big Three: Deep Dive
 
 .. code-block:: text
 
-   Azure Container Stack:
-   ┌──────────────────────────────────────┐
-   │ Azure Kubernetes Service (AKS)       │
-   │ ├─ Free control plane                │
-   │ ├─ Azure Active Directory integration│
-   │ └─ Virtual nodes (serverless)        │
-   ├───────────────────────────────────── ┤
-   │ Azure Container Instances (ACI)      │
-   │ ├─ Serverless containers             │
-   │ ├─ Per-second billing                │
-   │ └─ Quick container deployment        │
-   ├───────────────────────────────────── ┤
-   │ Azure Container Registry (ACR)       │
-   │ ├─ Private Docker registry           │
-   │ ├─ Geo-replication                   │
-   │ └─ Security scanning built-in        │
-   ├───────────────────────────────────── ┤
-   │ Azure DevOps Integration             │
-   │ ├─ Native CI/CD pipelines            │
-   │ ├─ Work item tracking                │
-   │ └─ Release management                │
-   └──────────────────────────────────────┘
+   Azure Container Services (2024 Updates):
+   ┌─────────────────────────────────────────┐
+   │ Azure Kubernetes Service (AKS)          │
+   │ ├─ Free control plane (cost advantage)  │
+   │ ├─ Azure Active Directory integration   │
+   │ ├─ Virtual nodes (Azure Container Inst.)│
+   │ ├─ KEDA integration (event-driven scale)│
+   │ └─ Confidential containers (2024)       │
+   ├─────────────────────────────────────────┤
+   │ Azure Container Apps (2024 Focus)       │
+   │ ├─ Serverless containers platform       │
+   │ ├─ Built-in Dapr integration            │
+   │ ├─ Revision-based deployment            │
+   │ └─ Scale-to-zero capabilities           │
+   ├─────────────────────────────────────────┤
+   │ Azure Container Registry (ACR)          │
+   │ ├─ Geo-replication and caching          │
+   │ ├─ Microsoft Defender integration       │
+   │ ├─ Artifact streaming (faster pulls)    │
+   │ └─ Teleport for air-gapped scenarios    │
+   ├─────────────────────────────────────────┤
+   │ Azure DevOps + GitHub Integration       │
+   │ ├─ Native Azure integration             │
+   │ ├─ Enterprise-grade security            │
+   │ └─ Advanced compliance features         │
+   └─────────────────────────────────────────┘
 
 **Your GitHub Actions Integration:**
 
@@ -249,70 +257,12 @@ The Big Three: Deep Dive
    + Strong open-source commitment
    + Clean, intuitive interfaces
 
-**Container Services:**
+**Key Container Services:**
 
-.. code-block:: text
-
-   GCP Container Stack:
-   ┌─────────────────────────────────────┐
-   │ Google Kubernetes Engine (GKE)      │
-   │ ├─ Most advanced Kubernetes service │
-   │ ├─ Autopilot mode (fully managed)   │
-   │ └─ Native Kubernetes experience     │
-   ├─────────────────────────────────────┤
-   │ Cloud Run (Serverless Containers)   │
-   │ ├─ Deploy containers without K8s    │
-   │ ├─ Auto-scaling to zero             │
-   │ └─ Pay per request                  │
-   ├─────────────────────────────────────┤
-   │ Artifact Registry                   │
-   │ ├─ Universal package manager        │
-   │ ├─ Docker, Helm, npm support        │
-   │ └─ Vulnerability scanning           │
-   ├─────────────────────────────────────┤
-   │ Cloud Build (Native CI/CD)          │
-   │ ├─ Build containers in cloud        │
-   │ ├─ Trigger from Git commits         │
-   │ └─ Deploy to GKE automatically      │
-   └─────────────────────────────────────┘
-
-**Your GitHub Actions Integration:**
-
-.. code-block:: yaml
-
-   # .github/workflows/gcp-deploy.yml
-   name: Deploy to Google GKE
-   
-   on:
-     push:
-       branches: [main]
-   
-   jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v3
-         
-         - name: Setup Google Cloud CLI
-           uses: google-github-actions/setup-gcloud@v1
-           with:
-             service_account_key: ${{ secrets.GCP_SA_KEY }}
-             project_id: ${{ env.PROJECT_ID }}
-         
-         - name: Configure Docker for Artifact Registry
-           run: |
-             gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
-         
-         - name: Build and push Docker image
-           run: |
-             docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA .
-             docker push $REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA
-         
-         - name: Deploy to GKE
-           run: |
-             gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
-             kubectl set image deployment/myapp myapp=$REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA
-             kubectl rollout status deployment/myapp
+- **Google Kubernetes Engine (GKE)**: Most advanced managed Kubernetes
+- **Cloud Run**: Serverless containers with auto-scaling to zero  
+- **Artifact Registry**: Universal package manager with vulnerability scanning
+- **Cloud Build**: Native CI/CD with Git integration
 
 **Best For:**
 
@@ -329,6 +279,11 @@ The Big Three: Deep Dive
 - **BigQuery** (Data warehouse)
 - **Cloud Functions** (Serverless)
 - **GKE** (Managed Kubernetes)
+
+.. note::
+   **For Detailed GCP Coverage**: See Chapter 11_cloud_gcp for comprehensive 
+   hands-on tutorials including GKE, Cloud Run, compute services, databases, 
+   networking, security, and cost optimization specific to Google Cloud Platform.
 
 =======================
 Side-by-Side Comparison
@@ -347,9 +302,9 @@ Side-by-Side Comparison
    │ Serverless      │ Fargate     │ ACI         │ Cloud Run   │
    │ CI/CD           │ CodePipeline│ DevOps      │ Cloud Build │
    │ Monitoring      │ CloudWatch  │ Monitor     │ Operations  │
-   │ Auto-scaling    │ Good        │ Good        │ Best       │
-   │ Multi-region    │ Excellent   │ Good        │ Excellent  │
-   │ Documentation   │ Excellent   │ Good        │ Good       │
+   │ Auto-scaling    │ Good        │ Good        │ Best        │
+   │ Multi-region    │ Excellent   │ Good        │ Excellent   │
+   │ Documentation   │ Excellent   │ Good        │ Good        │
    └─────────────────┴─────────────┴─────────────┴─────────────┘
    
    * GKE Autopilot is pay-per-pod
@@ -529,6 +484,64 @@ Getting Started: Free Tiers
    
    # Compare experiences and costs!
 
+==============================
+2024 Cloud Provider Comparison
+==============================
+
+**Head-to-Head Comparison for DevOps Teams:**
+
+.. code-block:: text
+
+   Container Services Maturity (2024):
+   
+   ┌─────────────────┬──────────┬───────────┬─────────────┐
+   │ Feature         │    AWS   │   Azure   │     GCP     │
+   ├─────────────────┼──────────┼───────────┼─────────────┤
+   │ Kubernetes      │ EKS (★★★)│ AKS (★★★★)│ GKE (★★★★★) │
+   │ Serverless      │ Lambda   │ Functions │ Cloud Run   │
+   │ Container Reg.  │ ECR      │ ACR       │ Artifact R. │
+   │ Cost-Effective  │ ★★★      │ ★★★★      │ ★★★         │
+   │ Enterprise      │ ★★★★★    │ ★★★★★     │ ★★★         │
+   │ Innovation      │ ★★★★     │ ★★★       │ ★★★★★       │
+   └─────────────────┴──────────┴───────────┴─────────────┘
+
+**Choosing Your Cloud in 2024:**
+
+.. code-block:: text
+
+   Choose AWS if:
+   ├─ You need the largest service ecosystem
+   ├─ You're building complex, multi-service architectures
+   ├─ You have AWS expertise on the team
+   ├─ You need maximum flexibility and control
+   └─ You're okay with higher complexity/cost
+
+   Choose Azure if:
+   ├─ You use Microsoft technologies (.NET, Office 365)
+   ├─ You need strong hybrid cloud capabilities
+   ├─ You want enterprise-grade security by default
+   ├─ You prefer integrated development tools (Azure DevOps)
+   └─ You want competitive pricing with good features
+
+   Choose GCP if:
+   ├─ You're building AI/ML-heavy applications
+   ├─ You need the best Kubernetes experience
+   ├─ You prioritize developer experience and simplicity
+   ├─ You're working with big data and analytics
+   └─ You want cutting-edge cloud-native services
+
+**Multi-Cloud Reality Check:**
+
+.. code-block:: text
+
+   2024 Enterprise Trends:
+   
+   84% of enterprises use multiple clouds
+   ├─ Average: 2.6 different cloud providers
+   ├─ Primary reasons: Avoid vendor lock-in, best-of-breed
+   ├─ Challenges: Complexity, skills, networking costs
+   └─ Tools helping: Kubernetes, Terraform, service mesh
+
 .. note::
 
    **Your Container Skills Work Everywhere!**
@@ -537,6 +550,11 @@ Getting Started: Free Tiers
    
    - Same `kubectl` commands
    - Same container concepts
+   - Portable CI/CD pipelines
+   - Cloud-agnostic monitoring tools
+
+   **Pro Tip**: Start with one cloud, master the fundamentals, then expand to 
+   multi-cloud as your needs grow. Don't optimize for "what-if" scenarios early on.
    - Same monitoring approaches
    - Same CI/CD patterns
    

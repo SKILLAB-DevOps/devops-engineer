@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.0.8 Cloud Security Essentials &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.0.9 Cloud Cost Management (FinOps)" href="0.9_finops_cost_management.html" />
+    <link rel="prev" title="11.0.7 Cloud Migration Strategy" href="0.7_cloud_migration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.0.8 Cloud Security Essentials</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud/0.8_cloud_security.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cloud-security-essentials">
+<h1>11.0.8 Cloud Security Essentials<a class="headerlink" href="#cloud-security-essentials" title="Link to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Security First</strong>: Moving to the cloud doesn’t automatically make you secure.
+In fact, 95% of cloud security incidents are due to customer misconfigurations, not cloud provider failures.</p>
+</div>
+<section id="the-shared-responsibility-model">
+<h2>The Shared Responsibility Model<a class="headerlink" href="#the-shared-responsibility-model" title="Link to this heading"></a></h2>
+<p><strong>The Most Important Cloud Concept You Need to Understand:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌──────────────────────────────────────────────────────────────┐
+│                    SHARED RESPONSIBILITY                     │
+├──────────────────────────────────────────────────────────────┤
+│  Cloud Provider Secures:        │  You Secure:               │
+│  ├─ Physical data centers       │  ├─ Your application code  │
+│  ├─ Network infrastructure      │  ├─ User access &amp; identity │
+│  ├─ Hypervisor security         │  ├─ Operating system       │
+│  ├─ Service availability        │  ├─ Data encryption        │
+│  └─ Compliance certifications   │  └─ Network configuration  │
+└──────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Real-World Example - Container Security:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AWS EKS Cluster Security:
+
+AWS Manages:                    You Manage:
+├─ Kubernetes control plane    ├─ Node OS patching
+├─ etcd encryption             ├─ Pod security policies
+├─ API server availability     ├─ RBAC configuration
+└─ Network isolation           ├─ Container image security
+                               └─ Application secrets
+</pre></div>
+</div>
+</section>
+<section id="identity-and-access-management-iam">
+<h2>1. Identity and Access Management (IAM)<a class="headerlink" href="#identity-and-access-management-iam" title="Link to this heading"></a></h2>
+<p><strong>The Golden Rule: Principle of Least Privilege</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bad IAM (Security Nightmare):
+├─ Everyone has admin access
+├─ Shared service accounts
+├─ Hard-coded API keys in code
+└─ No access review process
+
+Good IAM (Security Best Practice):
+├─ Role-based access control (RBAC)
+├─ Temporary credentials only
+├─ Multi-factor authentication (MFA)
+└─ Regular access audits
+</pre></div>
+</div>
+<p><strong>Practical IAM for DevOps Teams:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kubernetes RBAC Example</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">developer-role</span>
+<span class="nt">rules</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;apps&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;deployments&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;replicasets&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;watch&quot;</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Read-only in prod</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;pods&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;services&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;watch&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;create&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;update&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>Cloud-Native Identity Solutions:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Modern Identity Stack:
+├─ AWS IAM Roles for Service Accounts (IRSA)
+├─ Azure Active Directory with Workload Identity
+├─ GCP Workload Identity Federation
+├─ HashiCorp Vault for secrets management
+└─ OIDC integration with GitHub Actions
+</pre></div>
+</div>
+</section>
+<section id="data-encryption-strategy">
+<h2>2. Data Encryption Strategy<a class="headerlink" href="#data-encryption-strategy" title="Link to this heading"></a></h2>
+<p><strong>Encryption Everywhere:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Data States and Encryption:
+
+Data at Rest (Stored):
+├─ Database encryption (AES-256)
+├─ File system encryption
+├─ Backup encryption
+└─ Container image encryption
+
+Data in Transit (Moving):
+├─ TLS 1.3 for all connections
+├─ VPN for site-to-site
+├─ Service mesh (mutual TLS)
+└─ API encryption
+
+Data in Use (Processing):
+├─ Application-level encryption
+├─ Confidential computing
+└─ Homomorphic encryption (advanced)
+</pre></div>
+</div>
+<p><strong>Practical Encryption for Containers:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kubernetes Secret with encryption at rest</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database-credentials</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;base64-encoded&gt;</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;base64-encoded&gt;</span>
+<span class="nn">---</span>
+<span class="c1"># Pod with encrypted volumes</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">encrypted-data</span>
+<span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">encrypted-data</span>
+<span class="w">    </span><span class="nt">csi</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secrets-store.csi.k8s.io</span>
+<span class="w">      </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="network-security">
+<h2>3. Network Security<a class="headerlink" href="#network-security" title="Link to this heading"></a></h2>
+<p><strong>Defense in Depth Strategy:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Network Security Layers:
+
+1. Perimeter Security:
+├─ Web Application Firewall (WAF)
+├─ DDoS protection
+└─ CDN with security features
+
+2. Network Segmentation:
+├─ Virtual Private Clouds (VPC)
+├─ Security groups/Network ACLs
+└─ Private subnets for databases
+
+3. Internal Security:
+├─ Service mesh (Istio/Linkerd)
+├─ Network policies in Kubernetes
+└─ Zero-trust networking
+</pre></div>
+</div>
+<p><strong>Container Network Security:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kubernetes Network Policy Example</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deny-all-ingress</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
+<span class="w">  </span><span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">from</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">namespaceSelector</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+</pre></div>
+</div>
+</section>
+<section id="compliance-and-governance">
+<h2>4. Compliance and Governance<a class="headerlink" href="#compliance-and-governance" title="Link to this heading"></a></h2>
+<p><strong>Common Compliance Frameworks:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Enterprise Compliance Requirements:
+
+GDPR (EU Data Protection):
+├─ Data residency controls
+├─ Right to be forgotten
+├─ Consent management
+└─ Breach notification (72 hours)
+
+SOC 2 (Security Controls):
+├─ Security monitoring
+├─ Availability guarantees
+├─ Processing integrity
+└─ Confidentiality measures
+
+HIPAA (Healthcare):
+├─ PHI encryption
+├─ Access controls
+├─ Audit logging
+└─ Business associate agreements
+</pre></div>
+</div>
+<p><strong>Cloud Compliance Tools:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AWS Config + CloudTrail + GuardDuty
+Azure Security Center + Sentinel
+GCP Security Command Center + Cloud Audit Logs
+
+Third-party tools:
+├─ Prisma Cloud (Palo Alto)
+├─ Qualys VMDR
+├─ Rapid7 InsightCloudSec
+└─ Fugue (policy as code)
+</pre></div>
+</div>
+</section>
+<section id="container-security-best-practices">
+<h2>5. Container Security Best Practices<a class="headerlink" href="#container-security-best-practices" title="Link to this heading"></a></h2>
+<p><strong>Secure Container Pipeline:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Secure CI/CD Pipeline:
+
+1. Source Code Security:
+├─ Static analysis (SonarQube, CodeQL)
+├─ Dependency scanning (Snyk, OWASP)
+└─ Secret detection (GitGuardian)
+
+2. Container Image Security:
+├─ Base image scanning (Trivy, Clair)
+├─ Minimal base images (distroless, Alpine)
+├─ Image signing (Cosign, Notary)
+└─ Vulnerability management
+
+3. Runtime Security:
+├─ Runtime threat detection (Falco)
+├─ Pod security standards
+├─ Admission controllers (OPA Gatekeeper)
+└─ Network monitoring
+</pre></div>
+</div>
+<p><strong>Practical Security Checklist:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Secure Pod Security Standard</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secure-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runAsNonRoot</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">      </span><span class="c1"># Don&#39;t run as root</span>
+<span class="w">    </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w">         </span><span class="c1"># Specific user ID</span>
+<span class="w">    </span><span class="nt">fsGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000</span><span class="w">           </span><span class="c1"># File system group</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
+<span class="w">    </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">allowPrivilegeEscalation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">readOnlyRootFilesystem</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">capabilities</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">drop</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;ALL&quot;</span><span class="p p-Indicator">]</span><span class="w">         </span><span class="c1"># Drop all capabilities</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">                 </span><span class="c1"># Resource limits</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500m&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="security-monitoring-and-incident-response">
+<h2>6. Security Monitoring and Incident Response<a class="headerlink" href="#security-monitoring-and-incident-response" title="Link to this heading"></a></h2>
+<p><strong>Security Observability Stack:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Modern Security Monitoring:
+
+Logs + Metrics + Traces + Events:
+├─ Centralized logging (ELK, Splunk)
+├─ Security metrics (Prometheus + custom)
+├─ Distributed tracing (Jaeger, Zipkin)
+└─ Security events (SIEM integration)
+
+Cloud-Native Security Tools:
+├─ Falco (runtime security)
+├─ OPA/Gatekeeper (policy enforcement)
+├─ cert-manager (certificate automation)
+└─ External Secrets Operator
+</pre></div>
+</div>
+<p><strong>Incident Response Playbook:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Security Incident Response (IR):
+
+Phase 1: Detection (1-5 minutes)
+├─ Automated alerts trigger
+├─ Security team notification
+└─ Initial triage
+
+Phase 2: Containment (5-30 minutes)
+├─ Isolate affected workloads
+├─ Network segmentation
+└─ Preserve evidence
+
+Phase 3: Investigation (30 minutes - hours)
+├─ Forensic analysis
+├─ Root cause analysis
+└─ Impact assessment
+
+Phase 4: Recovery (hours - days)
+├─ System restoration
+├─ Security improvements
+└─ Lessons learned
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Key Insight</strong>: Cloud security is not a destination, it’s a continuous journey.
+Implement security controls gradually, automate where possible, and always assume
+you will be breached - plan your defense accordingly.</p>
+</div>
+</section>
+<section id="security-resources">
+<h2>Security Resources<a class="headerlink" href="#security-resources" title="Link to this heading"></a></h2>
+<p><strong>Essential Reading:</strong></p>
+<ul class="simple">
+<li><p>NIST Cybersecurity Framework</p></li>
+<li><p>CIS Controls for Cloud Security</p></li>
+<li><p>OWASP Cloud Security Project</p></li>
+<li><p>Kubernetes Security Best Practices</p></li>
+</ul>
+<p><strong>Tools to Explore:</strong></p>
+<ul class="simple">
+<li><p><strong>Security Scanning</strong>: Trivy, Grype, Clair</p></li>
+<li><p><strong>Policy as Code</strong>: Open Policy Agent, Falco</p></li>
+<li><p><strong>Secret Management</strong>: HashiCorp Vault, AWS Secrets Manager</p></li>
+<li><p><strong>Security Monitoring</strong>: Prometheus, Grafana, Falco</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0.7_cloud_migration.html" class="btn btn-neutral float-left" title="11.0.7 Cloud Migration Strategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="0.9_finops_cost_management.html" class="btn btn-neutral float-right" title="11.0.9 Cloud Cost Management (FinOps)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

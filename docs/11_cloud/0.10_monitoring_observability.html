@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.0.10 Cloud Monitoring &amp; Observability &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.0 Introduction to Google Cloud Platform" href="../11_cloud_gcp/0_introduction.html" />
+    <link rel="prev" title="11.0.9 Cloud Cost Management (FinOps)" href="0.9_finops_cost_management.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.0.10 Cloud Monitoring &amp; Observability</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud/0.10_monitoring_observability.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cloud-monitoring-observability">
+<h1>11.0.10 Cloud Monitoring &amp; Observability<a class="headerlink" href="#cloud-monitoring-observability" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Modern Reality</strong>: “You can’t manage what you don’t measure” - but in cloud
+environments, the complexity of distributed systems makes monitoring essential, not optional.</p>
+</div>
+<section id="observability-vs-monitoring">
+<h2>Observability vs. Monitoring<a class="headerlink" href="#observability-vs-monitoring" title="Link to this heading"></a></h2>
+<p><strong>Understanding the Difference:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traditional Monitoring:           Modern Observability:
+├─ &quot;Is the system up?&quot;           ├─ &quot;Why is the system behaving this way?&quot;
+├─ Predefined alerts             ├─ Exploratory investigation
+├─ Known failure modes           ├─ Unknown failure discovery
+└─ System-centric view           └─ User experience focus
+</pre></div>
+</div>
+<p><strong>The Three Pillars of Observability:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1. METRICS (What happened?)
+├─ Quantitative measurements over time
+├─ CPU usage, memory, request rate, latency
+├─ Perfect for alerts and dashboards
+└─ Example: &quot;API response time increased to 2s&quot;
+
+2. LOGS (What exactly happened?)
+├─ Discrete events with context
+├─ Error messages, debug info, audit trails
+├─ Perfect for debugging and forensics
+└─ Example: &quot;User john@company.com login failed: invalid password&quot;
+
+3. TRACES (How did it flow?)
+├─ Request journey through distributed systems
+├─ Microservice interactions and dependencies
+├─ Perfect for understanding complex flows
+└─ Example: &quot;Login request: API → Auth Service → Database (2.1s total)&quot;
+</pre></div>
+</div>
+</section>
+<section id="cloud-native-observability-architecture">
+<h2>Cloud-Native Observability Architecture<a class="headerlink" href="#cloud-native-observability-architecture" title="Link to this heading"></a></h2>
+<p><strong>Modern Observability Stack (2024):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Collection Layer:
+├─ Prometheus (metrics collection)
+├─ Fluent Bit/Fluentd (log aggregation)
+├─ OpenTelemetry (traces and metrics)
+└─ Jaeger/Zipkin (distributed tracing)
+
+Storage Layer:
+├─ Prometheus/Thanos (metrics storage)
+├─ Elasticsearch/Loki (log storage)
+├─ Jaeger/Tempo (trace storage)
+└─ Object Storage (long-term retention)
+
+Visualization Layer:
+├─ Grafana (dashboards and alerts)
+├─ Kibana (log analysis)
+├─ Jaeger UI (trace visualization)
+└─ Custom dashboards
+</pre></div>
+</div>
+</section>
+<section id="metrics-and-performance-monitoring">
+<h2>1. Metrics and Performance Monitoring<a class="headerlink" href="#metrics-and-performance-monitoring" title="Link to this heading"></a></h2>
+<p><strong>The Golden Signals (Google SRE):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Four Key Metrics for Any Service:
+
+1. LATENCY
+├─ How long requests take
+├─ 95th/99th percentile more important than average
+├─ Example: &quot;95% of requests complete under 200ms&quot;
+└─ Alert: p95 latency &gt; 500ms for 5 minutes
+
+2. TRAFFIC
+├─ How much demand on your system
+├─ Requests per second, transactions per minute
+├─ Example: &quot;Handling 1,000 requests per second&quot;
+└─ Alert: Traffic drops by 50% suddenly
+
+3. ERRORS
+├─ Rate of failed requests
+├─ HTTP 5xx errors, exceptions, timeouts
+├─ Example: &quot;Error rate is 0.1% (1 in 1000 requests)&quot;
+└─ Alert: Error rate &gt; 1% for 2 minutes
+
+4. SATURATION
+├─ How &quot;full&quot; your service is
+├─ CPU, memory, disk usage, queue depth
+├─ Example: &quot;CPU at 70%, memory at 60%&quot;
+└─ Alert: CPU &gt; 90% for 10 minutes
+</pre></div>
+</div>
+</section>
+<section id="logging-and-log-management">
+<h2>2. Logging and Log Management<a class="headerlink" href="#logging-and-log-management" title="Link to this heading"></a></h2>
+<p><strong>Structured Logging Best Practices:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="c1">// Good: Structured JSON logs</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-10-28T10:15:30Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;service&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user-service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123def456&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_12345&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;login_attempt&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invalid_password&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ip_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.100&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;user_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0...&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Bad: Unstructured text logs</span>
+<span class="s2">&quot;2024-10-28 10:15:30 ERROR: User user_12345 login failed from 192.168.1.100&quot;</span>
+</pre></div>
+</div>
+<p><strong>Log Aggregation Strategy:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Modern Logging Pipeline:
+
+Application → Container Logs → Log Shipper → Storage → Analysis
+
+├─ App writes to stdout/stderr
+├─ Kubernetes captures container logs
+├─ Fluent Bit/Fluentd ships to central storage
+├─ Elasticsearch/Loki stores and indexes
+└─ Kibana/Grafana provides search and visualization
+
+Performance Considerations:
+├─ Use structured logging (JSON)
+├─ Implement log sampling for high-volume services
+├─ Set appropriate log retention policies
+├─ Use log levels effectively (DEBUG, INFO, WARN, ERROR)
+└─ Avoid logging sensitive information (PII, secrets)
+</pre></div>
+</div>
+</section>
+<section id="distributed-tracing">
+<h2>3. Distributed Tracing<a class="headerlink" href="#distributed-tracing" title="Link to this heading"></a></h2>
+<p><strong>Understanding Request Flows:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Monolithic Application:         Microservices Application:
+
+User Request                    User Request
+     ↓                               ↓
+Single Application              API Gateway
+     ↓                               ↓
+Database                        User Service → Auth Service
+     ↓                               ↓              ↓
+Response                        Payment Service ← Database
+                                     ↓              ↓
+                                Notification    Cache
+                                     ↓
+                                Response
+
+Easy to debug                   Hard to debug without tracing
+</pre></div>
+</div>
+<p><strong>OpenTelemetry Implementation:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python microservice with OpenTelemetry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry.exporter.jaeger.thrift</span><span class="w"> </span><span class="kn">import</span> <span class="n">JaegerExporter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry.sdk.trace</span><span class="w"> </span><span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry.sdk.trace.export</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchSpanProcessor</span>
+
+<span class="c1"># Configure tracing</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">jaeger_exporter</span> <span class="o">=</span> <span class="n">JaegerExporter</span><span class="p">(</span>
+    <span class="n">agent_host_name</span><span class="o">=</span><span class="s2">&quot;jaeger&quot;</span><span class="p">,</span>
+    <span class="n">agent_port</span><span class="o">=</span><span class="mi">6831</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">span_processor</span> <span class="o">=</span> <span class="n">BatchSpanProcessor</span><span class="p">(</span><span class="n">jaeger_exporter</span><span class="p">)</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span><span class="n">span_processor</span><span class="p">)</span>
+
+<span class="c1"># Use tracing in your code</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/users/&lt;user_id&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;get_user&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">span</span><span class="p">:</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;user.id&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+
+        <span class="c1"># Call to auth service</span>
+        <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;auth_check&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">auth_span</span><span class="p">:</span>
+            <span class="n">auth_result</span> <span class="o">=</span> <span class="n">auth_service</span><span class="o">.</span><span class="n">verify_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+            <span class="n">auth_span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;auth.result&quot;</span><span class="p">,</span> <span class="n">auth_result</span><span class="p">)</span>
+
+        <span class="c1"># Call to database</span>
+        <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;database_query&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">db_span</span><span class="p">:</span>
+            <span class="n">user_data</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+            <span class="n">db_span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.statement&quot;</span><span class="p">,</span> <span class="s2">&quot;SELECT * FROM users WHERE id = ?&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">user_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Trace Analysis Examples:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Trace Analysis Insights:
+
+Performance Bottlenecks:
+├─ &quot;Database queries taking 80% of total request time&quot;
+├─ &quot;Auth service adds 500ms latency to every request&quot;
+└─ &quot;Network calls between services are inefficient&quot;
+
+Error Root Cause:
+├─ &quot;Payment service timeout causing checkout failures&quot;
+├─ &quot;Auth service returns 401, but user session is valid&quot;
+└─ &quot;Database connection pool exhausted under load&quot;
+
+Dependency Mapping:
+├─ &quot;User service depends on 6 other services&quot;
+├─ &quot;Critical path involves 4 network hops&quot;
+└─ &quot;Service mesh adds 50ms overhead per hop&quot;
+</pre></div>
+</div>
+</section>
+<section id="service-level-objectives-slos">
+<h2>4. Service Level Objectives (SLOs)<a class="headerlink" href="#service-level-objectives-slos" title="Link to this heading"></a></h2>
+<p><strong>SLI/SLO/SLA Framework:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Service Level Indicator (SLI):
+├─ &quot;What you measure&quot;
+├─ Example: &quot;Percentage of HTTP requests that return 2xx status&quot;
+└─ Must be measurable and meaningful
+
+Service Level Objective (SLO):
+├─ &quot;What you promise internally&quot;
+├─ Example: &quot;99.9% of requests will return 2xx status&quot;
+└─ Based on business requirements
+
+Service Level Agreement (SLA):
+├─ &quot;What you promise customers&quot;
+├─ Example: &quot;99.5% uptime or we provide credits&quot;
+└─ Should be more conservative than SLOs
+</pre></div>
+</div>
+<p><strong>Practical SLO Implementation:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prometheus recording rules for SLOs</span>
+<span class="nt">groups</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slo_rules</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Success rate SLI</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">record</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http_request_rate_5m</span>
+<span class="w">    </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">sum(rate(http_requests_total[5m])) by (service)</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">record</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http_success_rate_5m</span>
+<span class="w">    </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">sum(rate(http_requests_total{status=~&quot;2..&quot;}[5m])) by (service) /</span>
+<span class="w">      </span><span class="no">sum(rate(http_requests_total[5m])) by (service)</span>
+
+<span class="w">  </span><span class="c1"># Latency SLI (95th percentile)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">record</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http_latency_p95_5m</span>
+<span class="w">    </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">histogram_quantile(0.95,</span>
+<span class="w">        </span><span class="no">sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le)</span>
+<span class="w">      </span><span class="no">)</span>
+</pre></div>
+</div>
+<p><strong>Error Budget Management:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error Budget Calculation:
+
+SLO: 99.9% uptime (43.2 minutes downtime/month allowed)
+
+Week 1: 10 minutes downtime (23% of monthly budget used)
+Week 2: 5 minutes downtime (12% additional, 35% total)
+Week 3: 0 minutes downtime (35% total)
+Week 4: 15 minutes downtime (50% total used, 85% total)
+
+Status: ⚠️  Only 15% error budget remaining
+Action: Slow down feature releases, focus on reliability
+</pre></div>
+</div>
+</section>
+<section id="alerting-best-practices">
+<h2>5. Alerting Best Practices<a class="headerlink" href="#alerting-best-practices" title="Link to this heading"></a></h2>
+<p><strong>Alert Design Philosophy:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Good Alerts:                    Bad Alerts:
+├─ Actionable (can be fixed)    ├─ Informational only
+├─ User-impact focused          ├─ System-metric focused
+├─ Context-aware                ├─ Threshold-based only
+└─ Include runbook links        └─ Generic error messages
+</pre></div>
+</div>
+<p><strong>Multi-Level Alert Strategy:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prometheus alerting rules</span>
+<span class="nt">groups</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_alerts</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Level 1: User-impacting issues (Page immediately)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceDown</span>
+<span class="w">    </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">up{job=&quot;web-service&quot;} == 0</span>
+<span class="w">    </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">critical</span>
+<span class="w">      </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oncall</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Service</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.instance</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">down&quot;</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Service</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">been</span><span class="nv"> </span><span class="s">down</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">more</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">minute&quot;</span>
+<span class="w">      </span><span class="nt">runbook_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://wiki.company.com/runbooks/service-down&quot;</span>
+
+<span class="w">  </span><span class="c1"># Level 2: Performance degradation (Page during business hours)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HighLatency</span>
+<span class="w">    </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http_latency_p95_5m &gt; 1.0</span>
+<span class="w">    </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
+<span class="w">      </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oncall</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High</span><span class="nv"> </span><span class="s">latency</span><span class="nv"> </span><span class="s">detected&quot;</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;95th</span><span class="nv"> </span><span class="s">percentile</span><span class="nv"> </span><span class="s">latency</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$value</span><span class="nv"> </span><span class="s">}}s&quot;</span>
+
+<span class="w">  </span><span class="c1"># Level 3: Early warning (Slack notification)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HighErrorRate</span>
+<span class="w">    </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http_success_rate_5m &lt; 0.99</span>
+<span class="w">    </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2m</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
+<span class="w">      </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Error</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">normal&quot;</span>
+</pre></div>
+</div>
+<p><strong>Alert Fatigue Prevention:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Alert Management Best Practices:
+
+1. Alert on Symptoms, Not Causes:
+├─ Good: &quot;User login success rate dropped to 95%&quot;
+└─ Bad: &quot;Database CPU is at 80%&quot;
+
+2. Use Progressive Alert Severity:
+├─ INFO: Early warning, no action needed
+├─ WARNING: Investigation needed within hours
+├─ CRITICAL: Immediate action required
+└─ Page only for CRITICAL alerts
+
+3. Include Context and Actions:
+├─ What is happening?
+├─ What is the business impact?
+├─ What should I do first?
+└─ Where can I find more information?
+</pre></div>
+</div>
+</section>
+<section id="observability-in-practice">
+<h2>6. Observability in Practice<a class="headerlink" href="#observability-in-practice" title="Link to this heading"></a></h2>
+<p><strong>Complete Observability Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production-ready observability deployment</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observability-config</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Comprehensive monitoring configuration</span>
+<span class="w">  </span><span class="nt">monitoring_strategy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">Golden Signals Dashboard:</span>
+<span class="w">    </span><span class="no">├─ Request rate and success rate</span>
+<span class="w">    </span><span class="no">├─ P50, P95, P99 latency metrics</span>
+<span class="w">    </span><span class="no">├─ Error rate by service and endpoint</span>
+<span class="w">    </span><span class="no">└─ Resource utilization trends</span>
+
+<span class="w">    </span><span class="no">Alert Routing:</span>
+<span class="w">    </span><span class="no">├─ Critical → PagerDuty → Oncall engineer</span>
+<span class="w">    </span><span class="no">├─ Warning → Slack → Team channel</span>
+<span class="w">    </span><span class="no">├─ Info → Dashboard → Daily review</span>
+<span class="w">    </span><span class="no">└─ SLO violations → Weekly SLO review meeting</span>
+
+<span class="w">    </span><span class="no">Incident Response:</span>
+<span class="w">    </span><span class="no">├─ Automated runbooks for common issues</span>
+<span class="w">    </span><span class="no">├─ Quick access to logs and traces</span>
+<span class="w">    </span><span class="no">├─ Escalation procedures documented</span>
+<span class="w">    </span><span class="no">└─ Post-incident review process</span>
+</pre></div>
+</div>
+<p><strong>Observability ROI and Benefits:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Business Impact of Good Observability:
+
+Faster Issue Resolution:
+├─ MTTR (Mean Time To Recovery) reduced from hours to minutes
+├─ Root cause analysis improved by 10x
+└─ Proactive issue prevention
+
+Better User Experience:
+├─ 99.9% → 99.99% uptime improvement
+├─ Performance optimization based on real data
+└─ Customer satisfaction improvements
+
+Development Velocity:
+├─ Confident deployments with rollback triggers
+├─ A/B testing and feature flag insights
+└─ Data-driven architecture decisions
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Key Insight</strong>: Observability is not just about monitoring - it’s about
+building systems that can be understood, debugged, and optimized in
+production. Invest in observability early; it pays dividends as you scale.</p>
+</div>
+</section>
+<section id="observability-checklist">
+<h2>Observability Checklist<a class="headerlink" href="#observability-checklist" title="Link to this heading"></a></h2>
+<p><strong>Production Readiness:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+ Golden Signals implemented (Latency, Traffic, Errors, Saturation)
++ Structured logging with correlation IDs
++ Distributed tracing across all services
++ SLOs defined and measured for critical user journeys
++ Alerts that wake you up only when users are impacted
++ Runbooks linked from all alerts
++ Dashboards accessible to entire team
++ Log retention policy based on compliance needs
++ Monitoring of monitoring (meta-monitoring)
++ Regular review and tuning of alert thresholds
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0.9_finops_cost_management.html" class="btn btn-neutral float-left" title="11.0.9 Cloud Cost Management (FinOps)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../11_cloud_gcp/0_introduction.html" class="btn btn-neutral float-right" title="11.0 Introduction to Google Cloud Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

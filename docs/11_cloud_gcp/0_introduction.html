@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="11.1 Identity and Access Management (IAM)" href="1_iam.html" />
-    <link rel="prev" title="TODO" href="../11_cloud/TODO.html" /> 
+    <link rel="prev" title="11.0.10 Cloud Monitoring &amp; Observability" href="../11_cloud/0.10_monitoring_observability.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -144,14 +144,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">11.0 Introduction to Google Cloud Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -186,404 +192,120 @@
 <h1>11.0 Introduction to Google Cloud Platform<a class="headerlink" href="#introduction-to-google-cloud-platform" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Google Cloud Platform (GCP) is a suite of cloud computing services offered by Google. It runs on the same infrastructure that Google uses internally for its end-user products like Google Search, Gmail, YouTube, and Google Drive. GCP provides a wide range of services for computing, storage, networking, big data, machine learning, and more.</p>
+<p><strong>Prerequisites</strong>: This chapter assumes familiarity with basic cloud computing concepts
+covered in Chapter 11_cloud (Cloud Fundamentals). If you’re new to cloud computing,
+start with the main cloud chapter to understand IaaS/PaaS/SaaS, deployment models,
+and general cloud concepts before diving into GCP-specific implementations.</p>
 </div>
-<section id="what-is-google-cloud-platform">
-<h2>What is Google Cloud Platform?<a class="headerlink" href="#what-is-google-cloud-platform" title="Link to this heading"></a></h2>
-<p>Google Cloud Platform is one of the leading cloud service providers, alongside Amazon Web Services (AWS) and Microsoft Azure. Launched in 2008, GCP has grown to become a comprehensive cloud platform offering over 100 products and services.</p>
+<section id="what-is-google-cloud-platform-gcp">
+<h2>What is Google Cloud Platform (GCP)?<a class="headerlink" href="#what-is-google-cloud-platform-gcp" title="Link to this heading"></a></h2>
+<p>Google Cloud Platform (GCP) is Google’s comprehensive cloud computing platform, launched in 2008. It runs on the same infrastructure that powers Google Search, Gmail, YouTube, and Google Drive. As the 3rd largest cloud provider globally, GCP offers over 100 services for computing, storage, networking, data analytics, and machine learning.</p>
 <p><strong>Key Characteristics:</strong></p>
-<ul class="simple">
-<li><p><strong>Global Infrastructure</strong>: 40+ regions and 121+ zones worldwide</p></li>
-<li><p><strong>Google’s Network</strong>: Private fiber-optic network connecting data centers</p></li>
-<li><p><strong>Innovation Focus</strong>: Leading in AI/ML, big data, and Kubernetes</p></li>
-<li><p><strong>Security First</strong>: Built-in security at every layer</p></li>
-<li><p><strong>Sustainability</strong>: Carbon-neutral since 2007, aiming for 24/7 carbon-free energy by 2030</p></li>
-<li><p><strong>Open Source</strong>: Strong commitment to open-source technologies</p></li>
-</ul>
-</section>
-<section id="why-choose-gcp">
-<h2>Why Choose GCP?<a class="headerlink" href="#why-choose-gcp" title="Link to this heading"></a></h2>
-<p><strong>1. Performance and Speed:</strong></p>
-<ul class="simple">
-<li><p><strong>Premium Network</strong>: Google’s private global network offers lower latency</p></li>
-<li><p><strong>Live Migration</strong>: VMs can be live-migrated during maintenance with zero downtime</p></li>
-<li><p><strong>Fast Innovation</strong>: Regular updates with cutting-edge features</p></li>
-<li><p><strong>Global Load Balancing</strong>: Automatically routes traffic to the nearest available resource</p></li>
-</ul>
-<p><strong>2. Advanced Data and AI/ML Capabilities:</strong></p>
-<ul class="simple">
-<li><p><strong>BigQuery</strong>: Serverless data warehouse for analytics at scale</p></li>
-<li><p><strong>TensorFlow</strong>: Industry-leading machine learning framework</p></li>
-<li><p><strong>Vertex AI</strong>: Unified AI platform for building and deploying ML models</p></li>
-<li><p><strong>Natural Language Processing</strong>: Pre-trained models for text analysis</p></li>
-<li><p><strong>Computer Vision</strong>: Image and video analysis APIs</p></li>
-</ul>
-<p><strong>3. Kubernetes Expertise:</strong></p>
-<ul class="simple">
-<li><p><strong>GKE (Google Kubernetes Engine)</strong>: Managed Kubernetes service</p></li>
-<li><p><strong>Kubernetes Origins</strong>: Google created Kubernetes based on internal Borg system</p></li>
-<li><p><strong>Autopilot Mode</strong>: Fully managed, hands-off Kubernetes</p></li>
-<li><p><strong>Best Practices</strong>: Built-in security and operational best practices</p></li>
-</ul>
-<p><strong>4. Pricing and Cost Optimization:</strong></p>
-<ul class="simple">
-<li><p><strong>Per-Second Billing</strong>: Pay only for what you use (after first minute)</p></li>
-<li><p><strong>Sustained Use Discounts</strong>: Automatic discounts for long-running workloads</p></li>
-<li><p><strong>Committed Use Discounts</strong>: Save up to 57% with 1 or 3-year commitments</p></li>
-<li><p><strong>Preemptible/Spot VMs</strong>: Up to 80% discount for fault-tolerant workloads</p></li>
-<li><p><strong>Transparent Pricing</strong>: Clear, straightforward pricing model</p></li>
-</ul>
-<p><strong>5. Developer Experience:</strong></p>
-<ul class="simple">
-<li><p><strong>Cloud Shell</strong>: Browser-based command line with pre-installed tools</p></li>
-<li><p><strong>Cloud Code</strong>: IDE extensions for VS Code and IntelliJ</p></li>
-<li><p><strong>Infrastructure as Code</strong>: Support for Terraform, Deployment Manager</p></li>
-<li><p><strong>APIs and SDKs</strong>: Comprehensive APIs for all services in multiple languages</p></li>
-</ul>
-<p><strong>6. Security and Compliance:</strong></p>
-<ul class="simple">
-<li><p><strong>Encryption by Default</strong>: Data encrypted at rest and in transit</p></li>
-<li><p><strong>Zero Trust Architecture</strong>: BeyondCorp security model</p></li>
-<li><p><strong>Compliance Certifications</strong>: GDPR, HIPAA, PCI-DSS, SOC 2/3, ISO 27001</p></li>
-<li><p><strong>Security Command Center</strong>: Centralized security and risk management</p></li>
-<li><p><strong>Identity-Aware Proxy</strong>: Context-aware access to applications</p></li>
-</ul>
-</section>
-<section id="gcp-vs-aws-vs-azure">
-<h2>GCP vs AWS vs Azure<a class="headerlink" href="#gcp-vs-aws-vs-azure" title="Link to this heading"></a></h2>
-<p><strong>Quick Comparison:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Feature</p></th>
-<th class="head"><p>GCP</p></th>
-<th class="head"><p>AWS</p></th>
-<th class="head"><p>Azure</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Market Position</strong></p></td>
-<td><p>3rd largest</p></td>
-<td><p>Market leader</p></td>
-<td><p>2nd largest</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Launched</strong></p></td>
-<td><p>2008</p></td>
-<td><p>2006</p></td>
-<td><p>2010</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Strengths</strong></p></td>
-<td><p>AI/ML, Big Data,
-Kubernetes</p></td>
-<td><p>Breadth of services,
-Mature ecosystem</p></td>
-<td><p>Enterprise integration,
-Hybrid cloud</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Pricing</strong></p></td>
-<td><p>Per-second billing,
-Automatic discounts</p></td>
-<td><p>Complex pricing,
-Reserved instances</p></td>
-<td><p>Per-minute billing,
-Hybrid benefits</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Network</strong></p></td>
-<td><p>Private global network</p></td>
-<td><p>Public internet-based</p></td>
-<td><p>ExpressRoute available</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Data Analytics</strong></p></td>
-<td><p>BigQuery (serverless)</p></td>
-<td><p>Redshift, Athena</p></td>
-<td><p>Synapse Analytics</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Kubernetes</strong></p></td>
-<td><p>GKE (native)</p></td>
-<td><p>EKS</p></td>
-<td><p>AKS</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Serverless</strong></p></td>
-<td><p>Cloud Run, Functions</p></td>
-<td><p>Lambda, Fargate</p></td>
-<td><p>Functions, Container
-Apps</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Best For</strong></p></td>
-<td><p>Startups, data-driven
-companies, ML projects</p></td>
-<td><p>Large enterprises,
-Broad requirements</p></td>
-<td><p>Microsoft shops,
-Hybrid scenarios</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="gcp-global-infrastructure">
-<h2>GCP Global Infrastructure<a class="headerlink" href="#gcp-global-infrastructure" title="Link to this heading"></a></h2>
-<p><strong>Regions and Zones:</strong></p>
-<ul class="simple">
-<li><p><strong>Region</strong>: Independent geographic area (e.g., us-central1, europe-west1)
-- Contains multiple zones
-- Each region isolated from other regions
-- Provides high availability and fault tolerance</p></li>
-<li><p><strong>Zone</strong>: Deployment area within a region (e.g., us-central1-a, us-central1-b)
-- Single failure domain
-- Low-latency network connection to other zones in same region
-- Resources in different zones isolated from each other</p></li>
-</ul>
-<p><strong>Network Architecture:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Google&#39;s Private Network
-├── Edge Points of Presence (100+)
-│   ├── Cloud CDN
-│   └── Load Balancing Entry Points
-│
-├── Regional Networks (40+ regions)
-│   ├── us-central1 (Iowa)
-│   ├── us-east1 (South Carolina)
-│   ├── us-west1 (Oregon)
-│   ├── europe-west1 (Belgium)
-│   ├── asia-southeast1 (Singapore)
-│   └── ... more regions
-│
-└── Private Fiber-Optic Links
-    └── Petabit-scale backbone
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Global Reach:    40+ regions, 121+ zones worldwide
+Network:         Private fiber-optic global backbone
+Strengths:       AI/ML, BigQuery, Kubernetes, pricing
+Security:        Encryption by default, Zero Trust model
+Sustainability:  Carbon-neutral, renewable energy powered
 </pre></div>
 </div>
-<p><strong>Key Regions:</strong></p>
-<ul class="simple">
-<li><p><strong>Americas</strong>: US (multiple), Canada, Brazil, Chile</p></li>
-<li><p><strong>Europe</strong>: Belgium, Finland, UK, Germany, France, Netherlands</p></li>
-<li><p><strong>Asia Pacific</strong>: Singapore, Taiwan, Japan, Australia, India</p></li>
-<li><p><strong>Middle East</strong>: Israel</p></li>
-<li><p><strong>Africa</strong>: South Africa</p></li>
-</ul>
 </section>
-<section id="core-gcp-services-overview">
-<h2>Core GCP Services Overview<a class="headerlink" href="#core-gcp-services-overview" title="Link to this heading"></a></h2>
-<p><strong>Compute Services:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Compute Engine</strong></p></td>
-<td><p>Virtual machines (IaaS)</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Google Kubernetes</strong>
-<strong>Engine (GKE)</strong></p></td>
-<td><p>Managed Kubernetes clusters</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud Run</strong></p></td>
-<td><p>Serverless containers</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Functions</strong></p></td>
-<td><p>Event-driven serverless functions</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>App Engine</strong></p></td>
-<td><p>Fully managed application platform</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Storage Services:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Cloud Storage</strong></p></td>
-<td><p>Object storage (like AWS S3)</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Persistent Disk</strong></p></td>
-<td><p>Block storage for VMs</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Filestore</strong></p></td>
-<td><p>Managed NFS file storage</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud SQL</strong></p></td>
-<td><p>Managed relational databases
-(MySQL, PostgreSQL, SQL Server)</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud Spanner</strong></p></td>
-<td><p>Globally distributed database</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Firestore</strong></p></td>
-<td><p>NoSQL document database</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Bigtable</strong></p></td>
-<td><p>NoSQL wide-column database</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Networking Services:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>VPC</strong></p></td>
-<td><p>Virtual Private Cloud networking</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Load Balancing</strong></p></td>
-<td><p>Global, scalable load balancing</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud CDN</strong></p></td>
-<td><p>Content delivery network</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud DNS</strong></p></td>
-<td><p>Managed DNS service</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud NAT</strong></p></td>
-<td><p>Network address translation</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud VPN</strong></p></td>
-<td><p>VPN connectivity</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud Interconnect</strong></p></td>
-<td><p>Dedicated network connections</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Big Data and Analytics:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>BigQuery</strong></p></td>
-<td><p>Serverless data warehouse</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Dataflow</strong></p></td>
-<td><p>Stream and batch data processing</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Dataproc</strong></p></td>
-<td><p>Managed Hadoop and Spark</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Pub/Sub</strong></p></td>
-<td><p>Message queue and event streaming</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Data Fusion</strong></p></td>
-<td><p>Visual data integration</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>AI and Machine Learning:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Vertex AI</strong></p></td>
-<td><p>Unified ML platform</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>AutoML</strong></p></td>
-<td><p>Custom ML models without code</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Vision AI</strong></p></td>
-<td><p>Image recognition and analysis</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Natural Language AI</strong></p></td>
-<td><p>Text analysis and understanding</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Translation AI</strong></p></td>
-<td><p>Language translation</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Speech-to-Text</strong></p></td>
-<td><p>Audio transcription</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Developer Tools:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Cloud Build</strong></p></td>
-<td><p>CI/CD platform</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Source</strong>
-<strong>Repositories</strong></p></td>
-<td><p>Git repository hosting</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Artifact Registry</strong></p></td>
-<td><p>Container and package registry</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Deploy</strong></p></td>
-<td><p>Continuous delivery</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Management and Monitoring:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Cloud Logging</strong></p></td>
-<td><p>Centralized logging</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Monitoring</strong></p></td>
-<td><p>Infrastructure and application
-monitoring</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud Trace</strong></p></td>
-<td><p>Distributed tracing</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Profiler</strong></p></td>
-<td><p>Application performance profiling</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Error Reporting</strong></p></td>
-<td><p>Real-time error monitoring</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Security and Identity:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>IAM</strong></p></td>
-<td><p>Identity and access management</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Cloud Identity</strong></p></td>
-<td><p>Identity as a service</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Secret Manager</strong></p></td>
-<td><p>Secure secret storage</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Security Command</strong>
-<strong>Center</strong></p></td>
-<td><p>Security and risk management</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Cloud KMS</strong></p></td>
-<td><p>Key management service</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Binary Authorization</strong></p></td>
-<td><p>Deploy-time security enforcement</p></td>
-</tr>
-</tbody>
-</table>
+<section id="gcp-s-key-advantages">
+<h2>GCP’s Key Advantages<a class="headerlink" href="#gcp-s-key-advantages" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Why Choose GCP?
+
+Innovation Leader:        AI/ML, BigQuery, Kubernetes expertise
+Cost-Effective:          Per-second billing, automatic discounts
+Global Network:          Private fiber network, low latency
+Security-First:          Encryption by default, Zero Trust
+Developer-Friendly:      Clean UI, excellent tooling, APIs
+Sustainable:            Carbon-neutral, renewable energy focus
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For Detailed Comparison</strong>: See Chapter 11.11 (Platform Overview) for comprehensive
+service details and comparisons with AWS/Azure.</p>
+</div>
+</section>
+<section id="chapter-navigation-guide">
+<h2>Chapter Navigation Guide<a class="headerlink" href="#chapter-navigation-guide" title="Link to this heading"></a></h2>
+<p>This GCP chapter is organized for progressive learning:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Learning Path:
+
+Start Here:
+├─ 11.0 Introduction (this chapter) - GCP basics &amp; setup
+├─ 11.1 Identity &amp; Access Management (IAM)
+├─ 11.2 Networking &amp; VPC
+├─ 11.3 Compute Services Overview - Service comparison
+├─ 11.4 Compute Engine (Virtual Machines) - Detailed hands-on
+├─ 11.5 Cloud Storage
+├─ 11.6 Serverless (Cloud Functions &amp; Cloud Run)
+├─ 11.7 Google Kubernetes Engine (GKE)
+├─ 11.8 Security Best Practices
+├─ 11.9 FinOps &amp; Cost Optimization
+└─ 11.10 Database Services - Comprehensive overview
+
+Reference Materials:
+└─ 11.11 Platform Overview - Complete service catalog
+</pre></div>
+</div>
 </section>
 <section id="getting-started-with-gcp">
 <h2>Getting Started with GCP<a class="headerlink" href="#getting-started-with-gcp" title="Link to this heading"></a></h2>
+<p><strong>Quick Setup Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Create Account</strong>: Sign up at <a class="reference external" href="https://cloud.google.com">https://cloud.google.com</a></p></li>
+<li><p><strong>Verify Identity</strong>: Provide credit card (won’t be charged during free trial)</p></li>
+<li><p><strong>Create First Project</strong>: Projects organize all your GCP resources</p></li>
+<li><p><strong>Enable APIs</strong>: Activate the services you need</p></li>
+<li><p><strong>Set Up Billing</strong>: Monitor usage with budget alerts</p></li>
+</ol>
+<p><strong>Essential Tools:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GCP Management Options:
+├─ Cloud Console (Web UI) - Beginner-friendly interface
+├─ Cloud Shell - Browser-based terminal with gcloud CLI
+├─ gcloud CLI - Command-line interface for automation
+├─ Cloud Mobile App - Monitor on the go
+└─ APIs &amp; SDKs - Programmatic access
+</pre></div>
+</div>
+<p><strong>Your First 30 Minutes:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Open Cloud Shell (in web console)</span>
+<span class="c1"># 2. Check your project</span>
+gcloud<span class="w"> </span>config<span class="w"> </span>get-value<span class="w"> </span>project
+
+<span class="c1"># 3. List available regions</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>regions<span class="w"> </span>list
+
+<span class="c1"># 4. Create a simple storage bucket</span>
+gsutil<span class="w"> </span>mb<span class="w"> </span>gs://my-unique-bucket-name-<span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span>
+
+<span class="c1"># 5. Upload a file</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello GCP!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>hello.txt
+gsutil<span class="w"> </span>cp<span class="w"> </span>hello.txt<span class="w"> </span>gs://my-unique-bucket-name-*/
+</pre></div>
+</div>
+</section>
+<section id="essential-gcp-concepts">
+<h2>Essential GCP Concepts<a class="headerlink" href="#essential-gcp-concepts" title="Link to this heading"></a></h2>
+<p><strong>Core Service Categories:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GCP Services Overview:
+├─ Compute: VMs, Containers, Serverless
+├─ Storage: Object, Block, File, Databases
+├─ Networking: VPC, Load Balancers, CDN
+├─ AI/ML: Vertex AI, AutoML, Pre-trained APIs
+├─ Analytics: BigQuery, Dataflow, Pub/Sub
+└─ DevOps: Cloud Build, GKE, Monitoring
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Detailed Service Information</strong>: For comprehensive service details, pricing, and
+comparisons, see <a class="reference external" href="11_platform_overview.rst">Chapter 11.11: Platform Overview</a>.</p>
+</div>
+</section>
+<section id="account-setup-and-first-steps">
+<h2>Account Setup and First Steps<a class="headerlink" href="#account-setup-and-first-steps" title="Link to this heading"></a></h2>
 <p><strong>Step 1: Create a GCP Account</strong></p>
 <ol class="arabic simple">
 <li><p>Visit: <a class="reference external" href="https://cloud.google.com">https://cloud.google.com</a></p></li>
@@ -1024,7 +746,7 @@ gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span clas
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../11_cloud/TODO.html" class="btn btn-neutral float-left" title="TODO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../11_cloud/0.10_monitoring_observability.html" class="btn btn-neutral float-left" title="11.0.10 Cloud Monitoring &amp; Observability" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="1_iam.html" class="btn btn-neutral float-right" title="11.1 Identity and Access Management (IAM)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

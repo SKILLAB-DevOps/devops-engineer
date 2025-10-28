@@ -1,0 +1,1051 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.9 Security Best Practices &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.10 Database Services on Google Cloud" href="10_database_services.html" />
+    <link rel="prev" title="11.8 FinOps and Cost Optimization" href="8_finops.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.9 Security Best Practices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/9_security.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="security-best-practices">
+<h1>11.9 Security Best Practices<a class="headerlink" href="#security-best-practices" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Security is a shared responsibility between Google Cloud and you. Google secures the underlying infrastructure, while you’re responsible for securing your applications, data, and access controls. This chapter covers GCP security best practices, tools, and services to help you build and maintain secure cloud environments.</p>
+</div>
+<section id="security-shared-responsibility-model">
+<h2>Security Shared Responsibility Model<a class="headerlink" href="#security-shared-responsibility-model" title="Link to this heading"></a></h2>
+<p><strong>Google’s Responsibilities:</strong></p>
+<ul class="simple">
+<li><p>Physical security of data centers</p></li>
+<li><p>Hardware and network infrastructure</p></li>
+<li><p>Hypervisor and host OS security</p></li>
+<li><p>Service availability and reliability</p></li>
+<li><p>Data encryption at rest by default</p></li>
+</ul>
+<p><strong>Your Responsibilities:</strong></p>
+<ul class="simple">
+<li><p>Identity and Access Management (IAM)</p></li>
+<li><p>Data classification and encryption keys</p></li>
+<li><p>Network configuration</p></li>
+<li><p>Application security</p></li>
+<li><p>Access controls and monitoring</p></li>
+<li><p>Compliance requirements</p></li>
+</ul>
+</section>
+<section id="identity-and-access-management-iam">
+<h2>Identity and Access Management (IAM)<a class="headerlink" href="#identity-and-access-management-iam" title="Link to this heading"></a></h2>
+<p><strong>Principle of Least Privilege:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># BAD: Granting owner role to everyone</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>my-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/owner&quot;</span>
+
+<span class="c1"># GOOD: Grant specific roles needed</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>my-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/compute.instanceAdmin.v1&quot;</span>
+</pre></div>
+</div>
+<p><strong>Service Account Best Practices:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create service account with descriptive name</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>create<span class="w"> </span>app-backend-sa<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display-name<span class="o">=</span><span class="s2">&quot;Backend Application Service Account&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--description<span class="o">=</span><span class="s2">&quot;SA for backend application with minimal permissions&quot;</span>
+
+<span class="c1"># Grant only necessary permissions</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>my-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:app-backend-sa@my-project.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/storage.objectViewer&quot;</span>
+
+<span class="c1"># Disable default service account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>disable<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>PROJECT_NUMBER-compute@developer.gserviceaccount.com
+</pre></div>
+</div>
+<p><strong>Use Workload Identity (GKE):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Workload Identity on cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>update<span class="w"> </span>my-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--workload-pool<span class="o">=</span>PROJECT_ID.svc.id.goog
+
+<span class="c1"># Create Kubernetes service account</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>serviceaccount<span class="w"> </span>app-ksa
+
+<span class="c1"># Bind Kubernetes SA to Google SA</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>app-backend-sa@PROJECT_ID.iam.gserviceaccount.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="w"> </span>roles/iam.workloadIdentityUser<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="w"> </span><span class="s2">&quot;serviceAccount:PROJECT_ID.svc.id.goog[default/app-ksa]&quot;</span>
+
+<span class="c1"># Annotate Kubernetes service account</span>
+kubectl<span class="w"> </span>annotate<span class="w"> </span>serviceaccount<span class="w"> </span>app-ksa<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>iam.gke.io/gcp-service-account<span class="o">=</span>app-backend-sa@PROJECT_ID.iam.gserviceaccount.com
+</pre></div>
+</div>
+<p><strong>Regular Access Reviews:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all IAM policies</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>get-iam-policy<span class="w"> </span>my-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span>json<span class="w"> </span>&gt;<span class="w"> </span>iam-policy.json
+
+<span class="c1"># Audit service accounts</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span><span class="s2">&quot;table(email,displayName,disabled)&quot;</span>
+
+<span class="c1"># Find unused service accounts</span>
+gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--project<span class="o">=</span>PROJECT_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>global<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--recommender<span class="o">=</span>google.iam.policy.Recommender
+</pre></div>
+</div>
+</section>
+<section id="network-security">
+<h2>Network Security<a class="headerlink" href="#network-security" title="Link to this heading"></a></h2>
+<p><strong>VPC Security:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create custom VPC</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>create<span class="w"> </span>secure-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--subnet-mode<span class="o">=</span>custom<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bgp-routing-mode<span class="o">=</span>regional
+
+<span class="c1"># Create subnet with Private Google Access</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>networks<span class="w"> </span>subnets<span class="w"> </span>create<span class="w"> </span>private-subnet<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>secure-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--range<span class="o">=</span><span class="m">10</span>.0.1.0/24<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-ip-google-access
+</pre></div>
+</div>
+<p><strong>Firewall Rules Best Practices:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default deny all ingress (implicit in GCP)</span>
+<span class="c1"># Only allow necessary traffic</span>
+
+<span class="c1"># Allow SSH only from specific IP (bastion)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-ssh-bastion<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>secure-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow<span class="o">=</span>tcp:22<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">10</span>.0.0.10/32<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>ssh-access
+
+<span class="c1"># Allow HTTPS from internet</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-https<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>secure-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow<span class="o">=</span>tcp:443<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">0</span>.0.0.0/0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>web-server
+
+<span class="c1"># Allow internal communication between VMs</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-internal<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>secure-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow<span class="o">=</span>tcp:0-65535,udp:0-65535,icmp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">10</span>.0.0.0/16
+
+<span class="c1"># Log firewall rules for monitoring</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>update<span class="w"> </span>allow-https<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-logging
+</pre></div>
+</div>
+<p><strong>Cloud NAT for Egress:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Cloud Router</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>create<span class="w"> </span>nat-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="o">=</span>secure-vpc<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1
+
+<span class="c1"># Configure Cloud NAT (VMs don&#39;t need public IPs)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>routers<span class="w"> </span>nats<span class="w"> </span>create<span class="w"> </span>nat-config<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--router<span class="o">=</span>nat-router<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nat-all-subnet-ip-ranges<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auto-allocate-nat-external-ips
+</pre></div>
+</div>
+<p><strong>Private GKE Cluster:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create private GKE cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create<span class="w"> </span>private-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-nodes<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-private-endpoint<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-ip-alias<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--master-ipv4-cidr<span class="o">=</span><span class="m">172</span>.16.0.0/28<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-enable-basic-auth<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-issue-client-certificate
+</pre></div>
+</div>
+<p><strong>VPC Service Controls:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create access policy</span>
+gcloud<span class="w"> </span>access-context-manager<span class="w"> </span>policies<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--title<span class="o">=</span><span class="s2">&quot;Production Access Policy&quot;</span>
+
+<span class="c1"># Create service perimeter</span>
+gcloud<span class="w"> </span>access-context-manager<span class="w"> </span>perimeters<span class="w"> </span>create<span class="w"> </span>prod_perimeter<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--title<span class="o">=</span><span class="s2">&quot;Production Perimeter&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resources<span class="o">=</span>projects/PROJECT_NUMBER<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--restricted-services<span class="o">=</span>storage.googleapis.com,bigquery.googleapis.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--policy<span class="o">=</span>POLICY_ID
+</pre></div>
+</div>
+</section>
+<section id="data-security">
+<h2>Data Security<a class="headerlink" href="#data-security" title="Link to this heading"></a></h2>
+<p><strong>Encryption at Rest:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create encryption key</span>
+gcloud<span class="w"> </span>kms<span class="w"> </span>keyrings<span class="w"> </span>create<span class="w"> </span>my-keyring<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1
+
+gcloud<span class="w"> </span>kms<span class="w"> </span>keys<span class="w"> </span>create<span class="w"> </span>my-key<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--keyring<span class="o">=</span>my-keyring<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--purpose<span class="o">=</span>encryption
+
+<span class="c1"># Create disk with customer-managed encryption</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>create<span class="w"> </span>encrypted-disk<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--size<span class="o">=</span>100GB<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--kms-key<span class="o">=</span>projects/PROJECT_ID/locations/us-central1/keyRings/my-keyring/cryptoKeys/my-key
+
+<span class="c1"># Create VM with encrypted disk</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>secure-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--disk<span class="o">=</span><span class="nv">name</span><span class="o">=</span>encrypted-disk,boot<span class="o">=</span>yes
+</pre></div>
+</div>
+<p><strong>Encryption in Transit:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># All GCP services use TLS by default</span>
+<span class="c1"># For custom apps, ensure TLS is enabled</span>
+
+<span class="c1"># Create SSL certificate for Load Balancer</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>ssl-certificates<span class="w"> </span>create<span class="w"> </span>my-cert<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--certificate<span class="o">=</span>cert.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--private-key<span class="o">=</span>key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--global
+</pre></div>
+</div>
+<p><strong>Secret Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Secret Manager API</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>secretmanager.googleapis.com
+
+<span class="c1"># Create secret</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;my-db-password&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gcloud<span class="w"> </span>secrets<span class="w"> </span>create<span class="w"> </span>db-password<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data-file<span class="o">=</span>-
+
+<span class="c1"># Grant access to service account</span>
+gcloud<span class="w"> </span>secrets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>db-password<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:app-sa@PROJECT_ID.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/secretmanager.secretAccessor&quot;</span>
+
+<span class="c1"># Access secret in application</span>
+gcloud<span class="w"> </span>secrets<span class="w"> </span>versions<span class="w"> </span>access<span class="w"> </span>latest<span class="w"> </span>--secret<span class="o">=</span><span class="s2">&quot;db-password&quot;</span>
+</pre></div>
+</div>
+<p><strong>Use Secret Manager with GKE:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># deployment.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-ksa</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:1.0</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_PASSWORD</span>
+<span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-password</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install External Secrets Operator</span>
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>external-secrets<span class="w"> </span>https://charts.external-secrets.io
+helm<span class="w"> </span>install<span class="w"> </span>external-secrets<span class="w"> </span>external-secrets/external-secrets
+
+<span class="c1"># Create SecretStore</span>
+cat<span class="w"> </span><span class="s">&lt;&lt;EOF | kubectl apply -f -</span>
+<span class="s">apiVersion: external-secrets.io/v1beta1</span>
+<span class="s">kind: SecretStore</span>
+<span class="s">metadata:</span>
+<span class="s">  name: gcpsm-secret-store</span>
+<span class="s">spec:</span>
+<span class="s">  provider:</span>
+<span class="s">    gcpsm:</span>
+<span class="s">      projectID: &quot;PROJECT_ID&quot;</span>
+<span class="s">      auth:</span>
+<span class="s">        workloadIdentity:</span>
+<span class="s">          clusterLocation: us-central1</span>
+<span class="s">          clusterName: my-cluster</span>
+<span class="s">          serviceAccountRef:</span>
+<span class="s">            name: app-ksa</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>Data Loss Prevention (DLP):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dlp-scan.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">dlp_v2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">inspect_content</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scan content for sensitive data.&quot;&quot;&quot;</span>
+    <span class="n">dlp</span> <span class="o">=</span> <span class="n">dlp_v2</span><span class="o">.</span><span class="n">DlpServiceClient</span><span class="p">()</span>
+
+    <span class="n">parent</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;projects/</span><span class="si">{</span><span class="n">project_id</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Configure what to scan for</span>
+    <span class="n">info_types</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;EMAIL_ADDRESS&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;PHONE_NUMBER&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CREDIT_CARD_NUMBER&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;US_SOCIAL_SECURITY_NUMBER&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="n">inspect_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;info_types&quot;</span><span class="p">:</span> <span class="n">info_types</span><span class="p">,</span>
+        <span class="s2">&quot;min_likelihood&quot;</span><span class="p">:</span> <span class="n">dlp_v2</span><span class="o">.</span><span class="n">Likelihood</span><span class="o">.</span><span class="n">POSSIBLE</span>
+    <span class="p">}</span>
+
+    <span class="n">item</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">content</span><span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">dlp</span><span class="o">.</span><span class="n">inspect_content</span><span class="p">(</span>
+        <span class="n">request</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">parent</span><span class="p">,</span>
+            <span class="s2">&quot;inspect_config&quot;</span><span class="p">:</span> <span class="n">inspect_config</span><span class="p">,</span>
+            <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="n">item</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">findings</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sensitive data found:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">finding</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">findings</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">finding</span><span class="o">.</span><span class="n">info_type</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">finding</span><span class="o">.</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No sensitive data found.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="compute-security">
+<h2>Compute Security<a class="headerlink" href="#compute-security" title="Link to this heading"></a></h2>
+<p><strong>VM Security Best Practices:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use Shielded VMs (secure boot, vTPM, integrity monitoring)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>secure-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--machine-type<span class="o">=</span>n1-standard-2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--shielded-secure-boot<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--shielded-vtpm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--shielded-integrity-monitoring
+
+<span class="c1"># Disable external IP (use Cloud NAT)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>private-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--machine-type<span class="o">=</span>n1-standard-2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-address<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--subnet<span class="o">=</span>private-subnet
+
+<span class="c1"># Use custom service account</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>vm-with-sa<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--service-account<span class="o">=</span>app-sa@PROJECT_ID.iam.gserviceaccount.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--scopes<span class="o">=</span>cloud-platform
+
+<span class="c1"># Enable OS Login (instead of SSH keys)</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>add-metadata<span class="w"> </span>vm-with-oslogin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--metadata<span class="o">=</span>enable-oslogin<span class="o">=</span>TRUE
+</pre></div>
+</div>
+<p><strong>OS Patch Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable OS Config API</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>osconfig.googleapis.com
+
+<span class="c1"># Create patch deployment</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>os-config<span class="w"> </span>patch-deployments<span class="w"> </span>create<span class="w"> </span>monthly-patches<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--file<span class="o">=</span>patch-deployment.yaml
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># patch-deployment.yaml</span>
+<span class="nt">patchConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rebootConfig</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEFAULT</span>
+<span class="w">  </span><span class="nt">apt</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DIST</span>
+<span class="nt">oneTimeSchedule</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">executeTime</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2024-02-01T02:00:00Z&#39;</span>
+<span class="nt">instanceFilter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">all</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p><strong>Container Security:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scan container images for vulnerabilities</span>
+gcloud<span class="w"> </span>artifacts<span class="w"> </span>docker<span class="w"> </span>images<span class="w"> </span>scan<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>us-central1-docker.pkg.dev/PROJECT_ID/my-repo/myapp:latest
+
+<span class="c1"># View scan results</span>
+gcloud<span class="w"> </span>artifacts<span class="w"> </span>docker<span class="w"> </span>images<span class="w"> </span>list-vulnerabilities<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>us-central1-docker.pkg.dev/PROJECT_ID/my-repo/myapp:latest
+</pre></div>
+</div>
+<p><strong>Binary Authorization:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Binary Authorization</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>binaryauthorization.googleapis.com
+
+<span class="c1"># Create policy requiring attestations</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>policy.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">admissionWhitelistPatterns:</span>
+<span class="s">- namePattern: gcr.io/google-containers/*</span>
+<span class="s">- namePattern: k8s.gcr.io/*</span>
+<span class="s">defaultAdmissionRule:</span>
+<span class="s">  requireAttestationsBy:</span>
+<span class="s">  - projects/PROJECT_ID/attestors/my-attestor</span>
+<span class="s">  enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG</span>
+<span class="s">globalPolicyEvaluationMode: ENABLE</span>
+<span class="s">EOF</span>
+
+gcloud<span class="w"> </span>container<span class="w"> </span>binauthz<span class="w"> </span>policy<span class="w"> </span>import<span class="w"> </span>policy.yaml
+</pre></div>
+</div>
+</section>
+<section id="monitoring-and-logging">
+<h2>Monitoring and Logging<a class="headerlink" href="#monitoring-and-logging" title="Link to this heading"></a></h2>
+<p><strong>Cloud Logging:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View logs</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;resource.type=gce_instance&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="w"> </span>json
+
+<span class="c1"># Create log sink to export logs</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span>sinks<span class="w"> </span>create<span class="w"> </span>security-logs-sink<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>storage.googleapis.com/security-logs-bucket<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--log-filter<span class="o">=</span><span class="s1">&#39;severity &gt;= ERROR&#39;</span>
+
+<span class="c1"># Create metric from logs</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span>metrics<span class="w"> </span>create<span class="w"> </span>failed-login-attempts<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--description<span class="o">=</span><span class="s2">&quot;Count of failed login attempts&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--log-filter<span class="o">=</span><span class="s1">&#39;resource.type=&quot;gce_instance&quot; AND</span>
+<span class="s1">                 textPayload=~&quot;Failed password&quot;&#39;</span>
+</pre></div>
+</div>
+<p><strong>Cloud Monitoring Alerts:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create alert policy</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>alert-policy.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">displayName: &quot;High Failed Login Attempts&quot;</span>
+<span class="s">conditions:</span>
+<span class="s">- displayName: &quot;Failed logins &gt; 10&quot;</span>
+<span class="s">  conditionThreshold:</span>
+<span class="s">    filter: &#39;metric.type=&quot;logging.googleapis.com/user/failed-login-attempts&quot;&#39;</span>
+<span class="s">    comparison: COMPARISON_GT</span>
+<span class="s">    thresholdValue: 10</span>
+<span class="s">    duration: 300s</span>
+<span class="s">notificationChannels:</span>
+<span class="s">- projects/PROJECT_ID/notificationChannels/CHANNEL_ID</span>
+<span class="s">EOF</span>
+
+gcloud<span class="w"> </span>alpha<span class="w"> </span>monitoring<span class="w"> </span>policies<span class="w"> </span>create<span class="w"> </span>--policy-from-file<span class="o">=</span>alert-policy.yaml
+</pre></div>
+</div>
+<p><strong>Audit Logging:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Admin Activity logs (always on, free)</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;logName:activity&quot;</span><span class="w"> </span>--limit<span class="w"> </span><span class="m">10</span>
+
+<span class="c1"># Data Access logs (must be enabled)</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;logName:data_access&quot;</span><span class="w"> </span>--limit<span class="w"> </span><span class="m">10</span>
+
+<span class="c1"># Query specific events</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;protoPayload.methodName=&quot;v1.compute.instances.delete&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="w"> </span>json
+</pre></div>
+</div>
+<p><strong>Security Command Center:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Security Command Center</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>securitycenter.googleapis.com
+
+<span class="c1"># List findings</span>
+gcloud<span class="w"> </span>scc<span class="w"> </span>findings<span class="w"> </span>list<span class="w"> </span>ORGANIZATION_ID<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="o">=</span><span class="s2">&quot;state=\&quot;ACTIVE\&quot;&quot;</span>
+
+<span class="c1"># Get specific finding</span>
+gcloud<span class="w"> </span>scc<span class="w"> </span>findings<span class="w"> </span>describe<span class="w"> </span>FINDING_NAME
+</pre></div>
+</div>
+</section>
+<section id="security-scanning">
+<h2>Security Scanning<a class="headerlink" href="#security-scanning" title="Link to this heading"></a></h2>
+<p><strong>Web Security Scanner:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Web Security Scanner API</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>websecurityscanner.googleapis.com
+
+<span class="c1"># Create scan configuration</span>
+gcloud<span class="w"> </span>alpha<span class="w"> </span>web-security-scanner<span class="w"> </span>scan-configs<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display-name<span class="o">=</span><span class="s2">&quot;My App Scan&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--starting-urls<span class="o">=</span><span class="s2">&quot;https://myapp.example.com&quot;</span>
+
+<span class="c1"># Start scan</span>
+gcloud<span class="w"> </span>alpha<span class="w"> </span>web-security-scanner<span class="w"> </span>scan-runs<span class="w"> </span>start<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>SCAN_CONFIG_NAME
+</pre></div>
+</div>
+<p><strong>Container Analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatically scans images pushed to Container Registry/Artifact Registry</span>
+<span class="c1"># View vulnerabilities</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>images<span class="w"> </span>describe<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gcr.io/PROJECT_ID/myapp:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--show-package-vulnerability
+</pre></div>
+</div>
+<p><strong>Event Threat Detection:</strong></p>
+<ul class="simple">
+<li><p>Automatically enabled in Security Command Center</p></li>
+<li><p>Detects:
+- Malware
+- Cryptomining
+- Brute force SSH
+- IAM anomalies
+- Data exfiltration</p></li>
+</ul>
+</section>
+<section id="compliance-and-governance">
+<h2>Compliance and Governance<a class="headerlink" href="#compliance-and-governance" title="Link to this heading"></a></h2>
+<p><strong>Organization Policies:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Require OS Login on all VMs</span>
+gcloud<span class="w"> </span>resource-manager<span class="w"> </span>org-policies<span class="w"> </span>enable-enforce<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>compute.requireOsLogin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID
+
+<span class="c1"># Restrict VM external IPs</span>
+gcloud<span class="w"> </span>resource-manager<span class="w"> </span>org-policies<span class="w"> </span>set-policy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>restrict-vm-external-ips.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># restrict-vm-external-ips.yaml</span>
+<span class="nt">constraint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">compute.vmExternalIpAccess</span>
+<span class="nt">listPolicy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deniedValues</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+</pre></div>
+</div>
+<p><strong>Resource Hierarchy:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Best practice: Use folders for organization</span>
+<span class="c1"># Organization</span>
+<span class="c1">#   └── Folder: Production</span>
+<span class="c1">#       ├── Project: prod-web</span>
+<span class="c1">#       └── Project: prod-api</span>
+<span class="c1">#   └── Folder: Development</span>
+<span class="c1">#       ├── Project: dev-web</span>
+<span class="c1">#       └── Project: dev-api</span>
+
+<span class="c1"># Create folder</span>
+gcloud<span class="w"> </span>resource-manager<span class="w"> </span>folders<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display-name<span class="o">=</span><span class="s2">&quot;Production&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--organization<span class="o">=</span>ORGANIZATION_ID
+</pre></div>
+</div>
+<p><strong>Access Transparency:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View Access Transparency logs (Enterprise only)</span>
+gcloud<span class="w"> </span>logging<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;logName:&quot;cloudaudit.googleapis.com%2Faccess_transparency&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+</section>
+<section id="incident-response">
+<h2>Incident Response<a class="headerlink" href="#incident-response" title="Link to this heading"></a></h2>
+<p><strong>Incident Response Plan:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Detection</strong></p>
+<ul class="simple">
+<li><p>Monitor Security Command Center</p></li>
+<li><p>Set up alerts for anomalies</p></li>
+<li><p>Regular log reviews</p></li>
+</ul>
+</li>
+<li><p><strong>Analysis</strong></p>
+<ul class="simple">
+<li><p>Review audit logs</p></li>
+<li><p>Check Cloud Monitoring</p></li>
+<li><p>Investigate affected resources</p></li>
+</ul>
+</li>
+<li><p><strong>Containment</strong></p>
+<ul class="simple">
+<li><p>Isolate affected resources</p></li>
+<li><p>Revoke compromised credentials</p></li>
+<li><p>Apply firewall rules</p></li>
+</ul>
+</li>
+<li><p><strong>Eradication</strong></p>
+<ul class="simple">
+<li><p>Remove malicious resources</p></li>
+<li><p>Patch vulnerabilities</p></li>
+<li><p>Update access controls</p></li>
+</ul>
+</li>
+<li><p><strong>Recovery</strong></p>
+<ul class="simple">
+<li><p>Restore from backups</p></li>
+<li><p>Verify system integrity</p></li>
+<li><p>Resume normal operations</p></li>
+</ul>
+</li>
+<li><p><strong>Post-Incident</strong></p>
+<ul class="simple">
+<li><p>Document incident</p></li>
+<li><p>Update procedures</p></li>
+<li><p>Implement preventive measures</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Quick Response Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disable compromised service account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>disable<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>compromised-sa@PROJECT_ID.iam.gserviceaccount.com
+
+<span class="c1"># Remove IAM binding immediately</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>remove-iam-policy-binding<span class="w"> </span>my-project<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:compromised@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/owner&quot;</span>
+
+<span class="c1"># Block VM from internet</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>block-compromised-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--action<span class="o">=</span>DENY<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rules<span class="o">=</span>all<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-ranges<span class="o">=</span><span class="m">0</span>.0.0.0/0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="o">=</span>compromised-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--priority<span class="o">=</span><span class="m">100</span>
+
+<span class="c1"># Stop VM immediately</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>stop<span class="w"> </span>compromised-vm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+
+<span class="c1"># Take snapshot for forensics</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>snapshot<span class="w"> </span>compromised-disk<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--snapshot-names<span class="o">=</span>forensic-snapshot-<span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="o">=</span>us-central1-a
+</pre></div>
+</div>
+</section>
+<section id="security-automation">
+<h2>Security Automation<a class="headerlink" href="#security-automation" title="Link to this heading"></a></h2>
+<p><strong>Automated Security Checks:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># security-checks.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_v1</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_vm_security</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">zone</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check VMs for security best practices.&quot;&quot;&quot;</span>
+    <span class="n">compute</span> <span class="o">=</span> <span class="n">compute_v1</span><span class="o">.</span><span class="n">InstancesClient</span><span class="p">()</span>
+    <span class="n">instances</span> <span class="o">=</span> <span class="n">compute</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span> <span class="n">zone</span><span class="o">=</span><span class="n">zone</span><span class="p">)</span>
+
+    <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">:</span>
+        <span class="c1"># Check for external IP</span>
+        <span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">network_interfaces</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">interface</span><span class="o">.</span><span class="n">access_configs</span><span class="p">:</span>
+                <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">instance</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Has external IP&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for default service account</span>
+        <span class="k">for</span> <span class="n">sa</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">service_accounts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;compute@developer&#39;</span> <span class="ow">in</span> <span class="n">sa</span><span class="o">.</span><span class="n">email</span><span class="p">:</span>
+                <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">instance</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Uses default SA&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for Shielded VM</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">instance</span><span class="o">.</span><span class="n">shielded_instance_config</span><span class="p">:</span>
+            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">instance</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Not a Shielded VM&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">issues</span>
+
+<span class="c1"># Run checks</span>
+<span class="n">issues</span> <span class="o">=</span> <span class="n">check_vm_security</span><span class="p">(</span><span class="s1">&#39;my-project&#39;</span><span class="p">,</span> <span class="s1">&#39;us-central1-a&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">issues</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">issue</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Security Response Automation:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># auto-response.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">pubsub_v1</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_v1</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_security_finding</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Respond to Security Command Center finding.&quot;&quot;&quot;</span>
+    <span class="n">pubsub_message</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">finding</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pubsub_message</span><span class="p">)</span>
+
+    <span class="c1"># Check finding type</span>
+    <span class="k">if</span> <span class="n">finding</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;MALWARE&#39;</span><span class="p">:</span>
+        <span class="c1"># Isolate affected VM</span>
+        <span class="n">instance_name</span> <span class="o">=</span> <span class="n">extract_instance_name</span><span class="p">(</span><span class="n">finding</span><span class="p">)</span>
+        <span class="n">isolate_vm</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
+        <span class="n">send_alert</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;VM </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s2"> isolated due to malware&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">isolate_vm</span><span class="p">(</span><span class="n">instance_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply deny-all firewall rule to VM.&quot;&quot;&quot;</span>
+    <span class="n">compute</span> <span class="o">=</span> <span class="n">compute_v1</span><span class="o">.</span><span class="n">FirewallsClient</span><span class="p">()</span>
+    <span class="c1"># Create isolation rule</span>
+    <span class="c1"># Implementation details...</span>
+</pre></div>
+</div>
+</section>
+<section id="security-checklist">
+<h2>Security Checklist<a class="headerlink" href="#security-checklist" title="Link to this heading"></a></h2>
+<p><strong>IAM and Authentication:</strong></p>
+<p>Use principle of least privilege
+Enable MFA for all users
+Regular access reviews
+Use service accounts instead of user accounts
+Enable Workload Identity for GKE
+Disable default service accounts
+Set up Cloud Identity for user management</p>
+<p><strong>Network Security:</strong></p>
+<p>Use private IPs where possible
+Implement firewall rules with logging
+Enable VPC Flow Logs
+Use Cloud NAT for egress
+Implement VPC Service Controls
+Use Private Google Access
+Enable DDoS protection</p>
+<p><strong>Data Security:</strong></p>
+<p>Enable encryption at rest (CMEK where needed)
+Ensure encryption in transit (TLS)
+Use Secret Manager for secrets
+Implement data classification
+Enable DLP scanning
+Regular backups with testing
+Implement retention policies</p>
+<p><strong>Compute Security:</strong></p>
+<p>Use Shielded VMs
+Enable OS Login
+Disable external IPs
+Regular patching
+Container vulnerability scanning
+Enable Binary Authorization
+Use minimal base images</p>
+<p><strong>Monitoring and Logging:</strong></p>
+<p>Enable audit logging
+Set up Cloud Monitoring alerts
+Export logs to Cloud Storage
+Enable Security Command Center
+Configure log retention
+Regular log analysis
+Incident response plan</p>
+<p><strong>Compliance:</strong></p>
+<p>Implement organization policies
+Use resource hierarchy
+Enable Access Transparency (if needed)
+Regular compliance audits
+Document security controls
+Security training for team</p>
+</section>
+<section id="security-tools-summary">
+<h2>Security Tools Summary<a class="headerlink" href="#security-tools-summary" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cloud IAM</p></td>
+<td><p>Identity and access management</p></td>
+</tr>
+<tr class="row-odd"><td><p>VPC Service Controls</p></td>
+<td><p>Create security perimeters</p></td>
+</tr>
+<tr class="row-even"><td><p>Secret Manager</p></td>
+<td><p>Manage secrets securely</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cloud KMS</p></td>
+<td><p>Encryption key management</p></td>
+</tr>
+<tr class="row-even"><td><p>Security Command Center</p></td>
+<td><p>Centralized security dashboard</p></td>
+</tr>
+<tr class="row-odd"><td><p>Web Security Scanner</p></td>
+<td><p>Scan web apps for vulnerabilities</p></td>
+</tr>
+<tr class="row-even"><td><p>Container Analysis</p></td>
+<td><p>Scan container images</p></td>
+</tr>
+<tr class="row-odd"><td><p>Binary Authorization</p></td>
+<td><p>Deploy only verified containers</p></td>
+</tr>
+<tr class="row-even"><td><p>Cloud Armor</p></td>
+<td><p>DDoS protection and WAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cloud DLP</p></td>
+<td><p>Discover and protect sensitive data</p></td>
+</tr>
+<tr class="row-even"><td><p>Cloud Logging</p></td>
+<td><p>Centralized logging</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cloud Monitoring</p></td>
+<td><p>Alerting and monitoring</p></td>
+</tr>
+<tr class="row-even"><td><p>Organization Policy</p></td>
+<td><p>Enforce compliance</p></td>
+</tr>
+<tr class="row-odd"><td><p>Access Transparency</p></td>
+<td><p>Log Google access to your data</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="best-practices-summary">
+<h2>Best Practices Summary<a class="headerlink" href="#best-practices-summary" title="Link to this heading"></a></h2>
+<p><strong>1. Defense in Depth:</strong></p>
+<ul class="simple">
+<li><p>Multiple layers of security</p></li>
+<li><p>Assume breach mentality</p></li>
+<li><p>Zero trust architecture</p></li>
+</ul>
+<p><strong>2. Automation:</strong></p>
+<ul class="simple">
+<li><p>Automate security checks</p></li>
+<li><p>Automated incident response</p></li>
+<li><p>Infrastructure as Code with security</p></li>
+</ul>
+<p><strong>3. Monitoring:</strong></p>
+<ul class="simple">
+<li><p>Continuous monitoring</p></li>
+<li><p>Real-time alerts</p></li>
+<li><p>Regular audits</p></li>
+</ul>
+<p><strong>4. Training:</strong></p>
+<ul class="simple">
+<li><p>Regular security training</p></li>
+<li><p>Security awareness program</p></li>
+<li><p>Incident response drills</p></li>
+</ul>
+<p><strong>5. Documentation:</strong></p>
+<ul class="simple">
+<li><p>Security policies</p></li>
+<li><p>Incident response procedures</p></li>
+<li><p>Architecture documentation</p></li>
+</ul>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>GCP Security Overview: <a class="reference external" href="https://cloud.google.com/security">https://cloud.google.com/security</a></p></li>
+<li><p>Security Command Center: <a class="reference external" href="https://cloud.google.com/security-command-center">https://cloud.google.com/security-command-center</a></p></li>
+<li><p>Security Best Practices: <a class="reference external" href="https://cloud.google.com/security/best-practices">https://cloud.google.com/security/best-practices</a></p></li>
+<li><p>Compliance Documentation: <a class="reference external" href="https://cloud.google.com/security/compliance">https://cloud.google.com/security/compliance</a></p></li>
+<li><p>Security Bulletins: <a class="reference external" href="https://cloud.google.com/support/bulletins">https://cloud.google.com/support/bulletins</a></p></li>
+<li><p>NIST Cybersecurity Framework on GCP: <a class="reference external" href="https://cloud.google.com/architecture/framework/security">https://cloud.google.com/architecture/framework/security</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="8_finops.html" class="btn btn-neutral float-left" title="11.8 FinOps and Cost Optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="10_database_services.html" class="btn btn-neutral float-right" title="11.10 Database Services on Google Cloud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

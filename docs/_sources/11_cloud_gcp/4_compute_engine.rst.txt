@@ -1,5 +1,5 @@
 ########################################
-11.8.3 Compute Engine - Virtual Machines
+11.4 Compute Engine - Virtual Machines
 ########################################
 
 .. note::

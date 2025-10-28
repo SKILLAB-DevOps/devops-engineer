@@ -1,0 +1,1173 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.6 Serverless Computing &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.7 Google Kubernetes Engine (GKE)" href="7_gke.html" />
+    <link rel="prev" title="11.5 Cloud Storage" href="5_cloud_storage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.6 Serverless Computing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/6_serverless.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="serverless-computing">
+<h1>11.6 Serverless Computing<a class="headerlink" href="#serverless-computing" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Google Cloud offers multiple serverless platforms that allow you to build and deploy applications without managing servers. The main serverless offerings are <strong>Cloud Run</strong> (for containerized applications) and <strong>Cloud Functions</strong> (for event-driven functions). Both services automatically scale based on traffic and you only pay for the resources you use.</p>
+</div>
+<section id="serverless-overview">
+<h2>Serverless Overview<a class="headerlink" href="#serverless-overview" title="Link to this heading"></a></h2>
+<p><strong>Why Serverless?</strong></p>
+<ul class="simple">
+<li><p><strong>No Server Management</strong>: Focus on code, not infrastructure</p></li>
+<li><p><strong>Automatic Scaling</strong>: Scale to zero and to thousands of instances</p></li>
+<li><p><strong>Pay-per-Use</strong>: Only pay when code is running</p></li>
+<li><p><strong>Built-in High Availability</strong>: Automatic redundancy and failover</p></li>
+<li><p><strong>Fast Development</strong>: Quick iterations and deployments</p></li>
+</ul>
+<p><strong>GCP Serverless Services:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Runtime</p></th>
+<th class="head"><p>Trigger Types</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cloud Functions</p></td>
+<td><p>Event-driven functions</p></td>
+<td><p>Node.js, Python, Go, Java</p></td>
+<td><p>HTTP, Cloud events</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cloud Run</p></td>
+<td><p>Containerized apps</p></td>
+<td><p>Any language (Docker)</p></td>
+<td><p>HTTP requests</p></td>
+</tr>
+<tr class="row-even"><td><p>App Engine</p></td>
+<td><p>Full web applications</p></td>
+<td><p>Multiple runtimes</p></td>
+<td><p>HTTP requests</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cloud-run">
+<h2>Cloud Run<a class="headerlink" href="#cloud-run" title="Link to this heading"></a></h2>
+<p>Cloud Run is a fully managed compute platform that automatically scales your stateless containers.</p>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Run any containerized application</p></li>
+<li><p>Automatically scales from 0 to N instances</p></li>
+<li><p>Built on Knative (portable)</p></li>
+<li><p>Integrates with Cloud Build for CI/CD</p></li>
+<li><p>Custom domains and SSL certificates</p></li>
+<li><p>WebSocket and gRPC support</p></li>
+</ul>
+<p><strong>Cloud Run Setup:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable Cloud Run API</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>run.googleapis.com
+
+<span class="c1"># Set default region</span>
+gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>run/region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-run-hello-world">
+<h2>Cloud Run: Hello World<a class="headerlink" href="#cloud-run-hello-world" title="Link to this heading"></a></h2>
+<p><strong>Create a Simple FastAPI App:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create app directory</span>
+mkdir<span class="w"> </span>hello-cloudrun
+<span class="nb">cd</span><span class="w"> </span>hello-cloudrun
+
+<span class="c1"># Create requirements.txt</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">fastapi==0.104.1</span>
+<span class="s">uvicorn[standard]==0.24.0</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Create main application</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>main.py<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">import os</span>
+<span class="s">from fastapi import FastAPI, Query</span>
+
+<span class="s">app = FastAPI(title=&quot;Cloud Run Hello World&quot;)</span>
+
+<span class="s">@app.get(&quot;/&quot;)</span>
+<span class="s">async def hello(name: str = Query(default=&quot;World&quot;)):</span>
+<span class="s">    return {</span>
+<span class="s">        &quot;message&quot;: f&quot;Hello {name}! Running on Cloud Run&quot;,</span>
+<span class="s">        &quot;service&quot;: &quot;FastAPI on Cloud Run&quot;</span>
+<span class="s">    }</span>
+
+<span class="s">@app.get(&quot;/health&quot;)</span>
+<span class="s">async def health():</span>
+<span class="s">    return {&quot;status&quot;: &quot;healthy&quot;}</span>
+
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    import uvicorn</span>
+<span class="s">    port = int(os.environ.get(&quot;PORT&quot;, 8080))</span>
+<span class="s">    uvicorn.run(app, host=&quot;0.0.0.0&quot;, port=port)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Create Dockerfile</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>Dockerfile<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">FROM python:3.11-slim</span>
+
+<span class="s">WORKDIR /app</span>
+
+<span class="s">COPY requirements.txt .</span>
+<span class="s">RUN pip install --no-cache-dir -r requirements.txt</span>
+
+<span class="s">COPY main.py .</span>
+
+<span class="s">ENV PORT=8080</span>
+
+<span class="s">CMD exec uvicorn main:app --host 0.0.0.0 --port $PORT</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>Deploy to Cloud Run:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy (builds container automatically)</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>hello-cloudrun<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--platform<span class="w"> </span>managed<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-unauthenticated
+
+<span class="c1"># Output shows service URL:</span>
+<span class="c1"># Service URL: https://hello-cloudrun-xxxxx-uc.a.run.app</span>
+
+<span class="c1"># Test the service</span>
+curl<span class="w"> </span>https://hello-cloudrun-xxxxx-uc.a.run.app
+curl<span class="w"> </span><span class="s2">&quot;https://hello-cloudrun-xxxxx-uc.a.run.app?name=DevOps&quot;</span>
+</pre></div>
+</div>
+<p><strong>Deploy Pre-built Container:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build container with Cloud Build</span>
+gcloud<span class="w"> </span>builds<span class="w"> </span>submit<span class="w"> </span>--tag<span class="w"> </span>gcr.io/PROJECT_ID/hello-cloudrun
+
+<span class="c1"># Deploy from Container Registry</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>hello-cloudrun<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/hello-cloudrun<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--platform<span class="w"> </span>managed<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-unauthenticated
+</pre></div>
+</div>
+</section>
+<section id="cloud-run-configuration">
+<h2>Cloud Run Configuration<a class="headerlink" href="#cloud-run-configuration" title="Link to this heading"></a></h2>
+<p><strong>Service Configuration:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy with custom settings</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--platform<span class="w"> </span>managed<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--memory<span class="w"> </span>512Mi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--timeout<span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-instances<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--min-instances<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--concurrency<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--port<span class="w"> </span><span class="m">8080</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-unauthenticated
+</pre></div>
+</div>
+<p><strong>Configuration Options:</strong></p>
+<ul class="simple">
+<li><p><strong>–memory</strong>: Memory allocation (128Mi to 32Gi)</p></li>
+<li><p><strong>–cpu</strong>: CPU allocation (1, 2, 4, or 8)</p></li>
+<li><p><strong>–timeout</strong>: Request timeout (max 3600s)</p></li>
+<li><p><strong>–max-instances</strong>: Maximum concurrent instances</p></li>
+<li><p><strong>–min-instances</strong>: Keep instances warm (costs more)</p></li>
+<li><p><strong>–concurrency</strong>: Requests per container instance</p></li>
+<li><p><strong>–port</strong>: Container port (default 8080)</p></li>
+</ul>
+<p><strong>Environment Variables:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set environment variables</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--set-env-vars<span class="w"> </span><span class="s2">&quot;API_KEY=abc123,ENVIRONMENT=prod&quot;</span>
+
+<span class="c1"># Update environment variables</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>update<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-env-vars<span class="w"> </span><span class="s2">&quot;NEW_VAR=value&quot;</span>
+
+<span class="c1"># Remove environment variables</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>update<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--remove-env-vars<span class="w"> </span><span class="s2">&quot;OLD_VAR&quot;</span>
+
+<span class="c1"># Load from file</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>update<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--env-vars-file<span class="o">=</span>env.yaml
+</pre></div>
+</div>
+<p><strong>Secrets:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create secret in Secret Manager</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;my-secret-value&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gcloud<span class="w"> </span>secrets<span class="w"> </span>create<span class="w"> </span>my-secret<span class="w"> </span>--data-file<span class="o">=</span>-
+
+<span class="c1"># Deploy with secret as environment variable</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-secrets<span class="o">=</span><span class="s2">&quot;DB_PASSWORD=my-secret:latest&quot;</span>
+
+<span class="c1"># Mount secret as file</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-secrets<span class="o">=</span><span class="s2">&quot;/secrets/db-password=my-secret:latest&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="cloud-run-authentication">
+<h2>Cloud Run: Authentication<a class="headerlink" href="#cloud-run-authentication" title="Link to this heading"></a></h2>
+<p><strong>Require Authentication:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy with authentication required (default)</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-allow-unauthenticated
+
+<span class="c1"># Grant user access</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;user:alice@example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/run.invoker&quot;</span>
+
+<span class="c1"># Grant service account access</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:my-sa@project.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--role<span class="o">=</span><span class="s2">&quot;roles/run.invoker&quot;</span>
+</pre></div>
+</div>
+<p><strong>Call Authenticated Service:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get ID token</span>
+<span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>gcloud<span class="w"> </span>auth<span class="w"> </span>print-identity-token<span class="k">)</span>
+
+<span class="c1"># Call service with token</span>
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://myapp-xxxxx-uc.a.run.app
+</pre></div>
+</div>
+</section>
+<section id="cloud-run-custom-domains">
+<h2>Cloud Run: Custom Domains<a class="headerlink" href="#cloud-run-custom-domains" title="Link to this heading"></a></h2>
+<p><strong>Map Custom Domain:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add domain mapping</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>domain-mappings<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--service<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domain<span class="w"> </span>api.example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+
+<span class="c1"># List domain mappings</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>domain-mappings<span class="w"> </span>list
+
+<span class="c1"># Get DNS records to configure</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>domain-mappings<span class="w"> </span>describe<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domain<span class="w"> </span>api.example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-run-management">
+<h2>Cloud Run: Management<a class="headerlink" href="#cloud-run-management" title="Link to this heading"></a></h2>
+<p><strong>List Services:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all services</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>list
+
+<span class="c1"># Describe service</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>describe<span class="w"> </span>myapp<span class="w"> </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+<p><strong>Update Service:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update image</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>update<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image<span class="w"> </span>gcr.io/PROJECT_ID/myapp:v2
+
+<span class="c1"># Update traffic split (canary deployment)</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>update-traffic<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--to-revisions<span class="o">=</span>myapp-v2<span class="o">=</span><span class="m">20</span>,myapp-v1<span class="o">=</span><span class="m">80</span>
+</pre></div>
+</div>
+<p><strong>View Logs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View logs</span>
+gcloud<span class="w"> </span>logs<span class="w"> </span><span class="nb">read</span><span class="w"> </span>--service<span class="w"> </span>myapp<span class="w"> </span>--limit<span class="w"> </span><span class="m">50</span>
+
+<span class="c1"># Stream logs</span>
+gcloud<span class="w"> </span>logs<span class="w"> </span>tail<span class="w"> </span>--service<span class="w"> </span>myapp
+</pre></div>
+</div>
+<p><strong>Delete Service:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete service</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>delete<span class="w"> </span>myapp<span class="w"> </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions">
+<h2>Cloud Functions<a class="headerlink" href="#cloud-functions" title="Link to this heading"></a></h2>
+<p>Cloud Functions is a serverless execution environment for building and connecting cloud services with code.</p>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Event-driven execution</p></li>
+<li><p>Multiple trigger types (HTTP, Pub/Sub, Storage, Firestore, etc.)</p></li>
+<li><p>Automatic scaling</p></li>
+<li><p>Built-in monitoring and logging</p></li>
+<li><p>Multiple language runtimes</p></li>
+</ul>
+<p><strong>Supported Runtimes:</strong></p>
+<ul class="simple">
+<li><p>Node.js (18, 20)</p></li>
+<li><p>Python (3.9, 3.10, 3.11, 3.12)</p></li>
+<li><p>Go (1.19, 1.20, 1.21)</p></li>
+<li><p>Java (11, 17)</p></li>
+<li><p>.NET Core (3.1, 6)</p></li>
+<li><p>Ruby (2.7, 3.0, 3.2)</p></li>
+<li><p>PHP (8.1, 8.2)</p></li>
+</ul>
+<p><strong>Enable Cloud Functions API:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable API</span>
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cloudfunctions.googleapis.com
+gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cloudbuild.googleapis.com
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions-http-trigger">
+<h2>Cloud Functions: HTTP Trigger<a class="headerlink" href="#cloud-functions-http-trigger" title="Link to this heading"></a></h2>
+<p><strong>Python HTTP Function:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create directory</span>
+mkdir<span class="w"> </span>http-function
+<span class="nb">cd</span><span class="w"> </span>http-function
+
+<span class="c1"># Create main.py</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>main.py<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">import functions_framework</span>
+<span class="s">from fastapi import FastAPI, Query</span>
+<span class="s">from fastapi.responses import JSONResponse</span>
+
+<span class="s">app = FastAPI()</span>
+
+<span class="s">@app.get(&quot;/&quot;)</span>
+<span class="s">async def hello(name: str = Query(default=&quot;World&quot;)):</span>
+<span class="s">    return {</span>
+<span class="s">        &quot;message&quot;: f&quot;Hello {name}!&quot;,</span>
+<span class="s">        &quot;function&quot;: &quot;HTTP Cloud Function with FastAPI&quot;</span>
+<span class="s">    }</span>
+
+<span class="s">@functions_framework.http</span>
+<span class="s">def hello_http(request):</span>
+<span class="s">    &quot;&quot;&quot;HTTP Cloud Function using FastAPI.</span>
+<span class="s">    Args:</span>
+<span class="s">        request (flask.Request): The request object.</span>
+<span class="s">    Returns:</span>
+<span class="s">        JSON response from FastAPI application.</span>
+<span class="s">    &quot;&quot;&quot;</span>
+<span class="s">    from fastapi.testclient import TestClient</span>
+
+<span class="s">    client = TestClient(app)</span>
+
+<span class="s">    # Get query parameters</span>
+<span class="s">    name = request.args.get(&#39;name&#39;, &#39;World&#39;)</span>
+
+<span class="s">    # Also check JSON body</span>
+<span class="s">    if request.is_json:</span>
+<span class="s">        data = request.get_json()</span>
+<span class="s">        name = data.get(&#39;name&#39;, name)</span>
+
+<span class="s">    # Call FastAPI endpoint</span>
+<span class="s">    response = client.get(f&quot;/?name={name}&quot;)</span>
+<span class="s">    return JSONResponse(content=response.json())</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Create requirements.txt</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">functions-framework==3.5.0</span>
+<span class="s">fastapi==0.104.1</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>Deploy HTTP Function:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy function</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>hello-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>hello_http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-unauthenticated
+
+<span class="c1"># Test function</span>
+curl<span class="w"> </span>https://REGION-PROJECT_ID.cloudfunctions.net/hello-http
+curl<span class="w"> </span><span class="s2">&quot;https://REGION-PROJECT_ID.cloudfunctions.net/hello-http?name=DevOps&quot;</span>
+
+<span class="c1"># Test with JSON</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Alice&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://REGION-PROJECT_ID.cloudfunctions.net/hello-http
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions-storage-trigger">
+<h2>Cloud Functions: Storage Trigger<a class="headerlink" href="#cloud-functions-storage-trigger" title="Link to this heading"></a></h2>
+<p><strong>Process Uploaded Files:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functions_framework</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">storage</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">cloud_event</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_file</span><span class="p">(</span><span class="n">cloud_event</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Triggered by a change to a Cloud Storage bucket.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        cloud_event: Event describing the change in storage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cloud_event</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="n">bucket_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;bucket&quot;</span><span class="p">]</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing file: </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2"> from bucket: </span><span class="si">{</span><span class="n">bucket_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize storage client</span>
+    <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+    <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">blob</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+    <span class="c1"># Process the file</span>
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">blob</span><span class="o">.</span><span class="n">download_as_text</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File content: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Example: Create processed file</span>
+        <span class="n">processed_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;processed/</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">processed_blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">blob</span><span class="p">(</span><span class="n">processed_name</span><span class="p">)</span>
+        <span class="n">processed_blob</span><span class="o">.</span><span class="n">upload_from_string</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created processed file: </span><span class="si">{</span><span class="n">processed_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># requirements.txt</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">functions-framework==3.5.0</span>
+<span class="s">google-cloud-storage==2.10.0</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Deploy with Storage trigger</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>process-file<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-bucket<span class="w"> </span>my-bucket<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>process_file<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+
+<span class="c1"># Test by uploading a file</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello Cloud Functions&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
+gsutil<span class="w"> </span>cp<span class="w"> </span>test.txt<span class="w"> </span>gs://my-bucket/
+
+<span class="c1"># Check logs</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>logs<span class="w"> </span><span class="nb">read</span><span class="w"> </span>process-file<span class="w"> </span>--gen2<span class="w"> </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions-pub-sub-trigger">
+<h2>Cloud Functions: Pub/Sub Trigger<a class="headerlink" href="#cloud-functions-pub-sub-trigger" title="Link to this heading"></a></h2>
+<p><strong>Process Pub/Sub Messages:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functions_framework</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">cloud_event</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_message</span><span class="p">(</span><span class="n">cloud_event</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Triggered from a message on a Pub/Sub topic.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        cloud_event: Event with Pub/Sub message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Decode the Pub/Sub message</span>
+    <span class="n">pubsub_message</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">cloud_event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received message: </span><span class="si">{</span><span class="n">pubsub_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Parse JSON if applicable</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pubsub_message</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing data: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Your processing logic here</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message is not JSON: </span><span class="si">{</span><span class="n">pubsub_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process the incoming data.&quot;&quot;&quot;</span>
+    <span class="c1"># Example processing</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;processed&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Pub/Sub topic</span>
+gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>create<span class="w"> </span>my-topic
+
+<span class="c1"># Deploy function with Pub/Sub trigger</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>process-message<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-topic<span class="w"> </span>my-topic<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>process_message<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+
+<span class="c1"># Test by publishing message</span>
+gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>publish<span class="w"> </span>my-topic<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--message<span class="w"> </span><span class="s1">&#39;{&quot;user&quot;:&quot;alice&quot;,&quot;action&quot;:&quot;login&quot;}&#39;</span>
+
+<span class="c1"># Check logs</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>logs<span class="w"> </span><span class="nb">read</span><span class="w"> </span>process-message<span class="w"> </span>--gen2<span class="w"> </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions-scheduled">
+<h2>Cloud Functions: Scheduled<a class="headerlink" href="#cloud-functions-scheduled" title="Link to this heading"></a></h2>
+<p><strong>Create Scheduled Function:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functions_framework</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">scheduled_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scheduled task function.&quot;&quot;&quot;</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scheduled task running at: </span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Your scheduled logic here</span>
+    <span class="c1"># Examples:</span>
+    <span class="c1"># - Clean up old data</span>
+    <span class="c1"># - Generate reports</span>
+    <span class="c1"># - Send notifications</span>
+    <span class="c1"># - Backup data</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">current_time</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy function</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>scheduled-task<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>scheduled_task<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-allow-unauthenticated
+
+<span class="c1"># Create Cloud Scheduler job (runs every day at 2 AM)</span>
+gcloud<span class="w"> </span>scheduler<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>create<span class="w"> </span>http<span class="w"> </span>daily-task<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--schedule<span class="o">=</span><span class="s2">&quot;0 2 * * *&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--uri<span class="o">=</span><span class="s2">&quot;https://REGION-PROJECT_ID.cloudfunctions.net/scheduled-task&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--http-method<span class="o">=</span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--oidc-service-account-email<span class="o">=</span>PROJECT_ID@appspot.gserviceaccount.com<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="o">=</span>us-central1
+
+<span class="c1"># Test immediately</span>
+gcloud<span class="w"> </span>scheduler<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>run<span class="w"> </span>daily-task<span class="w"> </span>--location<span class="o">=</span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions-configuration">
+<h2>Cloud Functions: Configuration<a class="headerlink" href="#cloud-functions-configuration" title="Link to this heading"></a></h2>
+<p><strong>Memory and Timeout:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy with custom configuration</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>my_function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--memory<span class="w"> </span>512MB<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--timeout<span class="w"> </span>300s<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-instances<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--min-instances<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+<p><strong>Environment Variables:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set environment variables</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>my_function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--set-env-vars<span class="w"> </span><span class="nv">API_KEY</span><span class="o">=</span>abc123,ENVIRONMENT<span class="o">=</span>prod
+
+<span class="c1"># Update environment variables</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--update-env-vars<span class="w"> </span><span class="nv">NEW_VAR</span><span class="o">=</span>value
+</pre></div>
+</div>
+<p><strong>Secrets:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use secrets</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>my_function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--set-secrets<span class="w"> </span><span class="s1">&#39;DB_PASSWORD=my-secret:latest&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-cloud-function-examples">
+<h2>Advanced Cloud Function Examples<a class="headerlink" href="#advanced-cloud-function-examples" title="Link to this heading"></a></h2>
+<p><strong>API Integration Function:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py - Weather API Integration</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functions_framework</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">jsonify</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get weather for a city.&quot;&quot;&quot;</span>
+    <span class="n">request_json</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">request_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;London&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">request_json</span> <span class="k">else</span> <span class="s1">&#39;London&#39;</span>
+
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;WEATHER_API_KEY&#39;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.openweathermap.org/data/2.5/weather&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span> <span class="s1">&#39;appid&#39;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;metric&#39;</span><span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+            <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+            <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">][</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;weather&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;description&#39;</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;City not found&#39;</span><span class="p">}),</span> <span class="mi">404</span>
+</pre></div>
+</div>
+<p><strong>Database Integration:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py - Firestore Integration</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functions_framework</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">firestore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">jsonify</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">firestore</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_data</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save data to Firestore.&quot;&quot;&quot;</span>
+    <span class="n">request_json</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request_json</span> <span class="ow">or</span> <span class="s1">&#39;data&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request_json</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;No data provided&#39;</span><span class="p">}),</span> <span class="mi">400</span>
+
+    <span class="n">doc_ref</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">collection</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">document</span><span class="p">()</span>
+    <span class="n">doc_ref</span><span class="o">.</span><span class="n">set</span><span class="p">({</span>
+        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">request_json</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+        <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">doc_ref</span><span class="o">.</span><span class="n">id</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="cloud-functions-management">
+<h2>Cloud Functions Management<a class="headerlink" href="#cloud-functions-management" title="Link to this heading"></a></h2>
+<p><strong>List Functions:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all functions</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>list<span class="w"> </span>--gen2
+
+<span class="c1"># Describe function</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>describe<span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+<p><strong>View Logs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View logs</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>logs<span class="w"> </span><span class="nb">read</span><span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--limit<span class="w"> </span><span class="m">50</span>
+
+<span class="c1"># Stream logs in real-time</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>logs<span class="w"> </span><span class="nb">read</span><span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--follow
+</pre></div>
+</div>
+<p><strong>Delete Function:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete function</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>delete<span class="w"> </span>my-function<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gen2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1
+</pre></div>
+</div>
+</section>
+<section id="ci-cd-for-serverless">
+<h2>CI/CD for Serverless<a class="headerlink" href="#ci-cd-for-serverless" title="Link to this heading"></a></h2>
+<p><strong>GitHub Actions Workflow (.github/workflows/deploy.yml):</strong></p>
+<p><strong>For Cloud Run:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Cloud Run</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">PROJECT_ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_PROJECT_ID }}</span>
+<span class="w">  </span><span class="nt">REGION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-central1</span>
+<span class="w">  </span><span class="nt">SERVICE_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authenticate to Google Cloud</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/auth@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">workload_identity_provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.WIF_PROVIDER }}</span>
+<span class="w">          </span><span class="nt">service_account</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.WIF_SERVICE_ACCOUNT }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Cloud SDK</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/setup-gcloud@v2</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and Deploy to Cloud Run</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">gcloud run deploy ${{ env.SERVICE_NAME }} \</span>
+<span class="w">            </span><span class="no">--source . \</span>
+<span class="w">            </span><span class="no">--platform managed \</span>
+<span class="w">            </span><span class="no">--region ${{ env.REGION }} \</span>
+<span class="w">            </span><span class="no">--allow-unauthenticated</span>
+</pre></div>
+</div>
+<p><strong>For Cloud Functions:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy Cloud Function</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">PROJECT_ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_PROJECT_ID }}</span>
+<span class="w">  </span><span class="nt">REGION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-central1</span>
+<span class="w">  </span><span class="nt">FUNCTION_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-function</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authenticate to Google Cloud</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/auth@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">workload_identity_provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.WIF_PROVIDER }}</span>
+<span class="w">          </span><span class="nt">service_account</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.WIF_SERVICE_ACCOUNT }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Cloud SDK</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/setup-gcloud@v2</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy Cloud Function</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">gcloud functions deploy ${{ env.FUNCTION_NAME }} \</span>
+<span class="w">            </span><span class="no">--gen2 \</span>
+<span class="w">            </span><span class="no">--runtime python311 \</span>
+<span class="w">            </span><span class="no">--trigger-http \</span>
+<span class="w">            </span><span class="no">--entry-point my_function \</span>
+<span class="w">            </span><span class="no">--region ${{ env.REGION }} \</span>
+<span class="w">            </span><span class="no">--allow-unauthenticated</span>
+</pre></div>
+</div>
+<p><strong>Setup Workload Identity Federation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Workload Identity Pool</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>workload-identity-pools<span class="w"> </span>create<span class="w"> </span><span class="s2">&quot;github-pool&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--project<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display-name<span class="o">=</span><span class="s2">&quot;GitHub Actions Pool&quot;</span>
+
+<span class="c1"># Create Workload Identity Provider</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>workload-identity-pools<span class="w"> </span>providers<span class="w"> </span>create-oidc<span class="w"> </span><span class="s2">&quot;github-provider&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--project<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--workload-identity-pool<span class="o">=</span><span class="s2">&quot;github-pool&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display-name<span class="o">=</span><span class="s2">&quot;GitHub Provider&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--attribute-mapping<span class="o">=</span><span class="s2">&quot;google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--issuer-uri<span class="o">=</span><span class="s2">&quot;https://token.actions.githubusercontent.com&quot;</span>
+
+<span class="c1"># Create Service Account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>create<span class="w"> </span>github-actions<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display-name<span class="o">=</span><span class="s2">&quot;GitHub Actions&quot;</span>
+
+<span class="c1"># Grant permissions to Service Account</span>
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="nv">$PROJECT_ID</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:github-actions@</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/run.admin&quot;</span>
+
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="nv">$PROJECT_ID</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:github-actions@</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/cloudfunctions.admin&quot;</span>
+
+gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="nv">$PROJECT_ID</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:github-actions@</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/iam.serviceAccountUser&quot;</span>
+
+<span class="c1"># Allow GitHub to impersonate Service Account</span>
+gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;github-actions@</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">.iam.gserviceaccount.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--project<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role<span class="o">=</span><span class="s2">&quot;roles/iam.workloadIdentityUser&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github-pool/attribute.repository/YOUR_GITHUB_USER/YOUR_REPO&quot;</span>
+</pre></div>
+</div>
+<p><strong>Add Secrets to GitHub:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to your GitHub repository</p></li>
+<li><p>Settings → Secrets and variables → Actions</p></li>
+<li><p>Add these secrets:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GCP_PROJECT_ID</span></code>: Your GCP project ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WIF_PROVIDER</span></code>: <code class="docutils literal notranslate"><span class="pre">projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github-pool/providers/github-provider</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WIF_SERVICE_ACCOUNT</span></code>: <code class="docutils literal notranslate"><span class="pre">github-actions&#64;PROJECT_ID.iam.gserviceaccount.com</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Cloud Run:</strong></p>
+<ul class="simple">
+<li><p>Keep containers stateless</p></li>
+<li><p>Store state in external services (databases, Cloud Storage)</p></li>
+<li><p>Use health checks</p></li>
+<li><p>Implement graceful shutdown</p></li>
+<li><p>Set appropriate memory and CPU limits</p></li>
+<li><p>Use minimum instances for latency-sensitive apps</p></li>
+</ul>
+<p><strong>2. Cloud Functions:</strong></p>
+<ul class="simple">
+<li><p>Keep functions focused and small</p></li>
+<li><p>Avoid global variables for state</p></li>
+<li><p>Use Cloud Firestore or Cloud Storage for persistence</p></li>
+<li><p>Set appropriate timeouts</p></li>
+<li><p>Handle errors gracefully</p></li>
+<li><p>Use environment variables for configuration</p></li>
+</ul>
+<p><strong>3. Security:</strong></p>
+<ul class="simple">
+<li><p>Require authentication when possible</p></li>
+<li><p>Use service accounts with minimal permissions</p></li>
+<li><p>Store secrets in Secret Manager</p></li>
+<li><p>Validate input data</p></li>
+<li><p>Use VPC connectors for private resources</p></li>
+</ul>
+<p><strong>4. Cost Optimization:</strong></p>
+<ul class="simple">
+<li><p>Set max instances to control costs</p></li>
+<li><p>Use appropriate memory allocation</p></li>
+<li><p>Implement caching where possible</p></li>
+<li><p>Monitor usage and optimize cold starts</p></li>
+<li><p>Consider min-instances only when needed</p></li>
+</ul>
+</section>
+<section id="monitoring-and-debugging">
+<h2>Monitoring and Debugging<a class="headerlink" href="#monitoring-and-debugging" title="Link to this heading"></a></h2>
+<p><strong>Cloud Run Metrics:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View metrics in Cloud Console or use:</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>describe<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--format<span class="o">=</span><span class="s2">&quot;value(status.url)&quot;</span>
+</pre></div>
+</div>
+<p><strong>Cloud Functions Testing:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local testing with Functions Framework</span>
+pip<span class="w"> </span>install<span class="w"> </span>functions-framework
+
+<span class="c1"># Run locally</span>
+functions-framework<span class="w"> </span>--target<span class="o">=</span>hello_http<span class="w"> </span>--debug
+</pre></div>
+</div>
+<p><strong>View Error Reporting:</strong></p>
+<ul class="simple">
+<li><p>Go to Cloud Console → Error Reporting</p></li>
+<li><p>View errors grouped by type</p></li>
+<li><p>Set up notifications for new errors</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Common Issues:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Cold Start Latency</strong></p>
+<ul class="simple">
+<li><p>Use minimum instances</p></li>
+<li><p>Optimize container size</p></li>
+<li><p>Use lighter base images</p></li>
+</ul>
+</li>
+<li><p><strong>Timeout Errors</strong></p>
+<ul class="simple">
+<li><p>Increase timeout setting</p></li>
+<li><p>Optimize code performance</p></li>
+<li><p>Check external API latencies</p></li>
+</ul>
+</li>
+<li><p><strong>Memory Issues</strong></p>
+<ul class="simple">
+<li><p>Increase memory allocation</p></li>
+<li><p>Check for memory leaks</p></li>
+<li><p>Optimize data processing</p></li>
+</ul>
+</li>
+<li><p><strong>Permission Errors</strong></p>
+<ul class="simple">
+<li><p>Verify service account permissions</p></li>
+<li><p>Check IAM policies</p></li>
+<li><p>Enable required APIs</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cloud Run Documentation: <a class="reference external" href="https://cloud.google.com/run/docs">https://cloud.google.com/run/docs</a></p></li>
+<li><p>Cloud Functions Documentation: <a class="reference external" href="https://cloud.google.com/functions/docs">https://cloud.google.com/functions/docs</a></p></li>
+<li><p>Serverless on GCP Guide: <a class="reference external" href="https://cloud.google.com/serverless">https://cloud.google.com/serverless</a></p></li>
+<li><p>Cloud Run Samples: <a class="reference external" href="https://github.com/GoogleCloudPlatform/cloud-run-samples">https://github.com/GoogleCloudPlatform/cloud-run-samples</a></p></li>
+<li><p>Cloud Functions Samples: <a class="reference external" href="https://github.com/GoogleCloudPlatform/functions-framework-python">https://github.com/GoogleCloudPlatform/functions-framework-python</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5_cloud_storage.html" class="btn btn-neutral float-left" title="11.5 Cloud Storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="7_gke.html" class="btn btn-neutral float-right" title="11.7 Google Kubernetes Engine (GKE)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

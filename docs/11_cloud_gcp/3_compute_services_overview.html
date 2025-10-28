@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11.3 GCP Compute Services Overview &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.4 Compute Engine - Virtual Machines" href="4_compute_engine.html" />
+    <link rel="prev" title="11.8.2 VPC and Networking" href="2_networking.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11.3 GCP Compute Services Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/3_compute_services_overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gcp-compute-services-overview">
+<h1>11.3 GCP Compute Services Overview<a class="headerlink" href="#gcp-compute-services-overview" title="Link to this heading"></a></h1>
+<p>Google Cloud Platform offers three primary compute services that address different application deployment needs. Understanding when and how to use Cloud Run, Compute Engine VMs, and Google Kubernetes Engine (GKE) is crucial for effective cloud architecture.</p>
+<section id="overview-of-gcp-compute-options">
+<h2>Overview of GCP Compute Options<a class="headerlink" href="#overview-of-gcp-compute-options" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GCP provides a spectrum of compute services from fully managed serverless to complete infrastructure control. Each service targets different use cases and operational requirements.</p>
+</div>
+<p><strong>GCP Compute Services Spectrum:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────────────────┐
+│                    GCP Compute Services                         │
+├─────────────────┬─────────────────┬─────────────────────────────┤
+│   Cloud Run     │   GKE           │    Compute Engine           │
+│   (Serverless)  │   (Kubernetes)  │    (Virtual Machines)       │
+├─────────────────┼─────────────────┼─────────────────────────────┤
+│ Fully Managed   │ Container Mgmt  │ Infrastructure Control      │
+│ Pay per Request │ Orchestration   │ Full OS Access              │
+│ Auto Scaling    │ Multi-Service   │ Custom Configuration        │
+│ Zero Ops        │ Complex Apps    │ Legacy Applications         │
+└─────────────────┴─────────────────┴─────────────────────────────┘
+       ▲                   ▲                       ▲
+  Less Control          Balanced            More Control
+  Less Management                          More Management
+</pre></div>
+</div>
+</section>
+<section id="google-cloud-run-serverless">
+<h2>1. Google Cloud Run (Serverless)<a class="headerlink" href="#google-cloud-run-serverless" title="Link to this heading"></a></h2>
+<p><strong>What is Cloud Run?</strong></p>
+<p>Cloud Run is Google’s fully managed serverless platform for running stateless containerized applications. It automatically scales from zero to thousands of instances based on incoming requests.</p>
+<p><strong>Key Characteristics:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Cloud Run Architecture:
+
+┌─────────────────────────────────────────────────────────────┐
+│                    Internet Traffic                         │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+┌─────────────────────────────────────────────────────────────┐
+│              Google Load Balancer                           │
+│              (Automatic SSL, CDN)                           │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+┌─────────────────────────────────────────────────────────────┐
+│                 Cloud Run Service                           │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
+│  │Container │  │Container │  │Container │  │Container │     │
+│  │Instance  │  │Instance  │  │Instance  │  │Instance  │     │
+│  │   (0-1)  │  │   (0-1)  │  │   (0-1)  │  │   (0-1)  │     │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘     │
+│      Auto Scale: 0 → 1000+ based on requests                │
+└─────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Cloud Run Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Serverless</strong>: No infrastructure management</p></li>
+<li><p><strong>Containerized</strong>: Deploy any language via containers</p></li>
+<li><p><strong>Auto-scaling</strong>: Scale to zero when idle</p></li>
+<li><p><strong>Pay-per-use</strong>: Only pay for actual request processing time</p></li>
+<li><p><strong>HTTPS by default</strong>: Automatic SSL certificates</p></li>
+<li><p><strong>Traffic splitting</strong>: Blue-green and canary deployments</p></li>
+</ul>
+<p><strong>Deployment Methods:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Method 1: Deploy from Docker image</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>my-service<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>gcr.io/my-project/my-app:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--platform<span class="w"> </span>managed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--allow-unauthenticated
+
+<span class="c1"># Method 2: Deploy from source code (Buildpacks)</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>my-service<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--platform<span class="w"> </span>managed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--allow-unauthenticated
+</pre></div>
+</div>
+<p><strong>Best Use Cases:</strong></p>
+<ul class="simple">
+<li><p><strong>Web APIs and microservices</strong></p></li>
+<li><p><strong>Event-driven applications</strong></p></li>
+<li><p><strong>Batch processing jobs</strong></p></li>
+<li><p><strong>Serverless backends for mobile/web apps</strong></p></li>
+<li><p><strong>Applications with variable traffic patterns</strong></p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p><strong>Request timeout</strong>: Maximum 60 minutes</p></li>
+<li><p><strong>Memory limit</strong>: Up to 32 GiB</p></li>
+<li><p><strong>CPU limit</strong>: Up to 8 vCPUs</p></li>
+<li><p><strong>Stateless only</strong>: No persistent local storage</p></li>
+<li><p><strong>Cold starts</strong>: Latency for new instances</p></li>
+</ul>
+</section>
+<section id="compute-engine-virtual-machines">
+<h2>2. Compute Engine (Virtual Machines)<a class="headerlink" href="#compute-engine-virtual-machines" title="Link to this heading"></a></h2>
+<p><strong>What is Compute Engine?</strong></p>
+<p>Compute Engine provides scalable, high-performance virtual machines running on Google’s infrastructure. It offers complete control over the operating system and configuration.</p>
+<p><strong>Key Characteristics:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Compute Engine Architecture:
+
+┌──────────────────────────────────────────────────────────┐
+│                  Your Project                            │
+│  ┌───────────────────────────────────────────────────────┤
+│  │               VPC Network                             │
+│  │  ┌────────────────────────────────────────────────────┤
+│  │  │            Subnet (us-central1-a)                  │
+│  │  │  ┌──────────────────┐  ┌──────────────────┐        │
+│  │  │  │   VM Instance    │  │   VM Instance    │        │
+│  │  │  │   ┌──────────────┤  │   ┌──────────────┤        │
+│  │  │  │   │ Ubuntu 22.04 │  │   │ Windows 2022 │        │
+│  │  │  │   │ 4 vCPUs      │  │   │ 8 vCPUs      │        │
+│  │  │  │   │ 16 GB RAM    │  │   │ 32 GB RAM    │        │
+│  │  │  │   │ 100 GB SSD   │  │   │ 500 GB SSD   │        │
+│  │  │  │   └──────────────┤  │   └──────────────┤        │
+│  │  │  └──────────────────┘  └──────────────────┘        │
+│  │  └────────────────────────────────────────────────────┤
+│  └───────────────────────────────────────────────────────┤
+└──────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Compute Engine Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Full OS control</strong>: Choose from Linux or Windows</p></li>
+<li><p><strong>Custom machine types</strong>: Tailor CPU, memory, and storage</p></li>
+<li><p><strong>Persistent disks</strong>: Separate compute and storage</p></li>
+<li><p><strong>GPU support</strong>: Add GPUs for ML/AI workloads</p></li>
+<li><p><strong>Live migration</strong>: Maintenance without downtime</p></li>
+<li><p><strong>Preemptible instances</strong>: Up to 80% cost savings</p></li>
+</ul>
+<p><strong>Deployment Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a VM instance with startup script</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>my-web-server<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--zone<span class="o">=</span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--machine-type<span class="o">=</span>e2-medium<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--boot-disk-size<span class="o">=</span>20GB<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--boot-disk-type<span class="o">=</span>pd-standard<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image-family<span class="o">=</span>ubuntu-2204-lts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image-project<span class="o">=</span>ubuntu-os-cloud<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tags<span class="o">=</span>web-server<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--startup-script<span class="o">=</span><span class="s1">&#39;#!/bin/bash</span>
+<span class="s1">    apt-get update</span>
+<span class="s1">    apt-get install -y apache2</span>
+<span class="s1">    systemctl start apache2</span>
+<span class="s1">    systemctl enable apache2&#39;</span>
+
+<span class="c1"># Create firewall rule for HTTP traffic</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-http<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--allow<span class="w"> </span>tcp:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source-ranges<span class="w"> </span><span class="m">0</span>.0.0.0/0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-tags<span class="w"> </span>web-server
+</pre></div>
+</div>
+<p><strong>Best Use Cases:</strong></p>
+<ul class="simple">
+<li><p><strong>Legacy applications requiring specific OS configurations</strong></p></li>
+<li><p><strong>Applications needing persistent local storage</strong></p></li>
+<li><p><strong>High-performance computing workloads</strong></p></li>
+<li><p><strong>Custom network configurations</strong></p></li>
+<li><p><strong>Applications requiring specific compliance controls</strong></p></li>
+<li><p><strong>Long-running batch jobs or services</strong></p></li>
+</ul>
+<p><strong>Management Considerations:</strong></p>
+<ul class="simple">
+<li><p><strong>OS patching and security updates</strong></p></li>
+<li><p><strong>Monitoring and logging setup</strong></p></li>
+<li><p><strong>Backup and disaster recovery planning</strong></p></li>
+<li><p><strong>Resource scaling and optimization</strong></p></li>
+</ul>
+</section>
+<section id="google-kubernetes-engine-gke">
+<h2>3. Google Kubernetes Engine (GKE)<a class="headerlink" href="#google-kubernetes-engine-gke" title="Link to this heading"></a></h2>
+<p><strong>What is GKE?</strong></p>
+<p>GKE is Google’s managed Kubernetes service that provides a powerful orchestration system for containerized applications while reducing the operational overhead of managing Kubernetes clusters.</p>
+<p><strong>Key Characteristics:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GKE Architecture:
+
+┌───────────────────────────────────────────────────────────┐
+│                    GKE Cluster                            │
+│  ┌────────────────────────────────────────────────────────┤
+│  │               Control Plane                            │
+│  │               (Fully Managed)                          │
+│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐      │
+│  │  │API      │ │etcd     │ │Scheduler│ │Controller│      │
+│  │  │Server   │ │Database │ │         │ │Manager   │      │
+│  │  └─────────┘ └─────────┘ └─────────┘ └──────────┘      │
+│  └────────────────────────────────────────────────────────┤
+│  ┌────────────────────────────────────────────────────────┤
+│  │                 Worker Nodes                           │
+│  │  ┌───────────────────┐ ┌───────────────────┐           │
+│  │  │   Node 1          │ │   Node 2          │           │
+│  │  │  ┌─────────────┐  │ │  ┌─────────────┐  │           │
+│  │  │  │   Pod       │  │ │  │   Pod       │  │           │
+│  │  │  │ ┌─────────┐ │  │ │  │ ┌─────────┐ │  │           │
+│  │  │  │ │Frontend │ │  │ │  │ │Backend  │ │  │           │
+│  │  │  │ │Container│ │  │ │  │ │Container│ │  │           │
+│  │  │  │ └─────────┘ │  │ │  │ └─────────┘ │  │           │
+│  │  │  └─────────────┘  │ │  └─────────────┘  │           │
+│  │  │  ┌─────────────┐  │ │  ┌─────────────┐  │           │
+│  │  │  │   Pod       │  │ │  │   Pod       │  │           │
+│  │  │  │ ┌─────────┐ │  │ │  │ ┌─────────┐ │  │           │
+│  │  │  │ │Database │ │  │ │  │ │Cache    │ │  │           │
+│  │  │  │ │Container│ │  │ │  │ │Container│ │  │           │
+│  │  │  │ └─────────┘ │  │ │  │ └─────────┘ │  │           │
+│  │  │  └─────────────┘  │ │  └─────────────┘  │           │
+│  │  └───────────────────┘ └───────────────────┘           │
+│  └────────────────────────────────────────────────────────┤
+└───────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>GKE Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Managed control plane</strong>: Google handles Kubernetes masters</p></li>
+<li><p><strong>Auto-scaling</strong>: Horizontal Pod Autoscaler and Vertical Pod Autoscaler</p></li>
+<li><p><strong>Auto-upgrade</strong>: Automatic Kubernetes version updates</p></li>
+<li><p><strong>Auto-repair</strong>: Automatic node replacement when unhealthy</p></li>
+<li><p><strong>Workload Identity</strong>: Secure access to Google Cloud services</p></li>
+<li><p><strong>Binary Authorization</strong>: Ensure only trusted container images</p></li>
+</ul>
+<p><strong>GKE Modes:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GKE Operating Modes:
+
+┌─────────────────────┬─────────────────────┐
+│    Standard Mode    │   Autopilot Mode    │
+├─────────────────────┼─────────────────────┤
+│ • Node management   │ • Fully managed     │
+│ • Flexible config   │ • Simplified ops    │
+│ • Cost optimization │ • Pay-per-pod       │
+│ • Advanced features │ • Built-in security │
+└─────────────────────┴─────────────────────┘
+</pre></div>
+</div>
+<p><strong>Deployment Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create GKE cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create<span class="w"> </span>my-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--zone<span class="w"> </span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-nodes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--enable-autoscaling<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--min-nodes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-nodes<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--machine-type<span class="w"> </span>e2-standard-2
+
+<span class="c1"># Get credentials</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>get-credentials<span class="w"> </span>my-cluster<span class="w"> </span>--zone<span class="w"> </span>us-central1-a
+
+<span class="c1"># Deploy application</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>nginx<span class="w"> </span>--image<span class="o">=</span>nginx:latest
+kubectl<span class="w"> </span>expose<span class="w"> </span>deployment<span class="w"> </span>nginx<span class="w"> </span>--port<span class="o">=</span><span class="m">80</span><span class="w"> </span>--type<span class="o">=</span>LoadBalancer
+
+<span class="c1"># Scale deployment</span>
+kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>nginx<span class="w"> </span>--replicas<span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p><strong>Best Use Cases:</strong></p>
+<ul class="simple">
+<li><p><strong>Microservices architectures</strong></p></li>
+<li><p><strong>Multi-service applications requiring orchestration</strong></p></li>
+<li><p><strong>Applications needing advanced deployment patterns</strong></p></li>
+<li><p><strong>Workloads requiring service mesh capabilities</strong></p></li>
+<li><p><strong>Applications with complex scaling requirements</strong></p></li>
+<li><p><strong>Multi-tenant applications</strong></p></li>
+</ul>
+</section>
+<section id="service-comparison-and-decision-matrix">
+<h2>Service Comparison and Decision Matrix<a class="headerlink" href="#service-comparison-and-decision-matrix" title="Link to this heading"></a></h2>
+<p><strong>When to Choose Each Service:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Decision Tree:
+
+Start Here
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│ Do you need infrastructure control?     │
+└─────────────┬───────────────────────────┘
+              │
+     ┌────────▼────────┐
+     │ YES             │ NO
+     │                 │
+     ▼                 ▼
+┌─────────────┐   ┌─────────────────────────────────┐
+│ Compute     │   │ Is it a single containerized    │
+│ Engine      │   │ stateless service?              │
+│ (VMs)       │   └─────────────┬───────────────────┘
+└─────────────┘                 │
+                         ┌──────▼──────┐
+                         │ YES         │ NO
+                         │             │
+                         ▼             ▼
+                 ┌───────────────┐ ┌─────────────┐
+                 │ Cloud Run     │ │ GKE         │
+                 │ (Serverless)  │ │ (Kubernetes)│
+                 └───────────────┘ └─────────────┘
+</pre></div>
+</div>
+<p><strong>Detailed Comparison Matrix:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│     Criteria       │   Cloud Run     │      GKE        │ Compute Engine  │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Management Level   │ Fully Managed   │ Semi-Managed    │ Self-Managed    │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Scaling Model      │ Auto (0-1000+)  │ Manual/Auto     │ Manual/Auto     │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Pricing Model      │ Pay-per-request │ Pay-per-pod     │ Pay-per-VM      │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Cold Start         │ 0-3 seconds     │ Pod startup     │ VM boot time    │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Request Timeout    │ 60 minutes      │ Configurable    │ No limit        │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Persistent Storage │ None            │ Yes (PV/PVC)    │ Yes (Disks)     │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Network Control    │ Limited         │ Full (CNI)      │ Full (VPC)      │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ OS Access          │ None            │ None            │ Full            │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Multi-Service Apps │ External coord  │ Native support  │ Manual setup    │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Vendor Lock-in     │ High            │ Low (K8s std)   │ Medium          │
+├────────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Learning Curve     │ Low             │ High            │ Medium          │
+└────────────────────┴─────────────────┴─────────────────┴─────────────────┘
+</pre></div>
+</div>
+<p><strong>Cost Analysis:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Cost Comparison (Typical Web Application):
+
+Cloud Run (100K requests/month):
+├─ CPU: $0.024/100ms x 100K = $2.40
+├─ Memory: $0.0025/100ms x 100K = $0.25
+├─ Requests: $0.40/1M x 0.1M = $0.04
+└─ Total: ~$2.69/month
+
+GKE Standard (3 e2-small nodes):
+├─ Nodes: 3 x $15/month = $45.00
+├─ Management fee: $74.40/month (free for Autopilot)
+└─ Total: ~$119.40/month
+
+Compute Engine (1 e2-medium instance):
+├─ Instance: 1 x $25/month = $25.00
+├─ Storage: 20GB x $0.04/GB = $0.80
+└─ Total: ~$25.80/month
+</pre></div>
+</div>
+</section>
+<section id="real-world-use-case-examples">
+<h2>Real-World Use Case Examples<a class="headerlink" href="#real-world-use-case-examples" title="Link to this heading"></a></h2>
+<p><strong>Example 1: E-commerce Platform</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>E-commerce Architecture:
+
+┌──────────────────────────────────────────────────────────┐
+│                Frontend (React SPA)                      │
+│                  Cloud Run                               │
+│  • Serves static assets and SSR                          │
+│  • Auto-scales during traffic spikes                     │
+│  • $2-5/month for normal traffic                         │
+└─────────────────┬────────────────────────────────────────┘
+                  │ API calls
+                  ▼
+┌──────────────────────────────────────────────────────────┐
+│              Microservices (GKE)                         │
+│  ┌─────────────┬─────────────┬─────────────────────────┐ │
+│  │ User Service│Cart Service │ Payment Service         │ │
+│  │             │             │ (High Security)         │ │
+│  └─────────────┴─────────────┴─────────────────────────┘ │
+│  • Complex inter-service communication                   │
+│  • Service mesh for security and observability           │
+└─────────────────┬────────────────────────────────────────┘
+                  │ Database connections
+                  ▼
+┌──────────────────────────────────────────────────────────┐
+│           Database (Compute Engine)                      │
+│  • PostgreSQL with specific performance tuning           │
+│  • Custom backup and replication setup                   │
+│  • Persistent storage with high IOPS                     │
+└──────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<p><strong>Example 2: Data Processing Pipeline</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cloud Run for API ingestion</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>data-ingestion-api<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>gcr.io/project/data-api:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--memory<span class="w"> </span>2Gi<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-instances<span class="w"> </span><span class="m">100</span>
+
+<span class="c1"># GKE for batch processing</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">apiVersion: batch/v1</span>
+<span class="s">kind: Job</span>
+<span class="s">metadata:</span>
+<span class="s">  name: data-processor</span>
+<span class="s">spec:</span>
+<span class="s">  parallelism: 10</span>
+<span class="s">  template:</span>
+<span class="s">    spec:</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: processor</span>
+<span class="s">        image: gcr.io/project/data-processor:latest</span>
+<span class="s">        resources:</span>
+<span class="s">          requests:</span>
+<span class="s">            memory: &quot;4Gi&quot;</span>
+<span class="s">            cpu: &quot;2&quot;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Compute Engine for ML training</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>ml-training-instance<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--machine-type<span class="w"> </span>n1-highmem-16<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--accelerator<span class="w"> </span><span class="nv">type</span><span class="o">=</span>nvidia-tesla-v100,count<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--boot-disk-size<span class="w"> </span>200GB<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image-family<span class="w"> </span>pytorch-latest-gpu<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image-project<span class="w"> </span>deeplearning-platform-release
+</pre></div>
+</div>
+</section>
+<section id="migration-strategies-between-services">
+<h2>Migration Strategies Between Services<a class="headerlink" href="#migration-strategies-between-services" title="Link to this heading"></a></h2>
+<p><strong>From Compute Engine to Cloud Run:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Migration Path: VM → Serverless
+
+Step 1: Containerize Application
+┌─────────────────────────────────────────────┐
+│ VM Application                              │
+│ ├─ Install dependencies on VM               │
+│ ├─ Configure web server                     │
+│ └─ Start application                        │
+└─────────────────────────────────────────────┘
+                 │ Containerize
+                 ▼
+┌─────────────────────────────────────────────┐
+│ Dockerfile                                  │
+│ FROM python:3.9-slim                        │
+│ COPY requirements.txt .                     │
+│ RUN pip install -r requirements.txt         │
+│ COPY app.py .                               │
+│ CMD [&quot;python&quot;, &quot;app.py&quot;]                    │
+└─────────────────────────────────────────────┘
+
+Step 2: Make Stateless
+• Move sessions to external store (Redis)
+• Use environment variables for configuration
+• Implement health check endpoints
+
+Step 3: Deploy to Cloud Run
+gcloud run deploy my-app --source .
+</pre></div>
+</div>
+<p><strong>From Cloud Run to GKE:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Migration Path: Serverless → Kubernetes
+
+When to migrate:
+• Need persistent storage
+• Complex inter-service communication
+• Advanced networking requirements
+• Custom scaling policies
+
+Migration steps:
+1. Create Kubernetes manifests
+2. Set up service mesh (Istio)
+3. Configure persistent volumes
+4. Implement proper monitoring
+</pre></div>
+</div>
+</section>
+<section id="best-practices-and-recommendations">
+<h2>Best Practices and Recommendations<a class="headerlink" href="#best-practices-and-recommendations" title="Link to this heading"></a></h2>
+<p><strong>Cloud Run Best Practices:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>✓ Design for statelessness
+✓ Optimize container startup time
+✓ Use minimal base images
+✓ Implement proper health checks
+✓ Set appropriate concurrency limits
+✓ Use environment variables for configuration
+✓ Implement graceful shutdown
+✗ Don&#39;t store data locally
+✗ Don&#39;t rely on sticky sessions
+✗ Don&#39;t use long-running background tasks
+</pre></div>
+</div>
+<p><strong>GKE Best Practices:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>✓ Use namespaces for isolation
+✓ Implement resource quotas and limits
+✓ Use horizontal pod autoscaling
+✓ Implement proper monitoring and logging
+✓ Use secrets for sensitive data
+✓ Implement network policies
+✓ Use readiness and liveness probes
+✗ Don&#39;t run as root in containers
+✗ Don&#39;t store secrets in container images
+✗ Don&#39;t ignore security contexts
+</pre></div>
+</div>
+<p><strong>Compute Engine Best Practices:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>✓ Use startup scripts for automation
+✓ Implement regular backups
+✓ Use managed instance groups for HA
+✓ Configure proper firewall rules
+✓ Use preemptible instances for cost savings
+✓ Implement monitoring and alerting
+✓ Keep OS and software updated
+✗ Don&#39;t expose unnecessary ports
+✗ Don&#39;t run services as root
+✗ Don&#39;t ignore security patches
+</pre></div>
+</div>
+</section>
+<section id="performance-and-scalability-considerations">
+<h2>Performance and Scalability Considerations<a class="headerlink" href="#performance-and-scalability-considerations" title="Link to this heading"></a></h2>
+<p><strong>Latency Comparison:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Cold Start Performance:
+
+Cloud Run:
+├─ Container startup: 0.1-3 seconds
+├─ Language runtime: 0.1-2 seconds
+└─ Total: 0.2-5 seconds
+
+GKE:
+├─ Pod scheduling: 0.1-1 second
+├─ Container startup: 0.1-3 seconds
+└─ Total: 0.2-4 seconds
+
+Compute Engine:
+├─ VM boot: 20-60 seconds
+├─ Service startup: 1-10 seconds
+└─ Total: 21-70 seconds
+</pre></div>
+</div>
+<p><strong>Scaling Characteristics:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Scaling Speed:
+
+Cloud Run:    0 → 1000 instances in ~10 seconds
+GKE:          1 → 100 pods in ~30 seconds
+Compute:      1 → 10 VMs in ~2-3 minutes
+</pre></div>
+</div>
+<p><strong>Throughput Capabilities:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Maximum Throughput (per instance):
+
+Cloud Run:    1000 concurrent requests
+GKE Pod:      Limited by container resources
+Compute VM:   Limited by VM size and config
+</pre></div>
+</div>
+</section>
+<section id="security-considerations">
+<h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading"></a></h2>
+<p><strong>Security Model Comparison:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│ Security Aspect │   Cloud Run     │      GKE        │ Compute Engine  │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Network         │ Private Google  │ VPC Native      │ Full VPC        │
+│ Isolation       │ network         │ with policies   │ control         │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Container       │ Automatic       │ Pod Security    │ Manual          │
+│ Security        │ sandboxing      │ Standards       │ hardening       │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Identity        │ Service         │ Workload        │ Service         │
+│ Management      │ accounts        │ Identity        │ accounts        │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Secrets         │ Environment     │ Kubernetes      │ Metadata/       │
+│ Management      │ variables       │ secrets         │ Secret Manager  │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ Compliance      │ Automatic       │ Manual config   │ Full            │
+│ Controls        │ compliance      │ required        │ responsibility  │
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="monitoring-and-observability">
+<h2>Monitoring and Observability<a class="headerlink" href="#monitoring-and-observability" title="Link to this heading"></a></h2>
+<p><strong>Built-in Monitoring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cloud Run monitoring</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>describe<span class="w"> </span>SERVICE_NAME<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--region<span class="o">=</span>REGION<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--format<span class="o">=</span><span class="s2">&quot;table(status.traffic[].latestRevision:label=LATEST,</span>
+<span class="s2">  status.traffic[].percent:label=PERCENT,</span>
+<span class="s2">  status.traffic[].url:label=URL)&quot;</span>
+
+<span class="c1"># GKE cluster monitoring</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>--all-namespaces
+
+<span class="c1"># Compute Engine monitoring</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>describe<span class="w"> </span>INSTANCE_NAME<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--zone<span class="o">=</span>ZONE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--format<span class="o">=</span><span class="s2">&quot;table(status,machineType.basename(),</span>
+<span class="s2">  scheduling.preemptible:label=PREEMPTIBLE)&quot;</span>
+</pre></div>
+</div>
+<p><strong>Custom Metrics Setup:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># GKE Prometheus monitoring</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceMonitor</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-metrics</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-application</span>
+<span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metrics</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/metrics</span>
+</pre></div>
+</div>
+</section>
+<section id="summary-and-decision-guidelines">
+<h2>Summary and Decision Guidelines<a class="headerlink" href="#summary-and-decision-guidelines" title="Link to this heading"></a></h2>
+<p><strong>Quick Decision Guide:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Choose Cloud Run when:
+✓ Building stateless web APIs or microservices
+✓ Traffic is sporadic or unpredictable
+✓ Want zero infrastructure management
+✓ Need automatic HTTPS and scaling
+✓ Budget-conscious for low-traffic applications
+
+Choose GKE when:
+✓ Managing multiple interconnected services
+✓ Need advanced deployment strategies
+✓ Require service mesh capabilities
+✓ Want Kubernetes portability
+✓ Have complex networking requirements
+
+Choose Compute Engine when:
+✓ Need full OS control and customization
+✓ Running legacy applications
+✓ Require specific compliance controls
+✓ Need persistent local storage
+✓ Have long-running or stateful workloads
+</pre></div>
+</div>
+<p><strong>Cost-Performance Sweet Spots:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Development/Testing:    Cloud Run (lowest cost)
+Small Production:       Cloud Run (best value)
+Medium Production:      GKE Autopilot (balanced)
+Large Production:       GKE Standard (most control)
+Enterprise/Legacy:      Compute Engine (maximum flexibility)
+</pre></div>
+</div>
+<p>The choice between Cloud Run, GKE, and Compute Engine ultimately depends on your specific requirements for control, scalability, cost, and operational complexity. Start simple with Cloud Run, evolve to GKE for orchestration needs, and use Compute Engine when you need maximum control.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_networking.html" class="btn btn-neutral float-left" title="11.8.2 VPC and Networking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_compute_engine.html" class="btn btn-neutral float-right" title="11.4 Compute Engine - Virtual Machines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

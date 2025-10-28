@@ -144,14 +144,20 @@
 <li class="toctree-l1"><a class="reference internal" href="0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">11.0.6 Cloud Providers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">ANSWERS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_engine.html">11.8.3 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -186,28 +192,33 @@
 <h1>11.0.6 Cloud Providers<a class="headerlink" href="#cloud-providers" title="Link to this heading"></a></h1>
 <section id="market-landscape-overview">
 <h2>Market Landscape Overview<a class="headerlink" href="#market-landscape-overview" title="Link to this heading"></a></h2>
-<p><strong>Major Cloud Providers Q3 2024:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Market Share by Revenue:
+<p><strong>Major Cloud Providers Q4 2024:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Market Share by Revenue (Latest):
 
-1 Amazon Web Services (AWS)     - 32%
-2 Microsoft Azure               - 23%
-3 Google Cloud Platform (GCP)   - 11%
+1 Amazon Web Services (AWS)     - 31%
+2 Microsoft Azure               - 25%
+3 Google Cloud Platform (GCP)   - 12%
 ──────────────────────────────────────
 4 Alibaba Cloud                 - 4%
-5 IBM Cloud                     - 3%
-6 Salesforce                    - 3%
-7 Oracle Cloud                  - 2%
-8 Tencent Cloud                 - 2%
-9 Others                        - 20%
+5 IBM Cloud                     - 2%
+6 Oracle Cloud                  - 2%
+7 Salesforce                    - 2%
+8 Others                        - 22%
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Key Trend (2024)</strong>: Azure is closing the gap with AWS, while GCP
+is growing fastest in AI/ML workloads. All three now offer similar
+core services but with different strengths.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This course provides comprehensive hands-on tutorials for the <strong>top three cloud providers</strong>:</p>
 <ul class="simple">
-<li><p><strong>AWS</strong> (Chapter 11.3) - Market leader with broadest service catalog</p></li>
-<li><p><strong>Azure</strong> (Chapter 11.6) - Enterprise-focused with strong hybrid capabilities</p></li>
-<li><p><strong>GCP</strong> (Chapter 11.8) - Innovation leader in data analytics, ML, and Kubernetes</p></li>
+<li><p><strong>AWS</strong> (Chapter 11_cloud_aws) - Market leader with broadest service catalog</p></li>
+<li><p><strong>Azure</strong> (Chapter 11_cloud_azure) - Enterprise-focused with strong hybrid capabilities</p></li>
+<li><p><strong>GCP</strong> (Chapter 11_cloud_gcp) - Innovation leader in data analytics, ML, and Kubernetes</p></li>
 </ul>
 <p>Each chapter includes practical examples of deploying your containerized applications.</p>
 </div>
@@ -321,28 +332,32 @@
 </pre></div>
 </div>
 <p><strong>Container Services:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Azure Container Stack:
-┌──────────────────────────────────────┐
-│ Azure Kubernetes Service (AKS)       │
-│ ├─ Free control plane                │
-│ ├─ Azure Active Directory integration│
-│ └─ Virtual nodes (serverless)        │
-├───────────────────────────────────── ┤
-│ Azure Container Instances (ACI)      │
-│ ├─ Serverless containers             │
-│ ├─ Per-second billing                │
-│ └─ Quick container deployment        │
-├───────────────────────────────────── ┤
-│ Azure Container Registry (ACR)       │
-│ ├─ Private Docker registry           │
-│ ├─ Geo-replication                   │
-│ └─ Security scanning built-in        │
-├───────────────────────────────────── ┤
-│ Azure DevOps Integration             │
-│ ├─ Native CI/CD pipelines            │
-│ ├─ Work item tracking                │
-│ └─ Release management                │
-└──────────────────────────────────────┘
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Azure Container Services (2024 Updates):
+┌─────────────────────────────────────────┐
+│ Azure Kubernetes Service (AKS)          │
+│ ├─ Free control plane (cost advantage)  │
+│ ├─ Azure Active Directory integration   │
+│ ├─ Virtual nodes (Azure Container Inst.)│
+│ ├─ KEDA integration (event-driven scale)│
+│ └─ Confidential containers (2024)       │
+├─────────────────────────────────────────┤
+│ Azure Container Apps (2024 Focus)       │
+│ ├─ Serverless containers platform       │
+│ ├─ Built-in Dapr integration            │
+│ ├─ Revision-based deployment            │
+│ └─ Scale-to-zero capabilities           │
+├─────────────────────────────────────────┤
+│ Azure Container Registry (ACR)          │
+│ ├─ Geo-replication and caching          │
+│ ├─ Microsoft Defender integration       │
+│ ├─ Artifact streaming (faster pulls)    │
+│ └─ Teleport for air-gapped scenarios    │
+├─────────────────────────────────────────┤
+│ Azure DevOps + GitHub Integration       │
+│ ├─ Native Azure integration             │
+│ ├─ Enterprise-grade security            │
+│ └─ Advanced compliance features         │
+└─────────────────────────────────────────┘
 </pre></div>
 </div>
 <p><strong>Your GitHub Actions Integration:</strong></p>
@@ -410,67 +425,13 @@
 + Clean, intuitive interfaces
 </pre></div>
 </div>
-<p><strong>Container Services:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GCP Container Stack:
-┌─────────────────────────────────────┐
-│ Google Kubernetes Engine (GKE)      │
-│ ├─ Most advanced Kubernetes service │
-│ ├─ Autopilot mode (fully managed)   │
-│ └─ Native Kubernetes experience     │
-├─────────────────────────────────────┤
-│ Cloud Run (Serverless Containers)   │
-│ ├─ Deploy containers without K8s    │
-│ ├─ Auto-scaling to zero             │
-│ └─ Pay per request                  │
-├─────────────────────────────────────┤
-│ Artifact Registry                   │
-│ ├─ Universal package manager        │
-│ ├─ Docker, Helm, npm support        │
-│ └─ Vulnerability scanning           │
-├─────────────────────────────────────┤
-│ Cloud Build (Native CI/CD)          │
-│ ├─ Build containers in cloud        │
-│ ├─ Trigger from Git commits         │
-│ └─ Deploy to GKE automatically      │
-└─────────────────────────────────────┘
-</pre></div>
-</div>
-<p><strong>Your GitHub Actions Integration:</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/gcp-deploy.yml</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to Google GKE</span>
-
-<span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Google Cloud CLI</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/setup-gcloud@v1</span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">service_account_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_SA_KEY }}</span>
-<span class="w">          </span><span class="nt">project_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ env.PROJECT_ID }}</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure Docker for Artifact Registry</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push Docker image</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA .</span>
-<span class="w">          </span><span class="no">docker push $REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GKE</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no">gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE</span>
-<span class="w">          </span><span class="no">kubectl set image deployment/myapp myapp=$REGION-docker.pkg.dev/$PROJECT_ID/myrepo/myapp:$GITHUB_SHA</span>
-<span class="w">          </span><span class="no">kubectl rollout status deployment/myapp</span>
-</pre></div>
-</div>
+<p><strong>Key Container Services:</strong></p>
+<ul class="simple">
+<li><p><strong>Google Kubernetes Engine (GKE)</strong>: Most advanced managed Kubernetes</p></li>
+<li><p><strong>Cloud Run</strong>: Serverless containers with auto-scaling to zero</p></li>
+<li><p><strong>Artifact Registry</strong>: Universal package manager with vulnerability scanning</p></li>
+<li><p><strong>Cloud Build</strong>: Native CI/CD with Git integration</p></li>
+</ul>
 <p><strong>Best For:</strong></p>
 <ul class="simple">
 <li><p>Data-heavy applications</p></li>
@@ -487,6 +448,12 @@
 <li><p><strong>Cloud Functions</strong> (Serverless)</p></li>
 <li><p><strong>GKE</strong> (Managed Kubernetes)</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For Detailed GCP Coverage</strong>: See Chapter 11_cloud_gcp for comprehensive
+hands-on tutorials including GKE, Cloud Run, compute services, databases,
+networking, security, and cost optimization specific to Google Cloud Platform.</p>
+</div>
 </section>
 <section id="side-by-side-comparison">
 <h2>Side-by-Side Comparison<a class="headerlink" href="#side-by-side-comparison" title="Link to this heading"></a></h2>
@@ -500,9 +467,9 @@
 │ Serverless      │ Fargate     │ ACI         │ Cloud Run   │
 │ CI/CD           │ CodePipeline│ DevOps      │ Cloud Build │
 │ Monitoring      │ CloudWatch  │ Monitor     │ Operations  │
-│ Auto-scaling    │ Good        │ Good        │ Best       │
-│ Multi-region    │ Excellent   │ Good        │ Excellent  │
-│ Documentation   │ Excellent   │ Good        │ Good       │
+│ Auto-scaling    │ Good        │ Good        │ Best        │
+│ Multi-region    │ Excellent   │ Good        │ Excellent   │
+│ Documentation   │ Excellent   │ Good        │ Good        │
 └─────────────────┴─────────────┴─────────────┴─────────────┘
 
 * GKE Autopilot is pay-per-pod
@@ -666,6 +633,57 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <span class="c1"># Compare experiences and costs!</span>
 </pre></div>
 </div>
+</section>
+<section id="cloud-provider-comparison">
+<h2>2024 Cloud Provider Comparison<a class="headerlink" href="#cloud-provider-comparison" title="Link to this heading"></a></h2>
+<p><strong>Head-to-Head Comparison for DevOps Teams:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Container Services Maturity (2024):
+
+┌─────────────────┬──────────┬───────────┬─────────────┐
+│ Feature         │    AWS   │   Azure   │     GCP     │
+├─────────────────┼──────────┼───────────┼─────────────┤
+│ Kubernetes      │ EKS (★★★)│ AKS (★★★★)│ GKE (★★★★★) │
+│ Serverless      │ Lambda   │ Functions │ Cloud Run   │
+│ Container Reg.  │ ECR      │ ACR       │ Artifact R. │
+│ Cost-Effective  │ ★★★      │ ★★★★      │ ★★★         │
+│ Enterprise      │ ★★★★★    │ ★★★★★     │ ★★★         │
+│ Innovation      │ ★★★★     │ ★★★       │ ★★★★★       │
+└─────────────────┴──────────┴───────────┴─────────────┘
+</pre></div>
+</div>
+<p><strong>Choosing Your Cloud in 2024:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Choose AWS if:
+├─ You need the largest service ecosystem
+├─ You&#39;re building complex, multi-service architectures
+├─ You have AWS expertise on the team
+├─ You need maximum flexibility and control
+└─ You&#39;re okay with higher complexity/cost
+
+Choose Azure if:
+├─ You use Microsoft technologies (.NET, Office 365)
+├─ You need strong hybrid cloud capabilities
+├─ You want enterprise-grade security by default
+├─ You prefer integrated development tools (Azure DevOps)
+└─ You want competitive pricing with good features
+
+Choose GCP if:
+├─ You&#39;re building AI/ML-heavy applications
+├─ You need the best Kubernetes experience
+├─ You prioritize developer experience and simplicity
+├─ You&#39;re working with big data and analytics
+└─ You want cutting-edge cloud-native services
+</pre></div>
+</div>
+<p><strong>Multi-Cloud Reality Check:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2024 Enterprise Trends:
+
+84% of enterprises use multiple clouds
+├─ Average: 2.6 different cloud providers
+├─ Primary reasons: Avoid vendor lock-in, best-of-breed
+├─ Challenges: Complexity, skills, networking costs
+└─ Tools helping: Kubernetes, Terraform, service mesh
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Your Container Skills Work Everywhere!</strong></p>
@@ -673,9 +691,13 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <ul class="simple">
 <li><p>Same <cite>kubectl</cite> commands</p></li>
 <li><p>Same container concepts</p></li>
-<li><p>Same monitoring approaches</p></li>
-<li><p>Same CI/CD patterns</p></li>
+<li><p>Portable CI/CD pipelines</p></li>
+<li><p>Cloud-agnostic monitoring tools</p></li>
 </ul>
+<p><strong>Pro Tip</strong>: Start with one cloud, master the fundamentals, then expand to
+multi-cloud as your needs grow. Don’t optimize for “what-if” scenarios early on.
+- Same monitoring approaches
+- Same CI/CD patterns</p>
 <p>Focus on learning cloud-specific services (networking, storage, databases) rather than relearning containers!</p>
 </div>
 </section>

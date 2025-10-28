@@ -58,8 +58,13 @@ How did we get here?
 
 **3. 2006: The Cloud is Born**
 
-- Amazon Web Services (AWS) had a revolutionary idea: what if we rented our massive, efficient infrastructure to others?
-- This marked the shift from **owning hardware** to **renting services**.
+- Amazon Web Services (AWS) launched EC2 and S3, offering elastic compute and storage as services
+- This marked the shift from **owning hardware** to **renting services**
+- Key insight: Amazon's internal infrastructure for peak holiday traffic was underutilized most of the year
+
+.. note::
+   **Historical Context**: AWS wasn't the first cloud service (Salesforce launched in 1999), 
+   but EC2/S3 created the modern Infrastructure-as-a-Service model that dominates today.
 
 **4. Today: Cloud is the Standard**
 
