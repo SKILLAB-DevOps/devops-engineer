@@ -1,0 +1,1169 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GCP Hands-On Exercises &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.0 Project" href="../12_project/introduction.html" />
+    <link rel="prev" title="11.11 Google Cloud Platform Overview" href="11_platform_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">7.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">7.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">7.2 Python CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">7.3 GitHub Actions Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">GCP Hands-On Exercises</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/11_cloud_gcp/TODO.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gcp-hands-on-exercises">
+<h1>GCP Hands-On Exercises<a class="headerlink" href="#gcp-hands-on-exercises" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Complete these exercises to gain practical experience with Google Cloud Platform. Each exercise builds upon previous concepts and simulates real-world scenarios.</p>
+</div>
+<section id="exercise-1-hello-world">
+<h2>Exercise 1: Hello World<a class="headerlink" href="#exercise-1-hello-world" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Deploy your first application on GCP using both Compute Engine (VM) and Cloud Storage (object storage)</p>
+<section id="part-a-compute-engine">
+<h3>Part A: Compute Engine<a class="headerlink" href="#part-a-compute-engine" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create a GCP Account and Project</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up your project</span>
+gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project<span class="w"> </span>YOUR_PROJECT_ID
+gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>compute/zone<span class="w"> </span>us-central1-a
+</pre></div>
+</div>
+</li>
+<li><p><strong>Deploy a Web Server on Compute Engine</strong></p>
+<p>Create a VM instance and install Apache:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create VM</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>my-web-server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--machine-type<span class="o">=</span>e2-micro<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--tags<span class="o">=</span>http-server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image-family<span class="o">=</span>ubuntu-2204-lts<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image-project<span class="o">=</span>ubuntu-os-cloud
+
+<span class="c1"># Create firewall rule</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>firewall-rules<span class="w"> </span>create<span class="w"> </span>allow-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow<span class="w"> </span>tcp:80<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-tags<span class="w"> </span>http-server
+</pre></div>
+</div>
+<p><strong>TODO:</strong></p>
+<p>□ SSH into your instance</p>
+<p>□ Install and configure Apache/Nginx</p>
+<p>□ Create a custom HTML page with your name and the current date</p>
+<p>□ Add a visitor counter using a simple script</p>
+<p>□ Access your website and take a screenshot</p>
+</li>
+<li><p><strong>Customize Your Deployment</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Add CSS styling to your webpage</p>
+<p>□ Create multiple pages (index.html, about.html, contact.html)</p>
+<p>□ Implement a simple form that logs submissions</p>
+<p>□ Set up basic monitoring and create an alert</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A running VM with a custom website</p></li>
+<li><p>Screenshot of your website</p></li>
+<li><p>Documentation of steps taken</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Bonus Challenges:</strong></p>
+<p>□ Set up a static IP address</p>
+<p>□ Configure a custom domain name</p>
+<p>□ Implement HTTPS with Let’s Encrypt</p>
+<p>□ Create a startup script for automatic configuration</p>
+</section>
+<section id="part-b-cloud-storage-static-website">
+<h3>Part B: Cloud Storage Static Website<a class="headerlink" href="#part-b-cloud-storage-static-website" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create a Storage Bucket</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create bucket</span>
+<span class="nv">BUCKET_NAME</span><span class="o">=</span><span class="s2">&quot;my-website-</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="s2">&quot;</span>
+gsutil<span class="w"> </span>mb<span class="w"> </span>gs://<span class="nv">$BUCKET_NAME</span>
+
+<span class="c1"># Configure for website hosting</span>
+gsutil<span class="w"> </span>web<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-m<span class="w"> </span>index.html<span class="w"> </span>-e<span class="w"> </span><span class="m">404</span>.html<span class="w"> </span>gs://<span class="nv">$BUCKET_NAME</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Deploy a Static Website</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Create an HTML/CSS/JS website locally</p>
+<p>□ Include multiple pages and images</p>
+<p>□ Upload to your bucket</p>
+<p>□ Make the bucket publicly accessible</p>
+<p>□ Test your website from different devices</p>
+</li>
+<li><p><strong>Implement Advanced Features</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Add a contact form using Google Forms integration</p>
+<p>□ Implement Google Analytics</p>
+<p>□ Create a sitemap.xml</p>
+<p>□ Optimize images for web performance</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A functional static website hosted on GCS</p></li>
+<li><p>URL to your website</p></li>
+<li><p>Performance report showing page load time</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Questions to Answer:</strong></p>
+<ol class="arabic simple">
+<li><p>What are the cost differences between Compute Engine and Cloud Storage hosting?</p></li>
+<li><p>When would you choose VM hosting over static hosting?</p></li>
+<li><p>How would you implement continuous deployment for your static site?</p></li>
+</ol>
+</section>
+</section>
+<section id="exercise-2-serverless-application">
+<h2>Exercise 2: Serverless Application<a class="headerlink" href="#exercise-2-serverless-application" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Build a serverless API using Cloud Functions and Cloud Run</p>
+<section id="part-a-cloud-functions">
+<h3>Part A: Cloud Functions<a class="headerlink" href="#part-a-cloud-functions" title="Link to this heading"></a></h3>
+<p><strong>Scenario:</strong> Create a RESTful API for a simple task management system</p>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create HTTP Cloud Functions</strong></p>
+<p>Implement these endpoints:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># functions/main.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functions_framework</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">firestore</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">firestore</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement task creation&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">list_tasks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement task listing&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement task update&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@functions_framework</span><span class="o">.</span><span class="n">http</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">delete_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement task deletion&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Implement CRUD Operations</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Create database schema in Firestore</p>
+<p>□ Implement CREATE - Add new tasks</p>
+<p>□ Implement READ - List all tasks / Get task by ID</p>
+<p>□ Implement UPDATE - Modify task details</p>
+<p>□ Implement DELETE - Remove tasks</p>
+<p>□ Add input validation and error handling</p>
+<p>□ Implement authentication (API key or Firebase Auth)</p>
+</li>
+<li><p><strong>Deploy and Test</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy functions</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>deploy<span class="w"> </span>create-task<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--runtime<span class="w"> </span>python311<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--trigger-http<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-unauthenticated<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--entry-point<span class="w"> </span>create_task
+</pre></div>
+</div>
+<p><strong>TODO:</strong></p>
+<p>□ Deploy all four functions</p>
+<p>□ Test each endpoint with curl or Postman</p>
+<p>□ Implement rate limiting</p>
+<p>□ Set up monitoring and logging</p>
+<p>□ Create API documentation</p>
+</li>
+</ol>
+<dl class="simple">
+<dt><strong>Expected Output:</strong></dt><dd><ul class="simple">
+<li><p>Four working Cloud Functions</p></li>
+<li><p>API documentation</p></li>
+<li><p>Test results showing all CRUD operations</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Bonus Challenges:</strong></p>
+<p>□ Add user authentication</p>
+<p>□ Implement task sharing between users</p>
+<p>□ Add file attachments using Cloud Storage</p>
+<p>□ Create an email notification system</p>
+</section>
+<section id="part-b-cloud-run-application">
+<h3>Part B: Cloud Run Application<a class="headerlink" href="#part-b-cloud-run-application" title="Link to this heading"></a></h3>
+<p><strong>Scenario:</strong> Convert your Cloud Functions API into a containerized Cloud Run service</p>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create a Flask/FastAPI Application</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># app.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">firestore</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">firestore</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/tasks&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tasks</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement task management&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/tasks/&lt;task_id&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">task_detail</span><span class="p">(</span><span class="n">task_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement task operations&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Dockerize Your Application</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Create a Dockerfile</p>
+<p>□ Build the container image</p>
+<p>□ Test locally using Docker</p>
+<p>□ Push to Google Container Registry</p>
+<p>□ Deploy to Cloud Run</p>
+</li>
+<li><p><strong>Implement Advanced Features</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Add WebSocket support for real-time updates</p>
+<p>□ Implement caching with Cloud Memorystore</p>
+<p>□ Set up CI/CD with Cloud Build</p>
+<p>□ Configure auto-scaling policies</p>
+<p>□ Implement health checks</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Containerized application running on Cloud Run</p></li>
+<li><p>Load testing results</p></li>
+<li><p>CI/CD pipeline documentation</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="exercise-3-data-analytics-pipeline">
+<h2>Exercise 3: Data Analytics Pipeline<a class="headerlink" href="#exercise-3-data-analytics-pipeline" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Build a data processing pipeline using BigQuery, Dataflow, and Pub/Sub</p>
+<p><strong>Scenario:</strong> Analyze website access logs to generate insights</p>
+<section id="part-a-data-ingestion">
+<h3>Part A: Data Ingestion<a class="headerlink" href="#part-a-data-ingestion" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Set Up Data Collection</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># log_generator.py</span>
+<span class="sd">&quot;&quot;&quot;Generate simulated web access logs&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">pubsub_v1</span>
+
+<span class="c1"># TODO: Implement log generation</span>
+<span class="c1"># Generate logs with:</span>
+<span class="c1"># - timestamp</span>
+<span class="c1"># - user_id</span>
+<span class="c1"># - page_url</span>
+<span class="c1"># - response_time</span>
+<span class="c1"># - status_code</span>
+<span class="c1"># - user_agent</span>
+<span class="c1"># - ip_address</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Stream Data to Pub/Sub</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Create a Pub/Sub topic</p>
+<p>□ Write a Python script to publish logs</p>
+<p>□ Simulate 1000+ log entries</p>
+<p>□ Implement error handling and retries</p>
+</li>
+</ol>
+</section>
+<section id="part-b-data-processing">
+<h3>Part B: Data Processing<a class="headerlink" href="#part-b-data-processing" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create Dataflow Pipeline</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dataflow_pipeline.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">apache_beam</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">beam</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">apache_beam.options.pipeline_options</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipelineOptions</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_log</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement log processing logic&quot;&quot;&quot;</span>
+    <span class="c1"># Parse JSON</span>
+    <span class="c1"># Extract fields</span>
+    <span class="c1"># Calculate metrics</span>
+    <span class="c1"># Enrich data</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">PipelineOptions</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">beam</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span> <span class="k">as</span> <span class="n">pipeline</span><span class="p">:</span>
+        <span class="c1"># TODO: Implement pipeline</span>
+        <span class="p">(</span><span class="n">pipeline</span>
+         <span class="o">|</span> <span class="s1">&#39;Read from Pub/Sub&#39;</span> <span class="o">&gt;&gt;</span> <span class="n">beam</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">ReadFromPubSub</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="n">TOPIC</span><span class="p">)</span>
+         <span class="o">|</span> <span class="s1">&#39;Process&#39;</span> <span class="o">&gt;&gt;</span> <span class="n">beam</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">process_log</span><span class="p">)</span>
+         <span class="o">|</span> <span class="s1">&#39;Write to BigQuery&#39;</span> <span class="o">&gt;&gt;</span> <span class="n">beam</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">WriteToBigQuery</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">TABLE</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Process and Transform Data</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Parse and validate log entries</p>
+<p>□ Calculate response time statistics</p>
+<p>□ Identify top pages and users</p>
+<p>□ Detect anomalies (high error rates, slow responses)</p>
+<p>□ Aggregate data by hour/day</p>
+</li>
+</ol>
+</section>
+<section id="part-c-data-analysis">
+<h3>Part C: Data Analysis<a class="headerlink" href="#part-c-data-analysis" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create BigQuery Queries</strong></p>
+<p><strong>TODO - Write SQL queries to answer:</strong></p>
+<p>□ What are the top 10 most visited pages?</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Your query here</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">page_url</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">visits</span>
+<span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">project</span><span class="p">.</span><span class="n">dataset</span><span class="p">.</span><span class="n">access_logs</span><span class="o">`</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="nb">DATE</span><span class="p">(</span><span class="k">timestamp</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="p">()</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">page_url</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">visits</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>□ What is the average response time by hour?</p>
+<p>□ Which users have the highest activity?</p>
+<p>□ What percentage of requests result in errors?</p>
+<p>□ What are the peak traffic hours?</p>
+</li>
+<li><p><strong>Create Dashboard</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Use Looker Studio (Data Studio) to create visualizations</p>
+<dl class="simple">
+<dt>□ Create charts showing:</dt><dd><ul class="simple">
+<li><p>Traffic over time</p></li>
+<li><p>Response time distribution</p></li>
+<li><p>Error rate trends</p></li>
+<li><p>Top pages</p></li>
+<li><p>Geographic distribution (if IP geolocation added)</p></li>
+</ul>
+</dd>
+</dl>
+<p>□ Set up scheduled reports</p>
+<p>□ Share dashboard with stakeholders</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Working data pipeline</p></li>
+<li><p>BigQuery dataset with processed data</p></li>
+<li><p>Interactive dashboard with 5+ visualizations</p></li>
+<li><p>Report documenting insights discovered</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Bonus Challenges:</strong></p>
+<p>□ Implement real-time alerting for anomalies</p>
+<p>□ Add machine learning predictions for traffic forecasting</p>
+<p>□ Create a cost analysis of the pipeline</p>
+<p>□ Implement data archival strategy</p>
+</section>
+</section>
+<section id="exercise-4-machine-learning-deployment">
+<h2>Exercise 4: Machine Learning Deployment<a class="headerlink" href="#exercise-4-machine-learning-deployment" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Train and deploy a machine learning model using Vertex AI</p>
+<p><strong>Scenario:</strong> Build an image classification service</p>
+<section id="part-a-model-training">
+<h3>Part A: Model Training<a class="headerlink" href="#part-a-model-training" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Prepare Dataset</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Choose a dataset (e.g., CIFAR-10, Fashion MNIST, or custom)</p>
+<p>□ Upload to Cloud Storage</p>
+<p>□ Create training/validation/test splits</p>
+<p>□ Implement data augmentation</p>
+</li>
+<li><p><strong>Train Model with Vertex AI</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># training/train.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">aiplatform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">train_model</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TODO: Implement model training&quot;&quot;&quot;</span>
+    <span class="c1"># Load data</span>
+    <span class="c1"># Define model architecture</span>
+    <span class="c1"># Compile model</span>
+    <span class="c1"># Train</span>
+    <span class="c1"># Evaluate</span>
+    <span class="c1"># Save model</span>
+    <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">train_model</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>TODO:</strong></p>
+<p>□ Create custom training job</p>
+<p>□ Experiment with hyperparameters</p>
+<p>□ Track experiments using Vertex AI Experiments</p>
+<p>□ Achieve &gt; 80% accuracy</p>
+</li>
+</ol>
+</section>
+<section id="part-b-model-deployment">
+<h3>Part B: Model Deployment<a class="headerlink" href="#part-b-model-deployment" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Deploy Model to Endpoint</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">aiplatform</span>
+
+<span class="c1"># TODO: Implement deployment</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">aiplatform</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span>
+    <span class="n">display_name</span><span class="o">=</span><span class="s2">&quot;image-classifier&quot;</span><span class="p">,</span>
+    <span class="n">artifact_uri</span><span class="o">=</span><span class="n">MODEL_URI</span><span class="p">,</span>
+    <span class="n">serving_container_image_uri</span><span class="o">=</span><span class="n">SERVING_IMAGE</span>
+<span class="p">)</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span>
+    <span class="n">machine_type</span><span class="o">=</span><span class="s2">&quot;n1-standard-4&quot;</span><span class="p">,</span>
+    <span class="n">min_replica_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_replica_count</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Prediction Service</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Build an API wrapper around the model</p>
+<p>□ Implement image preprocessing</p>
+<p>□ Add request validation</p>
+<p>□ Implement batch prediction support</p>
+<p>□ Create web interface for testing</p>
+</li>
+</ol>
+<dl class="simple">
+<dt><strong>Expected Output:</strong></dt><dd><ul class="simple">
+<li><p>Trained model with documented performance metrics</p></li>
+<li><p>Deployed endpoint with API documentation</p></li>
+<li><p>Web interface for testing predictions</p></li>
+<li><p>Performance benchmarks (latency, throughput)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="exercise-5-infrastructure-as-code">
+<h2>Exercise 5: Infrastructure as Code<a class="headerlink" href="#exercise-5-infrastructure-as-code" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Define and deploy complete infrastructure using Terraform</p>
+<p><strong>Scenario:</strong> Create production-ready multi-tier web application infrastructure</p>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Design Architecture</strong></p>
+<p>Components to include:
+- VPC with public/private subnets
+- Compute instances or GKE cluster
+- Cloud SQL database
+- Cloud Load Balancer
+- Cloud CDN
+- Cloud Storage buckets
+- Cloud Armor (WAF)
+- Monitoring and alerting</p>
+</li>
+<li><p><strong>Implement Terraform Configuration</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Create modular Terraform code structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>terraform/
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── terraform.tfvars
+└── modules/
+    ├── networking/
+    ├── compute/
+    ├── database/
+    └── monitoring/
+</pre></div>
+</div>
+<p>□ Implement each module</p>
+<p>□ Use variables for configuration</p>
+<p>□ Implement remote state storage</p>
+<p>□ Add proper resource tagging</p>
+</li>
+<li><p><strong>Deploy and Validate</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Initialize Terraform</p>
+<p>□ Plan deployment and review changes</p>
+<p>□ Apply configuration</p>
+<p>□ Validate all resources created correctly</p>
+<p>□ Test application functionality</p>
+<p>□ Document cost estimates</p>
+</li>
+<li><p><strong>Implement CI/CD for Infrastructure</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Create Cloud Build pipeline for Terraform</p>
+<p>□ Implement terraform plan on pull requests</p>
+<p>□ Automate terraform apply on merge to main</p>
+<p>□ Add security scanning (e.g., Checkov)</p>
+<p>□ Implement approval gates for production</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Complete Terraform codebase</p></li>
+<li><p>Deployed infrastructure (with screenshots)</p></li>
+<li><p>CI/CD pipeline for infrastructure</p></li>
+<li><p>Cost analysis document</p></li>
+<li><p>Disaster recovery plan</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Bonus Challenges:</strong></p>
+<p>□ Implement multiple environments (dev, staging, prod)</p>
+<p>□ Add monitoring and alerting configuration</p>
+<p>□ Implement automated backups</p>
+<p>□ Create disaster recovery runbooks</p>
+</section>
+<section id="exercise-6-kubernetes-on-gke">
+<h2>Exercise 6: Kubernetes on GKE<a class="headerlink" href="#exercise-6-kubernetes-on-gke" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Deploy and manage applications on Google Kubernetes Engine</p>
+<p><strong>Scenario:</strong> Deploy a microservices application with service mesh</p>
+<section id="part-a-cluster-setup">
+<h3>Part A: Cluster Setup<a class="headerlink" href="#part-a-cluster-setup" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create GKE Cluster</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create production-ready cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create<span class="w"> </span>prod-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--zone<span class="w"> </span>us-central1-a<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--num-nodes<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--machine-type<span class="w"> </span>n1-standard-2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-autoscaling<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--min-nodes<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max-nodes<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-autorepair<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-autoupgrade<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-ip-alias<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--network<span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--subnetwork<span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--addons<span class="w"> </span>HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver
+</pre></div>
+</div>
+</li>
+<li><p><strong>Configure Cluster Access</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Configure kubectl access</p>
+<p>□ Set up RBAC policies</p>
+<p>□ Create namespaces for different environments</p>
+<p>□ Implement Pod Security Policies</p>
+</li>
+</ol>
+</section>
+<section id="part-b-application-deployment">
+<h3>Part B: Application Deployment<a class="headerlink" href="#part-b-application-deployment" title="Link to this heading"></a></h3>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Deploy Microservices Application</strong></p>
+<p>Create deployments for:</p>
+<p><strong>TODO:</strong></p>
+<p>□ Frontend service (React/Vue)</p>
+<p>□ API gateway</p>
+<p>□ 3+ backend microservices</p>
+<p>□ Database (PostgreSQL using CloudSQL Proxy)</p>
+<p>□ Redis cache</p>
+<p>□ Message queue</p>
+</li>
+<li><p><strong>Implement Service Mesh (Istio/Anthos Service Mesh)</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Install service mesh</p>
+<p>□ Configure traffic management</p>
+<p>□ Implement canary deployments</p>
+<p>□ Set up circuit breakers</p>
+<p>□ Configure retries and timeouts</p>
+<p>□ Implement mutual TLS</p>
+</li>
+<li><p><strong>Configure Observability</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Set up Prometheus for metrics</p>
+<p>□ Configure Grafana dashboards</p>
+<p>□ Implement distributed tracing (Cloud Trace)</p>
+<p>□ Set up log aggregation</p>
+<p>□ Create alerting rules</p>
+</li>
+</ol>
+<dl class="simple">
+<dt><strong>Expected Output:</strong></dt><dd><ul class="simple">
+<li><p>Running GKE cluster with application deployed</p></li>
+<li><p>Service mesh configured</p></li>
+<li><p>Observability dashboard</p></li>
+<li><p>Load testing results</p></li>
+<li><p>Documentation of architecture</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="part-c-production-best-practices">
+<h3>Part C: Production Best Practices<a class="headerlink" href="#part-c-production-best-practices" title="Link to this heading"></a></h3>
+<p><strong>TODO:</strong></p>
+<p>□ Implement HorizontalPodAutoscaler</p>
+<p>□ Configure resource requests and limits</p>
+<p>□ Set up PodDisruptionBudgets</p>
+<p>□ Implement network policies</p>
+<p>□ Configure secrets management with Secret Manager</p>
+<p>□ Implement backup and disaster recovery</p>
+<p>□ Create deployment strategies (blue/green, canary)</p>
+</section>
+</section>
+<section id="exercise-7-cost-optimization">
+<h2>Exercise 7: Cost Optimization<a class="headerlink" href="#exercise-7-cost-optimization" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Analyze and optimize GCP costs</p>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Cost Analysis</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Enable detailed billing export to BigQuery</p>
+<p>□ Analyze current spending patterns</p>
+<p>□ Identify top cost drivers</p>
+<p>□ Find unused/underutilized resources</p>
+<p>□ Create cost allocation reports by project/team</p>
+</li>
+<li><p><strong>Implement Cost Controls</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Set up budget alerts</p>
+<p>□ Implement resource quotas</p>
+<p>□ Create automated shutdown schedules for dev/test</p>
+<p>□ Right-size compute instances</p>
+<p>□ Implement committed use discounts analysis</p>
+</li>
+<li><p><strong>Create Cost Dashboard</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Build BigQuery views for cost analysis</p>
+<p>□ Create Looker Studio dashboard showing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Daily/monthly spend trends</p></li>
+<li><p>Cost by service</p></li>
+<li><p>Cost by project</p></li>
+<li><p>Cost anomalies</p></li>
+<li><p>Forecasted spend</p></li>
+</ul>
+</div></blockquote>
+<p>□ Set up automated cost reports</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Cost analysis report</p></li>
+<li><p>List of optimization recommendations</p></li>
+<li><p>Implemented cost-saving measures</p></li>
+<li><p>Cost dashboard</p></li>
+<li><p>Estimated annual savings</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="exercise-8-security-hardening">
+<h2>Exercise 8: Security Hardening<a class="headerlink" href="#exercise-8-security-hardening" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Implement security best practices across your GCP infrastructure</p>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>IAM and Access Control</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Audit current IAM policies</p>
+<p>□ Implement least privilege access</p>
+<p>□ Create custom IAM roles</p>
+<p>□ Set up organization policies</p>
+<p>□ Enable MFA for all users</p>
+<p>□ Implement service account key rotation</p>
+</li>
+<li><p><strong>Network Security</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Configure VPC firewall rules</p>
+<p>□ Implement Cloud Armor WAF</p>
+<p>□ Set up DDoS protection</p>
+<p>□ Configure private Google access</p>
+<p>□ Implement VPC Service Controls</p>
+<p>□ Set up Cloud IDS (Intrusion Detection)</p>
+</li>
+<li><p><strong>Data Security</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Enable encryption at rest for all resources</p>
+<p>□ Configure Customer-Managed Encryption Keys (CMEK)</p>
+<p>□ Implement data loss prevention (DLP)</p>
+<p>□ Set up audit logging</p>
+<p>□ Configure security scanning for containers</p>
+</li>
+<li><p><strong>Security Monitoring</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Enable Security Command Center</p>
+<p>□ Configure security findings</p>
+<p>□ Set up security alerts</p>
+<p>□ Create incident response procedures</p>
+<p>□ Implement automated remediation</p>
+</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Security audit report</p></li>
+<li><p>Documented security architecture</p></li>
+<li><p>Incident response playbook</p></li>
+<li><p>Compliance documentation</p></li>
+<li><p>Security monitoring dashboard</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="exercise-9-disaster-recovery">
+<h2>Exercise 9: Disaster Recovery<a class="headerlink" href="#exercise-9-disaster-recovery" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Design and test disaster recovery procedures</p>
+<p><strong>Scenario:</strong> Your primary region (us-central1) has become unavailable</p>
+<p><strong>Tasks:</strong></p>
+<ol class="arabic">
+<li><p><strong>Design DR Strategy</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Define RTO (Recovery Time Objective)</p>
+<p>□ Define RPO (Recovery Point Objective)</p>
+<p>□ Design multi-region architecture</p>
+<p>□ Document failover procedures</p>
+<p>□ Create backup strategies</p>
+</li>
+<li><p><strong>Implement DR Solution</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Set up multi-region database replication</p>
+<p>□ Configure Cloud Load Balancing for multi-region</p>
+<p>□ Implement automated backups</p>
+<p>□ Create disaster recovery runbooks</p>
+<p>□ Set up monitoring for DR readiness</p>
+</li>
+<li><p><strong>Test DR Procedures</strong></p>
+<p><strong>TODO:</strong></p>
+<p>□ Perform controlled failover test</p>
+<p>□ Measure actual RTO/RPO</p>
+<p>□ Document lessons learned</p>
+<p>□ Update procedures based on findings</p>
+<p>□ Schedule regular DR drills</p>
+</li>
+</ol>
+<dl class="simple">
+<dt><strong>Expected Output:</strong></dt><dd><ul class="simple">
+<li><p>DR architecture documentation</p></li>
+<li><p>Tested failover procedures</p></li>
+<li><p>DR test results</p></li>
+<li><p>Updated runbooks</p></li>
+<li><p>DR cost analysis</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="exercise-10-final-project">
+<h2>Exercise 10: Final Project<a class="headerlink" href="#exercise-10-final-project" title="Link to this heading"></a></h2>
+<p><strong>Objective:</strong> Build a complete production-ready application on GCP</p>
+<p><strong>Requirements:</strong></p>
+<p>Build a <strong>scalable, secure, cost-optimized application</strong> that includes:</p>
+<p><strong>Architecture Requirements:</strong></p>
+<p>□ Multi-tier architecture (frontend, API, database)</p>
+<p>□ Deployed on GKE or Cloud Run</p>
+<p>□ CI/CD pipeline with Cloud Build</p>
+<p>□ Infrastructure as Code (Terraform)</p>
+<p>□ Multi-region deployment</p>
+<p>□ Automated backups and disaster recovery</p>
+<p><strong>Technical Requirements:</strong></p>
+<p>□ RESTful API with authentication</p>
+<p>□ Database with encryption</p>
+<p>□ File storage using Cloud Storage</p>
+<p>□ Caching layer (Memorystore)</p>
+<p>□ Message queue (Pub/Sub)</p>
+<p>□ Serverless functions for background tasks</p>
+<p><strong>Operational Requirements:</strong></p>
+<p>□ Comprehensive monitoring and alerting</p>
+<p>□ Centralized logging</p>
+<p>□ Cost tracking and optimization</p>
+<p>□ Security scanning and compliance</p>
+<p>□ Documentation (architecture, runbooks, API docs)</p>
+<p><strong>Bonus Features:</strong></p>
+<p>□ Machine learning integration</p>
+<p>□ Real-time features (WebSockets)</p>
+<p>□ Mobile app integration</p>
+<p>□ Analytics dashboard</p>
+<p><strong>Deliverables:</strong></p>
+<ol class="arabic simple">
+<li><p>Source code repository (GitHub)</p></li>
+<li><p>Terraform infrastructure code</p></li>
+<li><p>CI/CD pipeline configuration</p></li>
+<li><p>Architecture diagrams</p></li>
+<li><p>API documentation</p></li>
+<li><p>Deployment guide</p></li>
+<li><p>Operations runbooks</p></li>
+<li><p>Cost analysis report</p></li>
+<li><p>Security audit report</p></li>
+<li><p>Demo video (5-10 minutes)</p></li>
+</ol>
+<p><strong>Presentation:</strong></p>
+<p>Prepare a 15-minute presentation covering:</p>
+<ul class="simple">
+<li><p>Problem statement and solution</p></li>
+<li><p>Architecture decisions and trade-offs</p></li>
+<li><p>Challenges and how you overcame them</p></li>
+<li><p>Cost analysis and optimization</p></li>
+<li><p>Security measures implemented</p></li>
+<li><p>Lessons learned</p></li>
+<li><p>Future improvements</p></li>
+</ul>
+</section>
+<section id="submission-checklist">
+<h2>Submission Checklist<a class="headerlink" href="#submission-checklist" title="Link to this heading"></a></h2>
+<p>For each exercise, submit:</p>
+<p>□ Working code/configuration</p>
+<p>□ Screenshots demonstrating functionality</p>
+<p>□ Documentation explaining your approach</p>
+<p>□ Answers to all questions</p>
+<p>□ Cost estimates for resources used</p>
+<p>□ Cleanup confirmation (resources deleted to avoid charges)</p>
+</section>
+<section id="grading-rubric">
+<h2>Grading Rubric<a class="headerlink" href="#grading-rubric" title="Link to this heading"></a></h2>
+<p><strong>Functionality (40%)</strong></p>
+<ul class="simple">
+<li><p>Does the solution work as specified?</p></li>
+<li><p>Are all requirements met?</p></li>
+<li><p>Is error handling implemented?</p></li>
+</ul>
+<p><strong>Code Quality (20%)</strong></p>
+<ul class="simple">
+<li><p>Is code well-organized and readable?</p></li>
+<li><p>Are best practices followed?</p></li>
+<li><p>Is documentation comprehensive?</p></li>
+</ul>
+<p><strong>Security (15%)</strong></p>
+<ul class="simple">
+<li><p>Are security best practices implemented?</p></li>
+<li><p>Is sensitive data protected?</p></li>
+<li><p>Are access controls properly configured?</p></li>
+</ul>
+<p><strong>Architecture (15%)</strong></p>
+<ul class="simple">
+<li><p>Is the architecture scalable?</p></li>
+<li><p>Is it cost-effective?</p></li>
+<li><p>Are appropriate services used?</p></li>
+</ul>
+<p><strong>Innovation (10%)</strong></p>
+<ul class="simple">
+<li><p>Bonus features implemented?</p></li>
+<li><p>Creative solutions?</p></li>
+<li><p>Extra mile efforts?</p></li>
+</ul>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading"></a></h2>
+<p><strong>Documentation:</strong></p>
+<ul class="simple">
+<li><p>Google Cloud Documentation: <a class="reference external" href="https://cloud.google.com/docs">https://cloud.google.com/docs</a></p></li>
+<li><p>Terraform GCP Provider: <a class="reference external" href="https://registry.terraform.io/providers/hashicorp/google">https://registry.terraform.io/providers/hashicorp/google</a></p></li>
+<li><p>GKE Documentation: <a class="reference external" href="https://cloud.google.com/kubernetes-engine/docs">https://cloud.google.com/kubernetes-engine/docs</a></p></li>
+</ul>
+<p><strong>Training:</strong></p>
+<ul class="simple">
+<li><p>Google Cloud Skills Boost: <a class="reference external" href="https://www.cloudskillsboost.google">https://www.cloudskillsboost.google</a></p></li>
+<li><p>Coursera GCP Courses: <a class="reference external" href="https://www.coursera.org/googlecloud">https://www.coursera.org/googlecloud</a></p></li>
+<li><p>Qwiklabs Hands-on Labs: <a class="reference external" href="https://www.qwiklabs.com">https://www.qwiklabs.com</a></p></li>
+</ul>
+<p><strong>Community:</strong></p>
+<ul class="simple">
+<li><p>GCP Slack Community</p></li>
+<li><p>Stack Overflow [google-cloud-platform]</p></li>
+<li><p>Google Cloud Blog</p></li>
+<li><p>GitHub GCP Samples</p></li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p>gcloud CLI documentation</p></li>
+<li><p>Cloud Console</p></li>
+<li><p>Cloud Shell</p></li>
+<li><p>Visual Studio Code with GCP extensions</p></li>
+</ul>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<p>If you get stuck:</p>
+<ol class="arabic simple">
+<li><p>Check the official documentation</p></li>
+<li><p>Search Stack Overflow</p></li>
+<li><p>Review code samples on GitHub</p></li>
+<li><p>Ask in course forum/Slack channel</p></li>
+<li><p>Attend office hours</p></li>
+<li><p>Pair with a classmate</p></li>
+</ol>
+<p><strong>Remember:</strong> Making mistakes is part of learning. Don’t be afraid to experiment!</p>
+</section>
+<section id="cost-management">
+<h2>Cost Management<a class="headerlink" href="#cost-management" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Important:</strong> GCP resources cost money!</p>
+<p>To avoid unexpected charges:</p>
+<p>✓ Always delete resources after completing exercises</p>
+<p>✓ Set up billing alerts ($10, $50, $100)</p>
+<p>✓ Use the free tier when possible</p>
+<p>✓ Shutdown dev resources when not in use</p>
+<p>✓ Review billing daily during active development</p>
+<p>✓ Use the pricing calculator to estimate costs</p>
+</div>
+<p><strong>Cleanup Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete Compute Engine instances</span>
+gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>delete<span class="w"> </span>INSTANCE_NAME<span class="w"> </span>--zone<span class="o">=</span>ZONE
+
+<span class="c1"># Delete GKE cluster</span>
+gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>delete<span class="w"> </span>CLUSTER_NAME<span class="w"> </span>--zone<span class="o">=</span>ZONE
+
+<span class="c1"># Delete Cloud Run services</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>services<span class="w"> </span>delete<span class="w"> </span>SERVICE_NAME<span class="w"> </span>--region<span class="o">=</span>REGION
+
+<span class="c1"># Delete Cloud Functions</span>
+gcloud<span class="w"> </span>functions<span class="w"> </span>delete<span class="w"> </span>FUNCTION_NAME<span class="w"> </span>--region<span class="o">=</span>REGION
+
+<span class="c1"># Delete Cloud Storage buckets</span>
+gsutil<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>gs://BUCKET_NAME
+
+<span class="c1"># Delete BigQuery datasets</span>
+bq<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>-f<span class="w"> </span>DATASET_NAME
+</pre></div>
+</div>
+<p><strong>Good luck and happy learning!</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="11_platform_overview.html" class="btn btn-neutral float-left" title="11.11 Google Cloud Platform Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../12_project/introduction.html" class="btn btn-neutral float-right" title="12.0 Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

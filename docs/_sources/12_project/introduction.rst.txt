@@ -114,12 +114,14 @@ Timeline & Reviews
 ==================
 
 **Project Timeline:**
+
 - **Start**: Any time during the course
 - **Completion**: By the end of the course
 - **Peer Review**: Required before instructor review
 - **Final Review**: Schedule with course instructors
 
 **Review Process:**
+
 Before scheduling your final instructor review, you must:
 
 1. Complete all project requirements (see checklist below)

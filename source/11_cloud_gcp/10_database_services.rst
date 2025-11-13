@@ -281,23 +281,23 @@ Serverless, petabyte-scale data warehouse for analytics.
 
 .. code-block:: text
 
-         Start: What type of data?
+      Start: What type of data?
+               │
+               ▼
+      ┌─────────────────────────────────┐
+      │ Structured (SQL) or Unstructured│
+      └─────────────┬───────────────────┘
                   │
-                  ▼
-         ┌─────────────────────────────────┐
-         │ Structured (SQL) or Unstructured│
-         └─────────────┬───────────────────┘
-                     │
-            ┌────────▼────────────┐
-            │ SQL                 │ NoSQL
-            │                     │
-            ▼                     ▼
-         Need global scale?   Need real-time sync?
-            │                     │
-      ┌─────▼────┐         ┌──────▼─────┐
-      │YES    NO │         │YES      NO │ 
-      │          │         │            │
-      ▼          ▼         ▼            ▼
+         ┌────────▼────────────┐
+         │ SQL                 │ NoSQL
+         │                     │
+         ▼                     ▼
+      Need global scale?   Need real-time sync?
+         │                     │
+   ┌─────▼────┐         ┌──────▼─────┐
+   │YES    NO │         │YES      NO │ 
+   │          │         │            │
+   ▼          ▼         ▼            ▼
    Spanner    AlloyDB    Firestore   Bigtable
    Cloud SQL  Cloud SQL
 
