@@ -1,0 +1,92 @@
+---
+- name: WordPress Security Hardening
+  hosts: all
+  become: true
+  
+  vars:
+    web_root: "/var/www/html"
+    
+  tasks:
+    - name: Create WordPress security script
+      ansible.builtin.copy:
+        content: |
+          #!/bin/bash
+          # WordPress Security Hardening Script
+          
+          WP_ROOT="{{ web_root }}"
+          
+          echo "Applying WordPress security measures..."
+          
+          # Set proper file permissions
+          find $WP_ROOT -type d -exec chmod 755 {} \;
+          find $WP_ROOT -type f -exec chmod 644 {} \;
+          
+          # Set special permissions for wp-config.php
+          chmod 600 $WP_ROOT/wp-config.php
+          
+          # Make wp-content writable
+          chmod -R 775 $WP_ROOT/wp-content
+          
+          # Set ownership
+          chown -R www-data:www-data $WP_ROOT
+          
+          echo "WordPress security hardening completed!"
+        dest: /usr/local/bin/wp-security-hardening.sh
+        mode: '0755'
+        owner: root
+        group: root
+        
+    - name: Run WordPress security hardening
+      ansible.builtin.command: /usr/local/bin/wp-security-hardening.sh
+      register: security_result
+      
+    - name: Display security hardening result
+      ansible.builtin.debug:
+        msg: "{{ security_result.stdout_lines }}"
+        
+    - name: Install fail2ban for additional security
+      ansible.builtin.package:
+        name: fail2ban
+        state: present
+        
+    - name: Configure fail2ban for WordPress
+      ansible.builtin.copy:
+        content: |
+          [wordpress]
+          enabled = true
+          port = http,https
+          filter = wordpress
+          logpath = /var/log/nginx/wordpress-access.log
+          maxretry = 3
+          bantime = 3600
+          findtime = 600
+        dest: /etc/fail2ban/jail.d/wordpress.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart fail2ban
+      
+    - name: Create fail2ban WordPress filter
+      ansible.builtin.copy:
+        content: |
+          [Definition]
+          failregex = ^<HOST> -.*POST.*(wp-login\.php|xmlrpc\.php).* 403
+                      ^<HOST> -.*POST.*wp-login\.php.* 200
+          ignoreregex =
+        dest: /etc/fail2ban/filter.d/wordpress.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart fail2ban
+      
+    - name: Start and enable fail2ban
+      ansible.builtin.systemd:
+        name: fail2ban
+        state: started
+        enabled: yes
+        
+  handlers:
+    - name: restart fail2ban
+      ansible.builtin.systemd:
+        name: fail2ban
+        state: restarted

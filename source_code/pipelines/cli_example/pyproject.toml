@@ -1,0 +1,16 @@
+[project]
+name = "random_string_cli"
+version = "0.0.1"
+license = {file = "LICENSE"}
+description = "A small python cli that generates a random string"
+authors = [{name = "skillab", email = "admin@skillab.com"}]
+
+dependencies = ["click"]
+requires-python = ">=3.10"
+
+[project.scripts]
+random_string_cli = "cli.random_string_cli:random_string"
+
+[build-system]
+requires = ["setuptools>=50", "wheel"]
+build-backend = "setuptools.build_meta"

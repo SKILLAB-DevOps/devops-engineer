@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.6 Utilities &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TODO" href="TODO.html" />
+    <link rel="prev" title="3.5 Makefile" href="5_makefile.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">3.6 Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/3_scripting/6_utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utilities">
+<h1>3.6 Utilities<a class="headerlink" href="#utilities" title="Link to this heading"></a></h1>
+<section id="generating-test-data">
+<h2>1. Generating test data<a class="headerlink" href="#generating-test-data" title="Link to this heading"></a></h2>
+<p>Most of the time we will need test data to work with.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">wordlist</span></code> command is used to generate a list of words.</p>
+<p>To install the command on Ubuntu, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># if you try to install wordlist, you will get the following error</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wordlist
+
+<span class="c1"># Result will be</span>
+<span class="c1"># Reading package lists... Done</span>
+<span class="c1"># Building dependency tree... Done</span>
+<span class="c1"># Reading state information... Done</span>
+<span class="c1"># Package wordlist is a virtual package provided by:</span>
+<span class="c1"># wspanish 1.0.30</span>
+<span class="c1"># witalian 1.10</span>
+<span class="c1"># wfrench 1.2.7-2</span>
+<span class="c1"># wswedish 1.4.5-3</span>
+<span class="c1"># wcatalan 0.20111230b-14</span>
+<span class="c1"># wcanadian-small 2020.12.07-2</span>
+<span class="c1"># wcanadian-large 2020.12.07-2</span>
+<span class="c1"># wcanadian-insane 2020.12.07-2</span>
+<span class="c1"># wcanadian-huge 2020.12.07-2</span>
+<span class="c1"># wcanadian 2020.12.07-2</span>
+<span class="c1"># wbritish-small 2020.12.07-2</span>
+<span class="c1"># wbritish-large 2020.12.07-2</span>
+<span class="c1"># wbritish-insane 2020.12.07-2</span>
+<span class="c1"># wbritish-huge 2020.12.07-2</span>
+<span class="c1"># wbritish 2020.12.07-2</span>
+<span class="c1"># wamerican-small 2020.12.07-2</span>
+<span class="c1"># wamerican-large 2020.12.07-2</span>
+<span class="c1"># wamerican-insane 2020.12.07-2</span>
+<span class="c1"># wamerican-huge 2020.12.07-2</span>
+<span class="c1"># wamerican 2020.12.07-2</span>
+<span class="c1"># wnorwegian 2.2-4</span>
+<span class="c1"># miscfiles 1.5+dfsg-4</span>
+<span class="c1"># wgerman-medical 20220425-1</span>
+<span class="c1"># wportuguese 20220621-1</span>
+<span class="c1"># wukrainian 1.8.0+dfsg-1</span>
+<span class="c1"># wgalician-minimos 0.5-48</span>
+<span class="c1"># wfaroese 0.4.2+repack1-4</span>
+<span class="c1"># wpolish 20220301-1</span>
+<span class="c1"># wswiss 20161207-11</span>
+<span class="c1"># wngerman 20161207-11</span>
+<span class="c1"># wogerman 1:2-38</span>
+<span class="c1"># wesperanto 2.1.2000.02.25-61</span>
+<span class="c1"># wdutch 1:2.20.19-2</span>
+<span class="c1"># wdanish 1.6.36-14</span>
+<span class="c1"># wbrazilian 3.0~beta4-24</span>
+<span class="c1"># wbulgarian 4.1-7</span>
+<span class="c1"># You should explicitly select one to install.</span>
+
+<span class="c1"># E: Package &#39;wordlist&#39; has no installation candidate</span>
+<span class="c1"># You need to install one of the packages listed above to get wordlist command</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wamerican-small
+</pre></div>
+</div>
+<p>To generate a file with 1000 words, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pick 1000 random words and write them to random_words.txt</span>
+shuf<span class="w"> </span>-n<span class="w"> </span><span class="m">1000</span><span class="w"> </span>/usr/share/dict/words<span class="w"> </span>&gt;<span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+<p>If you want more control over the words you can use awk to filter the words.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pick 1000 random words and write them to random_words.txt</span>
+awk<span class="w"> </span><span class="s1">&#39;length($0) &gt; 5 &amp;&amp; length($0) &lt; 10&#39;</span><span class="w"> </span>/usr/share/dict/words<span class="w"> </span><span class="p">|</span><span class="w"> </span>shuf<span class="w"> </span>-n<span class="w"> </span><span class="m">1000</span><span class="w"> </span>&gt;<span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+</section>
+<section id="sed">
+<h2>2. <code class="docutils literal notranslate"><span class="pre">sed</span></code><a class="headerlink" href="#sed" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">sed</span></code>, short for “stream editor,” is a command-line utility that allows for parsing and transforming text. It is commonly used for text substitutions, deletions, insertions, and more. Available on UNIX and UNIX-like operating systems such as Linux and macOS, <code class="docutils literal notranslate"><span class="pre">sed</span></code> reads text input—either from a file or from a stream—edits it according to a set of expressions or commands, and then outputs the edited text.</p>
+<section id="basic-syntax">
+<h3>Basic Syntax<a class="headerlink" href="#basic-syntax" title="Link to this heading"></a></h3>
+<p>The basic syntax of a sed command is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="s1">&#39;command&#39;</span><span class="w"> </span><span class="o">[</span>input-file<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="common-operations">
+<h3>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h3>
+<p><strong>Substitute</strong>: Replace occurrences of a string (or regular expression) with another string.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &#39;apple&#39; with &#39;orange&#39; in the file random_words.txt</span>
+sed<span class="w"> </span><span class="s1">&#39;s/apple/orange/&#39;</span><span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that this only replaces the first occurrence of ‘apple’ on each line. To replace all occurrences, you’d use the g (global) flag:</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span><span class="s1">&#39;s/apple/orange/g&#39;</span><span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+<p><strong>Delete Lines</strong>: Remove lines that match a particular pattern.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete all lines containing &#39;apple&#39; from the file fruits.txt</span>
+sed<span class="w"> </span><span class="s1">&#39;/apple/d&#39;</span><span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+<p><strong>Insert and Append</strong>: Insert or append lines around a match.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert a line &quot;Fruits:&quot; before every line containing &#39;apple&#39;</span>
+sed<span class="w"> </span><span class="s1">&#39;/apple/i\Fruits:&#39;</span><span class="w"> </span>random_words.txt
+
+<span class="c1"># Append a line &quot;Yummy!&quot; after every line containing &#39;apple&#39;</span>
+sed<span class="w"> </span><span class="s1">&#39;/apple/a\Yummy!&#39;</span><span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+</section>
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code>: Edit the file in-place (use with caution).</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/apple/orange/g&#39;</span><span class="w"> </span>random_words.txt
+<span class="c1"># This replaces all instances of &#39;apple&#39; with &#39;orange&#39; in random_words.txt, modifying the file directly.</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: Suppress automatic printing (useful with the <code class="docutils literal notranslate"><span class="pre">p</span></code> command to print specific lines).</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print only lines containing &#39;apple&#39;</span>
+sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;/apple/p&#39;</span><span class="w"> </span>random_words.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>: Allows for multiple editing commands.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/apple/orange/&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/banana/peach/&#39;</span><span class="w"> </span>random_words.txt
+<span class="c1"># This replaces the first instance of &#39;apple&#39; with &#39;orange&#39; and the first instance of &#39;banana&#39; with &#39;peach&#39; on each line.</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: Specifies a file that contains sed commands.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span>-f<span class="w"> </span>commands.sed<span class="w"> </span>random_words.txt
+<span class="c1"># Here, commands.sed is a file containing sed commands that are to be applied to random_words.txt.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="awk">
+<h2>3. <code class="docutils literal notranslate"><span class="pre">awk</span></code><a class="headerlink" href="#awk" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">awk</span></code> is a text-processing utility in Unix-like operating systems that is often used for data extraction and reporting. Named after its original authors—<strong>Alfred Aho, Peter Weinberger, and Brian Kernighan</strong>- <code class="docutils literal notranslate"><span class="pre">awk</span></code> interprets a special-purpose programming language designed to handle a wide range of text manipulation tasks. It’s particularly good for working with tabular data or text files separated by delimiters like commas, spaces, or tabs.</p>
+<p>Basic Syntax
+The basic syntax of awk is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;pattern { action }&#39;</span><span class="w"> </span>file
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>pattern</strong>: Specifies a condition, or a set of conditions. If the pattern matches, the corresponding action is executed.</p></li>
+<li><p><strong>action</strong>: Describes what to do when a match for the pattern is found in the text or stream.</p></li>
+<li><p><strong>file</strong>: The file to read the data from.</p></li>
+</ul>
+<p>Simple Example
+Let’s say you have a text file named <code class="docutils literal notranslate"><span class="pre">party.txt</span></code> containing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Tequila<span class="w"> </span><span class="m">4</span>
+Vodka<span class="w"> </span><span class="m">6</span>
+Wine<span class="w"> </span><span class="m">12</span>
+Beer<span class="w"> </span><span class="m">48</span>
+</pre></div>
+</div>
+<p>You could use awk to print just the second column:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{ print $2 }&#39;</span><span class="w"> </span>party.txt
+</pre></div>
+</div>
+<p>This would output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">4</span>
+<span class="m">6</span>
+<span class="m">12</span>
+<span class="m">48</span>
+</pre></div>
+</div>
+<section id="features-and-capabilities">
+<h3>Features and Capabilities<a class="headerlink" href="#features-and-capabilities" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Column manipulation: <code class="docutils literal notranslate"><span class="pre">awk</span></code> is commonly used to read and manipulate columnar data.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prints the first column of the file &quot;party.txt&quot;</span>
+awk<span class="w"> </span><span class="s1">&#39;{ print $1 }&#39;</span><span class="w"> </span>party.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Text Transformation: You can use <code class="docutils literal notranslate"><span class="pre">awk</span></code> to perform a variety of text transformations.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Converts the first column of data to lowercase</span>
+awk<span class="w"> </span><span class="s1">&#39;{ print tolower($1) }&#39;</span><span class="w"> </span>data.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Mathematical Operations: <code class="docutils literal notranslate"><span class="pre">awk</span></code> can perform various mathematical operations.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sum the second column of the file &quot;data.txt&quot;</span>
+awk<span class="w"> </span><span class="s1">&#39;{ sum += $2 } END { print sum }&#39;</span><span class="w"> </span>data.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Conditional Statements: <code class="docutils literal notranslate"><span class="pre">awk</span></code> supports if-else, while, for loops, and more.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{ if ($2 &gt; 10) print $1 &quot; has value greater than 10&quot;; else print $1 &quot; has value less or equal to 10&quot; }&#39;</span><span class="w"> </span>data.txt
+</pre></div>
+</div>
+<p>5. String Manipulation: awk offers functions for substring,
+length, and other string manipulations.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{ print length($1) }&#39;</span><span class="w"> </span>data.txt<span class="w">  </span><span class="c1"># prints the length of the first column</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Built-in Functions: awk has a number of built-in functions for string manipulation, mathematical operations, and more.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{ print sqrt($2) }&#39;</span><span class="w"> </span>data.txt<span class="w">  </span><span class="c1"># prints the square root</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5_makefile.html" class="btn btn-neutral float-left" title="3.5 Makefile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TODO.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

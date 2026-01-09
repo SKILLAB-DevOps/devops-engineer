@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  environment: "base"
+  log_level: "info"
+  database_host: "postgres-service"
+  database_port: "5432"
+  cache_enabled: "true"
+  max_connections: "100"

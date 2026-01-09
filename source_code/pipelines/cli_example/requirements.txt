@@ -1,0 +1,6 @@
+click
+pytest
+mypy
+pylint
+poetry
+black

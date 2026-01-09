@@ -1,0 +1,32 @@
+all:
+  children:
+    # Simple setup with just one web server for learning
+    web_servers:
+      hosts:
+        web1:
+          ansible_host: 192.168.1.10
+          ansible_user: ubuntu
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    
+    # Local testing - always available
+    local:
+      hosts:
+        localhost:
+          ansible_connection: local
+    
+    # Docker container for easy testing
+    containers:
+      hosts:
+        test-container:
+          ansible_host: 172.17.0.2
+          ansible_user: root
+          ansible_ssh_port: 22
+          
+  vars:
+    # Global variables for all hosts
+    ansible_python_interpreter: /usr/bin/python3
+    # Common packages needed for examples
+    common_packages:
+      - curl
+      - wget
+      - vim

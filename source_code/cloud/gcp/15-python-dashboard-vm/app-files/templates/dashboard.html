@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Dashboard - GCP VM</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .chart-container {
+            height: 400px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .refresh-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">📊 Business Analytics Dashboard</h1>
+                <p class="text-center text-muted">Running on Google Cloud Platform VM with Flask & PostgreSQL</p>
+            </div>
+        </div>
+        
+        <button class="btn btn-primary refresh-btn" onclick="loadAllCharts()">🔄 Refresh</button>
+        
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-number" id="total-sales">$0</div>
+                    <div>Total Sales</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-number" id="total-users">0</div>
+                    <div>Active Users</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-number" id="total-views">0</div>
+                    <div>Page Views</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-number" id="regions-count">0</div>
+                    <div>Active Regions</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">📈 Sales by Product</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="sales-chart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">🌍 Sales by Region</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="regions-chart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">👥 User Activity (Last 24 Hours)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="activity-chart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p class="text-muted">
+                    <small>
+                        Dashboard deployed on GCP VM • 
+                        <a href="/admin" class="text-decoration-none">Admin Panel</a> • 
+                        <a href="/health" class="text-decoration-none">Health Check</a>
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadSalesChart() {
+            try {
+                const response = await fetch('/api/sales');
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('sales-chart').innerHTML = '<div class="text-center text-muted">No sales data available</div>';
+                    return;
+                }
+                
+                const chartData = JSON.parse(data.chart);
+                Plotly.newPlot('sales-chart', chartData.data, chartData.layout, {responsive: true});
+                
+                document.getElementById('total-sales').textContent = '$' + data.total_sales.toLocaleString();
+            } catch (error) {
+                console.error('Error loading sales chart:', error);
+                document.getElementById('sales-chart').innerHTML = '<div class="text-center text-danger">Error loading chart</div>';
+            }
+        }
+        
+        async function loadActivityChart() {
+            try {
+                const response = await fetch('/api/activity');
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('activity-chart').innerHTML = '<div class="text-center text-muted">No activity data available</div>';
+                    return;
+                }
+                
+                const chartData = JSON.parse(data.chart);
+                Plotly.newPlot('activity-chart', chartData.data, chartData.layout, {responsive: true});
+                
+                document.getElementById('total-users').textContent = data.total_users.toLocaleString();
+                document.getElementById('total-views').textContent = data.total_views.toLocaleString();
+            } catch (error) {
+                console.error('Error loading activity chart:', error);
+                document.getElementById('activity-chart').innerHTML = '<div class="text-center text-danger">Error loading chart</div>';
+            }
+        }
+        
+        async function loadRegionsChart() {
+            try {
+                const response = await fetch('/api/regions');
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('regions-chart').innerHTML = '<div class="text-center text-muted">No regional data available</div>';
+                    return;
+                }
+                
+                const chartData = JSON.parse(data.chart);
+                Plotly.newPlot('regions-chart', chartData.data, chartData.layout, {responsive: true});
+                
+                document.getElementById('regions-count').textContent = data.regions_count;
+            } catch (error) {
+                console.error('Error loading regions chart:', error);
+                document.getElementById('regions-chart').innerHTML = '<div class="text-center text-danger">Error loading chart</div>';
+            }
+        }
+        
+        function loadAllCharts() {
+            loadSalesChart();
+            loadActivityChart();
+            loadRegionsChart();
+        }
+        
+        // Load charts when page loads
+        document.addEventListener('DOMContentLoaded', loadAllCharts);
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadAllCharts, 30000);
+    </script>
+</body>
+</html>

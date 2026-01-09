@@ -1,0 +1,107 @@
+server {
+    listen 80;
+    server_name {{ ansible_default_ipv4.address | default('localhost') }} {{ ansible_hostname }};
+    
+    root {{ web_root }};
+    index index.php index.html index.htm;
+    
+    # Logging
+    access_log /var/log/nginx/wordpress-access.log;
+    error_log /var/log/nginx/wordpress-error.log;
+    
+    # Security headers
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection "1; mode=block";
+    
+    # WordPress specific configuration
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+    
+    # Handle PHP files
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php{{ php_version }}-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        
+        # Security
+        fastcgi_hide_header X-Powered-By;
+        
+        # Increase timeouts for WordPress admin
+        fastcgi_read_timeout 300;
+        fastcgi_connect_timeout 300;
+        fastcgi_send_timeout 300;
+    }
+    
+    # Optimize static file serving
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+    }
+    
+    # WordPress security - block access to sensitive files
+    location ~* /(?:uploads|files)/.*\.php$ {
+        deny all;
+    }
+    
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+    
+    location ~ ~$ {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+    
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+    
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+    
+    # WordPress xmlrpc.php protection
+    location = /xmlrpc.php {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+    
+    # Block access to wp-config.php
+    location = /wp-config.php {
+        deny all;
+    }
+    
+    # Block access to wp-content/uploads PHP files
+    location ~* ^/wp-content/uploads/.*\.php$ {
+        deny all;
+    }
+    
+    # Client settings
+    client_max_body_size 64M;
+    client_body_timeout 60;
+    client_header_timeout 60;
+    
+    # Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1000;
+    gzip_types
+        text/plain
+        text/css
+        text/xml
+        text/javascript
+        application/javascript
+        application/xml+rss
+        application/json;
+}

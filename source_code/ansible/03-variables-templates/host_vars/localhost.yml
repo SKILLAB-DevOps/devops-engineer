@@ -1,0 +1,4 @@
+---
+# Variables specific to localhost
+app_port: 8080
+custom_message: "This is running on localhost for testing"

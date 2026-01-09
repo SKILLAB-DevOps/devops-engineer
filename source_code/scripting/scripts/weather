@@ -1,0 +1,47 @@
+#! /usr/bin/env bash
+
+######################################
+# This script will fetch the weather for a given location
+# Usage: ./weather.sh <location>
+# Author: Skillab Team
+# Copyright: This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+######################################
+
+######################################
+# Description
+# Fetches the weather for a given location, verify if location is valid, real and display the weather
+# Globals:
+#	 None
+# Arguments:
+# 	 $1 - The location
+######################################
+
+# Check if the location parameter is provided
+if [ -z "$1" ]; then
+    echo "Please provide a location. Example: weather Bucharest"
+    exit 1
+fi
+
+location="$1"
+
+# Check if the location contains numbers
+if [[ $location =~ [0-9] ]]; then
+    echo "Error: Location should not contain numbers."
+    exit 1
+else
+    echo "Fetching weather for $location..."
+fi
+
+# Check if the location exists using OSM Nominatim API
+osm_response=$(curl -s "https://nominatim.openstreetmap.org/search?format=json&q=$location")
+
+# If the response is empty, the location might not exist
+if [[ -z $osm_response || $osm_response == "[]" ]]; then
+    echo "Error: Unknown or ambiguous location."
+    exit 1
+else
+    echo "Location found."
+fi
+
+# Fetch and display the weather
+curl "https://wttr.in/$location"

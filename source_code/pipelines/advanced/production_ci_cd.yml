@@ -1,0 +1,275 @@
+name: Production Python CI/CD Pipeline
+# Comprehensive pipeline with modern tooling, security, and deployment
+
+on:
+  push:
+    branches: [ main, develop ]                       # Deploy branches
+    tags: [ 'v*' ]                                   # Release tags
+  pull_request:
+    branches: [ main ]                                # PR validation
+
+env:
+  PYTHON_VERSION: "3.12"                             # Default Python version
+
+jobs:
+  # Stage 1: Fast quality checks (fail fast principle)
+  quality:
+    runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.cache.outputs.cache-hit }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4                     # Get repository code
+      
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5                 # Install Python
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install uv (modern package manager)
+        uses: astral-sh/setup-uv@v3                   # Fast dependency management
+        with:
+          enable-cache: true                          # Cache for speed
+          cache-dependency-glob: "pyproject.toml"
+      
+      - name: Cache dependencies
+        id: cache                                     # Cache Python packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('pyproject.toml') }}
+          restore-keys: ${{ runner.os }}-uv-
+      
+      - name: Install dependencies
+        run: |
+          uv sync --dev                               # Install all dependencies
+      
+      - name: Code formatting check
+        run: |
+          uv run ruff format --check .               # Check code formatting
+      
+      - name: Linting with modern tools
+        run: |
+          uv run ruff check .                        # Fast linting
+      
+      - name: Type checking
+        run: |
+          uv run mypy src/ tests/                    # Static type analysis
+
+  # Stage 2: Comprehensive testing across Python versions
+  test:
+    needs: quality                                    # Wait for quality checks
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false                               # Continue testing other versions
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.11", "3.12", "3.13"]
+        exclude:                                      # Skip problematic combinations
+          - os: windows-latest
+            python-version: "3.13"                   # Example exclusion
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+      
+      - name: Install dependencies
+        run: uv sync --dev
+      
+      - name: Run tests with coverage
+        run: |
+          uv run pytest \                            # Run test suite
+            --cov=src \                             # Code coverage
+            --cov-report=xml \                      # XML report for tools
+            --cov-report=term-missing \             # Terminal report
+            --cov-fail-under=80 \                   # Minimum coverage
+            --strict-markers \                      # Strict pytest markers
+            -v                                      # Verbose output
+      
+      - name: Upload coverage to Codecov
+        if: matrix.python-version == '3.12' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v4              # Coverage tracking
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: false                   # Don't fail on upload error
+
+  # Stage 3: Security scanning and vulnerability checks
+  security:
+    needs: quality                                    # Run in parallel with tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      
+      - name: Install dependencies
+        run: uv sync --dev
+      
+      - name: Security vulnerability scan
+        run: |
+          uv run bandit -r src/ -f json -o bandit-report.json  # Security linting
+          uv run bandit -r src/                     # Human-readable output
+      
+      - name: Dependency vulnerability check
+        run: |
+          uv run safety check                       # Check for known vulnerabilities
+      
+      - name: Upload security report
+        uses: actions/upload-artifact@v4            # Store security report
+        if: always()                               # Upload even if security fails
+        with:
+          name: security-report
+          path: bandit-report.json
+          retention-days: 30
+
+  # Stage 4: Build package artifacts
+  build:
+    needs: [test, security]                          # Wait for tests and security
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      
+      - name: Build package
+        run: |
+          uv build                                  # Create wheel and source dist
+      
+      - name: Verify package integrity
+        run: |
+          uv run twine check dist/*                 # Validate package
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4            # Store built packages
+        with:
+          name: python-package-${{ github.sha }}
+          path: dist/
+          retention-days: 30
+
+  # Stage 5: Deploy to staging (develop branch)
+  deploy-staging:
+    if: github.ref == 'refs/heads/develop'          # Only deploy staging from develop
+    needs: build
+    runs-on: ubuntu-latest
+    environment: staging                             # Use staging environment
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4          # Get built package
+        with:
+          name: python-package-${{ github.sha }}
+          path: dist/
+      
+      - name: Deploy to staging
+        env:
+          STAGING_API_KEY: ${{ secrets.STAGING_API_KEY }}
+        run: |
+          echo "Deploying to staging environment..."
+          # Example deployment commands:
+          # pip install dist/*.whl
+          # python -m myapp.deploy --env staging
+      
+      - name: Run smoke tests
+        run: |
+          echo "Running smoke tests on staging..."
+          # curl -f https://staging.myapp.com/health
+          # python -m pytest tests/smoke/
+
+  # Stage 6: Deploy to production (tagged releases only)
+  deploy-production:
+    if: startsWith(github.ref, 'refs/tags/v')        # Only deploy on version tags
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production                          # Use production environment
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-${{ github.sha }}
+          path: dist/
+      
+      - name: Deploy to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1  # Publish to PyPI
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1         # Create GitHub release
+        with:
+          files: dist/*                              # Attach built files
+          generate_release_notes: true               # Auto-generate notes
+          draft: false                               # Publish immediately
+      
+      - name: Deploy to production infrastructure
+        env:
+          PRODUCTION_API_KEY: ${{ secrets.PRODUCTION_API_KEY }}
+        run: |
+          echo "Deploying version ${{ github.ref_name }} to production..."
+          # Production deployment commands
+      
+      - name: Notify deployment success
+        uses: 8398a7/action-slack@v3                 # Slack notification
+        if: success()
+        with:
+          status: success
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          message: |
+            🚀 Successfully deployed ${{ github.ref_name }} to production!
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+
+  # Stage 7: Cleanup and monitoring
+  cleanup:
+    if: always()                                     # Always run cleanup
+    needs: [deploy-staging, deploy-production]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clean up artifacts
+        uses: actions/github-script@v7               # Clean old artifacts
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+            
+            // Keep artifacts for 7 days, then clean up
+            for (const artifact of artifacts.data.artifacts) {
+              if (Date.now() - Date.parse(artifact.created_at) > 7 * 24 * 60 * 60 * 1000) {
+                await github.rest.actions.deleteArtifact({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  artifact_id: artifact.id,
+                });
+              }
+            }

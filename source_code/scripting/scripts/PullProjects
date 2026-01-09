@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+#
+#######################################
+# Pull all the projects
+# Usage: ./PullProjects
+# Author: Skillab Team
+# Copyright: Bla Bla Bla
+#######################################
+
+# Variable declaration
+gitlocal="/home/${USER}/sandbox/test/"
+gitRemote="git@github.com:SKILLAB-DevOps/"
+
+# Create an ARRAY
+declare -a projects
+
+# Instantiate the array with values
+projects=("introduction" \
+          "environments" \
+          "linux" \
+          "scripting" \
+          "git" )
+#######################################
+# Description
+#   change directory to the sanbox
+#   checks out develop
+#   if exist pulls all the new changes 
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns
+#   None
+#######################################
+function pullCode() {
+    # change directory to the project
+    cd "${gitlocal}${project}"
+    # move the develop branch
+    git checkout develop
+    git pull
+    # Debug print used to improve readiablilty 
+    echo " "
+}
+
+# Check if location is present if not created it
+if [[ -d "${gitlocal}" ]]; then
+  echo "[INFO]: Location present"
+else
+  echo "[ERROR]: Location unvailable, will be created"
+  mkdir -p "${gitlocal}"
+  ls "${gitlocal}"
+fi 
+
+# Debug print used to see when the projects are being pulled
+echo "[INFO]: THE PROCESS OF CLONING STARTS!"
+
+# Loop the elements from array 
+for project in ${projects[@]}
+  do
+    # check if the projects exists then pull if not clone
+    if [[ -d "${gitlocal}${project}" ]]; then
+        # Debug print used to show the project name
+        echo "[INFO]: PULL ${project^^}"
+        pullCode
+    else
+       cd "${gitlocal}"
+       git clone "${gitRemote}${project}.git"
+    fi
+  done
+
+echo "[INFO]: Done."

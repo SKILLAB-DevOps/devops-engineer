@@ -1,0 +1,105 @@
+---
+- name: WordPress Backup
+  hosts: all
+  become: true
+  
+  vars:
+    web_root: "/var/www/html"
+    backup_dir: "/backup/wordpress"
+    wordpress_db_name: "wordpress"
+    wordpress_db_user: "wp_user"
+    wordpress_db_password: "WPPassword123!"
+    mysql_root_password: "RootPassword123!"
+    
+  tasks:
+    - name: Create backup directory
+      ansible.builtin.file:
+        path: "{{ backup_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0700'
+        
+    - name: Create WordPress files backup
+      ansible.builtin.archive:
+        path: "{{ web_root }}"
+        dest: "{{ backup_dir }}/wordpress-files-{{ ansible_date_time.epoch }}.tar.gz"
+        owner: root
+        group: root
+        mode: '0600'
+        
+    - name: Create WordPress database backup
+      ansible.builtin.mysql_db:
+        name: "{{ wordpress_db_name }}"
+        state: dump
+        target: "{{ backup_dir }}/wordpress-db-{{ ansible_date_time.epoch }}.sql"
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        
+    - name: Set backup file permissions
+      ansible.builtin.file:
+        path: "{{ backup_dir }}/wordpress-db-{{ ansible_date_time.epoch }}.sql"
+        owner: root
+        group: root
+        mode: '0600'
+        
+    - name: Clean old backups (keep last 7 days)
+      ansible.builtin.find:
+        paths: "{{ backup_dir }}"
+        age: "7d"
+        patterns: "wordpress-*"
+      register: old_backups
+      
+    - name: Remove old backup files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ old_backups.files }}"
+      
+    - name: Create backup script for cron
+      ansible.builtin.copy:
+        content: |
+          #!/bin/bash
+          # WordPress Backup Script
+          
+          BACKUP_DIR="{{ backup_dir }}"
+          WP_ROOT="{{ web_root }}"
+          DB_NAME="{{ wordpress_db_name }}"
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          
+          # Create directories
+          mkdir -p $BACKUP_DIR
+          
+          # Backup files
+          tar -czf $BACKUP_DIR/wordpress-files-$TIMESTAMP.tar.gz -C $(dirname $WP_ROOT) $(basename $WP_ROOT)
+          
+          # Backup database
+          mysqldump -u root -p{{ mysql_root_password }} $DB_NAME > $BACKUP_DIR/wordpress-db-$TIMESTAMP.sql
+          
+          # Set permissions
+          chmod 600 $BACKUP_DIR/wordpress-*-$TIMESTAMP.*
+          
+          # Clean old backups (keep 7 days)
+          find $BACKUP_DIR -name "wordpress-*" -type f -mtime +7 -delete
+          
+          echo "WordPress backup completed: $TIMESTAMP"
+        dest: /usr/local/bin/wordpress-backup.sh
+        mode: '0755'
+        owner: root
+        group: root
+        
+    - name: Display backup information
+      ansible.builtin.debug:
+        msg: |
+          WordPress backup completed!
+          
+          Backup location: {{ backup_dir }}
+          Files backup: wordpress-files-{{ ansible_date_time.epoch }}.tar.gz
+          Database backup: wordpress-db-{{ ansible_date_time.epoch }}.sql
+          
+          To schedule automatic backups, add this to crontab:
+          0 2 * * * /usr/local/bin/wordpress-backup.sh
+          
+          To restore from backup:
+          1. Extract files: tar -xzf wordpress-files-TIMESTAMP.tar.gz
+          2. Restore database: mysql -u root -p wordpress < wordpress-db-TIMESTAMP.sql

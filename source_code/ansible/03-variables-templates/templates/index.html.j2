@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name | title }} - {{ environment | default('Development') | title }}</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px; 
+            background-color: {% if environment == 'production' %}#f0f8ff{% else %}#fff8f0{% endif %};
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px;
+            background: white;
+        }
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin: 20px 0; 
+        }
+        .info-item { 
+            padding: 10px; 
+            background: #f5f5f5; 
+            border-radius: 4px; 
+        }
+        .status { 
+            color: {% if environment == 'production' %}green{% else %}orange{% endif %}; 
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to {{ app_name | title }}</h1>
+        
+        <p class="status">Status: {{ environment | default('development') | title }} Environment</p>
+        
+        <h2>Application Information</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>Application:</strong> {{ app_name }}
+            </div>
+            <div class="info-item">
+                <strong>Port:</strong> {{ app_port }}
+            </div>
+            <div class="info-item">
+                <strong>User:</strong> {{ app_user }}
+            </div>
+            <div class="info-item">
+                <strong>Directory:</strong> {{ app_directory }}
+            </div>
+        </div>
+
+        <h2>Server Information</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>Hostname:</strong> {{ inventory_hostname }}
+            </div>
+            <div class="info-item">
+                <strong>OS:</strong> {{ ansible_distribution }} {{ ansible_distribution_version }}
+            </div>
+            <div class="info-item">
+                <strong>CPU Cores:</strong> {{ ansible_processor_cores }}
+            </div>
+            <div class="info-item">
+                <strong>Memory:</strong> {{ ansible_memtotal_mb }}MB
+            </div>
+            <div class="info-item">
+                <strong>Architecture:</strong> {{ ansible_architecture }}
+            </div>
+            <div class="info-item">
+                <strong>Deployment Time:</strong> {{ ansible_date_time.date }} {{ ansible_date_time.time }}
+            </div>
+        </div>
+
+        {% if custom_message is defined %}
+        <div style="margin-top: 20px; padding: 15px; background: #e7f3ff; border-left: 4px solid #2196F3;">
+            <strong>Custom Message:</strong> {{ custom_message }}
+        </div>
+        {% endif %}
+
+        <h2>Installed Packages</h2>
+        <ul>
+        {% for package in packages_to_install %}
+            <li>{{ package }}</li>
+        {% endfor %}
+        </ul>
+
+        {% if environment == 'development' %}
+        <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107;">
+            <strong>Development Mode:</strong> Debug features are enabled. Do not use in production!
+        </div>
+        {% endif %}
+
+        <footer style="margin-top: 40px; text-align: center; color: #666; border-top: 1px solid #eee; padding-top: 20px;">
+            <p>Deployed by Ansible • Last updated: {{ ansible_date_time.iso8601 }}</p>
+        </footer>
+    </div>
+</body>
+</html>

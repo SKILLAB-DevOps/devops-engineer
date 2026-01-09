@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.7 Linux File Systems &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.8 Terminal Tuning" href="8_terminal_tuning.html" />
+    <link rel="prev" title="2.6 System Logging" href="6_system_logging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2.7 Linux File Systems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/2_linux/7_linux_file_systems.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="linux-file-systems">
+<h1>2.7 Linux File Systems<a class="headerlink" href="#linux-file-systems" title="Link to this heading"></a></h1>
+<section id="storage-types-overview">
+<h2>Storage Types Overview<a class="headerlink" href="#storage-types-overview" title="Link to this heading"></a></h2>
+<p><strong>Block Storage:</strong></p>
+<ul class="simple">
+<li><p>Raw storage devices managed by OS</p></li>
+<li><p>High performance, low latency</p></li>
+<li><p>Examples: Local disks, SAN, cloud block storage</p></li>
+</ul>
+<p><strong>File Storage:</strong></p>
+<ul class="simple">
+<li><p>Files organized in directories</p></li>
+<li><p>Shared across networks</p></li>
+<li><p>Examples: NFS, SMB/CIFS, cloud file storage</p></li>
+</ul>
+<p><strong>Object Storage:</strong></p>
+<ul class="simple">
+<li><p>Data stored as objects with metadata</p></li>
+<li><p>Highly scalable, web-accessible</p></li>
+<li><p>Examples: AWS S3, Google Cloud Storage</p></li>
+</ul>
+</section>
+<section id="file-systems-and-partitions">
+<h2>File Systems and Partitions<a class="headerlink" href="#file-systems-and-partitions" title="Link to this heading"></a></h2>
+<p><strong>Common Linux File Systems:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ext4<span class="w">        </span><span class="c1"># Default on most distributions</span>
+xfs<span class="w">         </span><span class="c1"># High performance, good for large files</span>
+btrfs<span class="w">       </span><span class="c1"># Advanced features, snapshots</span>
+zfs<span class="w">         </span><span class="c1"># Enterprise features, built-in RAID</span>
+tmpfs<span class="w">       </span><span class="c1"># RAM-based filesystem</span>
+</pre></div>
+</div>
+<p><strong>Disk and Partition Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List disks and partitions</span>
+lsblk<span class="w">                     </span><span class="c1"># Tree view of block devices</span>
+fdisk<span class="w"> </span>-l<span class="w">                  </span><span class="c1"># List all disks and partitions</span>
+df<span class="w"> </span>-h<span class="w">                     </span><span class="c1"># Show mounted filesystems</span>
+
+<span class="c1"># Partition management</span>
+fdisk<span class="w"> </span>/dev/sda<span class="w">            </span><span class="c1"># Interactive partition editor</span>
+parted<span class="w"> </span>/dev/sda<span class="w">           </span><span class="c1"># GNU parted tool</span>
+
+<span class="c1"># File system operations</span>
+mkfs.ext4<span class="w"> </span>/dev/sda1<span class="w">       </span><span class="c1"># Create ext4 filesystem</span>
+fsck<span class="w"> </span>/dev/sda1<span class="w">            </span><span class="c1"># Check filesystem</span>
+tune2fs<span class="w"> </span>-l<span class="w"> </span>/dev/sda1<span class="w">      </span><span class="c1"># Show filesystem info</span>
+</pre></div>
+</div>
+</section>
+<section id="mounting-and-etc-fstab">
+<h2>Mounting and /etc/fstab<a class="headerlink" href="#mounting-and-etc-fstab" title="Link to this heading"></a></h2>
+<p><strong>Mount Operations:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount filesystem</span>
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/data
+sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>ext4<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/data
+
+<span class="c1"># Unmount</span>
+sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/data
+sudo<span class="w"> </span>umount<span class="w"> </span>/dev/sda1
+
+<span class="c1"># Show mounted filesystems</span>
+mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>column<span class="w"> </span>-t
+findmnt
+
+<span class="c1"># Mount with options</span>
+sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>rw,noexec,nosuid<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/data
+</pre></div>
+</div>
+<p><strong>Persistent Mounts (/etc/fstab):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/fstab format:</span>
+<span class="c1"># device  mountpoint  filesystem  options  dump  pass</span>
+/dev/sda1<span class="w">  </span>/home<span class="w">      </span>ext4<span class="w">        </span>defaults<span class="w">  </span><span class="m">0</span><span class="w">     </span><span class="m">2</span>
+<span class="nv">UUID</span><span class="o">=</span>xxx<span class="w">   </span>/data<span class="w">      </span>xfs<span class="w">         </span>defaults<span class="w">  </span><span class="m">0</span><span class="w">     </span><span class="m">2</span>
+
+<span class="c1"># Test fstab without reboot</span>
+sudo<span class="w"> </span>mount<span class="w"> </span>-a
+</pre></div>
+</div>
+</section>
+<section id="filesystem-monitoring-scripts">
+<h2>Filesystem Monitoring Scripts<a class="headerlink" href="#filesystem-monitoring-scripts" title="Link to this heading"></a></h2>
+<p><strong>Filesystem Information:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get detailed filesystem information</span>
+lsblk<span class="w"> </span>-f<span class="w">                    </span><span class="c1"># Show filesystems with UUIDs</span>
+blkid<span class="w">                       </span><span class="c1"># Show block device attributes</span>
+findmnt<span class="w">                     </span><span class="c1"># Show mounted filesystems in tree format</span>
+
+<span class="c1"># Disk usage analysis</span>
+du<span class="w"> </span>-sh<span class="w"> </span>/*<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-hr<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10<span class="w">    </span><span class="c1"># Top directories by size</span>
+du<span class="w"> </span>-sh<span class="w"> </span>~/.*<span class="w"> </span>~<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-hr<span class="w">           </span><span class="c1"># Home directory analysis</span>
+
+<span class="c1"># Find large files</span>
+find<span class="w"> </span>/var/log<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+50M<span class="w"> </span>-exec<span class="w"> </span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+find<span class="w"> </span>/tmp<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+10M<span class="w"> </span>-mtime<span class="w"> </span>+7<span class="w">         </span><span class="c1"># Large old temp files</span>
+<span class="w">                </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>large_files
+</pre></div>
+</div>
+</section>
+<section id="storage-management">
+<h2>Storage Management<a class="headerlink" href="#storage-management" title="Link to this heading"></a></h2>
+<p><strong>LVM (Logical Volume Management):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Physical volume operations</span>
+sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb
+pvdisplay
+
+<span class="c1"># Volume group operations</span>
+sudo<span class="w"> </span>vgcreate<span class="w"> </span>myvg<span class="w"> </span>/dev/sdb
+vgdisplay
+
+<span class="c1"># Logical volume operations</span>
+sudo<span class="w"> </span>lvcreate<span class="w"> </span>-L<span class="w"> </span>10G<span class="w"> </span>-n<span class="w"> </span>mylv<span class="w"> </span>myvg
+lvdisplay
+
+<span class="c1"># Create filesystem and mount</span>
+sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>/dev/myvg/mylv
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/myvg/mylv<span class="w"> </span>/mnt/data
+</pre></div>
+</div>
+<p><strong>RAID Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Software RAID with mdadm</span>
+sudo<span class="w"> </span>mdadm<span class="w"> </span>--create<span class="w"> </span>/dev/md0<span class="w"> </span>--level<span class="o">=</span><span class="m">1</span><span class="w"> </span>--raid-devices<span class="o">=</span><span class="m">2</span><span class="w"> </span>/dev/sdb<span class="w"> </span>/dev/sdc
+
+<span class="c1"># Check RAID status</span>
+cat<span class="w"> </span>/proc/mdstat
+sudo<span class="w"> </span>mdadm<span class="w"> </span>--detail<span class="w"> </span>/dev/md0
+</pre></div>
+</div>
+<p><strong>Backup and Sync:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rsync for file synchronization</span>
+rsync<span class="w"> </span>-av<span class="w"> </span>/source/<span class="w"> </span>/destination/
+rsync<span class="w"> </span>-av<span class="w"> </span>user@host:/remote/path/<span class="w"> </span>/local/path/
+
+<span class="c1"># Create filesystem snapshots (btrfs)</span>
+sudo<span class="w"> </span>btrfs<span class="w"> </span>subvolume<span class="w"> </span>snapshot<span class="w"> </span>/home<span class="w"> </span>/home/.snapshots/<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DevOps Tip</strong>: Always monitor disk usage in production. Set up alerts when filesystems reach 80% capacity to prevent service disruptions.</p>
+</div>
+</section>
+<section id="logical-volume-manager">
+<h2>Logical Volume Manager<a class="headerlink" href="#logical-volume-manager" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>LVM</strong> is a storage abstraction layer that allows for very flexible management of block-level devices</p></li>
+<li><p>provides features like the ability to add disk space to a logical volume and its filesystem while that filesystem is mounted and active</p></li>
+<li><p>allows for the collection of multiple physical hard drives and partitions into a single volume group which can then be divided into logical volumes.</p></li>
+<li><dl class="simple">
+<dt>terminology:</dt><dd><ol class="arabic simple">
+<li><p><strong>physical volumes</strong>: physical disks, or disk partitions</p></li>
+<li><p><strong>volume groups</strong>: seen as a <em>“virtual partition”</em> which comprises an arbitrary number of physical volumes</p></li>
+<li><p><strong>logical volumes</strong>: contained in the volume groups they can be bigger than any single physical volume you might have. These will be formatted with a file system</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="file-systems">
+<h2>File systems<a class="headerlink" href="#file-systems" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>a <strong>file system</strong> is a structured representation of data and a set of metadata describing this data</p></li>
+<li><p>it is applied to the storage during the <strong>format</strong> operation</p></li>
+<li><p>common file system types: ext3, <strong>ext4</strong>, <strong>xfs</strong>, fat, ntfs; nfs, smbfs/cifs</p></li>
+</ol>
+</section>
+<section id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>What is the difference between block-level and a file-level storage?</p>
+<ol class="loweralpha simple">
+<li><p>Block-level storage is offered directly to the Operating System as raw devices, while file-level storage is stored as files and presented to OSes as a hierarchical directories structure.</p></li>
+<li><p>Block-level storage is stored as files and presented to OSes as a hierarchical directories structure, while file-level storage is offered directly to the Operating System as raw devices.</p></li>
+<li><p>Block-level storage is stored as files and presented to OSes as a hierarchical directories structure, while file-level storage is offered directly to the Operating System as raw devices.</p></li>
+<li><p>Block-level storage is offered directly to the Operating System as raw devices, while file-level storage is stored as files and presented to OSes as a hierarchical directories structure.</p></li>
+</ol>
+</li>
+<li><p>What is the difference between a disk and a partition?</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>A disk is a logical form of boundary, it is used to divide the disk into logical units, while a partition is just raw physical/virtual means to store data.</p></li>
+<li><p>A disk is just raw physical/virtual means to store data, while a partition is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A disk is a logical form of boundary, it is used to divide the disk into logical units, while a partition is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A disk is just raw physical/virtual means to store data, while a partition is just raw physical/virtual means to store data.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>What is the difference between a partition and a partition table?</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>A partition is a logical form of boundary, it is used to divide the disk into logical units, while a partition table is just raw physical/virtual means to store data.</p></li>
+<li><p>A partition is just raw physical/virtual means to store data, while a partition table is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A partition is a logical form of boundary, it is used to divide the disk into logical units, while a partition table is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A partition is just raw physical/virtual means to store data, while a partition table is just raw physical/virtual means to store data.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>What is the difference between a partition table and a file system?</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>A partition table is a logical form of boundary, it is used to divide the disk into logical units, while a file system is just raw physical/virtual means to store data.</p></li>
+<li><p>A partition table is just raw physical/virtual means to store data, while a file system is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A partition table is a logical form of boundary, it is used to divide the disk into logical units, while a file system is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A partition table is just raw physical/virtual means to store data, while a file system is just raw physical/virtual means to store data.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>What is the difference between a file system and a file?</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>A file system is a structured representation of data and a set of metadata describing this data, while a file is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+<li><p>A file system is a logical form of boundary, it is used to divide the disk into logical units, while a file is a structured representation of data and a set of metadata describing this data.</p></li>
+<li><p>A file system is a structured representation of data and a set of metadata describing this data, while a file is a structured representation of data and a set of metadata describing this data.</p></li>
+<li><p>A file system is a logical form of boundary, it is used to divide the disk into logical units, while a file is a logical form of boundary, it is used to divide the disk into logical units.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="answers">
+<h2>Answers<a class="headerlink" href="#answers" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>a</p></li>
+<li><p>b</p></li>
+<li><p>c</p></li>
+<li><p>c</p></li>
+<li><p>b</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="6_system_logging.html" class="btn btn-neutral float-left" title="2.6 System Logging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="8_terminal_tuning.html" class="btn btn-neutral float-right" title="2.8 Terminal Tuning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

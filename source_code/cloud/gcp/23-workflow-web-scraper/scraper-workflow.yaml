@@ -1,0 +1,203 @@
+# Google Cloud Workflow for Web Scraping to Storage
+# This workflow scrapes websites and stores results in Cloud Storage
+
+main:
+  params: [args]
+  steps:
+    - init:
+        assign:
+          - project_id: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+          - bucket_name: ${default(map.get(args, "bucket"), "web-scraper-results")}
+          - urls: ${default(map.get(args, "urls"), ["https://httpbin.org/json", "https://jsonplaceholder.typicode.com/posts/1"])}
+          - max_urls: 10
+          - timestamp: ${time.format(sys.now())}
+          - results: []
+          - errors: []
+    
+    - validate_inputs:
+        switch:
+          - condition: ${len(urls) = 0}
+            raise:
+              message: "No URLs provided for scraping"
+          - condition: ${len(urls) > max_urls}
+            raise:
+              message: ${"Too many URLs provided. Maximum allowed: " + string(max_urls)}
+    
+    - log_start:
+        call: sys.log
+        args:
+          text: ${"Starting web scraping workflow for " + string(len(urls)) + " URLs"}
+          severity: "INFO"
+    
+    - process_urls:
+        for:
+          value: url
+          index: i  
+          in: ${urls}
+          steps:
+            - scrape_single_url:
+                try:
+                  steps:
+                    - log_scraping:
+                        call: sys.log
+                        args:
+                          text: ${"Scraping URL " + string(i+1) + "/" + string(len(urls)) + ": " + url}
+                          severity: "INFO"
+                    
+                    - fetch_content:
+                        call: http.get
+                        args:
+                          url: ${url}
+                          timeout: 30
+                          headers:
+                            User-Agent: "Google-Cloud-Workflow-Scraper/1.0"
+                        result: response
+                    
+                    - process_response:
+                        assign:
+                          - content_type: ${default(map.get(response.headers, "content-type"), "unknown")}
+                          - status_code: ${response.code}
+                          - content_length: ${default(map.get(response.headers, "content-length"), "0")}
+                    
+                    - extract_data:
+                        switch:
+                          - condition: ${text.match_regex(content_type, ".*json.*")}
+                            steps:
+                              - parse_json:
+                                  assign:
+                                    - scraped_data:
+                                        url: ${url}
+                                        status_code: ${status_code}
+                                        content_type: ${content_type}
+                                        content_length: ${content_length}
+                                        data_type: "json"
+                                        data: ${response.body}
+                                        scraped_at: ${time.format(sys.now())}
+                          - condition: ${text.match_regex(content_type, ".*html.*")}
+                            steps:
+                              - parse_html:
+                                  assign:
+                                    - html_content: ${text.substring(response.body, 0, min(len(response.body), 5000))}
+                                    - title_match: ${text.find_all_regex(html_content, "<title[^>]*>([^<]+)</title>")}
+                                    - title: ${if(len(title_match) > 0, title_match[0][0], "No title found")}
+                                    - scraped_data:
+                                        url: ${url}
+                                        status_code: ${status_code}
+                                        content_type: ${content_type}
+                                        content_length: ${content_length}
+                                        data_type: "html"
+                                        title: ${title}
+                                        content_preview: ${html_content}
+                                        scraped_at: ${time.format(sys.now())}
+                          - condition: true  # default case
+                            steps:
+                              - parse_text:
+                                  assign:
+                                    - text_preview: ${text.substring(response.body, 0, min(len(response.body), 1000))}
+                                    - scraped_data:
+                                        url: ${url}
+                                        status_code: ${status_code}
+                                        content_type: ${content_type}
+                                        content_length: ${content_length}
+                                        data_type: "text"
+                                        content_preview: ${text_preview}
+                                        scraped_at: ${time.format(sys.now())}
+                    
+                    - add_to_results:
+                        assign:
+                          - results: ${list.concat(results, scraped_data)}
+                    
+                    - delay_between_requests:
+                        call: sys.sleep
+                        args:
+                          seconds: 1
+                
+                except:
+                  as: e
+                  steps:
+                    - log_error:
+                        call: sys.log
+                        args:
+                          text: ${"Error scraping " + url + ": " + e.message}
+                          severity: "ERROR"
+                    
+                    - add_error:
+                        assign:
+                          - error_info:
+                              url: ${url}
+                              error: ${e.message}
+                              error_code: ${default(map.get(e, "code"), "UNKNOWN")}
+                              timestamp: ${time.format(sys.now())}
+                          - errors: ${list.concat(errors, error_info)}
+    
+    - prepare_storage_data:
+        assign:
+          - summary:
+              workflow_id: ${sys.get_env("GOOGLE_CLOUD_WORKFLOW_EXECUTION_ID")}
+              execution_time: ${timestamp}
+              total_urls: ${len(urls)}
+              successful_scrapes: ${len(results)}
+              failed_scrapes: ${len(errors)}
+              urls_processed: ${urls}
+          - storage_data:
+              summary: ${summary}
+              results: ${results}
+              errors: ${errors}
+              generated_at: ${time.format(sys.now())}
+    
+    - create_filename:
+        assign:
+          - clean_timestamp: ${text.replace_all(text.replace_all(timestamp, ":", "-"), " ", "_")}
+          - filename: ${"scrape_results_" + clean_timestamp + ".json"}
+    
+    - store_results:
+        try:
+          steps:
+            - upload_to_storage:
+                call: googleapis.storage.v1.objects.insert
+                args:
+                  bucket: ${bucket_name}
+                  uploadType: "media"
+                  name: ${filename}
+                  body:
+                    data: ${json.encode(storage_data)}
+                result: upload_result
+            
+            - log_storage_success:
+                call: sys.log
+                args:
+                  text: ${"Successfully stored results in gs://" + bucket_name + "/" + filename}
+                  severity: "INFO"
+        except:
+          as: e
+          steps:
+            - log_storage_error:
+                call: sys.log
+                args:
+                  text: ${"Failed to store results in Cloud Storage: " + e.message}
+                  severity: "ERROR"
+            - raise_storage_error:
+                raise:
+                  message: ${"Storage failed: " + e.message}
+    
+    - generate_summary:
+        assign:
+          - final_summary:
+              status: "completed"
+              execution_id: ${sys.get_env("GOOGLE_CLOUD_WORKFLOW_EXECUTION_ID")}
+              total_urls_requested: ${len(urls)}
+              successful_scrapes: ${len(results)}
+              failed_scrapes: ${len(errors)}
+              success_rate: ${if(len(urls) > 0, len(results) / len(urls) * 100, 0)}
+              storage_location: ${"gs://" + bucket_name + "/" + filename}
+              execution_time: ${timestamp}
+              completed_at: ${time.format(sys.now())}
+    
+    - log_completion:
+        call: sys.log
+        args:
+          text: ${"Web scraping workflow completed. " + string(len(results)) + " successful, " + string(len(errors)) + " failed. Results stored at gs://" + bucket_name + "/" + filename}
+          severity: "INFO"
+    
+    - return_summary:
+        return: ${final_summary}

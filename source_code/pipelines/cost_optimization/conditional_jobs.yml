@@ -1,0 +1,66 @@
+name: Cost Optimized CI
+on: [push, pull_request]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'src/**'
+              - 'tests/**'
+            frontend:
+              - 'web/**'
+              - 'package.json'
+  
+  test-backend:
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run backend tests
+        run: echo "Running backend tests..."
+  
+  test-frontend:
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run frontend tests
+        run: echo "Running frontend tests..."
+  
+  lint:
+    runs-on: ubuntu-latest  # $0.008/minute vs ubuntu-latest-4-cores $0.032/minute
+    steps:
+      - uses: actions/checkout@v4
+      - name: Quick linting
+        run: |
+          # Fast operations that don't need powerful runners
+          echo "Running linting..."
+          
+  comprehensive-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Cache everything possible
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/uv
+            ~/.cache/pip
+            ~/.cache/pre-commit
+            node_modules
+            .pytest_cache
+          key: mega-cache-${{ runner.os }}-${{ hashFiles('**/*.lock', '**/*.toml', '**/*.json') }}
+          restore-keys: |
+            mega-cache-${{ runner.os }}-

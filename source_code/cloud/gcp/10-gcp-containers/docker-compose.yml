@@ -1,0 +1,36 @@
+version: '3'
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    restart: always
+
+  api:
+    image: node:alpine
+    ports:
+      - "8080:3000"
+    command: |
+      sh -c "
+        echo 'const express = require(\"express\");
+        const app = express();
+        app.get(\"/\", (req, res) => {
+          res.json({
+            message: \"Hello from containerized API!\",
+            timestamp: new Date().toISOString(),
+            hostname: require(\"os\").hostname()
+          });
+        });
+        app.get(\"/health\", (req, res) => {
+          res.json({ status: \"healthy\" });
+        });
+        app.listen(3000, () => {
+          console.log(\"API running on port 3000\");
+        });' > app.js &&
+        npm init -y &&
+        npm install express &&
+        node app.js
+      "
+    restart: always

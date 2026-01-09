@@ -1,0 +1,27 @@
+---
+# Teaching Inventory - Docker Container Setup
+# Perfect for completely isolated testing without VMs
+
+all:
+  hosts:
+    teaching-container:
+      ansible_host: teaching-container
+      ansible_connection: docker
+      ansible_user: root
+  
+  vars:
+    # Global variables for container deployment
+    ansible_python_interpreter: /usr/bin/python3
+    
+    # Teaching environment markers
+    environment: "learning"
+    deployment_method: "docker_container"
+
+# To use this inventory:
+# 1. Create a test container:
+#    docker run -d --name teaching-container ubuntu:22.04 sleep infinity
+# 2. Install Python in the container:
+#    docker exec teaching-container apt update
+#    docker exec teaching-container apt install -y python3 sudo
+# 3. Test connection:
+#    ansible all -i inventory/docker.yml -m ping

@@ -1,0 +1,49 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: webapp-production
+
+# Reference to base configuration
+bases:
+- ../../base
+
+# Production naming
+namePrefix: prod-
+
+# Production labels
+commonLabels:
+  environment: production
+  tier: production
+  monitoring: enabled
+
+# Production image with specific version
+images:
+- name: nginx
+  newTag: 1.21.6
+
+# Production replica count
+replicas:
+- name: webapp
+  count: 3
+
+# Production patches
+patchesStrategicMerge:
+- production-configmap.yaml
+- production-deployment.yaml
+
+# Production secrets
+secretGenerator:
+- name: webapp-secrets
+  literals:
+  - database_password=super-secure-prod-password
+  - api_key=prod-api-key-12345
+  - jwt_secret=very-secure-jwt-secret
+
+# Additional production ConfigMaps
+configMapGenerator:
+- name: prod-config
+  literals:
+  - api_endpoint=https://api.example.com
+  - cdn_url=https://cdn.example.com
+  - monitoring_endpoint=https://metrics.example.com

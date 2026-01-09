@@ -1,0 +1,650 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4 Service Management &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.5 Process Management" href="5_process_management.html" />
+    <link rel="prev" title="2.3 Managing Software" href="3_managing_software.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2.4 Service Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/2_linux/4_service_management.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="service-management">
+<h1>2.4 Service Management<a class="headerlink" href="#service-management" title="Link to this heading"></a></h1>
+<section id="systemd-service-management">
+<h2>systemd Service Management<a class="headerlink" href="#systemd-service-management" title="Link to this heading"></a></h2>
+<p>Modern Linux systems use <strong>systemd</strong> to manage services. Essential for DevOps automation and monitoring.</p>
+<p><strong>Core Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Service status and control</span>
+systemctl<span class="w"> </span>status<span class="w"> </span>service_name
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>service_name
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>service_name
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>service_name
+sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>service_name
+
+<span class="c1"># Enable/disable services (auto-start at boot)</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>service_name
+sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>service_name
+
+<span class="c1"># List services</span>
+systemctl<span class="w"> </span>list-units<span class="w"> </span>--type<span class="o">=</span>service
+systemctl<span class="w"> </span>list-units<span class="w"> </span>--type<span class="o">=</span>service<span class="w"> </span>--state<span class="o">=</span>active
+systemctl<span class="w"> </span>list-units<span class="w"> </span>--type<span class="o">=</span>service<span class="w"> </span>--state<span class="o">=</span>failed
+</pre></div>
+</div>
+<p><strong>Common Services:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Web servers</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>apache2
+
+<span class="c1"># Databases</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>mysql
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>postgresql
+
+<span class="c1"># SSH</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>sshd
+
+<span class="c1"># System services</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>docker
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>firewalld
+</pre></div>
+</div>
+</section>
+<section id="creating-custom-services">
+<h2>Creating Custom Services<a class="headerlink" href="#creating-custom-services" title="Link to this heading"></a></h2>
+<p><strong>Service File Location:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/etc/systemd/system/myservice.service
+</pre></div>
+</div>
+<p><strong>Modern Service File Example:</strong></p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Modern Python Web Application</span>
+<span class="na">Documentation</span><span class="o">=</span><span class="s">https://myapp.example.com/docs</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network-online.target</span>
+<span class="na">Wants</span><span class="o">=</span><span class="s">network-online.target</span>
+<span class="na">Requires</span><span class="o">=</span><span class="s">postgresql.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">notify</span>
+<span class="na">User</span><span class="o">=</span><span class="s">appuser</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">appuser</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/opt/myapp</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">PYTHONPATH=/opt/myapp</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">DJANGO_SETTINGS_MODULE=myapp.settings.production</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">-/etc/myapp/environment</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/opt/myapp/scripts/pre-start.sh</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/myapp/venv/bin/python manage.py runserver 0.0.0.0:8000</span>
+<span class="na">ExecReload</span><span class="o">=</span><span class="s">/bin/kill -HUP $MAINPID</span>
+<span class="na">ExecStop</span><span class="o">=</span><span class="s">/bin/kill -TERM $MAINPID</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">10</span>
+<span class="na">TimeoutStartSec</span><span class="o">=</span><span class="s">30</span>
+<span class="na">TimeoutStopSec</span><span class="o">=</span><span class="s">30</span>
+
+<span class="c1"># Security settings</span>
+<span class="na">NoNewPrivileges</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ProtectSystem</span><span class="o">=</span><span class="s">strict</span>
+<span class="na">ProtectHome</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ReadWritePaths</span><span class="o">=</span><span class="s">/var/lib/myapp /var/log/myapp</span>
+<span class="na">PrivateTmp</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">PrivateDevices</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ProtectKernelTunables</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ProtectControlGroups</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">RestrictRealtime</span><span class="o">=</span><span class="s">yes</span>
+
+<span class="c1"># Resource limits</span>
+<span class="na">LimitNOFILE</span><span class="o">=</span><span class="s">1024</span>
+<span class="na">MemoryMax</span><span class="o">=</span><span class="s">512M</span>
+<span class="na">CPUQuota</span><span class="o">=</span><span class="s">50%</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<p><strong>Advanced Service Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Service dependency management</span>
+systemctl<span class="w"> </span>list-dependencies<span class="w"> </span>service_name<span class="w">     </span><span class="c1"># Show dependencies</span>
+systemctl<span class="w"> </span>list-dependencies<span class="w"> </span>--reverse<span class="w"> </span>nginx<span class="w">  </span><span class="c1"># Show what depends on nginx</span>
+
+<span class="c1"># Performance and resource monitoring</span>
+systemctl<span class="w"> </span>show<span class="w"> </span>service_name<span class="w"> </span>--property<span class="o">=</span>CPUShares,MemoryLimit
+systemd-cgtop<span class="w">                                </span><span class="c1"># Real-time resource usage</span>
+
+<span class="c1"># Service security and isolation</span>
+systemctl<span class="w"> </span>show<span class="w"> </span>service_name<span class="w"> </span>--property<span class="o">=</span>User,Group,NoNewPrivileges
+systemd-analyze<span class="w"> </span>security<span class="w"> </span>service_name<span class="w">        </span><span class="c1"># Security analysis</span>
+
+<span class="c1"># Troubleshooting failed services</span>
+systemctl<span class="w"> </span>status<span class="w"> </span>service_name<span class="w"> </span>--no-page<span class="w">      </span><span class="c1"># Detailed status</span>
+systemctl<span class="w"> </span>cat<span class="w"> </span>service_name<span class="w">                   </span><span class="c1"># Show service file</span>
+systemd-analyze<span class="w"> </span>verify<span class="w"> </span>service_name<span class="w">          </span><span class="c1"># Validate service file</span>
+</pre></div>
+</div>
+<p><strong>Container Integration:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Podman/Docker integration with systemd</span>
+podman<span class="w"> </span>generate<span class="w"> </span>systemd<span class="w"> </span>--new<span class="w"> </span>--name<span class="w"> </span>myapp<span class="w"> </span>&gt;<span class="w"> </span>/etc/systemd/system/myapp.service
+systemctl<span class="w"> </span>daemon-reload
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>myapp.service
+
+<span class="c1"># User services (rootless containers)</span>
+systemctl<span class="w"> </span>--user<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>myapp.service
+loginctl<span class="w"> </span>enable-linger<span class="w"> </span>username<span class="w">              </span><span class="c1"># Enable user services at boot</span>
+</pre></div>
+</div>
+</section>
+<section id="logging-and-troubleshooting">
+<h2>Logging and Troubleshooting<a class="headerlink" href="#logging-and-troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Service Logs:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View service logs</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>service_name
+journalctl<span class="w"> </span>-u<span class="w"> </span>service_name<span class="w"> </span>-f<span class="w">        </span><span class="c1"># Follow logs</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>service_name<span class="w"> </span>--since<span class="w"> </span>today
+journalctl<span class="w"> </span>-u<span class="w"> </span>service_name<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2024-01-01&quot;</span>
+
+<span class="c1"># System logs</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w">                     </span><span class="c1"># Error messages only</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;1 hour ago&quot;</span><span class="w">      </span><span class="c1"># Recent logs</span>
+</pre></div>
+</div>
+<p><strong>Troubleshooting Steps:</strong></p>
+<ol class="arabic simple">
+<li><p>Check service status: <cite>systemctl status service_name</cite></p></li>
+<li><p>View recent logs: <cite>journalctl -u service_name -n 50</cite></p></li>
+<li><p>Check configuration files for syntax errors</p></li>
+<li><p>Verify user permissions and file ownership</p></li>
+<li><p>Test service manually outside systemd</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DevOps Tip</strong>: Always test service configurations in development before deploying to production. Use <cite>systemctl –user</cite> for user services that don’t require root privileges.</p>
+</div>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Swap</p></td>
+<td><p>A unit of this type encapsulates/activates/deactivates swap partition</p></td>
+</tr>
+<tr class="row-even"><td><p>Path</p></td>
+<td><p>A unit of this type monitors files/directories and activates/deactivates a service if the specified file or directory is accessed</p></td>
+</tr>
+<tr class="row-odd"><td><p>Timer</p></td>
+<td><p>A unit of this type activates/deactivates specified service based on a timer or when the set time is elapsed</p></td>
+</tr>
+<tr class="row-even"><td><p>Snapshot</p></td>
+<td><p>A unit that creates and saves the current state of all running units. This state can be used to restore the system later</p></td>
+</tr>
+<tr class="row-odd"><td><p>Slice</p></td>
+<td><p>A group of units that manages system resources such as CPU, and memory</p></td>
+</tr>
+<tr class="row-even"><td><p>Scope</p></td>
+<td><p>A unit that organizes and manages foreign processes</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following table briefly explains the terms that the systemd uses to describe the status of units.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>loaded</p></td>
+<td><p>The unit’s configuration file has been successfully read and processed</p></td>
+</tr>
+<tr class="row-odd"><td><p>active exited</p></td>
+<td><p>Successfully executed the one-time configuration and after execution, the unit is neither running an active process nor waiting for an event</p></td>
+</tr>
+<tr class="row-even"><td><p>active running</p></td>
+<td><p>Successfully executed the one-time configuration and after execution, the unit is running one or more active processes</p></td>
+</tr>
+<tr class="row-odd"><td><p>active waiting</p></td>
+<td><p>Successfully executed the one-time configuration and after execution, the unit is waiting for an event</p></td>
+</tr>
+<tr class="row-even"><td><p>inactive dead</p></td>
+<td><p>Either the one-time configuration failed to execute or not executed yet</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="systemd-targets">
+<h2>systemd targets<a class="headerlink" href="#systemd-targets" title="Link to this heading"></a></h2>
+<p>systemd replaces traditional SysVinit <strong>runlevels</strong> with predefined groups of units called <strong>targets</strong>.</p>
+<p>Targets are usually defined according to the intended use of the system, and ensure that the required dependencies for that use are met.</p>
+<p>The following table shows some standard preconfigured targets, the sysVinit runlevels they resemble, and the use case they address.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Target</p></th>
+<th class="head"><p>Runlevel</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rescue</p></td>
+<td><p>1</p></td>
+<td><p>single-user mode, for recovery of critical system components or configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>multi-user</p></td>
+<td><p>2</p></td>
+<td><p>non-graphical multi-user console access, via local TTYs or network</p></td>
+</tr>
+<tr class="row-even"><td><p>graphical</p></td>
+<td><p>5</p></td>
+<td><p>a GUI sessions. Typically, provides the user with a fully featured desktop environment</p></td>
+</tr>
+<tr class="row-odd"><td><p>custom</p></td>
+<td><p>4</p></td>
+<td><p>systemd allows any number of custom-defined targets</p></td>
+</tr>
+</tbody>
+</table>
+<p>The standard LINUX kernel supports these seven different runlevels :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0 - System halt the system can be safely powered off with no activity.</p></li>
+<li><p>1 - Single user mode.</p></li>
+<li><p>2 - Multiple user mode with no NFS(network file system).</p></li>
+<li><p>3 - Multiple user mode under the command line interface and not under the graphical user interface.</p></li>
+<li><p>4 - User-definable.</p></li>
+<li><p>5 - Multiple user mode under GUI (graphical user interface) and this is the standard runlevel for most of the LINUX-based systems.</p></li>
+<li><p>6 - Reboot which is used to restart the system.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="redhat-family">
+<h2>REDHAT FAMILY<a class="headerlink" href="#redhat-family" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all loaded service units</span>
+systemctl<span class="w"> </span>list-units<span class="w"> </span>--type<span class="o">=</span>service
+
+<span class="c1"># Check status for NAME service unit</span>
+systemctl<span class="w"> </span>status<span class="w"> </span>NAME
+
+<span class="c1"># Check if NAME service is enabled</span>
+systemctl<span class="w"> </span>is-enabled<span class="w"> </span>NAME
+
+<span class="c1"># Check start|stop|restart NAME service</span>
+systemctl<span class="w"> </span>start<span class="p">|</span>stop<span class="p">|</span>restart<span class="w"> </span>NAME
+
+<span class="c1"># Enable|disable NAME service</span>
+systemctl<span class="w"> </span>enable<span class="p">|</span>disable<span class="w"> </span>NAME
+
+<span class="c1"># Get default target</span>
+systemctl<span class="w"> </span>get-default
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Linux is user-friendly, but it’s just very selective about who its friends are.</p>
+</div>
+</section>
+<section id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>What is the difference between a service and a daemon?</dt><dd><ol class="loweralpha simple">
+<li><p>A daemon is a program that runs in the background, while a service is a daemon that is started by systemd.</p></li>
+<li><p>A daemon is a program that runs in the background, while a service is a program that runs in the foreground.</p></li>
+<li><p>A daemon is a program that runs in the foreground, while a service is a program that runs in the background.</p></li>
+<li><p>A daemon is a program that runs in the foreground, while a service is a daemon that is started by systemd.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Which of the following is not a systemd unit type?</dt><dd><ol class="loweralpha simple">
+<li><p>Service</p></li>
+<li><p>Device</p></li>
+<li><p>Target</p></li>
+<li><p>Scope</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Which of the following is not a systemd target?</dt><dd><ol class="loweralpha simple">
+<li><p>rescue</p></li>
+<li><p>multi-user</p></li>
+<li><p>graphical</p></li>
+<li><p>custom</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Which of the following is not a valid systemd command?</dt><dd><ol class="loweralpha simple">
+<li><p>systemctl list-units –type=service</p></li>
+<li><p>systemctl status NAME</p></li>
+<li><p>systemctl is-enabled NAME</p></li>
+<li><p>systemctl update NAME</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>What is the default target in systemd?</dt><dd><ol class="loweralpha simple">
+<li><p>rescue</p></li>
+<li><p>multi-user</p></li>
+<li><p>graphical</p></li>
+<li><p>custom</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>How do you check the status of a service?</dt><dd><ol class="loweralpha simple">
+<li><p>systemctl status NAME</p></li>
+<li><p>systemctl list-units –type=service</p></li>
+<li><p>systemctl is-enabled NAME</p></li>
+<li><p>systemctl update NAME</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>How do you check if a service is enabled?</dt><dd><ol class="loweralpha simple">
+<li><p>systemctl status NAME</p></li>
+<li><p>systemctl list-units –type=service</p></li>
+<li><p>systemctl is-enabled NAME</p></li>
+<li><p>systemctl update NAME</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="answers">
+<h2>Answers<a class="headerlink" href="#answers" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>A daemon is a program that runs in the background, while a service is a daemon that is started by systemd.</p></li>
+<li><p>Target</p></li>
+<li><p>custom</p></li>
+<li><p>systemctl update NAME</p></li>
+<li><p>graphical</p></li>
+<li><p>systemctl status NAME</p></li>
+<li><p>systemctl is-enabled NAME</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3_managing_software.html" class="btn btn-neutral float-left" title="2.3 Managing Software" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_process_management.html" class="btn btn-neutral float-right" title="2.5 Process Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

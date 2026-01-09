@@ -1,238 +1,140 @@
-###########################
-7.3 GitHub Actions Advanced
-###########################
+#######################
+Advanced GitHub Actions
+#######################
 
-**From Simple to Sophisticated**
+Enterprise-scale automation patterns for production systems managing hundreds of repositories.
 
-You've built basic pipelines and understand the fundamentals. Now it's time to explore the advanced features that enable enterprise-grade automation. This section covers the patterns and techniques that separate hobby projects from production systems used by companies like Netflix, Spotify, and GitHub itself.
 
-These aren't just "nice-to-have" features - they're essential capabilities that enable teams to scale their development practices, reduce costs, and maintain reliability as systems grow complex.
 
-===================
-Learning Objectives
-===================
 
-By the end of this section, you will:
 
-• **Master** matrix strategies for testing across multiple platforms and configurations
-• **Create** reusable workflows that eliminate duplication across projects
-• **Implement** cost optimization strategies that can reduce CI/CD expenses by 50-80%
-• **Integrate** with external services for notifications, deployments, and monitoring
-• **Apply** advanced security practices including secrets management and supply chain security
-• **Build** efficient caching and artifact strategies for faster pipelines
+===============================
+Matrix Strategies & Reusability
+===============================
 
-**Prerequisites:** Completed previous sections, understanding of YAML, experience with basic GitHub Actions workflows
-
-**Real-World Context:** The techniques in this section are used by teams managing hundreds of repositories, thousands of daily deployments, and multi-million dollar infrastructure budgets.
-
-================================
-Advanced GitHub Actions Patterns
-================================
-
-**Scaling Beyond Basic Workflows**
-
-As your projects grow from single applications to complex systems, your CI/CD needs evolve dramatically. Simple "build, test, deploy" workflows become insufficient when you're managing:
-
-- Multiple applications with different technology stacks
-- Cross-platform compatibility requirements (Windows, macOS, Linux)
-- Various deployment environments (staging, production, region-specific instances)
-- Integration with external systems (cloud platforms, monitoring tools, notification systems)
-- Large development teams with different workflow requirements
-
-Advanced GitHub Actions patterns solve these challenges by providing structure, reusability, and intelligence to your automation.
-
-.. note::
-
-    **Enterprise Reality Check:** Companies like Shopify manage over 2,000 repositories with GitHub Actions. Without advanced patterns, they would need thousands of similar workflow files. With reusable workflows and matrix strategies, they maintain consistency across their entire platform with just a handful of template workflows.
-
-==========================================
-Matrix Strategies & Cross-Platform Testing
-==========================================
-
-**The Combinatorial Testing Challenge**
-
-Imagine you're building a Python CLI tool that needs to work on Windows, macOS, and Linux, across Python versions 3.10, 3.11, and 3.12. That's 9 different combinations to test. Add in different dependency versions or additional configurations, and you quickly have dozens of test scenarios.
-
-Matrix strategies automate this combinatorial testing, running your tests across all combinations simultaneously.
-
-**Strategic Matrix Design**
+**Cross-Platform Testing Matrix:**
 
 .. code-block:: yaml
 
-    # Smart matrix strategy for real-world testing
-    strategy:
-      fail-fast: false  # Don't stop other jobs when one fails
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.11", "3.12", "3.13"]
-        include:
-          # Add experimental configurations
-          - os: ubuntu-latest
-            python-version: "3.13-dev"
-            experimental: true
-          # Add platform-specific configurations
-          - os: windows-latest
-            python-version: "3.12"
-            extra-args: "--enable-optimizations"
-        exclude:
-          # Skip problematic combinations
-          - os: macos-latest
-            python-version: "3.10"  # Performance issues on older macOS
+   strategy:
+     fail-fast: false
+     matrix:
+       os: [ubuntu-latest, windows-latest, macos-latest]
+       python-version: ["3.11", "3.12", "3.13"]
+       exclude:
+         - os: macos-latest
+           python-version: "3.11"  # Skip expensive combinations
+       include:
+         - os: ubuntu-latest
+           python-version: "3.14-dev"
+           experimental: true
 
-**Why This Approach Works:**
+**Reusable Workflows:**
 
-• **Comprehensive coverage** without manual test management
-• **Parallel execution** - 9 combinations run simultaneously instead of sequentially
-• **Selective exclusions** - Skip known problematic combinations
-• **Experimental testing** - Test upcoming versions without blocking releases
-• **Platform-specific optimizations** - Each OS can have tailored configurations
+.. code-block:: yaml
 
-**Cost vs. Coverage Trade-offs:**
+   # .github/workflows/reusable-ci.yml
+   name: Reusable CI
+   on:
+     workflow_call:
+       inputs:
+         python-version:
+           required: false
+           type: string
+           default: "3.12"
 
-Matrix strategies can dramatically increase CI costs. Here's how teams balance thoroughness with budget:
+==========================
+Cost Optimization Patterns
+==========================
 
-- **Pull requests**: Test core combinations (Ubuntu + latest Python versions)
-- **Main branch**: Full matrix across all platforms and versions
-- **Releases**: Full matrix plus additional security and performance testing
+**Conditional Execution:**
+
+.. code-block:: yaml
+
+   jobs:
+     check-changes:
+       outputs:
+         code-changed: ${{ steps.changes.outputs.code }}
+       steps:
+         - uses: dorny/paths-filter@v2
+           id: changes
+           with:
+             filters: |
+               code:
+                 - 'src/**'
+                 - 'tests/**'
+     
+     expensive-tests:
+       needs: check-changes
+       if: needs.check-changes.outputs.code-changed == 'true'
+       # Only run when code actually changes
+
+**Smart Caching:**
+
+.. code-block:: yaml
+
+   - uses: actions/cache@v4
+     with:
+       path: ~/.cache/uv
+       key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
+       restore-keys: ${{ runner.os }}-uv-
 
 ======================================
-Reusable Workflows & Composite Actions
+Security & Secrets Management
 ======================================
 
-**Eliminating Configuration Duplication**
-
-One of the biggest maintenance burdens in multi-repository organizations is keeping CI/CD workflows consistent and up-to-date. Changes to security practices, new compliance requirements, or improved testing strategies need to propagate across dozens or hundreds of repositories.
-
-Reusable workflows solve this by centralizing common automation patterns.
-
-**Reusable Workflow Architecture**
+**Environment-Based Secrets:**
 
 .. code-block:: yaml
 
-    # .github/workflows/reusable-python-ci.yml in your organization's shared repository
-    name: Reusable Python CI
-    
-    on:
-      workflow_call:
-        inputs:
-          python-version:
-            required: false
-            type: string
-            default: "3.12"
-          coverage-threshold:
-            required: false
-            type: number
-            default: 80
-          run-security-scan:
-            required: false
-            type: boolean
-            default: true
-        secrets:
-          CODECOV_TOKEN:
-            required: false
+   deploy:
+     environment: ${{ inputs.environment }}
+     steps:
+       - name: Deploy with environment secrets
+         env:
+           API_KEY: ${{ secrets.API_KEY }}  # Scoped to environment
+         run: deploy.sh ${{ inputs.environment }}
 
-This reusable workflow can then be called from any repository in your organization:
+**OIDC Authentication (No Stored Secrets):**
 
 .. code-block:: yaml
 
-    # Any repository's .github/workflows/ci.yml
-    name: CI
-    on: [push, pull_request]
-    
-    jobs:
-      ci:
-        uses: myorg/shared-workflows/.github/workflows/reusable-python-ci.yml@main
-        with:
-          python-version: "3.11"
-          coverage-threshold: 90
-        secrets:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-**Business Impact:**
-
-• **Consistency**: All repositories follow the same security and quality standards
-• **Maintenance**: Update practices in one place, applies everywhere
-• **Compliance**: Centralized enforcement of regulatory requirements
-• **Onboarding**: New repositories get production-ready CI/CD automatically
-
-**Real-World Example:**
-
-Netflix uses reusable workflows to ensure that all of their microservices follow the same security scanning, testing, and deployment patterns. When they need to add a new compliance requirement, they update the central workflow and it automatically applies to thousands of repositories.
+   permissions:
+     id-token: write  # Required for OIDC
+     contents: read
+   
+   - uses: aws-actions/configure-aws-credentials@v4
+     with:
+       role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+       aws-region: us-east-1
 
 =====================================
-Cost Optimization Strategies
+Multi-Cloud Deployment
 =====================================
 
-**CI/CD Costs Add Up Quickly**
-
-GitHub Actions pricing is based on compute minutes. For small teams, this might seem negligible, but enterprise teams can easily spend thousands of dollars monthly on CI/CD. Smart optimization strategies can reduce these costs by 50-80% without sacrificing quality.
-
-**Intelligent Caching Strategies**
-
-*Problem*: Downloading and installing dependencies takes 2-5 minutes of every pipeline run
-*Solution*: Cache dependencies that rarely change
+**Cross-Platform Deployment Matrix:**
 
 .. code-block:: yaml
 
-    - name: Cache Python dependencies
-      uses: actions/cache@v4
-      with:
-        path: |
-          ~/.cache/uv
-          .venv
-        key: ${{ runner.os }}-python-${{ hashFiles('uv.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-python-
-
-*Impact*: Reduces typical Python setup from 3 minutes to 30 seconds
-
-**Conditional Execution**
-
-*Problem*: Running expensive tests when only documentation changes
-*Solution*: Smart path filtering
-
-.. code-block:: yaml
-
-    jobs:
-      check-changes:
-        outputs:
-          code-changed: ${{ steps.changes.outputs.code }}
-          docs-changed: ${{ steps.changes.outputs.docs }}
-        steps:
-          - uses: dorny/paths-filter@v2
-            id: changes
-            with:
-              filters: |
-                code:
-                  - 'src/**'
-                  - 'tests/**'
-                docs:
-                  - 'docs/**'
-                  - '*.md'
-      
-      expensive-tests:
-        needs: check-changes
-        if: needs.check-changes.outputs.code-changed == 'true'
-        # Only run when actual code changes
-
-*Impact*: Documentation-only changes complete in 1 minute instead of 15 minutes
-
-**Resource Right-Sizing**
-
-*Problem*: Using expensive runners for simple tasks
-*Solution*: Match runner size to workload
-
-.. code-block:: yaml
-
-    jobs:
-      lint:  # Simple task, basic runner
-        runs-on: ubuntu-latest
-        
-      integration-tests:  # CPU-intensive, larger runner
-        runs-on: ubuntu-latest-4-cores
-        
-      security-scan:  # Memory-intensive, high-memory runner
-        runs-on: ubuntu-latest-16-cores
+   deploy:
+     strategy:
+       matrix:
+         cloud:
+           - name: aws
+             region: us-east-1
+           - name: azure  
+             region: eastus
+           - name: gcp
+             region: us-central1
+     
+     steps:
+       - name: Deploy to ${{ matrix.cloud.name }}
+         run: |
+           case "${{ matrix.cloud.name }}" in
+             "aws") aws ecs update-service --cluster prod ;;
+             "azure") az container restart --name myapp ;;
+             "gcp") gcloud run deploy myapp ;;
+           esac
 
 =====================================
 Security and Secrets Management
@@ -286,45 +188,37 @@ Grant workflows only the permissions they actually need.
       # Explicitly deny all other permissions
 
 ========================================
-Integration with External Services
+Notifications & Cloud Integration
 ========================================
 
-**Beyond GitHub's Ecosystem**
-
-Production systems need to integrate with monitoring services, cloud platforms, notification systems, and deployment tools.
-
-**Notification Strategies**
-
-*Smart notifications* keep teams informed without overwhelming them:
+**Slack Notifications:**
 
 .. code-block:: yaml
 
     notify:
-      if: always()  # Run even if previous jobs fail
+      if: always()
       steps:
-        - name: Notify on failure
+        - name: Failure alerts
           if: failure()
           uses: 8398a7/action-slack@v3
           with:
             status: failure
-            channel: '#critical-alerts'
+            channel: '#alerts'
             
-        - name: Notify on success (main branch only)
+        - name: Success notifications (main only)
           if: success() && github.ref == 'refs/heads/main'
           uses: 8398a7/action-slack@v3
           with:
             status: success
             channel: '#deployments'
 
-**Cloud Platform Integration**
-
-Deploy to AWS, Azure, Google Cloud, or other platforms:
+**Multi-Cloud Deploy:**
 
 .. code-block:: yaml
 
-    deploy-to-aws:
+    deploy:
       steps:
-        - name: Configure AWS credentials
+        - name: AWS
           uses: aws-actions/configure-aws-credentials@v2
           with:
             role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
@@ -335,57 +229,22 @@ Deploy to AWS, Azure, Google Cloud, or other platforms:
             aws ecs update-service --cluster production --service myapp --force-new-deployment
 
 =========================
-Monitoring and Analytics
+Pipeline Monitoring
 =========================
 
-**Making Data-Driven CI/CD Decisions**
-
-Successful teams treat their CI/CD pipelines like production systems - they monitor performance, track costs, and optimize based on data.
-
-**Key Metrics to Track:**
-
-• **Pipeline duration trends**: Are builds getting slower over time?
-• **Success rates by repository**: Which projects need attention?
-• **Cost per repository**: Where is budget being spent?
-• **Developer satisfaction**: Are pipelines helping or hindering productivity?
+**Track Key Metrics:**
 
 .. code-block:: yaml
 
-    - name: Record pipeline metrics
+    - name: Record metrics
       run: |
         curl -X POST ${{ secrets.METRICS_ENDPOINT }} \
-          -H "Content-Type: application/json" \
           -d '{
-            "repository": "${{ github.repository }}",
+            "repo": "${{ github.repository }}",
             "workflow": "${{ github.workflow }}",
-            "duration": "${{ env.PIPELINE_DURATION }}",
-            "result": "${{ job.status }}",
-            "commit_sha": "${{ github.sha }}"
+            "duration": "${{ env.DURATION }}",
+            "result": "${{ job.status }}"
           }'
-
-=============
-Key Takeaways
-=============
-
-**Advanced GitHub Actions patterns enable:**
-
-1. **Scale** - Manage hundreds of repositories with consistent practices
-2. **Efficiency** - Reduce costs while improving quality and speed
-3. **Security** - Implement enterprise-grade security practices
-4. **Integration** - Connect with your entire development and deployment ecosystem
-5. **Intelligence** - Make data-driven decisions about your automation
-
-**Implementation Strategy:**
-
-Don't try to implement all advanced patterns at once. Start with the biggest pain points:
-- If you have multiple similar repositories → Implement reusable workflows
-- If CI/CD costs are high → Focus on caching and conditional execution
-- If you need cross-platform support → Implement matrix strategies
-- If security is a concern → Start with secrets management and supply chain security
-
-**Next Steps:**
-
-The final section will tie together everything you've learned with comprehensive best practices that ensure your CI/CD implementations are production-ready and sustainable.
         secrets:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -715,15 +574,7 @@ GitHub Actions Best Practices Summary:
 6. **Security first**: Use OIDC, rotate secrets, minimal permissions
 7. **Make it observable**: Add logging, timing, and alerts
 
------------
-Next Steps:
------------
 
-In the final section, we'll cover best practices for production deployments, team collaboration patterns, and building a sustainable CI/CD culture.
-
-.. note::
-
-    **Practice Challenge**: Take your existing pipeline and apply three optimizations from this section. Measure the before/after performance and cost impact.
 
     #. Events: Events are triggers that start a workflow, such as a push to the repository, opening a pull request, or scheduling a cron job.
 

@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.0 Introduction &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.1 Installation" href="1_installation.html" />
+    <link rel="prev" title="TODO" href="../3_scripting/TODO.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">4.0 Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/4_python/0_introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>4.0 Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ul class="simple">
+<li><p><strong>Write</strong> Python scripts to automate infrastructure management and deployment tasks</p></li>
+<li><p><strong>Build</strong> command-line tools and utilities for DevOps workflows</p></li>
+<li><p><strong>Create</strong> REST APIs for monitoring, configuration, and service integration</p></li>
+<li><p><strong>Implement</strong> data processing and analysis for logs, metrics, and system information</p></li>
+<li><p><strong>Develop</strong> testing frameworks and automated test suites for infrastructure code</p></li>
+<li><p><strong>Package</strong> and distribute Python applications using modern packaging tools</p></li>
+<li><p><strong>Integrate</strong> Python scripts with CI/CD pipelines, containers, and cloud services</p></li>
+<li><p><strong>Apply</strong> Python best practices for code quality, security, and maintainability</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> Basic programming concepts and familiarity with command-line interfaces.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Does it make sense to learn Python now?</p>
+<p>YES!</p>
+</div>
+<p>More about on:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>StackOverflow survey: <a class="reference external" href="https://insights.stackoverflow.com/survey">https://insights.stackoverflow.com/survey</a></p></li>
+<li><p>IEEE Spectrum: <a class="reference external" href="https://spectrum.ieee.org/top-programming-languages-2022">https://spectrum.ieee.org/top-programming-languages-2022</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="is-python-the-best-language">
+<h2>1. Is Python the best language?<a class="headerlink" href="#is-python-the-best-language" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>No</strong>. There are no best languages.</p>
+</div>
+<p>Every language has pros and cons.</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><strong>Pro</strong>:</dt><dd><ul>
+<li><p>easy to learn</p></li>
+<li><p>easy to code</p></li>
+<li><p>has support from the community</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Con</strong>:</dt><dd><ul>
+<li><p>not fast or too performant</p></li>
+<li><p>needs libraries on locally to run</p></li>
+<li><p>management of libraries versions is weird</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="why-do-i-use-python-and-not-another-language">
+<h2>Why do <strong>I</strong> use Python and not another language?<a class="headerlink" href="#why-do-i-use-python-and-not-another-language" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Python is an <strong>efficient language</strong>: my applications will do more in fewer lines of code than many other languages would require.</p></li>
+<li><p>I can build cli applications, machine learning algorithms, and cloud microservices.</p></li>
+<li><p>The community - I believe in <strong>open source</strong> and its ability to deliver good alternatives.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="python-features">
+<h2>2. Python features<a class="headerlink" href="#python-features" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Simple</strong> - has a minimalist feel, the code feels like pseudo-code, allowing developers to concentrate on solving the problem not on writing the code.</p></li>
+<li><p><strong>Easy to use</strong> - most of the components are easy to pick up</p></li>
+<li><p>it’s <strong>FLOSS</strong> - Free/Libre and Open Source Software</p></li>
+<li><p><strong>High-level</strong> Language</p></li>
+<li><p><strong>Portable</strong></p></li>
+<li><p><strong>Interpreted</strong></p></li>
+<li><p><strong>Object-oriented</strong> - everything in Python is an object</p></li>
+<li><p><strong>Extensive libraries</strong> - from the web apps to ml - it does all</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Naming convention</strong> - the Python programming language was named after the BBC program “Monty Python’s Flying Circus” by Guido van Rossum.</p>
+</div>
+</div></blockquote>
+</section>
+<section id="python-versions">
+<h2>3. Python versions<a class="headerlink" href="#python-versions" title="Link to this heading"></a></h2>
+<p>Release notes - what is new in every version?</p>
+<p><a class="reference external" href="https://docs.python.org/3.13/whatsnew/index.html">https://docs.python.org/3.13/whatsnew/index.html</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Python 2</strong> - is no longer supported. The last version was 2.7.18, released in April 2020. It’s time to move on.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>When to update?</strong></p>
+<ul>
+<li><p>when new features are needed</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bugs solved</p></li>
+<li><p>performance improved</p></li>
+<li><p>newly added API’s</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>when bored and you don’t have work to do</p></li>
+</ul>
+</div>
+</section>
+<section id="how-to-code">
+<h2>4. How to code<a class="headerlink" href="#how-to-code" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>The Style Guide</strong></p>
+<p>A Python Enhancement Proposal is written when someone wants to alter the Python programming language (PEP).</p>
+<p>PEP 8, which teaches Python programmers how to style their code, is one of the first PEPs.Read more about the Python conventions at <a class="reference external" href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a></p>
+</li>
+<li><p><strong>Indentation</strong></p>
+<p>Per level of indentation, PEP 8 advises using four spaces. Four spaces allow for many levels of indentation on each line while also improving readability.</p>
+</li>
+<li><p><strong>Line Length</strong></p>
+<p>The rule of thumb among Python programmers is that lines should be no more than 80 characters. Because most computers could only fit 79 characters on a single line in a terminal window, this rule originated in the past. I personally use 120 characters per line.</p>
+</li>
+<li><p><strong>Blank Lines</strong></p>
+<p>Use blank lines to visually group the various components of your application.</p>
+</li>
+<li><p><strong>Comments</strong></p>
+<p>Comments are used to explain the code and make it easier to understand. Comments are ignored by the Python interpreter.</p>
+</li>
+<li><p><strong>Naming Conventions</strong></p>
+<p>The following are the most common naming conventions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Class names</strong> - should be written in CamelCase, with the first letter of each word capitalized.</p></li>
+<li><p><strong>Function names</strong> - should be written in lowercase, with words separated by underscores.</p></li>
+<li><p><strong>Variable names</strong> - should be written in lowercase, with words separated by underscores.</p></li>
+<li><p><strong>Constants</strong> - should be written in all capital letters, with words separated by underscores.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Docstrings</strong></p>
+<p>Docstrings are used to document Python modules, classes, functions, and methods. Docstrings are used to generate documentation automatically.</p>
+</li>
+<li><p><strong>Whitespace</strong></p>
+<p>Whitespace is used to improve readability. Whitespace is ignored by the Python interpreter.</p>
+</li>
+<li><p><strong>Encoding</strong></p>
+<p>The default encoding for Python source code is UTF-8. UTF-8 is a variable-length encoding that can encode any Unicode character.</p>
+</li>
+<li><p><strong>Imports</strong></p></li>
+</ol>
+<blockquote>
+<div><p>Imports should be on separate lines. Imports should be grouped in the following order:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>standard library imports</p></li>
+<li><p>related third-party imports</p></li>
+<li><p>local application/library specific imports</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="11">
+<li><p><strong>Parentheses</strong></p></li>
+</ol>
+<blockquote>
+<div><p>Parentheses are used to group statements. Parentheses are also used to indicate tuples and other data structures.</p>
+</div></blockquote>
+</section>
+<section id="the-zen-of-python">
+<h2>The Zen of Python<a class="headerlink" href="#the-zen-of-python" title="Link to this heading"></a></h2>
+<p>Experienced Python programmers will encourage you to avoid complexity and aim for simplicity whenever possible. The Python community’s philosophy is contained in “The Zen of Python” by Tim Peters. You can access this brief set of principles for writing good Python code by entering import this into your interpreter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span><span class="mf">.12</span>
+
+<span class="c1"># then run</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">this</span>
+</pre></div>
+</div>
+</section>
+<section id="python-filosophy">
+<h2>Python filosophy<a class="headerlink" href="#python-filosophy" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Everything in Python is an object!</p>
+</div>
+<section id="what-is-everything">
+<h3>What is everything?<a class="headerlink" href="#what-is-everything" title="Link to this heading"></a></h3>
+<p>Anything that can be assigned to a variable is an object. That includes functions, classes, and modules, and of course int’s, str’s, float’s, list’s, and everything else. It does not include whitespace, punctuation, or operators(+,-,*,/,%).</p>
+<p>There is the operator module in the standard library which includes functions that implement operators; those functions are objects. That doesn’t mean + or * are objects.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If something is an object, it means it is instantiated from a class.</p>
+<p>If something is instantiated from a class, it means it has access to its class’s attributes and methods.</p>
+</div>
+<ol class="arabic">
+<li><p>What is a <code class="docutils literal notranslate"><span class="pre">class</span></code>?</p>
+<p>A class is a blueprint for creating objects.</p>
+</li>
+<li><p>What is a <code class="docutils literal notranslate"><span class="pre">method</span></code>?</p>
+<p>A method is a function that is defined inside a class.</p>
+<p>A <strong>magic method</strong> is a method that is surrounded by <strong>double underscores</strong> example <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, and it is also called a <code class="docutils literal notranslate"><span class="pre">dunder</span></code> method. It’s role is to change the behavior of the class, and it should not be called directly.</p>
+<p>There are 3 type of methods in Python:</p>
+<ul class="simple">
+<li><p><strong>actions</strong> - they change the state of the object but the don’t change the object itself. Example <code class="docutils literal notranslate"><span class="pre">title()</span></code> method for strings.</p></li>
+<li><p><strong>accessors</strong> - they return information about the object. Example <code class="docutils literal notranslate"><span class="pre">len()</span></code> method for strings.</p></li>
+<li><p><strong>mutators/transformers</strong> - they change the state of the object and change the object itself. Example <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">sort()</span></code> method for lists.</p></li>
+</ul>
+</li>
+<li><p>What is an <code class="docutils literal notranslate"><span class="pre">attribute</span></code>?</p>
+<p>An attribute is a variable that is defined inside a class.</p>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../3_scripting/TODO.html" class="btn btn-neutral float-left" title="TODO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1_installation.html" class="btn btn-neutral float-right" title="4.1 Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

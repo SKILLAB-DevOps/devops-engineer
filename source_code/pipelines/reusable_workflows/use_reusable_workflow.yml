@@ -1,0 +1,12 @@
+# Using the Reusable Workflow
+name: CI
+on: [push, pull_request]
+
+jobs:
+  ci:
+    uses: yourorg/shared-workflows/.github/workflows/reusable-python-ci.yml@main
+    with:
+      python-version: "3.11"
+      coverage-threshold: 90
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

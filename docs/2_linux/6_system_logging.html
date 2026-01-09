@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.6 System Logging &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.7 Linux File Systems" href="7_linux_file_systems.html" />
+    <link rel="prev" title="2.5 Process Management" href="5_process_management.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2.6 System Logging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/2_linux/6_system_logging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="system-logging">
+<h1>2.6 System Logging<a class="headerlink" href="#system-logging" title="Link to this heading"></a></h1>
+<section id="understanding-system-logs">
+<h2>Understanding System Logs<a class="headerlink" href="#understanding-system-logs" title="Link to this heading"></a></h2>
+<p>Linux logging is the foundation of observability in DevOps environments. Modern systems combine <strong>systemd journald</strong> with traditional log files, container logs, and centralized logging solutions.</p>
+<p><strong>Critical Log Categories:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># System logs</span>
+/var/log/messages<span class="w">         </span><span class="c1"># General system messages (RHEL/CentOS)</span>
+/var/log/syslog<span class="w">          </span><span class="c1"># System logs (Debian/Ubuntu)</span>
+/var/log/kern.log<span class="w">        </span><span class="c1"># Kernel messages</span>
+/var/log/dmesg<span class="w">           </span><span class="c1"># Boot messages</span>
+
+<span class="c1"># Security logs</span>
+/var/log/secure<span class="w">          </span><span class="c1"># Authentication logs (RHEL/CentOS)</span>
+/var/log/auth.log<span class="w">        </span><span class="c1"># Authentication logs (Debian/Ubuntu)</span>
+/var/log/faillog<span class="w">         </span><span class="c1"># Failed login attempts</span>
+/var/log/lastlog<span class="w">         </span><span class="c1"># Last login information</span>
+
+<span class="c1"># Service logs</span>
+/var/log/cron<span class="w">            </span><span class="c1"># Cron job execution</span>
+/var/log/mail.log<span class="w">        </span><span class="c1"># Mail server logs</span>
+/var/log/apache2/<span class="w">        </span><span class="c1"># Apache web server logs</span>
+/var/log/nginx/<span class="w">          </span><span class="c1"># Nginx web server logs</span>
+
+<span class="c1"># Application logs</span>
+/var/log/myapp/<span class="w">          </span><span class="c1"># Custom application logs</span>
+/opt/app/logs/<span class="w">           </span><span class="c1"># Application-specific directories</span>
+</pre></div>
+</div>
+<p><strong>DevOps Logging Context:</strong></p>
+<p>Modern logging involves multiple layers:</p>
+<ul class="simple">
+<li><p><strong>System Logs</strong>: Traditional syslog and journald</p></li>
+<li><p><strong>Container Logs</strong>: Docker and Kubernetes container output</p></li>
+<li><p><strong>Application Logs</strong>: Structured logging (JSON, structured text)</p></li>
+<li><p><strong>Centralized Logging</strong>: ELK Stack, Splunk, CloudWatch</p></li>
+<li><p><strong>Metrics Integration</strong>: Prometheus, Grafana, DataDog</p></li>
+</ul>
+</section>
+<section id="journalctl-systemd-logs">
+<h2>journalctl (systemd logs)<a class="headerlink" href="#journalctl-systemd-logs" title="Link to this heading"></a></h2>
+<p><strong>Advanced journalctl Usage:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic log viewing</span>
+journalctl<span class="w">                           </span><span class="c1"># All logs (paginated)</span>
+journalctl<span class="w"> </span>--no-pager<span class="w">               </span><span class="c1"># All logs without pager</span>
+journalctl<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w">                    </span><span class="c1"># Last 50 entries</span>
+journalctl<span class="w"> </span>-f<span class="w">                       </span><span class="c1"># Follow logs in real-time</span>
+
+<span class="c1"># Service-specific logs</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>nginx<span class="w">                 </span><span class="c1"># Nginx service logs</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>docker<span class="w">                </span><span class="c1"># Docker daemon logs</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>kubelet<span class="w">               </span><span class="c1"># Kubernetes kubelet logs</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>ssh.service<span class="w">           </span><span class="c1"># SSH service logs</span>
+
+<span class="c1"># Time-based filtering</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span>today<span class="w">            </span><span class="c1"># Today&#39;s logs</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span>yesterday<span class="w">        </span><span class="c1"># Yesterday&#39;s logs</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2025-01-01&quot;</span><span class="w">     </span><span class="c1"># From specific date</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;1 hour ago&quot;</span><span class="w">     </span><span class="c1"># Last hour</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;30 min ago&quot;</span><span class="w">     </span><span class="c1"># Last 30 minutes</span>
+journalctl<span class="w"> </span>--until<span class="w"> </span><span class="s2">&quot;2025-01-01 12:00&quot;</span><span class="w"> </span><span class="c1"># Until specific time</span>
+
+<span class="c1"># Priority-based filtering</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>emerg<span class="w">                 </span><span class="c1"># Emergency messages</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>alert<span class="w">                 </span><span class="c1"># Alert messages</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>crit<span class="w">                  </span><span class="c1"># Critical messages</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w">                   </span><span class="c1"># Error messages</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>warning<span class="w">               </span><span class="c1"># Warning and above</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>notice<span class="w">                </span><span class="c1"># Notice and above</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>info<span class="w">                  </span><span class="c1"># Info and above</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>debug<span class="w">                 </span><span class="c1"># All messages</span>
+
+<span class="c1"># Boot-specific logs</span>
+journalctl<span class="w"> </span>--list-boots<span class="w">             </span><span class="c1"># List all boots</span>
+journalctl<span class="w"> </span>-b<span class="w">                       </span><span class="c1"># Current boot</span>
+journalctl<span class="w"> </span>-b<span class="w"> </span>-1<span class="w">                    </span><span class="c1"># Previous boot</span>
+journalctl<span class="w"> </span>-b<span class="w"> </span>-2<span class="w">                    </span><span class="c1"># Two boots ago</span>
+
+<span class="c1"># Kernel and hardware logs</span>
+journalctl<span class="w"> </span>-k<span class="w">                       </span><span class="c1"># Kernel messages</span>
+journalctl<span class="w"> </span>-k<span class="w"> </span>-b<span class="w">                    </span><span class="c1"># Kernel messages from current boot</span>
+
+<span class="c1"># Advanced filtering</span>
+journalctl<span class="w"> </span><span class="nv">_PID</span><span class="o">=</span><span class="m">1234</span><span class="w">                </span><span class="c1"># Logs from specific PID</span>
+journalctl<span class="w"> </span><span class="nv">_UID</span><span class="o">=</span><span class="m">1000</span><span class="w">                </span><span class="c1"># Logs from specific user</span>
+journalctl<span class="w"> </span><span class="nv">_COMM</span><span class="o">=</span>nginx<span class="w">              </span><span class="c1"># Logs from specific command</span>
+journalctl<span class="w"> </span><span class="nv">SYSLOG_FACILITY</span><span class="o">=</span><span class="m">10</span><span class="w">       </span><span class="c1"># Logs from specific facility</span>
+
+<span class="c1"># Output formatting</span>
+journalctl<span class="w"> </span>-o<span class="w"> </span>json<span class="w">                  </span><span class="c1"># JSON format</span>
+journalctl<span class="w"> </span>-o<span class="w"> </span>json-pretty<span class="w">           </span><span class="c1"># Pretty JSON format</span>
+journalctl<span class="w"> </span>-o<span class="w"> </span>cat<span class="w">                   </span><span class="c1"># Only message content</span>
+journalctl<span class="w"> </span>-o<span class="w"> </span>short-iso<span class="w">             </span><span class="c1"># ISO timestamp format</span>
+
+<span class="c1"># Disk usage and maintenance</span>
+journalctl<span class="w"> </span>--disk-usage<span class="w">             </span><span class="c1"># Show journal disk usage</span>
+journalctl<span class="w"> </span>--vacuum-size<span class="o">=</span>100M<span class="w">       </span><span class="c1"># Keep only 100MB of logs</span>
+journalctl<span class="w"> </span>--vacuum-time<span class="o">=</span>2weeks<span class="w">     </span><span class="c1"># Keep only 2 weeks of logs</span>
+journalctl<span class="w"> </span>--rotate<span class="w">                 </span><span class="c1"># Force log rotation</span>
+</pre></div>
+</div>
+</section>
+<section id="traditional-log-tools">
+<h2>Traditional Log Tools<a class="headerlink" href="#traditional-log-tools" title="Link to this heading"></a></h2>
+<p><strong>Advanced Log File Analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Real-time log monitoring</span>
+tail<span class="w"> </span>-f<span class="w"> </span>/var/log/syslog<span class="w">              </span><span class="c1"># Follow single log</span>
+tail<span class="w"> </span>-f<span class="w"> </span>/var/log/<span class="o">{</span>syslog,auth.log<span class="o">}</span><span class="w">   </span><span class="c1"># Follow multiple logs</span>
+multitail<span class="w"> </span>/var/log/syslog<span class="w"> </span>/var/log/auth.log<span class="w">  </span><span class="c1"># Side-by-side monitoring</span>
+
+<span class="c1"># Log content analysis</span>
+less<span class="w"> </span>/var/log/syslog<span class="w">                 </span><span class="c1"># Paginated viewing</span>
+zless<span class="w"> </span>/var/log/syslog.1.gz<span class="w">           </span><span class="c1"># View compressed logs</span>
+head<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span>/var/log/messages<span class="w">        </span><span class="c1"># First 100 lines</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">500</span><span class="w"> </span>/var/log/auth.log<span class="w">        </span><span class="c1"># Last 500 lines</span>
+
+<span class="c1"># Searching and filtering</span>
+grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span>/var/log/syslog<span class="w">      </span><span class="c1"># Case-insensitive search</span>
+grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;failed&quot;</span><span class="w"> </span>/var/log/auth.log<span class="w">   </span><span class="c1"># Show line numbers</span>
+grep<span class="w"> </span>-A<span class="w"> </span><span class="m">5</span><span class="w"> </span>-B<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span>/var/log/syslog<span class="w">  </span><span class="c1"># Show context lines</span>
+grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>/var/log/<span class="w">          </span><span class="c1"># Recursive search</span>
+zgrep<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>/var/log/*.gz<span class="w">        </span><span class="c1"># Search compressed logs</span>
+
+<span class="c1"># Modern search tools</span>
+rg<span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span>/var/log/<span class="w">                 </span><span class="c1"># ripgrep (faster than grep)</span>
+ag<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>/var/log/<span class="w">               </span><span class="c1"># silver searcher</span>
+
+<span class="c1"># Log statistics and analysis</span>
+awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span>/var/log/access.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w">  </span><span class="c1"># Count by first field</span>
+cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f1<span class="w"> </span>/var/log/auth.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w">       </span><span class="c1"># Extract and count IPs</span>
+
+<span class="c1"># Date-based log analysis</span>
+sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;/Jan 10/,/Jan 11/p&#39;</span><span class="w"> </span>/var/log/syslog<span class="w">  </span><span class="c1"># Extract date range</span>
+awk<span class="w"> </span><span class="s1">&#39;/2025-01-10/&#39;</span><span class="w"> </span>/var/log/syslog<span class="w">            </span><span class="c1"># Filter by date pattern</span>
+</pre></div>
+</div>
+<p><strong>Log Rotation Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Log rotation configuration</span>
+cat<span class="w"> </span>/etc/logrotate.conf<span class="w">              </span><span class="c1"># Main configuration</span>
+ls<span class="w"> </span>/etc/logrotate.d/<span class="w">                 </span><span class="c1"># Service-specific configs</span>
+
+<span class="c1"># Manual log rotation</span>
+logrotate<span class="w"> </span>-d<span class="w"> </span>/etc/logrotate.conf<span class="w">     </span><span class="c1"># Dry run (debug mode)</span>
+logrotate<span class="w"> </span>-f<span class="w"> </span>/etc/logrotate.conf<span class="w">     </span><span class="c1"># Force rotation</span>
+logrotate<span class="w"> </span>-v<span class="w"> </span>/etc/logrotate.conf<span class="w">     </span><span class="c1"># Verbose output</span>
+
+<span class="c1"># Check rotation status</span>
+cat<span class="w"> </span>/var/lib/logrotate/status<span class="w">        </span><span class="c1"># Last rotation times</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/var/log/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;\.(gz|bz2)</span>$<span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Rotated log files</span>
+
+<span class="c1"># Custom log rotation example</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/logrotate.d/myapp<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">/var/log/myapp/*.log {</span>
+<span class="s">    daily</span>
+<span class="s">    missingok</span>
+<span class="s">    rotate 30</span>
+<span class="s">    compress</span>
+<span class="s">    delaycompress</span>
+<span class="s">    notifempty</span>
+<span class="s">    create 644 myapp myapp</span>
+<span class="s">    postrotate</span>
+<span class="s">        systemctl reload myapp</span>
+<span class="s">    endscript</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p><strong>Container and Cloud Logging:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker container logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>container_name<span class="w">           </span><span class="c1"># View container logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>container_name<span class="w">        </span><span class="c1"># Follow container logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>--since<span class="w"> </span>1h<span class="w"> </span>container_name<span class="w">  </span><span class="c1"># Last hour of logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">100</span><span class="w"> </span>container_name<span class="w">  </span><span class="c1"># Last 100 lines</span>
+
+<span class="c1"># Kubernetes pod logs</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>pod_name<span class="w">                </span><span class="c1"># Pod logs</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>pod_name<span class="w">             </span><span class="c1"># Follow pod logs</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>pod_name<span class="w"> </span>-c<span class="w"> </span>container<span class="w">   </span><span class="c1"># Specific container in pod</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>--previous<span class="w"> </span>pod_name<span class="w">     </span><span class="c1"># Previous container instance</span>
+
+<span class="c1"># Cloud logging (AWS CloudWatch example)</span>
+aws<span class="w"> </span>logs<span class="w"> </span>describe-log-groups<span class="w">         </span><span class="c1"># List log groups</span>
+aws<span class="w"> </span>logs<span class="w"> </span>tail<span class="w"> </span>/aws/lambda/function<span class="w">   </span><span class="c1"># Tail CloudWatch logs</span>
+
+<span class="c1"># Centralized logging setup</span>
+<span class="c1"># Filebeat configuration for ELK stack</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/filebeat/filebeat.yml<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">filebeat.inputs:</span>
+<span class="s">- type: log</span>
+<span class="s">  enabled: true</span>
+<span class="s">  paths:</span>
+<span class="s">    - /var/log/*.log</span>
+<span class="s">    - /var/log/myapp/*.log</span>
+
+<span class="s">output.elasticsearch:</span>
+<span class="s">  hosts: [&quot;elasticsearch:9200&quot;]</span>
+
+<span class="s">processors:</span>
+<span class="s">- add_host_metadata:</span>
+<span class="s">    when.not.contains.tags: forwarded</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</section>
+<section id="python-log-analysis">
+<h2>Python Log Analysis<a class="headerlink" href="#python-log-analysis" title="Link to this heading"></a></h2>
+<p><strong>Production-Ready Log Analysis Framework:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># advanced_log_analyzer.py - DevOps log analysis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gzip</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipaddress</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LogAnalyzer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Advanced log analysis for DevOps environments&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patterns</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># SSH patterns</span>
+            <span class="s1">&#39;ssh_failed&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Failed password for (?:invalid user )?(\w+) from (\d+\.\d+\.\d+\.\d+)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ssh_success&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Accepted (?:password|publickey) for (\w+) from (\d+\.\d+\.\d+\.\d+)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ssh_disconnect&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Disconnected from (\d+\.\d+\.\d+\.\d+)&#39;</span><span class="p">,</span>
+
+            <span class="c1"># Web server patterns</span>
+            <span class="s1">&#39;nginx_error&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(\d</span><span class="si">{4}</span><span class="s1">/\d</span><span class="si">{2}</span><span class="s1">/\d</span><span class="si">{2}</span><span class="s1"> \d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">) \[(\w+)\] .* client: (\d+\.\d+\.\d+\.\d+)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;apache_error&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\[([^\]]+)\] \[(\w+)\] .* client (\d+\.\d+\.\d+\.\d+)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;http_404&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(\d+\.\d+\.\d+\.\d+) .* &quot;(?:GET|POST|PUT|DELETE) ([^&quot;]*)&quot; 404&#39;</span><span class="p">,</span>
+
+            <span class="c1"># System patterns</span>
+            <span class="s1">&#39;oom_killer&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;Out of memory: Kill process (\d+) \(([^)]+)\)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;segfault&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;segfault at ([0-9a-f]+) .* in ([^\[]+)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;kernel_error&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;kernel: \[([\d.]+)\] (.+)&#39;</span><span class="p">,</span>
+
+            <span class="c1"># Security patterns</span>
+            <span class="s1">&#39;sudo_usage&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(\w+) : TTY=([^;]*) ; PWD=([^;]*) ; USER=([^;]*) ; COMMAND=(.+)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;failed_su&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;FAILED SU \(to (\w+)\) (\w+) on (\w+)&#39;</span><span class="p">,</span>
+
+            <span class="c1"># General patterns</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(\w</span><span class="si">{3}</span><span class="s1">\s+\d{1,2}\s+\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ip_address&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;error_levels&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(ERROR|WARN|INFO|DEBUG|FATAL|CRITICAL)&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_security_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Comprehensive security log analysis&quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;failed_logins&#39;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+            <span class="s1">&#39;successful_logins&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;suspicious_ips&#39;</span><span class="p">:</span> <span class="nb">set</span><span class="p">(),</span>
+            <span class="s1">&#39;brute_force_attempts&#39;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;privilege_escalations&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;geographic_analysis&#39;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">log_file</span> <span class="ow">in</span> <span class="n">log_files</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_process_security_log_file</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing </span><span class="si">{</span><span class="n">log_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Analyze brute force patterns</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;brute_force_attempts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_detect_brute_force</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Identify suspicious IPs</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;suspicious_ips&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identify_suspicious_ips</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_security_log_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process individual security log file&quot;&quot;&quot;</span>
+        <span class="n">open_func</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span> <span class="k">if</span> <span class="n">log_file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="nb">open</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;rt&#39;</span> <span class="k">if</span> <span class="n">log_file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;r&#39;</span>
+
+        <span class="k">with</span> <span class="n">open_func</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line_num</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Failed SSH attempts</span>
+                    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;ssh_failed&#39;</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                        <span class="n">user</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">][</span><span class="n">ip</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_suspicious_login_attempt</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
+                            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;suspicious_ips&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+
+                    <span class="c1"># Successful SSH logins</span>
+                    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;ssh_success&#39;</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                        <span class="n">user</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                        <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_timestamp</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;successful_logins&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                            <span class="s1">&#39;ip&#39;</span><span class="p">:</span> <span class="n">ip</span><span class="p">,</span>
+                            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+                            <span class="s1">&#39;line_number&#39;</span><span class="p">:</span> <span class="n">line_num</span>
+                        <span class="p">})</span>
+
+                    <span class="c1"># Sudo usage</span>
+                    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;sudo_usage&#39;</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                        <span class="n">user</span><span class="p">,</span> <span class="n">tty</span><span class="p">,</span> <span class="n">pwd</span><span class="p">,</span> <span class="n">target_user</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;privilege_escalations&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                            <span class="s1">&#39;target_user&#39;</span><span class="p">:</span> <span class="n">target_user</span><span class="p">,</span>
+                            <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="n">command</span><span class="p">,</span>
+                            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_timestamp</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                        <span class="p">})</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing line </span><span class="si">{</span><span class="n">line_num</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">log_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_application_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">app_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze application-specific logs&quot;&quot;&quot;</span>
+        <span class="n">log_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">log_dir</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;error_count&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;warning_count&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;error_patterns&#39;</span><span class="p">:</span> <span class="n">Counter</span><span class="p">(),</span>
+            <span class="s1">&#39;performance_issues&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;timeline&#39;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Find application log files</span>
+        <span class="n">log_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">log_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">app_name</span><span class="si">}</span><span class="s2">*.log*&quot;</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">log_file</span> <span class="ow">in</span> <span class="n">log_files</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_app_log_file</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">log_file</span><span class="p">),</span> <span class="n">results</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error analyzing </span><span class="si">{</span><span class="n">log_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_app_log_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze individual application log file&quot;&quot;&quot;</span>
+        <span class="n">open_func</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span> <span class="k">if</span> <span class="n">log_file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="nb">open</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;rt&#39;</span> <span class="k">if</span> <span class="n">log_file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;r&#39;</span>
+
+        <span class="k">with</span> <span class="n">open_func</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="c1"># Count error levels</span>
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;ERROR|error&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+                    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error_count&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="c1"># Extract error pattern</span>
+                    <span class="n">error_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_error_message</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">error_msg</span><span class="p">:</span>
+                        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error_patterns&#39;</span><span class="p">][</span><span class="n">error_msg</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WARN|warning&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+                    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;warning_count&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="c1"># Performance issues</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_performance_issue</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;performance_issues&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s1">&#39;line&#39;</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+                        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_timestamp</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                    <span class="p">})</span>
+
+                <span class="c1"># Timeline analysis</span>
+                <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_timestamp</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">timestamp</span><span class="p">:</span>
+                    <span class="n">hour</span> <span class="o">=</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">timestamp</span> <span class="k">else</span> <span class="n">timestamp</span>
+                    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;timeline&#39;</span><span class="p">][</span><span class="n">hour</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_security_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">analysis_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate comprehensive security report&quot;&quot;&quot;</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;SECURITY ANALYSIS REPORT&quot;</span><span class="p">)</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Failed login summary</span>
+        <span class="n">total_failures</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Failed Login Attempts: </span><span class="si">{</span><span class="n">total_failures</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unique IPs with Failed Attempts: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Top attacking IPs</span>
+        <span class="k">if</span> <span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">]:</span>
+            <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 Attacking IPs:&quot;</span><span class="p">)</span>
+            <span class="n">sorted_ips</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;failed_logins&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                              <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ip</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">sorted_ips</span><span class="p">:</span>
+                <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> attempts&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Brute force detection</span>
+        <span class="k">if</span> <span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;brute_force_attempts&#39;</span><span class="p">]:</span>
+            <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Brute Force Attacks Detected:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ip</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;brute_force_attempts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;attempts&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> attempts in </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;timespan&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Successful logins</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Successful Logins: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;successful_logins&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Privilege escalations</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sudo Commands Executed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">analysis_results</span><span class="p">[</span><span class="s1">&#39;privilege_escalations&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">analysis_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Export analysis results to JSON&quot;&quot;&quot;</span>
+        <span class="c1"># Convert sets to lists for JSON serialization</span>
+        <span class="n">json_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">analysis_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+                <span class="n">json_results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">defaultdict</span><span class="p">):</span>
+                <span class="n">json_results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">json_results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">json_results</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_detect_brute_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">failed_logins</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Detect brute force attacks&quot;&quot;&quot;</span>
+        <span class="n">brute_force</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ip</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">failed_logins</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
+                <span class="n">brute_force</span><span class="p">[</span><span class="n">ip</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;attempts&#39;</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span>
+                    <span class="s1">&#39;timespan&#39;</span><span class="p">:</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span>  <span class="c1"># Would need timestamp analysis</span>
+                    <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="s1">&#39;high&#39;</span> <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="s1">&#39;medium&#39;</span>
+                <span class="p">}</span>
+        <span class="k">return</span> <span class="n">brute_force</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_identify_suspicious_ips</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">failed_logins</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identify suspicious IP addresses&quot;&quot;&quot;</span>
+        <span class="n">suspicious</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ip</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">failed_logins</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ip_obj</span> <span class="o">=</span> <span class="n">ipaddress</span><span class="o">.</span><span class="n">ip_address</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+                <span class="c1"># Flag high-frequency attempts</span>
+                <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+                    <span class="n">suspicious</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+                <span class="c1"># Flag private IPs attempting external access</span>
+                <span class="k">if</span> <span class="n">ip_obj</span><span class="o">.</span><span class="n">is_private</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+                    <span class="n">suspicious</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">continue</span>
+        <span class="k">return</span> <span class="n">suspicious</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_suspicious_login_attempt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if login attempt is suspicious&quot;&quot;&quot;</span>
+        <span class="n">suspicious_users</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;administrator&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;oracle&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">suspicious_users</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract timestamp from log line&quot;&quot;&quot;</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_error_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract error message pattern&quot;&quot;&quot;</span>
+        <span class="c1"># Simple extraction - could be enhanced based on log format</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parts</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">])</span>  <span class="c1"># Get context around error</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_performance_issue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Detect performance-related issues&quot;&quot;&quot;</span>
+        <span class="n">performance_keywords</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span> <span class="s1">&#39;performance&#39;</span><span class="p">,</span> <span class="s1">&#39;latency&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;memory&#39;</span><span class="p">,</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;disk&#39;</span><span class="p">,</span> <span class="s1">&#39;connection pool&#39;</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">keyword</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">performance_keywords</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example usage&quot;&quot;&quot;</span>
+    <span class="n">analyzer</span> <span class="o">=</span> <span class="n">LogAnalyzer</span><span class="p">()</span>
+
+    <span class="c1"># Analyze security logs</span>
+    <span class="n">security_logs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/var/log/auth.log&#39;</span><span class="p">,</span> <span class="s1">&#39;/var/log/secure&#39;</span><span class="p">]</span>
+    <span class="n">existing_logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">log</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">security_logs</span> <span class="k">if</span> <span class="n">Path</span><span class="p">(</span><span class="n">log</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">existing_logs</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">analyze_security_logs</span><span class="p">(</span><span class="n">existing_logs</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">generate_security_report</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+        <span class="c1"># Export to JSON</span>
+        <span class="n">analyzer</span><span class="o">.</span><span class="n">export_to_json</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">&#39;security_analysis.json&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No security log files found&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">monitor_failed_logins</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Monitor for failed SSH login attempts&quot;&quot;&quot;</span>
+
+    <span class="c1"># Start following auth log</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span>
+        <span class="s1">&#39;journalctl&#39;</span><span class="p">,</span> <span class="s1">&#39;-u&#39;</span><span class="p">,</span> <span class="s1">&#39;ssh&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--no-pager&#39;</span>
+    <span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">failed_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Failed password.*from (\d+\.\d+\.\d+\.\d+)&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Monitoring failed SSH attempts...&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">failed_pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                <span class="n">ip_match</span> <span class="o">=</span> <span class="n">failed_pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ip_match</span><span class="p">:</span>
+                    <span class="n">ip</span> <span class="o">=</span> <span class="n">ip_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">] FAILED LOGIN from </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Log Rotation Management:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># log_rotation.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gzip</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate_custom_log</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="n">max_size_mb</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">keep_rotations</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple log rotation for custom applications&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">log_file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Check file size</span>
+    <span class="n">size_mb</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">log_file</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">size_mb</span> <span class="o">&gt;</span> <span class="n">max_size_mb</span><span class="p">:</span>
+        <span class="c1"># Create rotated filename</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M%S&#39;</span><span class="p">)</span>
+        <span class="n">rotated_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">log_file</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">.gz&quot;</span>
+
+        <span class="c1"># Compress and rotate</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">rotated_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_out</span><span class="p">:</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">f_in</span><span class="p">,</span> <span class="n">f_out</span><span class="p">)</span>
+
+        <span class="c1"># Clear original log</span>
+        <span class="nb">open</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rotated </span><span class="si">{</span><span class="n">log_file</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">rotated_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Clean up old rotations</span>
+        <span class="n">cleanup_old_logs</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="n">keep_rotations</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="log-monitoring-best-practices">
+<h2>Log Monitoring Best Practices<a class="headerlink" href="#log-monitoring-best-practices" title="Link to this heading"></a></h2>
+<p><strong>Essential Monitoring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monitor disk usage (logs can fill disk)</span>
+df<span class="w"> </span>-h<span class="w"> </span>/var/log
+
+<span class="c1"># Find large log files</span>
+find<span class="w"> </span>/var/log<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+100M<span class="w"> </span>-exec<span class="w"> </span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+
+<span class="c1"># Monitor log growth</span>
+watch<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s1">&#39;ls -lah /var/log/syslog&#39;</span>
+</pre></div>
+</div>
+<p><strong>Security Monitoring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monitor failed login attempts</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>ssh<span class="w"> </span>--since<span class="w"> </span>today<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Failed password&quot;</span>
+
+<span class="c1"># Check for privilege escalation</span>
+journalctl<span class="w"> </span>--since<span class="w"> </span>today<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>sudo
+
+<span class="c1"># Monitor file system events</span>
+journalctl<span class="w"> </span>-k<span class="w"> </span>--since<span class="w"> </span>today<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;filesystem\|mount&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DevOps Tip</strong>: Set up centralized logging with tools like ELK stack (Elasticsearch, Logstash, Kibana) or use cloud logging services for production environments.</p>
+</div>
+</section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># print last 100 lines</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span>/var/log/messages
+
+<span class="c1"># follow log</span>
+tail<span class="w"> </span>-f<span class="w"> </span>/var/log/secure
+
+<span class="c1"># every journal entry that is in the system will be displayed</span>
+journalctl
+
+<span class="c1"># journal entries collected since the most recent reboot</span>
+journalctl<span class="w"> </span>-b
+
+<span class="c1"># display only kernel messages</span>
+journalctl<span class="w"> </span>-k
+
+<span class="c1"># display the last 20 messages</span>
+journalctl<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span>
+
+<span class="c1"># actively follow the logs as they are being written</span>
+journalctl<span class="w"> </span>-f
+
+<span class="c1"># filter messages by priority</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>err
+
+<span class="c1"># filter messages by the service unit</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>sshd
+
+journalctl<span class="w"> </span>-u<span class="w"> </span>crond<span class="w"> </span>--since<span class="w"> </span>today
+
+<span class="c1"># show listing of last logged-in users</span>
+last
+
+<span class="c1"># show a listing of users logged in since the last boot</span>
+lastb
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The only problem with troubleshooting is that sometimes trouble shoots back.</p>
+</div>
+</section>
+<section id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>What is the name of the daemon that controls log files in RHEL?</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rsyslogd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">syslogd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logrotate</span></code></p></li>
+</ol>
+</li>
+<li><p>Which of the following log files contains information about emails relayed by the local mail server?</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/messages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/secure</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/cron</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/log/maillog</span></code></p></li>
+</ol>
+</li>
+<li><p>Which of the following commands can be used to display the last 20 messages from the journal?</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-n</span> <span class="pre">20</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-f</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-p</span> <span class="pre">err</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-u</span> <span class="pre">sshd</span></code></p></li>
+</ol>
+</li>
+<li><p>Which of the following commands can be used to display the last 20 lines of the <code class="docutils literal notranslate"><span class="pre">/var/log/messages</span></code> file?</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">20</span> <span class="pre">/var/log/messages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">/var/log/messages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">20</span> <span class="pre">/var/log/messages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">20</span> <span class="pre">/var/log/messages</span></code></p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="answers">
+<h2>Answers<a class="headerlink" href="#answers" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>a</p></li>
+<li><p>d</p></li>
+<li><p>a</p></li>
+<li><p>c</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5_process_management.html" class="btn btn-neutral float-left" title="2.5 Process Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="7_linux_file_systems.html" class="btn btn-neutral float-right" title="2.7 Linux File Systems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

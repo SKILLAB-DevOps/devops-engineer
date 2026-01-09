@@ -1,0 +1,30 @@
+#! /usr/bin/env bash
+
+######################################
+# This script will generate a file with 1000 random words from /usr/share/dict/words
+# Usage: ./randomWords.sh
+# Author: Skillab Team
+# Copyright: This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+######################################
+
+######################################
+# Description
+# Generates a file with 1000 random words from /usr/share/dict/words
+# Globals:
+#	 None
+# Arguments:
+# 	 None
+######################################
+
+# Check if the /usr/share/dict/words file exists
+if [ ! -f /usr/share/dict/words ]; then
+  echo "/usr/share/dict/words file does not exist. Exiting."
+  # install wamerican-small package
+    sudo apt-get install wamerican-small
+fi
+
+# Generate a file with 1000 random words from /usr/share/dict/words
+shuf /usr/share/dict/words | head -n 1000 > random_words.txt
+
+# Count the number of words with exactly 9 characters
+awk 'length($0) == 9' random_words.txt | wc -l

@@ -1,0 +1,51 @@
+#! /usr/bin/env bash
+
+######################################
+# This script will fetch the weather for a given location
+# Usage: ./healthCheck
+# Author: Skillab Team
+# Copyright: This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+######################################
+
+######################################
+# Description
+# Displays the date and time, uptime, disk usage, memory usage and top most expensive process every 2 seconds forever
+# Globals:
+#	 None
+# Arguments:
+# 	 None
+######################################
+
+
+#!/bin/bash
+
+while true; do
+    clear
+    
+    # Print date and time
+    echo "===== DATE & TIME ====="
+    date
+    echo
+    
+    # Print uptime of the machine
+    echo "===== UPTIME ====="
+    uptime
+    echo
+    
+    # Print disk usage
+    echo "===== DISK USAGE ====="
+    df -h
+    echo
+    
+    # Print memory usage
+    echo "===== MEMORY USAGE ====="
+    free -h
+    echo
+    
+    # Print top most expensive process
+    echo "===== TOP PROCESS BY CPU USAGE ====="
+    ps aux --sort=-%cpu | head -n 2
+    echo
+    
+    sleep 2
+done

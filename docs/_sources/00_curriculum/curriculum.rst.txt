@@ -6,15 +6,34 @@ Class Curriculum
 Introduction to DevOps
 ======================
 
+**The Complete Journey: From Beginner to Production-Ready DevOps Engineer**
+
 Duration: 72 classes - 36 weeks (2 sessions per week)
 
 ===================
 Learning Objectives
 ===================
 
-- Understand the fundamentals of DevOps, working in team, and associated tools.
-- Gain hands-on experience with Linux, programming, containers, cloud technologies, and CI/CD pipelines.
-- Develop a comprehensive DevOps project by integrating learned concepts and tools.
+**Course-Wide Competencies:**
+
+Upon successful completion of this comprehensive program, you will be able to:
+
+• **Master** the complete DevOps toolchain from Linux fundamentals to production Kubernetes deployments
+• **Build** and maintain fully automated CI/CD pipelines that integrate testing, security, and deployment
+• **Design** scalable, secure, and cost-effective cloud-native applications using modern DevOps practices
+• **Implement** infrastructure as code solutions for reproducible and maintainable deployments
+• **Apply** industry best practices for collaboration, documentation, and continuous improvement
+• **Demonstrate** professional readiness for DevOps, SRE, and cloud engineering roles
+
+**The DevOps Learning Path:**
+
+This curriculum follows a carefully crafted progression from foundational concepts to advanced production practices:
+
+1. **Foundation Layer** (Weeks 1-10): Master the essential building blocks
+2. **Automation Layer** (Weeks 11-19): Build automated workflows and pipelines  
+3. **Containerization Layer** (Weeks 20-28): Package and orchestrate applications
+4. **Cloud Layer** (Weeks 29-35): Deploy to production cloud environments
+5. **Mastery Layer** (Week 36): Integrate everything in a capstone project
 
 ===================================
 Module 0: DevOps Concepts and Tools
@@ -24,302 +43,394 @@ Module 0: DevOps Concepts and Tools
 Week 1: Introduction to DevOps
 ++++++++++++++++++++++++++++++
 
-- Class overview, lectors introduction, and expectations
-- Overview of DevOps Concepts and Agile Principles
-- DevOps Tools and Technologies
-- Environments
-- Open Source and Community
+**The DevOps Mindset and Cultural Foundation**
 
-===============================
-Module 1: Introduction to Linux 
-===============================
+**Learning Goals:**
 
-+++++++++++++++++++++++++++++++++++++++++++
-Weeks 2-6: Introduction to DevOps and Linux
-+++++++++++++++++++++++++++++++++++++++++++
-
-**Learning Objectives:**
-
-- Define DevOps and understand its principles and practices.
-- Gain foundational knowledge of Linux and its role in DevOps environments.
+- Understand the cultural and technical transformation that DevOps brings to organizations
+- Recognize how DevOps addresses traditional silos between development and operations
+- Identify the business impact of DevOps practices on delivery speed and quality
 
 **Content:**
 
-- Overview of DevOps Concepts and Agile Principles
-- Environments: Development, Testing, Acceptance,and Production
-- Introduction to the Linux operating system
-- Basic Linux commands and file system navigation
-- Configuring Linux: permissions, users, and environment variables
+- DevOps history, principles, and cultural impact
+- Traditional IT challenges vs. DevOps solutions  
+- The T-shaped skillset: broad knowledge with deep specialization
+- Overview of the complete DevOps toolchain and career paths
+- Setting expectations for continuous learning and collaboration
 
-**Practical Examples:**
+**Hands-on Lab:**
 
-- Setting up a basic Linux environment on a virtual machine.
-- Hands-on with basic Linux commands (`ls`, `cd`, `cp`, `mv`, etc.).
+- Team formation and collaborative workspace setup
+- Introduction to course project and learning methodology
+
+====================================================================
+Module 1: Foundation Layer - Systems and Infrastructure Fundamentals
+====================================================================
+
++++++++++++++++++++++++++++++++++++++++++
+Weeks 2-6: Environments and Linux Mastery
++++++++++++++++++++++++++++++++++++++++++
+
+**From Physical Servers to Cloud-Native Infrastructure**
+
+**Learning Goals:**
+
+- Master Linux as the foundation of modern DevOps infrastructure
+- Understand the evolution from bare metal to containers to cloud
+- Build confidence with command-line tools used daily by DevOps professionals
+
+**Content:**
+
+- Computing environments: bare metal → VMs → containers → cloud
+- Linux fundamentals: file systems, permissions, process management
+- Command-line productivity and automation
+- System monitoring, logging, and troubleshooting
+- Security fundamentals and access management
+
+**Practical Projects:**
+
+- Set up and secure a Linux development environment
+- Build system monitoring and alerting scripts
+- Create user management and security hardening procedures
 
 ++++++++++++++++++++++++++
 Weeks 7-8: Shell Scripting
 ++++++++++++++++++++++++++
 
-**Learning Objectives:**
+**Automation Foundation with Shell Scripts**
 
-- Automate repetitive tasks using shell scripting.
-- Write and debug Bash scripts with control structures and functions.
+**Learning Goals:**
+
+- Transform manual tasks into automated, reliable scripts
+- Build reusable tools that improve team productivity
+- Establish foundations for larger automation frameworks
 
 **Content:**
 
-- Introduction to shell scripting
-- Bash scripting fundamentals
-- Control structures, loops, I/O, and functions
-- Writing and executing shell scripts
+- Bash scripting best practices and error handling
+- Building command-line utilities and system tools
+- Integration with system services and cron jobs
+- Script testing, debugging, and maintenance
 
-**Practical Examples:**
+**Practical Projects:**
 
-- Automate a task to create and organize project directories.
-- Create a script to monitor disk usage and send alerts.
+- Create deployment automation scripts
+- Build system backup and maintenance tools
+- Develop monitoring and alerting utilities
 
 ++++++++++++++++++++++++++++++++++++++++++++++++
 Weeks 9-10: Advanced Linux and Networking Basics
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-**Learning Objectives:**
+**Production System Administration**
 
-- Utilize advanced Linux commands for system administration.
-- Understand basic networking concepts and configure network settings.
+**Learning Goals:**
+
+- Manage production Linux systems with confidence
+- Understand networking fundamentals for containerized and cloud environments
+- Apply security and performance optimization techniques
 
 **Content:**
 
-- Advanced Linux commands and scripting techniques
-- Linux system administration essentials
-- Introduction to networking concepts
-- Configuring network settings in Linux
-- Basic troubleshooting and network tools
+- Advanced system administration and performance tuning
+- Network configuration, firewalls, and security
+- Service management with systemd
+- Log analysis and troubleshooting methodologies
 
-**Practical Examples:**
+**Practical Projects:**
 
-- Write a script to manage system logs.
-- Set up and troubleshoot a basic local network.
+- Configure and optimize a web server environment
+- Implement network security and monitoring
+- Build comprehensive system health checks
 
-=====================================================
-Module 2: Introduction to Programming: Python and Git
-=====================================================
+==================================================================
+Module 2: Automation Layer - Programming and Pipeline Fundamentals
+==================================================================
 
 ++++++++++++++++++++++++++++++
 Weeks 11-14: Python for DevOps
 ++++++++++++++++++++++++++++++
 
-**Learning Objectives:**
+**Building DevOps Tools and Automation**
 
-- Understand Python basics and its application in DevOps workflows.
-- Develop scripts to automate tasks and processes.
+**Learning Goals:**
+
+- Create powerful automation tools that replace manual processes
+- Build APIs and command-line utilities for infrastructure management
+- Integrate Python with existing DevOps toolchains
 
 **Content:**
 
-- Introduction to Python programming language
-- Python data types, variables, and operators
-- Control structures, functions, and classes
-- Python modules and libraries for DevOps
-- Automation scripts using `invoke`
-- Building, Testing, and Releasing Python
+- Python fundamentals for infrastructure automation
+- API development for configuration and monitoring
+- Command-line tool creation and distribution
+- Data processing for logs, metrics, and system information
+- Testing and quality assurance for automation code
 
-**Practical Examples:**
+**Practical Projects:**
 
-- Create a Python script to parse logs, scrape data,and generate reports.
-- Automate deployment tasks using Python scripts.
+- Build a CLI tool for system management
+- Create APIs for application configuration
+- Develop log analysis and reporting tools
 
 ++++++++++++++++++++++++
 Weeks 15: Git and GitHub
 ++++++++++++++++++++++++
 
-**Learning Objectives:**
+**Collaborative Development and Version Control**
 
-- Master version control with Git and collaborate using GitHub.
-- Resolve conflicts and maintain a clean commit history.
+**Learning Goals:**
 
-**Content:**
-
-- Introduction to version control systems
-- Git basics: `init`, `add`, `commit`, `status`, `log`, `diff`
-- Branching, merging, and conflict resolution
-- Working with GitHub and remote repositories
-
-**Practical Examples:**
-
-- Create and manage a project repository.
-- Collaborate with peers using Git branches.
-
-+++++++++++++++++++++++++++++++
-Week 16: Introduction to DocOps
-+++++++++++++++++++++++++++++++
-
-**Learning Objectives:**
-
-- Document processes effectively and integrate documentation into CI/CD workflows.
+- Master professional Git workflows used in DevOps teams
+- Implement branching strategies that support continuous delivery
+- Integrate version control with automation and deployment processes
 
 **Content:**
 
-- Overview of DocOps methodology
-- Technical documentation best practices
-- Managing documentation with Git and GitHub
-- Integrating documentation into CI/CD workflows
+- Advanced Git workflows (GitFlow, GitHub Flow, trunk-based development)
+- Code review processes and collaborative development
+- Git hooks for automation and quality gates
+- Repository management and security best practices
 
-**Practical Examples:**
+**Practical Projects:**
 
-- Create project documentation using Markdown.
-- Automate the deployment of documentation updates.
+- Implement team branching strategy and code review process
+- Create Git hooks for automated testing and quality checks
+- Set up collaborative development workflow
 
-+++++++++++++++++++++++++++
-Weeks 17-18: GitHub Actions
-+++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++
+Week 16: Documentation as Code (DocOps)
++++++++++++++++++++++++++++++++++++++++
 
-**Learning Objectives:**
+**Living Documentation and Knowledge Management**
 
-- Automate CI/CD pipelines using GitHub Actions.
-- Integrate external tools into workflows for enhanced automation.
+**Learning Goals:**
+
+- Create documentation that evolves with code and infrastructure
+- Build automated documentation generation and deployment
+- Establish documentation culture and processes
 
 **Content:**
 
-- Introduction to GitHub Actions
-- Creating custom GitHub Actions workflows
-- Implementing continuous integration and deployment (CI/CD)
-- Code reusability using actions and workflow environments
-- Integrating GitHub Actions with external tools
+- Documentation-as-code principles and toolchains
+- Automated documentation generation from code and APIs
+- Collaborative documentation workflows
+- Integration with CI/CD for documentation deployment
 
-**Practical Examples:**
+**Practical Projects:**
 
-- Create a GitHub Actions workflow for linting and testing code.
-- Deploy a simple application using GitHub Actions.
+- Set up automated documentation pipeline
+- Create comprehensive project documentation
+- Implement documentation quality gates
 
+++++++++++++++++++++++++++++
+Weeks 17-18: CI/CD Pipelines
+++++++++++++++++++++++++++++
+
+**Automated Build, Test, and Deployment**
+
+**Learning Goals:**
+
+- Build production-ready CI/CD pipelines that ensure quality and reliability
+- Implement security, testing, and compliance automation
+- Design multi-environment deployment strategies
+
+**Content:**
+
+- GitHub Actions and pipeline-as-code
+- Automated testing strategies (unit, integration, security)
+- Multi-environment deployment patterns
+- Pipeline security and secret management
+- Monitoring and observability for deployments
+
+**Practical Projects:**
+
+- Build complete CI/CD pipeline for Python application
+- Implement automated security scanning and quality gates
+- Create multi-environment deployment workflow
 
 +++++++++++++++++++++++++++++++++++++++++++
 Week 19: Mid-term Project and Retrospective
 +++++++++++++++++++++++++++++++++++++++++++
 
-**Content:**
-
-- Develop a CI Pipeline project using learned tools.
-- Reflect on challenges, successes, and areas for improvement.
-
-===========================================
-Module 3: Containers: Docker and Kubernetes
-===========================================
-
-++++++++++++++++++++++++++++++++++++++++
-Weeks 20-22: Docker and Containerization
-++++++++++++++++++++++++++++++++++++++++
-
-**Learning Objectives:**
-
-- Learn the fundamentals of containerization and Docker.
-- Build and manage Docker-based applications.
+**Integration and Reflection**
 
 **Content:**
 
-- Introduction to Docker and Containerization
-- Docker basics: images, containers, registries
-- Creating and managing Dockerfiles
-- Docker Compose and multi-container applications
+- Complete automation project integrating all learned tools
+- Team presentations and peer feedback
+- Skills assessment and learning path adjustment
+- Industry career guidance and networking
 
-**Practical Examples:**
+=================================================================================
+Module 3: Containerization Layer - Modern Application Packaging and Orchestration
+=================================================================================
 
-- Build and deploy a simple web application in a Docker container.
-- Create a Docker Compose file for a multi-container setup.
+++++++++++++++++++++++++++++++++++
+Weeks 20-22: Containers and Docker
+++++++++++++++++++++++++++++++++++
+
+**From "Works on My Machine" to Production Consistency**
+
+**Learning Goals:**
+
+- Eliminate environment inconsistencies through containerization
+- Build production-ready container images with security and performance optimization
+- Orchestrate multi-service applications using modern container tools
+
+**Content:**
+
+- Container fundamentals and the shift from VMs
+- Docker and Podman for container creation and management
+- Production Dockerfile best practices and security
+- Multi-container applications with Docker Compose
+- Container registries and image management
+- Security scanning and vulnerability management
+
+**Practical Projects:**
+
+- Containerize the Python application from previous modules
+- Build secure, optimized container images
+- Create multi-service application with databases and caching
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 Weeks 23-25: Kubernetes and Container Orchestration
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
-**Learning Objectives:**
+**Production Container Orchestration at Scale**
 
-- Deploy and manage applications at scale using Kubernetes.
-- Understand Kubernetes architecture and resource management.
+**Learning Goals:**
 
-**Content:**
-
-- Introduction to Kubernetes
-- Kubernetes architecture and components
-- Deploying and managing applications with Kubernetes
-- Kubernetes services, deployments, and pods
-- Scaling, monitoring, and troubleshooting Kubernetes applications
-
-**Practical Examples:**
-
-- Deploy a web application to a Kubernetes cluster.
-- Monitor and scale a Kubernetes deployment.
-
-++++++++++++++++++++++++++++++++++++++++++
-Weeks 26-28: Helm and Kubernetes Operators
-++++++++++++++++++++++++++++++++++++++++++
-
-**Learning Objectives:**
-
-- Simplify Kubernetes deployments using Helm and Operators.
+- Deploy and manage applications in production Kubernetes clusters
+- Implement zero-downtime deployments with automatic scaling
+- Integrate Kubernetes with CI/CD pipelines for automated deployments
 
 **Content:**
 
-- Introduction to Helm
-- Creating and managing Helm charts
-- Helm templating and package management
-- Introduction to Kubernetes Operators
+- Kubernetes architecture and core concepts
+- Pods, Services, Deployments, and ConfigMaps
+- Production deployments with rolling updates and rollbacks
+- Horizontal Pod Autoscaling and resource management
+- CI/CD integration with Kubernetes
+- Monitoring and troubleshooting applications
 
-**Practical Examples:**
+**Practical Projects:**
 
-- Package an application using Helm.
-- Use an Operator to manage a Kubernetes resource.
-
-============================
-Module 4: Cloud Technologies
-============================
-
-+++++++++++++++++++++++++++++++
-Weeks 29-30: Cloud Technologies
-+++++++++++++++++++++++++++++++
-
-**Learning Objectives:**
-
-- Understand cloud computing basics and major cloud providers.
-
-**Content:**
-
-- Introduction to cloud computing
-- Overview of major cloud providers (AWS, Azure, GCP)
-- Key cloud services and concepts
-- Deploying applications and infrastructure to the cloud
-
-**Practical Examples:**
-
-- Deploy an application to AWS using EC2.
-- Use Azure Functions to create a simple cloud function.
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Weeks 30-35: Infrastructure as Code with Terraform and Ansible
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-**Learning Objectives:**
-
-- Automate infrastructure deployment using Terraform and Ansible.
-
-**Content:**
-
-- Introduction to infrastructure as code (IaC) and configuration management
-- Terraform basics: providers, resources, modules
-- Writing and deploying Terraform configurations
-- Ansible basics: inventory, playbooks, roles, modules
-- Writing and executing Ansible playbooks
-
-**Practical Examples:**
-
-- Provision infrastructure using Terraform and configure it with Ansible.
-- Write a playbook to install and configure an application.
+- Deploy applications to local and cloud Kubernetes clusters
+- Implement automated CI/CD pipeline to Kubernetes
+- Build production-ready deployments with scaling and monitoring
 
 +++++++++++++++++++++++++++++++++++++++++
-Week 36: Advanced Cloud and Final Project
+Weeks 26-28: Helm and Advanced Kubernetes
 +++++++++++++++++++++++++++++++++++++++++
+
+**Package Management and GitOps for Kubernetes**
+
+**Learning Goals:**
+
+- Package applications for reusable, templated deployments
+- Implement GitOps workflows for automated infrastructure management
+- Apply production best practices for security, monitoring, and cost optimization
 
 **Content:**
 
-- Advanced cloud services and automation
-- Introduction to cloud security and monitoring
-- Developing a comprehensive DevOps project using the skills acquired in the course
-- Project presentations and peer review
-- Course review and future learning resources
-- Q&A and course completion
+- Helm for Kubernetes package management
+- Creating reusable Helm charts for multiple environments
+- ArgoCD and GitOps workflows
+- Production security, monitoring, and cost optimization
+- Kubernetes operators and advanced patterns
+
+**Practical Projects:**
+
+- Convert applications to Helm charts with environment-specific configurations
+- Implement complete GitOps workflow with ArgoCD
+- Apply production security and monitoring best practices
+
+================================================================
+Module 4: Cloud Layer - Production Infrastructure and Deployment
+================================================================
+
++++++++++++++++++++++++++++++++
+Weeks 29-30: Cloud Fundamentals
++++++++++++++++++++++++++++++++
+
+**From On-Premises to Cloud-Native Architecture**
+
+**Learning Goals:**
+
+- Understand cloud service models and choose appropriate solutions
+- Deploy applications to major cloud platforms with native tools
+- Implement cloud security and cost optimization best practices
+
+**Content:**
+
+- Cloud computing models: IaaS, PaaS, SaaS
+- AWS, Azure, and GCP core services comparison
+- Cloud-native application patterns and architectures
+- Security, compliance, and cost management
+- Multi-cloud and hybrid strategies
+
+**Practical Projects:**
+
+- Deploy applications to multiple cloud providers
+- Implement cloud security and monitoring
+- Build cost-effective, scalable cloud architectures
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Weeks 31-35: Infrastructure as Code with Terraform and Ansible
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**Automated Infrastructure Provisioning and Configuration**
+
+**Learning Goals:**
+
+- Automate infrastructure provisioning across multiple cloud providers
+- Implement configuration management for consistent, reproducible deployments
+- Build comprehensive infrastructure automation that integrates with CI/CD
+
+**Content:**
+
+- Infrastructure as Code principles and best practices
+- Terraform for multi-cloud infrastructure provisioning
+- Ansible for configuration management and application deployment
+- State management, modules, and reusable infrastructure patterns
+- Integration with CI/CD pipelines for infrastructure automation
+- Security, compliance, and governance for infrastructure code
+
+**Practical Projects:**
+
+- Build complete cloud infrastructure using Terraform
+- Automate application deployment and configuration with Ansible
+- Create reusable infrastructure modules and patterns
+- Implement infrastructure CI/CD with testing and validation
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+Week 36: Integration Project and Career Preparation
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**Capstone Project and Professional Development**
+
+**Learning Goals:**
+
+- Demonstrate mastery by building a complete, production-ready DevOps solution
+- Present technical solutions effectively to stakeholders
+- Prepare for DevOps career opportunities and continued learning
+
+**Content:**
+
+- Comprehensive capstone project integrating all course concepts
+- Industry best practices and real-world case studies
+- Career guidance: resume building, interview preparation, networking
+- Advanced topics and continuous learning pathways
+- Project presentations and peer feedback
+- Course completion and certification
+
+**Capstone Project Requirements:**
+
+- Multi-tier application (web, API, database) deployed to cloud
+- Complete CI/CD pipeline with automated testing and deployment
+- Infrastructure as code with multiple environments
+- Security, monitoring, and logging implementation
+- Comprehensive documentation and runbooks
+- Team collaboration and code review processes

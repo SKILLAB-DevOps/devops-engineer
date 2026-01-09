@@ -1,0 +1,40 @@
+---
+- name: Create a new file
+  hosts: nodes
+  tasks:
+
+        - name: Create multiple groups
+          ansible.builtin.group:
+            name: "{{ item }}"
+            state: present
+          loop:
+            - developers
+            - operators
+            - admins
+
+        - name: Add the user 'user1' with a specific uid 7654 and a primary group of 'developer'
+          ansible.builtin.user:
+            name: user1
+            comment: User One
+            uid: 7654
+            group: developers
+
+        - name: Add the user 'user2' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+          ansible.builtin.user:
+            name: user2
+            shell: /bin/bash
+            groups: admins,developers
+            append: yes
+
+        - name: Remove the user 'user1'
+          ansible.builtin.user:
+            name: user1
+            state: absent
+            remove: yes
+
+        - name: Create a 2048-bit SSH key for user user3 in ~/user3/.ssh/id_rsa
+          ansible.builtin.user:
+            name: user3
+            generate_ssh_key: yes
+            ssh_key_bits: 2048
+            ssh_key_file: .ssh/id_rsa

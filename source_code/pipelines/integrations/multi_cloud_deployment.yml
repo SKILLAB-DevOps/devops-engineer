@@ -1,0 +1,40 @@
+name: Multi-Cloud Deployment
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      matrix:
+        cloud:
+          - name: aws
+            region: us-east-1
+          - name: azure
+            region: eastus
+          - name: gcp
+            region: us-central1
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to ${{ matrix.cloud.name }}
+        run: |
+          case "${{ matrix.cloud.name }}" in
+            "aws")
+              aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              aws ecs update-service --cluster prod --service myapp --force-new-deployment
+              ;;
+            "azure")
+              az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+              az container restart --name myapp --resource-group prod
+              ;;
+            "gcp")
+              echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' | base64 -d > gcp-key.json
+              gcloud auth activate-service-account --key-file gcp-key.json
+              gcloud run deploy myapp --image gcr.io/project/myapp:latest --region ${{ matrix.cloud.region }}
+              ;;
+          esac

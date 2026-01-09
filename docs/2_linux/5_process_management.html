@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.5 Process Management &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.6 System Logging" href="6_system_logging.html" />
+    <link rel="prev" title="2.4 Service Management" href="4_service_management.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2.5 Process Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/2_linux/5_process_management.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="process-management">
+<h1>2.5 Process Management<a class="headerlink" href="#process-management" title="Link to this heading"></a></h1>
+<section id="understanding-processes">
+<h2>Understanding Processes<a class="headerlink" href="#understanding-processes" title="Link to this heading"></a></h2>
+<p>Every running program is a <strong>process</strong> with a unique Process ID (PID). Process management is critical for system performance, troubleshooting, and DevOps automation.</p>
+<p><strong>Key Concepts:</strong></p>
+<ul class="simple">
+<li><p><strong>PID</strong>: Unique process identifier (1-65535)</p></li>
+<li><p><strong>PPID</strong>: Parent process ID (process hierarchy)</p></li>
+<li><p><strong>UID/GID</strong>: User and group running the process</p></li>
+<li><p><strong>Process States</strong>: Running, Sleeping, Stopped, Zombie</p></li>
+<li><p><strong>Child Processes</strong>: Spawned by parent processes</p></li>
+<li><p><strong>Zombie Processes</strong>: Finished but not cleaned up by parent</p></li>
+<li><p><strong>Orphan Processes</strong>: Parent process has terminated</p></li>
+<li><p><strong>Process Priority</strong>: Nice values (-20 to 19, lower = higher priority)</p></li>
+</ul>
+<p><strong>DevOps Context:</strong></p>
+<p>In modern DevOps environments, process management involves:</p>
+<ul class="simple">
+<li><p><strong>Container Processes</strong>: Managing processes inside containers</p></li>
+<li><p><strong>Service Orchestration</strong>: Process lifecycle in Kubernetes pods</p></li>
+<li><p><strong>Microservices Monitoring</strong>: Tracking distributed application processes</p></li>
+<li><p><strong>Resource Optimization</strong>: CPU and memory allocation for workloads</p></li>
+<li><p><strong>Autoscaling</strong>: Process-based scaling decisions</p></li>
+</ul>
+</section>
+<section id="process-monitoring-commands">
+<h2>Process Monitoring Commands<a class="headerlink" href="#process-monitoring-commands" title="Link to this heading"></a></h2>
+<p><strong>Enhanced Process Listing:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprehensive process information</span>
+ps<span class="w"> </span>aux<span class="w">                           </span><span class="c1"># All processes with resource usage</span>
+ps<span class="w"> </span>-ef<span class="w">                           </span><span class="c1"># All processes with full details</span>
+ps<span class="w"> </span>-eo<span class="w"> </span>pid,ppid,cmd,%cpu,%mem,user<span class="w">  </span><span class="c1"># Custom format</span>
+ps<span class="w"> </span>--forest<span class="w">                      </span><span class="c1"># Process tree format</span>
+
+<span class="c1"># Modern alternatives</span>
+pstree<span class="w"> </span>-p<span class="w">                        </span><span class="c1"># Process tree with PIDs</span>
+pstree<span class="w"> </span>-u<span class="w">                        </span><span class="c1"># Show user transitions</span>
+
+<span class="c1"># Container-aware process listing</span>
+ps<span class="w"> </span>-eo<span class="w"> </span>pid,ppid,cmd,cgroup<span class="w">       </span><span class="c1"># Show control groups</span>
+systemd-cgls<span class="w">                     </span><span class="c1"># systemd control group tree</span>
+</pre></div>
+</div>
+<p><strong>Real-Time Process Monitoring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive monitoring tools</span>
+top<span class="w">                              </span><span class="c1"># Classic process monitor</span>
+htop<span class="w">                             </span><span class="c1"># Enhanced with colors and mouse support</span>
+btop<span class="w">                             </span><span class="c1"># Modern resource monitor (install: apt install btop)</span>
+
+<span class="c1"># Specialized monitoring</span>
+iotop<span class="w">                            </span><span class="c1"># Disk I/O per process (requires sudo)</span>
+nethogs<span class="w">                          </span><span class="c1"># Network usage per process</span>
+powertop<span class="w">                         </span><span class="c1"># Power consumption analysis</span>
+
+<span class="c1"># Advanced system monitoring</span>
+glances<span class="w">                          </span><span class="c1"># All-in-one system monitor</span>
+nmon<span class="w">                             </span><span class="c1"># Performance monitoring tool</span>
+</pre></div>
+</div>
+<p><strong>Process Discovery and Analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find processes by various criteria</span>
+pgrep<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;python.*django&quot;</span><span class="w">        </span><span class="c1"># Find by full command line</span>
+pgrep<span class="w"> </span>-u<span class="w"> </span>username<span class="w">                </span><span class="c1"># Find processes by user</span>
+pgrep<span class="w"> </span>-g<span class="w"> </span>groupname<span class="w">               </span><span class="c1"># Find by group</span>
+pidof<span class="w"> </span>nginx<span class="w">                      </span><span class="c1"># Get PID of specific process</span>
+
+<span class="c1"># Process resource analysis</span>
+cat<span class="w"> </span>/proc/PID/status<span class="w">             </span><span class="c1"># Detailed process information</span>
+cat<span class="w"> </span>/proc/PID/limits<span class="w">             </span><span class="c1"># Process resource limits</span>
+lsof<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">                      </span><span class="c1"># Files opened by process</span>
+strace<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">                    </span><span class="c1"># System calls (debugging)</span>
+
+<span class="c1"># Container process analysis</span>
+docker<span class="w"> </span>top<span class="w"> </span>container_name<span class="w">        </span><span class="c1"># Processes in container</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w">                 </span><span class="c1"># Kubernetes pod resource usage</span>
+</pre></div>
+</div>
+<p><strong>Advanced Process Control:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Signal management</span>
+<span class="nb">kill</span><span class="w"> </span>-l<span class="w">                          </span><span class="c1"># List all available signals</span>
+<span class="nb">kill</span><span class="w"> </span>-TERM<span class="w"> </span>PID<span class="w">                   </span><span class="c1"># Graceful termination (default)</span>
+<span class="nb">kill</span><span class="w"> </span>-KILL<span class="w"> </span>PID<span class="w">                   </span><span class="c1"># Force termination (use sparingly)</span>
+<span class="nb">kill</span><span class="w"> </span>-HUP<span class="w"> </span>PID<span class="w">                    </span><span class="c1"># Hang up (reload config for daemons)</span>
+<span class="nb">kill</span><span class="w"> </span>-USR1<span class="w"> </span>PID<span class="w">                   </span><span class="c1"># User-defined signal 1</span>
+
+<span class="c1"># Bulk process management</span>
+killall<span class="w"> </span>-TERM<span class="w"> </span>nginx<span class="w">              </span><span class="c1"># Kill all nginx processes</span>
+pkill<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;python.*celery&quot;</span><span class="w">        </span><span class="c1"># Kill processes matching pattern</span>
+killall<span class="w"> </span>-u<span class="w"> </span>username<span class="w">              </span><span class="c1"># Kill all processes by user (dangerous!)</span>
+
+<span class="c1"># Process priority management</span>
+nice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="nb">command</span><span class="w">               </span><span class="c1"># Start with lower priority</span>
+renice<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-p<span class="w"> </span>PID<span class="w">               </span><span class="c1"># Change priority of running process</span>
+ionice<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span>-p<span class="w"> </span>PID<span class="w">               </span><span class="c1"># Set I/O scheduling priority</span>
+
+<span class="c1"># Job control (interactive shells)</span>
+<span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span><span class="w">                        </span><span class="c1"># Run in background</span>
+<span class="nb">jobs</span><span class="w">                             </span><span class="c1"># List background jobs</span>
+<span class="nb">fg</span><span class="w"> </span>%1<span class="w">                            </span><span class="c1"># Bring job 1 to foreground</span>
+<span class="nb">bg</span><span class="w"> </span>%1<span class="w">                            </span><span class="c1"># Send job 1 to background</span>
+<span class="nb">disown</span><span class="w"> </span>%1<span class="w">                        </span><span class="c1"># Remove job from shell control</span>
+nohup<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span><span class="w">                  </span><span class="c1"># Run immune to hangups</span>
+
+<span class="c1"># Screen/tmux for persistent sessions</span>
+screen<span class="w"> </span>-S<span class="w"> </span>session_name<span class="w">           </span><span class="c1"># Create named screen session</span>
+tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>session_name<span class="w">         </span><span class="c1"># Create named tmux session</span>
+tmux<span class="w"> </span>attach<span class="w"> </span>-t<span class="w"> </span>session_name<span class="w">      </span><span class="c1"># Attach to existing session</span>
+</pre></div>
+</div>
+<p><strong>Container and Cloud Process Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker process management</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container<span class="w"> </span>bash<span class="w">   </span><span class="c1"># Enter container for process management</span>
+docker<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>container<span class="w">            </span><span class="c1"># Send SIGKILL to container</span>
+docker<span class="w"> </span>stop<span class="w"> </span>container<span class="w">            </span><span class="c1"># Send SIGTERM, then SIGKILL</span>
+
+<span class="c1"># Kubernetes process management</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pod<span class="w"> </span>--<span class="w"> </span>ps<span class="w"> </span>aux<span class="w">   </span><span class="c1"># List processes in pod</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod_name<span class="w">      </span><span class="c1"># Restart pod (processes)</span>
+
+<span class="c1"># Systemd integration</span>
+systemd-run<span class="w"> </span>--user<span class="w"> </span><span class="nb">command</span><span class="w">       </span><span class="c1"># Run as systemd service</span>
+systemctl<span class="w"> </span>--user<span class="w"> </span>status<span class="w">          </span><span class="c1"># User service status</span>
+</pre></div>
+</div>
+<p><strong>Process Resource Analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Top resource consumers</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Top CPU Consumers ===&quot;</span>
+ps<span class="w"> </span>aux<span class="w"> </span>--sort<span class="o">=</span>-%cpu<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Top Memory Consumers ===&quot;</span>
+ps<span class="w"> </span>aux<span class="w"> </span>--sort<span class="o">=</span>-%mem<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Process Tree ===&quot;</span>
+pstree<span class="w"> </span>-p
+
+<span class="c1"># System load and resource summary</span>
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== System Load ===&quot;</span>
+uptime
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Memory Usage ===&quot;</span>
+free<span class="w"> </span>-h
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== Disk Usage ===&quot;</span>
+df<span class="w"> </span>-h
+</pre></div>
+</div>
+</section>
+<section id="resource-management">
+<h2>Resource Management<a class="headerlink" href="#resource-management" title="Link to this heading"></a></h2>
+<p><strong>Resource Monitoring:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># CPU and memory usage</span>
+top<span class="w"> </span>-b<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w">               </span><span class="c1"># Single snapshot</span>
+vmstat<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w">                </span><span class="c1"># VM statistics every 1 sec, 5 times</span>
+iostat<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w">                </span><span class="c1"># I/O statistics</span>
+
+<span class="c1"># Memory details</span>
+free<span class="w"> </span>-h<span class="w">                   </span><span class="c1"># Human readable memory info</span>
+cat<span class="w"> </span>/proc/meminfo<span class="w">         </span><span class="c1"># Detailed memory info</span>
+
+<span class="c1"># Open files and processes</span>
+lsof<span class="w">                      </span><span class="c1"># List open files</span>
+lsof<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">              </span><span class="c1"># Files opened by specific process</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:80<span class="w">              </span><span class="c1"># Processes using port 80</span>
+</pre></div>
+</div>
+<p><strong>Process Limits:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View limits</span>
+<span class="nb">ulimit</span><span class="w"> </span>-a<span class="w">                 </span><span class="c1"># All current limits</span>
+cat<span class="w"> </span>/proc/PID/limits<span class="w">      </span><span class="c1"># Limits for specific process</span>
+
+<span class="c1"># Set limits</span>
+<span class="nb">ulimit</span><span class="w"> </span>-n<span class="w"> </span><span class="m">4096</span><span class="w">           </span><span class="c1"># Max open files</span>
+<span class="nb">ulimit</span><span class="w"> </span>-u<span class="w"> </span><span class="m">1024</span><span class="w">           </span><span class="c1"># Max user processes</span>
+<span class="nb">ulimit</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1048576</span><span class="w">        </span><span class="c1"># Max memory (KB)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Dangerous Commands</strong>: Never run <cite>kill -9 1</cite> (kills init process) or <cite>killall -9 python</cite> without being specific about which processes you want to terminate.</p>
+<blockquote>
+<div><p># To kill the process
+kill PROCESS_ID</p>
+</div></blockquote>
+</div>
+</section>
+<section id="kill-vs-kill-9">
+<h2>kill vs kill -9<a class="headerlink" href="#kill-vs-kill-9" title="Link to this heading"></a></h2>
+<p>The secure and appropriate method of ending a process is kill, often known as <code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-TERM</span></code> or <code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-15</span></code>. It is comparable to properly turning off a computer.
+The risky method of brutally murdering a process is <code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-9</span></code>. It might corrupt the data and is similar to unplugging the power wire.</p>
+<section id="process-cheat-sheet">
+<h3>Process Cheat sheet<a class="headerlink" href="#process-cheat-sheet" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all running processes</span>
+ps<span class="w"> </span>aux
+
+<span class="c1"># List all running processes in extra wide format</span>
+<span class="c1"># useful to display long commands that are trimmed by default</span>
+ps<span class="w"> </span>auxww
+
+<span class="c1"># Hierarchy list all running processes</span>
+ps<span class="w"> </span>auxf
+
+<span class="c1"># terminate process</span>
+<span class="nb">kill</span><span class="w"> </span>PID
+
+<span class="c1"># forcefully terminate process</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>PID
+
+<span class="c1"># returns a list of PIDs that have &quot;keyword&quot; in the command field</span>
+pgrep<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;keyword&quot;</span>
+
+<span class="c1"># terminates all PIDs that have &quot;keyword&quot; in the command field</span>
+pkill<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;keyword&quot;</span>
+
+<span class="c1"># run &quot;command&quot; and send it in the background</span>
+<span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span>
+
+<span class="c1"># detach command from tty and run it in the background</span>
+<span class="c1"># send stdout and stderr to the cmd.log file</span>
+nohup<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span>cmd.log<span class="w"> </span><span class="p">&amp;</span>
+
+<span class="c1"># allows you to execute a command or program periodically and also shows your output on the screen which means that you will be able to see the program output in time. By default, watch re-runs the command/program every 2 seconds. The interval can be easily changed to meet your requirements.</span>
+watch<span class="w"> </span>free<span class="w"> </span>-m
+
+<span class="c1"># display commands sent to run in the background</span>
+<span class="nb">jobs</span>
+
+<span class="c1"># bring the last command sent to the background in the foreground</span>
+<span class="nb">fg</span>
+
+<span class="c1"># resume commands paused with CTRL-Z</span>
+<span class="nb">bg</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Thou shalt not kill -9</p>
+</div>
+</section>
+</section>
+<section id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>What is a process?</p>
+<ol class="loweralpha simple">
+<li><p>A program that is running on the system</p></li>
+<li><p>A program that is running on the system and has a PID</p></li>
+<li><p>A program that is running on the system and has a parent process</p></li>
+<li><p>A program that is running on the system and has a parent process and a PID</p></li>
+</ol>
+</li>
+<li><p>What is a PID?</p>
+<ol class="loweralpha simple">
+<li><p>A unique identification number assigned to a process</p></li>
+<li><p>A unique identification number assigned to a process by the kernel</p></li>
+<li><p>A unique identification number assigned to a process by the kernel that is used to manage and control the process through its lifecycle</p></li>
+<li><p>A unique identification number assigned to a process by the kernel that is used to manage and control the process through its lifecycle and is reported back to its parent process when the process completes its lifecycle or is terminated</p></li>
+</ol>
+</li>
+<li><p>What is the correct way to terminate a process?</p>
+<ol class="loweralpha simple">
+<li><p>kill -9 PID</p></li>
+<li><p>kill -TERM PID</p></li>
+<li><p>kill PID</p></li>
+<li><p>kill -15 PID</p></li>
+</ol>
+</li>
+<li><p>What is the correct way to terminate a process that is not responding?</p>
+<ol class="loweralpha simple">
+<li><p>kill -9 PID</p></li>
+<li><p>kill -TERM PID</p></li>
+<li><p>kill PID</p></li>
+<li><p>kill -15 PID</p></li>
+</ol>
+</li>
+<li><p>What is the correct way to terminate a process that is not responding and is not terminating with kill -9?</p>
+<ol class="loweralpha simple">
+<li><p>kill -9 PID</p></li>
+<li><p>kill -TERM PID</p></li>
+<li><p>kill PID</p></li>
+<li><p>kill -15 PID</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="answers">
+<h2>Answers<a class="headerlink" href="#answers" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>d</p></li>
+<li><p>d</p></li>
+<li><p>b</p></li>
+<li><p>a</p></li>
+<li><p>a</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_service_management.html" class="btn btn-neutral float-left" title="2.4 Service Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="6_system_logging.html" class="btn btn-neutral float-right" title="2.6 System Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

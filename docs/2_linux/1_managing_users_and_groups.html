@@ -1,0 +1,951 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1 Managing Users and Groups &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2 File Management" href="2_file_management.html" />
+    <link rel="prev" title="2.0 Linux Essentials" href="0_introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2.1 Managing Users and Groups</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/2_linux/1_managing_users_and_groups.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="managing-users-and-groups">
+<h1>2.1 Managing Users and Groups<a class="headerlink" href="#managing-users-and-groups" title="Link to this heading"></a></h1>
+<section id="essential-user-management">
+<h2>Essential User Management<a class="headerlink" href="#essential-user-management" title="Link to this heading"></a></h2>
+<p>Linux user management controls who can access systems and what they can do. Critical for DevOps security and automation.</p>
+<p><strong>Key Files:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/etc/passwd<span class="w">     </span><span class="c1"># User account information</span>
+/etc/shadow<span class="w">     </span><span class="c1"># Encrypted passwords</span>
+/etc/group<span class="w">      </span><span class="c1"># Group information</span>
+/etc/sudoers<span class="w">    </span><span class="c1"># Sudo permissions</span>
+</pre></div>
+</div>
+<p><strong>Essential Commands:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># User operations</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>username
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>group<span class="w"> </span>username
+sudo<span class="w"> </span>userdel<span class="w"> </span>username
+sudo<span class="w"> </span>passwd<span class="w"> </span>username
+
+<span class="c1"># Group operations</span>
+sudo<span class="w"> </span>groupadd<span class="w"> </span>groupname
+sudo<span class="w"> </span>groupdel<span class="w"> </span>groupname
+
+<span class="c1"># Information commands</span>
+id<span class="w"> </span>username
+groups<span class="w"> </span>username
+whoami
+who
+w
+</pre></div>
+</div>
+<p><strong>User Information Format (/etc/passwd):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>username:x:UID:GID:full_name:home_directory:shell
+
+<span class="c1"># Example:</span>
+devops:x:1000:1000:DevOps<span class="w"> </span>Engineer:/home/devops:/bin/bash
+</pre></div>
+</div>
+</section>
+<section id="practical-user-management">
+<h2>Practical User Management<a class="headerlink" href="#practical-user-management" title="Link to this heading"></a></h2>
+<p><strong>Create Service Account:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create system user for applications</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-s<span class="w"> </span>/bin/false<span class="w"> </span>-d<span class="w"> </span>/var/lib/myapp<span class="w"> </span>myapp
+
+<span class="c1"># Create regular user with home directory</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-m<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>newuser
+</pre></div>
+</div>
+<p><strong>Group Management:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add user to multiple groups</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker,sudo,developers<span class="w"> </span>username
+
+<span class="c1"># Change primary group</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-g<span class="w"> </span>newgroup<span class="w"> </span>username
+
+<span class="c1"># Remove user from group</span>
+sudo<span class="w"> </span>gpasswd<span class="w"> </span>-d<span class="w"> </span>username<span class="w"> </span>groupname
+</pre></div>
+</div>
+<p><strong>Security Best Practices for DevOps:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Service accounts for applications (no shell access)</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-s<span class="w"> </span>/usr/sbin/nologin<span class="w"> </span>-d<span class="w"> </span>/var/lib/myapp<span class="w"> </span>myapp
+
+<span class="c1"># DevOps user with sudo access</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-m<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>-G<span class="w"> </span>sudo,docker<span class="w"> </span>devops-user
+
+<span class="c1"># Temporary contractor access (expires in 30 days)</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-m<span class="w"> </span>-e<span class="w"> </span><span class="k">$(</span>date<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;+30 days&#39;</span><span class="w"> </span>+%Y-%m-%d<span class="k">)</span><span class="w"> </span>contractor
+
+<span class="c1"># Lock account without deleting (preserves files)</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-L<span class="w"> </span>username
+sudo<span class="w"> </span>passwd<span class="w"> </span>-l<span class="w"> </span>username
+</pre></div>
+</div>
+<p><strong>Modern Authentication Methods:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># SSH key-only authentication (disable password auth)</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/home/username/.ssh
+sudo<span class="w"> </span>cp<span class="w"> </span>authorized_keys<span class="w"> </span>/home/username/.ssh/
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>username:username<span class="w"> </span>/home/username/.ssh
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/home/username/.ssh
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/home/username/.ssh/authorized_keys
+
+<span class="c1"># Multi-factor authentication with Google Authenticator</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libpam-google-authenticator
+google-authenticator<span class="w">  </span><span class="c1"># Run as user to set up</span>
+
+<span class="c1"># LDAP/Active Directory integration</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>sssd<span class="w"> </span>realmd
+sudo<span class="w"> </span>realm<span class="w"> </span>join<span class="w"> </span>domain.company.com
+</pre></div>
+</div>
+<p><strong>Container and Cloud Integration:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1"># Docker group management</span>
+<span class="w"> </span>sudo<span class="w"> </span>groupadd<span class="w"> </span>docker
+<span class="w"> </span>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+
+<span class="w"> </span><span class="c1"># Kubernetes service accounts (for CI/CD)</span>
+<span class="w"> </span>kubectl<span class="w"> </span>create<span class="w"> </span>serviceaccount<span class="w"> </span>ci-deployer
+<span class="w"> </span>kubectl<span class="w"> </span>create<span class="w"> </span>clusterrolebinding<span class="w"> </span>ci-deployer-binding<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--clusterrole<span class="o">=</span>cluster-admin<span class="w"> </span>--serviceaccount<span class="o">=</span>default:ci-deployer
+
+<span class="w"> </span><span class="c1"># AWS IAM instance profile (cloud)</span>
+<span class="w"> </span>aws<span class="w"> </span>iam<span class="w"> </span>create-role<span class="w"> </span>--role-name<span class="w"> </span>EC2-DevOps-Role<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--assume-role-policy-document<span class="w"> </span>file://trust-policy.json
+
+*<span class="w"> </span>-<span class="w"> </span>Field
+<span class="w">  </span>-<span class="w"> </span>Example
+<span class="w">  </span>-<span class="w"> </span>Description
+*<span class="w"> </span>-<span class="w"> </span>**username**
+<span class="w">  </span>-<span class="w"> </span><span class="sb">``</span>devops<span class="sb">``</span>
+<span class="w">  </span>-<span class="w"> </span>Login<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>only<span class="w"> </span>lowercase,<span class="w"> </span>numbers,<span class="w"> </span>hyphens<span class="o">)</span>
+*<span class="w"> </span>-<span class="w"> </span>**password**
+<span class="w">  </span>-<span class="w"> </span><span class="sb">``</span>x<span class="sb">``</span>
+<span class="w">  </span>-<span class="w"> </span>Password<span class="w"> </span>placeholder<span class="w"> </span><span class="o">(</span>actual<span class="w"> </span>password<span class="w"> </span><span class="k">in</span><span class="w"> </span>/etc/shadow<span class="o">)</span>
+*<span class="w"> </span>-<span class="w"> </span>**UID**
+<span class="w">  </span>-<span class="w"> </span><span class="sb">``</span><span class="m">1000</span><span class="sb">``</span>
+<span class="w">  </span>-<span class="w"> </span>User<span class="w"> </span>ID<span class="w"> </span>number<span class="w"> </span><span class="o">(</span><span class="nv">0</span><span class="o">=</span>root,<span class="w"> </span><span class="m">1</span>-999<span class="o">=</span>system,<span class="w"> </span><span class="nv">1000</span><span class="o">+=</span>regular<span class="w"> </span>users<span class="o">)</span>
+*<span class="w"> </span>-<span class="w"> </span>**GID**
+<span class="w">  </span>-<span class="w"> </span><span class="sb">``</span><span class="m">1000</span><span class="sb">``</span>
+<span class="w">  </span>-<span class="w"> </span>Primary<span class="w"> </span>group<span class="w"> </span>ID<span class="w"> </span>number
+*<span class="w"> </span>-<span class="w"> </span>**full_name**
+<span class="w">  </span>-<span class="w"> </span><span class="sb">``</span>DevOps<span class="w"> </span>Engineer<span class="sb">``</span>
+<span class="w">  </span>-<span class="w"> </span>User<span class="s1">&#39;s real name or description</span>
+<span class="s1">* - **home_directory**</span>
+<span class="s1">  - ``/home/devops``</span>
+<span class="s1">  - User&#39;</span>s<span class="w"> </span>home<span class="w"> </span>folder<span class="w"> </span>location
+*<span class="w"> </span>-<span class="w"> </span>**shell**
+<span class="w">  </span>-<span class="w"> </span><span class="sb">``</span>/bin/bash<span class="sb">``</span>
+<span class="w">  </span>-<span class="w"> </span>Default<span class="w"> </span><span class="nb">command</span><span class="w"> </span>shell<span class="w"> </span><span class="o">(</span>/bin/bash,<span class="w"> </span>/bin/zsh,<span class="w"> </span>/usr/sbin/nologin<span class="o">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Security tip</strong>: System accounts (UID 1-999) like <code class="docutils literal notranslate"><span class="pre">nginx</span></code> or <code class="docutils literal notranslate"><span class="pre">mysql</span></code> typically use <code class="docutils literal notranslate"><span class="pre">/usr/sbin/nologin</span></code> as their shell, preventing direct login while allowing the service to run.</p>
+</div>
+</section>
+<section id="etc-shadow-the-security-vault">
+<h2>/etc/shadow - The Security Vault<a class="headerlink" href="#etc-shadow-the-security-vault" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">/etc/shadow</span></code> file stores encrypted passwords and security settings. Think of it as a secure vault that only root can access.</p>
+<p><strong>Format:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>username:encrypted_password:last_change:min_days:max_days:warn_days:inactive:expire::
+</pre></div>
+</div>
+<p><strong>Real Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Only root can read this file</span>
+sudo<span class="w"> </span>cat<span class="w"> </span>/etc/shadow<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+
+<span class="c1"># Example entries:</span>
+root:<span class="nv">$6$xyz</span>...:19000:0:99999:7:::
+devops:<span class="nv">$6$abc</span>...:19010:0:90:7:30::
+</pre></div>
+</div>
+<p><strong>Field Breakdown:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>username</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">devops</span></code></p></td>
+<td><p>Must match /etc/passwd entry</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>encrypted_password</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$6$abc...</span></code></p></td>
+<td><p>Encrypted password ($6$ = SHA-512, ! = locked account)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>last_change</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">19010</span></code></p></td>
+<td><p>Days since epoch (Jan 1, 1970) when password was last changed</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>min_days</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Minimum days before password can be changed again</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>max_days</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">90</span></code></p></td>
+<td><p>Maximum days before password must be changed</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>warn_days</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+<td><p>Days before expiration to start warning user</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>inactive</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">30</span></code></p></td>
+<td><p>Days after expiration before account is disabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>expire</strong></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>Absolute expiration date (days since epoch)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Understanding Password States:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check password status</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>-S<span class="w"> </span>devops
+
+<span class="c1"># Possible outputs:</span>
+devops<span class="w"> </span>PS<span class="w"> </span><span class="m">2024</span>-01-15<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">(</span>Password<span class="w"> </span>set,<span class="w"> </span>expires<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">90</span><span class="w"> </span>days<span class="o">)</span>
+devops<span class="w"> </span>L<span class="w">  </span><span class="m">2024</span>-01-15<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">(</span>Locked<span class="w"> </span>account<span class="o">)</span>
+devops<span class="w"> </span>NP<span class="w"> </span><span class="m">2024</span>-01-15<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">(</span>No<span class="w"> </span>password<span class="w"> </span><span class="nb">set</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="etc-group-the-department-directory">
+<h2>/etc/group - The Department Directory<a class="headerlink" href="#etc-group-the-department-directory" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> file is like a company’s department directory, showing which employees belong to which teams.</p>
+<p><strong>Format:</strong>
+.. code-block:: bash</p>
+<blockquote>
+<div><p>group_name:x:GID:member_list</p>
+</div></blockquote>
+<p><strong>Real Example:</strong>
+.. code-block:: bash</p>
+<blockquote>
+<div><p># View group information
+cat /etc/group | grep -E “(wheel|docker|sudo)”</p>
+<p># Example entries:
+wheel:x:10:devops,admin
+docker:x:999:devops,jenkins
+sudo:x:27:devops</p>
+</div></blockquote>
+<p><strong>Field Breakdown:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>group_name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">docker</span></code></p></td>
+<td><p>Unique group name</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>password</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>Group password placeholder (rarely used)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>GID</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">999</span></code></p></td>
+<td><p>Group ID number</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>member_list</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">devops,jenkins</span></code></p></td>
+<td><p>Comma-separated list of secondary group members</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Understanding Group Membership:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check your groups</span>
+groups
+<span class="c1"># Output: devops wheel docker sudo</span>
+
+<span class="c1"># Check specific user&#39;s groups</span>
+groups<span class="w"> </span>devops
+<span class="c1"># Output: devops : devops wheel docker sudo</span>
+
+<span class="c1"># Detailed group info</span>
+id<span class="w"> </span>devops
+<span class="c1"># Output: uid=1000(devops) gid=1000(devops) groups=1000(devops),10(wheel),999(docker),27(sudo)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Primary vs Secondary Groups</strong>: Every user has one primary group (defined in /etc/passwd) and can belong to multiple secondary groups (listed in /etc/group). Files created by the user will belong to their primary group by default.</p>
+</div>
+</section>
+<section id="configuration-files-and-defaults">
+<h2>Configuration Files and Defaults<a class="headerlink" href="#configuration-files-and-defaults" title="Link to this heading"></a></h2>
+<p>These files control default settings when creating new users and groups:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/etc/default/useradd<span class="w">    </span><span class="c1"># Default settings for new users</span>
+/etc/login.defs<span class="w">         </span><span class="c1"># System-wide login and password defaults</span>
+/etc/skel/<span class="w">              </span><span class="c1"># Template files copied to new user homes</span>
+</pre></div>
+</div>
+<p><strong>View Current Defaults:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See useradd defaults</span>
+useradd<span class="w"> </span>-D
+<span class="c1"># Output:</span>
+<span class="c1"># GROUP=100</span>
+<span class="c1"># HOME=/home</span>
+<span class="c1"># INACTIVE=-1</span>
+<span class="c1"># EXPIRE=</span>
+<span class="c1"># SHELL=/bin/bash</span>
+<span class="c1"># SKEL=/etc/skel</span>
+</pre></div>
+</div>
+<p><strong>What’s in /etc/skel:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Template files for new users</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/etc/skel/
+<span class="c1"># Common files:</span>
+<span class="c1"># .bash_logout    - Commands to run when logging out</span>
+<span class="c1"># .bashrc         - Bash shell configuration</span>
+<span class="c1"># .profile        - Login shell configuration</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Practical User Management<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Now let’s learn how to actually manage users and groups with hands-on examples.</p>
+<section id="creating-users-step-by-step">
+<h3>Creating Users Step-by-Step<a class="headerlink" href="#creating-users-step-by-step" title="Link to this heading"></a></h3>
+<p><strong>Basic User Creation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a simple user (uses defaults)</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>alice
+
+<span class="c1"># Check what was created</span>
+id<span class="w"> </span>alice
+<span class="c1"># Output: uid=1001(alice) gid=1001(alice) groups=1001(alice)</span>
+
+<span class="c1"># Check home directory</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/home/alice
+<span class="c1"># Directory exists with template files from /etc/skel</span>
+</pre></div>
+</div>
+<p><strong>Advanced User Creation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create user with specific settings</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>bob<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--uid<span class="w"> </span><span class="m">1500</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--home-dir<span class="w"> </span>/opt/bob<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--shell<span class="w"> </span>/bin/zsh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--comment<span class="w"> </span><span class="s2">&quot;Bob the Builder&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--create-home
+
+<span class="c1"># Verify the creation</span>
+grep<span class="w"> </span>bob<span class="w"> </span>/etc/passwd
+<span class="c1"># Output: bob:x:1500:1000:Bob the Builder:/opt/bob:/bin/zsh</span>
+</pre></div>
+</div>
+<p><strong>DevOps-Specific Examples:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a service account for web server</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>nginx<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--system<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-create-home<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--shell<span class="w"> </span>/usr/sbin/nologin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--comment<span class="w"> </span><span class="s2">&quot;Nginx web server&quot;</span>
+
+<span class="c1"># Create a deployment user</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--groups<span class="w"> </span>wheel,docker<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--comment<span class="w"> </span><span class="s2">&quot;Deployment Account&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--create-home
+</pre></div>
+</div>
+</section>
+<section id="setting-up-passwords-securely">
+<h3>Setting Up Passwords Securely<a class="headerlink" href="#setting-up-passwords-securely" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set password interactively (most secure)</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>alice
+<span class="c1"># You&#39;ll be prompted to enter password twice</span>
+
+<span class="c1"># Set password from script (less secure, but useful for automation)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;alice:newpassword&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>chpasswd
+
+<span class="c1"># Generate random password</span>
+openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">12</span>
+<span class="c1"># Output: xK2mP9qR8nL4</span>
+
+<span class="c1"># Lock an account (disable login)</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>-l<span class="w"> </span>alice
+
+<span class="c1"># Unlock an account</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>-u<span class="w"> </span>alice
+
+<span class="c1"># Check password status</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>-S<span class="w"> </span>alice
+<span class="c1"># Output: alice PS 2024-01-15 0 99999 7 -1</span>
+</pre></div>
+</div>
+<p><strong>Password Aging Configuration:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force password change every 90 days, warn 7 days before</span>
+sudo<span class="w"> </span>chage<span class="w"> </span>-M<span class="w"> </span><span class="m">90</span><span class="w"> </span>-W<span class="w"> </span><span class="m">7</span><span class="w"> </span>alice
+
+<span class="c1"># Set account to expire on specific date</span>
+sudo<span class="w"> </span>chage<span class="w"> </span>-E<span class="w"> </span><span class="m">2024</span>-12-31<span class="w"> </span>alice
+
+<span class="c1"># View current settings</span>
+sudo<span class="w"> </span>chage<span class="w"> </span>-l<span class="w"> </span>alice
+</pre></div>
+</div>
+</section>
+<section id="group-management-in-practice">
+<h3>Group Management in Practice<a class="headerlink" href="#group-management-in-practice" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create groups for different teams</span>
+sudo<span class="w"> </span>groupadd<span class="w"> </span>developers
+sudo<span class="w"> </span>groupadd<span class="w"> </span>operations
+sudo<span class="w"> </span>groupadd<span class="w"> </span>devops-team
+
+<span class="c1"># Create group with specific GID</span>
+sudo<span class="w"> </span>groupadd<span class="w"> </span>-g<span class="w"> </span><span class="m">2000</span><span class="w"> </span>database-admins
+
+<span class="c1"># Add users to groups (secondary groups)</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>developers<span class="w"> </span>alice
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>developers,devops-team<span class="w"> </span>bob
+
+<span class="c1"># Change user&#39;s primary group</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-g<span class="w"> </span>developers<span class="w"> </span>alice
+
+<span class="c1"># Remove user from a group</span>
+sudo<span class="w"> </span>gpasswd<span class="w"> </span>-d<span class="w"> </span>alice<span class="w"> </span>developers
+</pre></div>
+</div>
+<p><strong>Real-World DevOps Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up typical DevOps team structure</span>
+
+<span class="c1"># Create groups</span>
+sudo<span class="w"> </span>groupadd<span class="w"> </span>developers
+sudo<span class="w"> </span>groupadd<span class="w"> </span>devops
+sudo<span class="w"> </span>groupadd<span class="w"> </span>docker-users
+
+<span class="c1"># Create users and assign to appropriate groups</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>--groups<span class="w"> </span>developers,docker-users<span class="w"> </span>jane
+sudo<span class="w"> </span>useradd<span class="w"> </span>--groups<span class="w"> </span>devops,docker-users,wheel<span class="w"> </span>mike
+sudo<span class="w"> </span>useradd<span class="w"> </span>--groups<span class="w"> </span>developers<span class="w"> </span>sarah
+
+<span class="c1"># Verify group memberships</span>
+groups<span class="w"> </span>jane<span class="w"> </span>mike<span class="w"> </span>sarah
+</pre></div>
+</div>
+</section>
+<section id="modifying-existing-users">
+<h3>Modifying Existing Users<a class="headerlink" href="#modifying-existing-users" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change user&#39;s home directory</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-d<span class="w"> </span>/new/home/path<span class="w"> </span>alice
+
+<span class="c1"># Change user&#39;s shell</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-s<span class="w"> </span>/bin/zsh<span class="w"> </span>alice
+
+<span class="c1"># Change user&#39;s UID (be careful!)</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-u<span class="w"> </span><span class="m">2000</span><span class="w"> </span>alice
+
+<span class="c1"># Change user&#39;s comment/description</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Alice in DevOps&quot;</span><span class="w"> </span>alice
+
+<span class="c1"># Lock account (keeps files, prevents login)</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-L<span class="w"> </span>alice
+
+<span class="c1"># Unlock account</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-U<span class="w"> </span>alice
+</pre></div>
+</div>
+</section>
+<section id="removing-users-and-groups-safely">
+<h3>Removing Users and Groups Safely<a class="headerlink" href="#removing-users-and-groups-safely" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove user but keep home directory</span>
+sudo<span class="w"> </span>userdel<span class="w"> </span>alice
+
+<span class="c1"># Remove user and home directory</span>
+sudo<span class="w"> </span>userdel<span class="w"> </span>-r<span class="w"> </span>alice
+
+<span class="c1"># Remove user and all files owned by user</span>
+sudo<span class="w"> </span>userdel<span class="w"> </span>-r<span class="w"> </span>-f<span class="w"> </span>alice
+
+<span class="c1"># Remove group (only if no users use it as primary group)</span>
+sudo<span class="w"> </span>groupdel<span class="w"> </span>developers
+
+<span class="c1"># Check if group is safe to delete</span>
+grep<span class="w"> </span>developers<span class="w"> </span>/etc/passwd
+<span class="c1"># If output is empty, safe to delete</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Be careful when deleting users!</strong> Always backup important data first. Use <code class="docutils literal notranslate"><span class="pre">userdel</span> <span class="pre">-r</span></code> only when you’re certain you want to permanently delete all user files.</p>
+</div>
+</section>
+</section>
+<section id="devops-best-practices">
+<h2>DevOps Best Practices<a class="headerlink" href="#devops-best-practices" title="Link to this heading"></a></h2>
+<p><strong>1. Service Accounts</strong>
+Create dedicated accounts for services:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Database service account</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-s<span class="w"> </span>/usr/sbin/nologin<span class="w"> </span>-d<span class="w"> </span>/var/lib/mysql<span class="w"> </span>mysql
+
+<span class="c1"># Web server account</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-s<span class="w"> </span>/usr/sbin/nologin<span class="w"> </span>-d<span class="w"> </span>/var/www<span class="w"> </span>nginx
+</pre></div>
+</div>
+<p><strong>2. Deployment Accounts</strong>
+Create accounts for automated deployments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deployment user with sudo access</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>-m<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>deploy
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>deploy
+
+<span class="c1"># Set up SSH key authentication</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/home/deploy/.ssh
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/home/deploy/.ssh
+sudo<span class="w"> </span>chown<span class="w"> </span>deploy:deploy<span class="w"> </span>/home/deploy/.ssh
+</pre></div>
+</div>
+<p><strong>3. Monitoring Group Access</strong>
+Use groups to manage access to logs and monitoring:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create monitoring group</span>
+sudo<span class="w"> </span>groupadd<span class="w"> </span>monitoring
+
+<span class="c1"># Add users who need to read logs</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>monitoring<span class="w"> </span>alice
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>monitoring<span class="w"> </span>bob
+
+<span class="c1"># Set appropriate permissions on log files</span>
+sudo<span class="w"> </span>chgrp<span class="w"> </span>monitoring<span class="w"> </span>/var/log/application.log
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">640</span><span class="w"> </span>/var/log/application.log
+</pre></div>
+</div>
+</section>
+<section id="common-command-reference">
+<h2>Common Command Reference<a class="headerlink" href="#common-command-reference" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">useradd</span> <span class="pre">[options]</span> <span class="pre">username</span></code></p></td>
+<td><p>Create new user account</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">userdel</span> <span class="pre">[options]</span> <span class="pre">username</span></code></p></td>
+<td><p>Delete user account</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">usermod</span> <span class="pre">[options]</span> <span class="pre">username</span></code></p></td>
+<td><p>Modify existing user</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">passwd</span> <span class="pre">[username]</span></code></p></td>
+<td><p>Set/change user password</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chage</span> <span class="pre">[options]</span> <span class="pre">username</span></code></p></td>
+<td><p>Change password aging information</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">groupadd</span> <span class="pre">[options]</span> <span class="pre">groupname</span></code></p></td>
+<td><p>Create new group</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">groupdel</span> <span class="pre">groupname</span></code></p></td>
+<td><p>Delete group</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gpasswd</span> <span class="pre">[options]</span> <span class="pre">groupname</span></code></p></td>
+<td><p>Manage group membership</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">id</span> <span class="pre">[username]</span></code></p></td>
+<td><p>Display user and group IDs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">groups</span> <span class="pre">[username]</span></code></p></td>
+<td><p>Display user’s groups</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">-</span> <span class="pre">username</span></code></p></td>
+<td><p>Switch to another user</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-u</span> <span class="pre">username</span> <span class="pre">command</span></code></p></td>
+<td><p>Run command as another user</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hands-on-practice-exercises">
+<h2>Hands-On Practice Exercises<a class="headerlink" href="#hands-on-practice-exercises" title="Link to this heading"></a></h2>
+<p><strong>Exercise 1: Create a Development Team</strong></p>
+<ol class="arabic simple">
+<li><p>Create a user named <em>alice</em> with UID and GID set to <em>3001</em></p></li>
+<li><p>Create a user named <em>bob</em> with home directory in <em>/opt/bob</em></p></li>
+<li><p>Create a user named <em>john</em> with comment field set to <em>John Doe</em></p></li>
+<li><p>Create a service user named <em>minecraft</em> with:</p>
+<ul class="simple">
+<li><p>UID <em>9990</em> and GID <em>9990</em></p></li>
+<li><p>Home directory in <em>/usr/games</em></p></li>
+<li><p>No login privileges (shell: <em>/bin/false</em>)</p></li>
+<li><p>Don’t create the home directory</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Exercise 2: Configure Security</strong></p>
+<ol class="arabic simple" start="5">
+<li><p>Set a strong password for alice</p></li>
+<li><p>Create a group named <em>dataManagement</em> with GID 9001</p></li>
+<li><p>Add <em>alice</em> and <em>bob</em> to the <em>billing</em> group</p></li>
+<li><p>Configure password aging for <em>alice</em>:</p>
+<ul class="simple">
+<li><p>Password expires after 31 days</p></li>
+<li><p>User gets warnings 7 days before expiration</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Exercise 3: Clean Up</strong></p>
+<ol class="arabic simple" start="9">
+<li><p>Lock the <em>minecraft</em> account and password</p></li>
+<li><p>Remove the <em>minecraft</em> account and home directory</p></li>
+<li><p>Remove the <em>minecraft</em> group</p></li>
+<li><p>Remove the <em>dataManagement</em> and <em>billing</em> groups</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Practice safely</strong>: Use a virtual machine or container to practice these commands. Never practice user management on production systems!</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Security reminder</strong>: Passwords are like underwear, change them often, don’t share them, and don’t leave them lying around!</p>
+</div>
+</section>
+<section id="exercise-solutions">
+<h2>Exercise Solutions<a class="headerlink" href="#exercise-solutions" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 1: Create users</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>alice<span class="w"> </span>-u<span class="w"> </span><span class="m">3001</span><span class="w"> </span>-g<span class="w"> </span><span class="m">3001</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>bob<span class="w"> </span>-d<span class="w"> </span>/opt/bob<span class="w"> </span>-m
+sudo<span class="w"> </span>useradd<span class="w"> </span>john<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;John Doe&quot;</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>minecraft<span class="w"> </span>-u<span class="w"> </span><span class="m">9990</span><span class="w"> </span>-g<span class="w"> </span><span class="m">9990</span><span class="w"> </span>-d<span class="w"> </span>/usr/games<span class="w"> </span>-s<span class="w"> </span>/bin/false<span class="w"> </span>-M
+
+<span class="c1"># Exercise 2: Configure security</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>alice
+sudo<span class="w"> </span>groupadd<span class="w"> </span>dataManagement<span class="w"> </span>-g<span class="w"> </span><span class="m">9001</span>
+sudo<span class="w"> </span>groupadd<span class="w"> </span>billing<span class="w">  </span><span class="c1"># Create billing group first</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>billing<span class="w"> </span>alice
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>billing<span class="w"> </span>bob
+sudo<span class="w"> </span>chage<span class="w"> </span>-M<span class="w"> </span><span class="m">31</span><span class="w"> </span>-W<span class="w"> </span><span class="m">7</span><span class="w"> </span>alice
+
+<span class="c1"># Exercise 3: Clean up</span>
+sudo<span class="w"> </span>passwd<span class="w"> </span>-l<span class="w"> </span>minecraft
+sudo<span class="w"> </span>userdel<span class="w"> </span>-r<span class="w"> </span>minecraft
+sudo<span class="w"> </span>groupdel<span class="w"> </span>minecraft
+sudo<span class="w"> </span>groupdel<span class="w"> </span>dataManagement
+sudo<span class="w"> </span>groupdel<span class="w"> </span>billing
+</pre></div>
+</div>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>File Structure</strong>: User info is split across multiple files (/etc/passwd, /etc/shadow, /etc/group)</p></li>
+<li><p><strong>Security</strong>: Never edit these files directly—use the proper commands</p></li>
+<li><p><strong>Groups</strong>: Every user has one primary group and can belong to multiple secondary groups</p></li>
+<li><p><strong>Service Accounts</strong>: Use system accounts with no login for services</p></li>
+<li><p><strong>Password Security</strong>: Implement aging, complexity, and regular changes</p></li>
+<li><p><strong>DevOps Practice</strong>: Automate user management but understand the fundamentals first</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Next Steps</strong>: Now that you understand user management, you’re ready to learn about file permissions and ownership—which directly builds on group membership concepts!</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0_introduction.html" class="btn btn-neutral float-left" title="2.0 Linux Essentials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_file_management.html" class="btn btn-neutral float-right" title="2.2 File Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

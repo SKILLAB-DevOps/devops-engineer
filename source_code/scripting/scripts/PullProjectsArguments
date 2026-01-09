@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+#
+#######################################
+# Automates the git push process.
+# Usage: ./PullProjectsArguments
+# Author: Skillab Team
+# Copyright: Bla Bla Bla
+#######################################
+
+# Variable declaration
+gitRemote="git@github.com:SKILLAB-DevOps/"
+
+# Create an ARRAY
+declare -a projects
+
+# Instantiate the array with values
+projects=("introduction" \
+          "environments" \
+          "linux" \
+          "scripting" \
+          "git" )
+
+#######################################
+# Description
+#   Prints Usage message
+#   exists
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns
+#   None
+#######################################
+usage() { 
+  # Show Usage message
+  echo "Usage: $0 [-b <master/develop> ] [-l </path/to/location/> ] " 1>&2
+  ## Exit Success
+  # exit 
+  # or
+  # exit 0
+  ## Exit Failure
+  exit 1; 
+}
+
+#######################################
+# Description
+#   change directory to the sanbox
+#   checks out develop
+#   if exist pulls all the new changes 
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns
+#   None
+#######################################
+function pullCode() {
+    # change directory to the project
+    cd "${gitlocal}${project}"
+    # move the develop branch
+    git checkout "${branch}"
+    git pull
+    # Debug print used to improve readiablilty 
+    echo " "
+}
+
+# Read arguments
+while getopts ":b:l:" o; do
+    case "${o}" in
+        b)
+            b=${OPTARG}
+            ;;
+        l)
+            l=${OPTARG}
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+# Check if branch exists if not default to master
+if [[ -z "${b}" ]]; then
+  branch='master'
+else
+  if [[ "${b}" == 'master' ]] || [[ "${b}" == 'develop' ]]; then
+    branch="${b}"
+  else
+    usage
+  fi
+fi
+
+# Check if location exists if not default to '/home/${USER}/sandbox/test/'
+if [[ -z "${l}" ]]; then
+  gitlocal="/home/${USER}/sandbox/test/"
+else
+  gitlocal="${l}"
+fi
+
+# Check if location is present if not created it
+if [[ -d "${gitlocal}" ]]; then
+  echo "[INFO]: Location present"
+else
+  echo "[ERROR]: Location unvailable, will be created"
+  mkdir -p "${gitlocal}"
+  echo "[INFO]: Location created "${gitlocal}""
+fi 
+
+echo "[INFO]: branch = ${branch}"
+echo "[INFO]: location = ${gitlocal}"
+
+echo "[INFO]: THE PROCESS OF CLONING STARTS!"
+
+for project in ${projects[@]}
+  do
+    if [[ -d "${gitlocal}${project}" ]]; then
+        # Debug print used to show the project name
+        echo "[INFO]: PULL ${project^^}"
+        pullCode
+    else
+       cd "${gitlocal}"
+       git clone "${gitRemote}${project}.git"
+    fi
+  done
+
+echo "[INFO]: Done."

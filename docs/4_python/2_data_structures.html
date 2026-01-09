@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2 Variables and Data structures &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.3 Loops and conditionals" href="3_conditions_loops.html" />
+    <link rel="prev" title="4.1 Installation" href="1_installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">4.2 Variables and Data structures</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/4_python/2_data_structures.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="variables-and-data-structures">
+<h1>4.2 Variables and Data structures<a class="headerlink" href="#variables-and-data-structures" title="Link to this heading"></a></h1>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading"></a></h2>
+<p>Variables Are Labels - Variables are often described as boxes you can store values in - a variable references a certain value.</p>
+<p>When declaring a variable we use the syntax: <cite>name = value</cite></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>We can also do multiple assignments</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="naming">
+<h2>Naming<a class="headerlink" href="#naming" title="Link to this heading"></a></h2>
+<p>When you are using variables in Python, you need to adhere to a few rules and guidelines. Breaking some of these rules will cause errors; other guidelines just help you write code that is easier to read and understand. Be sure to keep the following variable rules in mind:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Variable names can contain only <strong>letters</strong>, <strong>numbers</strong>, and <strong>underscores</strong>.</p></li>
+<li><p>Variable names are <strong>case-sensitive</strong> (<code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">Name</span></code> and <code class="docutils literal notranslate"><span class="pre">NAME</span></code> are three different variables)</p></li>
+<li><p>They can start with a <strong>letter or an underscore</strong>, but not with a number. For instance, you can call a variable <code class="docutils literal notranslate"><span class="pre">name_1</span></code> but not <code class="docutils literal notranslate"><span class="pre">1_name</span></code>.</p></li>
+<li><p><strong>Spaces are not allowed</strong> in variable names, but underscores can be used to separate words in variable names. For example, <code class="docutils literal notranslate"><span class="pre">first_name</span></code> works, but <code class="docutils literal notranslate"><span class="pre">first</span> <span class="pre">name</span></code> will cause errors.</p></li>
+<li><p><strong>Avoid using Python keywords</strong> and function names as variable names; that is, do not use words that Python has reserved for a particular programmatic purpose, such as the word print. Read more:  <a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#keywords">https://docs.python.org/3/reference/lexical_analysis.html#keywords</a></p></li>
+<li><p>Variable names should be <strong>short but descriptive</strong>. For example, <code class="docutils literal notranslate"><span class="pre">name</span></code> is better than <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">first_name</span></code> is better than <code class="docutils literal notranslate"><span class="pre">f_n</span></code>, and <code class="docutils literal notranslate"><span class="pre">name_length</span></code> is better than <code class="docutils literal notranslate"><span class="pre">length_of_persons_name</span></code>.</p></li>
+<li><p>Be careful when using the lowercase letter <code class="docutils literal notranslate"><span class="pre">l</span></code> and the uppercase letter <code class="docutils literal notranslate"><span class="pre">O</span></code> because they could be confused with the numbers <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">and</span> <span class="pre">0</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<section id="naming-conventions">
+<h3>Naming conventions<a class="headerlink" href="#naming-conventions" title="Link to this heading"></a></h3>
+<p>In <strong>Python</strong> naming conventions will not affect your code, but will affect your way for working in the team (in other languages naming convention matters)</p>
+<p>We have 4 different ways of declaring:</p>
+<ol class="arabic simple">
+<li><p><strong>Snake case</strong> (ex: some_variable)</p></li>
+<li><p><strong>Screaming Snake case</strong> (ex: SOME_VARIABLE)</p></li>
+<li><p><strong>Pascal case</strong> (ex: SomeVariable)</p></li>
+<li><p><strong>Camel case</strong> (ex: someVariable)</p></li>
+</ol>
+<p>Read more about the Python conventions in <a class="reference external" href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a></p>
+<p><strong>I</strong> use them like this:</p>
+<ul class="simple">
+<li><p><strong>Snake case</strong> - for functions, methods, attributes, variables (this is the preferred way in Python)</p></li>
+</ul>
+<p>Function names should be lowercase, with words separated by underscores as necessary to improve readability.</p>
+<p>Is preferred <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">function_name():</span></code> not <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">functionName():</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your name: &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Screaming Snake case</strong> - Constants</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Pascal case</strong> - defining class name.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
+   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+   <span class="k">def</span><span class="w"> </span><span class="nf">displayInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># class method</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Student Name: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;, Age: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Camel case</strong>- to name some methods (ex: toJson, fromFile, updateFile) - because when you are using them they look like this <code class="docutils literal notranslate"><span class="pre">Student.displayInfo</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Link to this heading"></a></h2>
+<p>In Python3.6, PEP 498 introduces a new kind of string literals: f-strings, or formatted string literals.</p>
+<p>Read more about f-strings <a class="reference external" href="https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep498">https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep498</a></p>
+</section>
+<section id="strings">
+<h2>1. Strings<a class="headerlink" href="#strings" title="Link to this heading"></a></h2>
+<p>In Python, strings are enclosed in either single or double quotation marks. Single quotes will not let variable pass, so be careful.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">single_name</span> <span class="o">=</span> <span class="s1">&#39;skillab&#39;</span>
+<span class="n">doubleName</span> <span class="o">=</span> <span class="s2">&quot;skillab&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Course name is &quot;</span> <span class="o">+</span> <span class="n">single_name</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Course name is </span><span class="si">{</span><span class="n">single_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="string-manipulation">
+<h3>String Manipulation<a class="headerlink" href="#string-manipulation" title="Link to this heading"></a></h3>
+<p>When we talk about string manipulation, we means either using the string methods or using the f-strings.</p>
+<dl class="simple">
+<dt>Keep in mind that some of the methods:</dt><dd><ul class="simple">
+<li><p>are case sensitive - <code class="docutils literal notranslate"><span class="pre">title()</span></code> and <code class="docutils literal notranslate"><span class="pre">Title()</span></code> are not the same</p></li>
+<li><p>are irreversible - if you want to keep the original string you need to create a new variable - Example <code class="docutils literal notranslate"><span class="pre">count()</span></code> method</p></li>
+<li><p>are not changing the original string - Example <code class="docutils literal notranslate"><span class="pre">title()</span></code> method</p></li>
+<li><p>are badly documented - you need to read the documentation to understand what they are doing and how to use them properly. Example float’s method <code class="docutils literal notranslate"><span class="pre">is_integer()</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;skillab&quot;</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;skillab&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
+
+<span class="c1"># How to find out all the available alternatives</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Methods available for strings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__contains__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getnewargs__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getstate__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__iter__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__len__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__mod__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__mul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rmod__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;capitalize&#39;</span><span class="p">,</span> <span class="c1"># returns a copy of the string with its first character capitalized and the rest lowercased</span>
+<span class="s1">&#39;casefold&#39;</span><span class="p">,</span> <span class="c1"># returns a copy of the string with all its characters lowercased</span>
+<span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="c1"># returns a centered string of length width</span>
+<span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="c1"># returns the number of times a specified value occurs in a string</span>
+<span class="s1">&#39;encode&#39;</span><span class="p">,</span> <span class="c1"># returns an encoded version of the string</span>
+<span class="s1">&#39;endswith&#39;</span><span class="p">,</span> <span class="c1"># returns true if the string ends with the specified value</span>
+<span class="s1">&#39;expandtabs&#39;</span><span class="p">,</span> <span class="c1"># sets the tab size of the string</span>
+<span class="s1">&#39;find&#39;</span><span class="p">,</span> <span class="c1"># searches the string for a specified value and returns the position of where it was found</span>
+<span class="s1">&#39;format&#39;</span><span class="p">,</span> <span class="c1"># formats specified values in a string</span>
+<span class="s1">&#39;format_map&#39;</span><span class="p">,</span> <span class="c1"># formats specified values in a string</span>
+<span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="c1"># searches the string for a specified value and returns the position of where it was found</span>
+<span class="s1">&#39;isalnum&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are alphanumeric</span>
+<span class="s1">&#39;isalpha&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are in the alphabet</span>
+<span class="s1">&#39;isascii&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are ascii characters</span>
+<span class="s1">&#39;isdecimal&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are decimals</span>
+<span class="s1">&#39;isdigit&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are digits</span>
+<span class="s1">&#39;isidentifier&#39;</span><span class="p">,</span> <span class="c1"># returns True if the string is an identifier</span>
+<span class="s1">&#39;islower&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are lower case</span>
+<span class="s1">&#39;isnumeric&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are numeric</span>
+<span class="s1">&#39;isprintable&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are printable</span>
+<span class="s1">&#39;isspace&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are white spaces</span>
+<span class="s1">&#39;istitle&#39;</span><span class="p">,</span> <span class="c1"># returns True if the string follows the rules of a title</span>
+<span class="s1">&#39;isupper&#39;</span><span class="p">,</span> <span class="c1"># returns True if all characters in the string are upper case</span>
+<span class="s1">&#39;join&#39;</span><span class="p">,</span> <span class="c1"># joins the elements of an iterable to the end of the string</span>
+<span class="s1">&#39;ljust&#39;</span><span class="p">,</span> <span class="c1"># returns a left justified version of the string</span>
+<span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="c1"># converts a string into lower case</span>
+<span class="s1">&#39;lstrip&#39;</span><span class="p">,</span> <span class="c1"># returns a left trim version of the string</span>
+<span class="s1">&#39;maketrans&#39;</span><span class="p">,</span> <span class="c1"># returns a translation table to be used in translations</span>
+<span class="s1">&#39;partition&#39;</span><span class="p">,</span> <span class="c1"># returns a tuple where the string is parted into three parts</span>
+<span class="s1">&#39;removeprefix&#39;</span><span class="p">,</span> <span class="c1"># removes a specified prefix from the string</span>
+<span class="s1">&#39;removesuffix&#39;</span><span class="p">,</span> <span class="c1"># removes a specified suffix from the string</span>
+<span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="c1"># returns a string where a specified value is replaced with a specified value</span>
+<span class="s1">&#39;rfind&#39;</span><span class="p">,</span> <span class="c1"># searches the string for a specified value and returns the last position of where it was found</span>
+<span class="s1">&#39;rindex&#39;</span><span class="p">,</span> <span class="c1"># searches the string for a specified value and returns the last position of where it was found</span>
+<span class="s1">&#39;rjust&#39;</span><span class="p">,</span> <span class="c1"># returns a right justified version of the string</span>
+<span class="s1">&#39;rpartition&#39;</span><span class="p">,</span> <span class="c1"># returns a tuple where the string is parted into three parts</span>
+<span class="s1">&#39;rsplit&#39;</span><span class="p">,</span> <span class="c1"># splits the string at the specified separator, and returns a list</span>
+<span class="s1">&#39;rstrip&#39;</span><span class="p">,</span> <span class="c1"># returns a right trim version of the string</span>
+<span class="s1">&#39;split&#39;</span><span class="p">,</span> <span class="c1"># splits the string at the specified separator, and returns a list</span>
+<span class="s1">&#39;splitlines&#39;</span><span class="p">,</span> <span class="c1"># splits the string at line breaks and returns a list</span>
+<span class="s1">&#39;startswith&#39;</span><span class="p">,</span> <span class="c1"># returns true if the string starts with the specified value</span>
+<span class="s1">&#39;strip&#39;</span><span class="p">,</span> <span class="c1"># returns a trimmed version of the string</span>
+<span class="s1">&#39;swapcase&#39;</span><span class="p">,</span> <span class="c1"># swaps cases, lower case becomes upper case and vice versa</span>
+<span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="c1"># converts the first character of each word to upper case</span>
+<span class="s1">&#39;translate&#39;</span><span class="p">,</span> <span class="c1"># returns a translated string</span>
+<span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="c1"># converts a string into upper case</span>
+<span class="s1">&#39;zfill&#39;</span> <span class="c1"># fills the string with a specified number of 0 values at the beginning</span>
+</pre></div>
+</div>
+</section>
+<section id="magic-methods">
+<h3>Magic methods<a class="headerlink" href="#magic-methods" title="Link to this heading"></a></h3>
+<p>..code-block:: python</p>
+<blockquote>
+<div><p>__len__()</p>
+</div></blockquote>
+<p>One of the many magic methods in the Python programming language, <code class="docutils literal notranslate"><span class="pre">__len__</span></code> is primarily used to implement the <code class="docutils literal notranslate"><span class="pre">len()</span></code> function because every time the <code class="docutils literal notranslate"><span class="pre">len()</span></code> function is called, the magic method <code class="docutils literal notranslate"><span class="pre">__len__</span></code> is also called internally.</p>
+<p>After all is said and done, it returns an integer value larger than or equal to zero, which is the length of the object for which it was called.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;skillab&quot;</span><span class="o">.</span><span class="fm">__len__</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;skillab&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="numbers">
+<h2>2. Numbers<a class="headerlink" href="#numbers" title="Link to this heading"></a></h2>
+<p>Python supports 3 types of numbers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>integers(whole numbers)</p></li>
+<li><p>floating point numbers(decimals).</p></li>
+<li><p>complex numbers</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># When declaring a variable we use the syntax</span>
+<span class="c1"># name = value</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">xint</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">xfloat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">universe_age</span> <span class="o">=</span> <span class="mi">14_000_000_000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xint</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xfloat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">universe_age</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">xint</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">xfloat</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">xint</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">xfloat</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Methods available for numbers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;__abs__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__add__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__bool__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ceil__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__divmod__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__float__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__floor__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__floordiv__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getformat__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getnewargs__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getstate__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__int__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__mod__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__mul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__neg__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__pos__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__pow__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__radd__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rdivmod__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rfloordiv__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rmod__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__round__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rpow__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rsub__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rtruediv__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__sub__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__truediv__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__trunc__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;as_integer_ratio&#39;</span><span class="p">,</span> <span class="c1"># returns a pair of integers whose ratio is exactly equal to the original float</span>
+<span class="s1">&#39;conjugate&#39;</span><span class="p">,</span> <span class="c1"># returns the complex conjugate of the float</span>
+<span class="s1">&#39;fromhex&#39;</span><span class="p">,</span> <span class="c1"># converts a hexadecimal string to a float</span>
+<span class="s1">&#39;hex&#39;</span><span class="p">,</span> <span class="c1"># converts a float to a hexadecimal string</span>
+<span class="s1">&#39;imag&#39;</span><span class="p">,</span> <span class="c1"># returns the imaginary part of a complex number</span>
+<span class="s1">&#39;is_integer&#39;</span><span class="p">,</span> <span class="c1"># returns True if the float is an integer</span>
+<span class="s1">&#39;real&#39;</span> <span class="c1"># returns the real part of a complex number</span>
+</pre></div>
+</div>
+<section id="number-operations">
+<h3>Number operations<a class="headerlink" href="#number-operations" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># subtract</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># multiply</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># divide</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># modulo</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="lists">
+<h2>3. Lists<a class="headerlink" href="#lists" title="Link to this heading"></a></h2>
+<p>A list is a collection of objects in a specific sequence.
+A list can contain anything you want, and there is no requirement that the items on it link to one another in any specific way.
+It’s a good idea to name your list in the plural, such as letters, numerals, or names, because lists typically contain many elements.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="c1"># Lists are ordered collections, so you can access any element in a list by telling Python the position, or index, of the item desired. To access an element in a list, write the name of the list followed by the index of the item enclosed in square brackets.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># You can also format the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Methods available for lists:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__class_getitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__contains__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getstate__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__iadd__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__imul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__iter__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__len__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__mul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reversed__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="c1"># adds an element at the end of the list</span>
+<span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="c1"># removes all the elements from the list</span>
+<span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="c1"># returns a copy of the list</span>
+<span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="c1"># returns the number of elements with the specified value</span>
+<span class="s1">&#39;extend&#39;</span><span class="p">,</span> <span class="c1"># add the elements of a list (or any iterable), to the end of the current list</span>
+<span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="c1"># returns the index of the first element with the specified value</span>
+<span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="c1"># adds an element at the specified position</span>
+<span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="c1"># removes the element at the specified position</span>
+<span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="c1"># removes the first item with the specified value</span>
+<span class="s1">&#39;reverse&#39;</span><span class="p">,</span> <span class="c1"># reverses the order of the list</span>
+<span class="s1">&#39;sort&#39;</span> <span class="c1"># sorts the list</span>
+</pre></div>
+</div>
+<section id="list-manipulation">
+<h3>List Manipulation<a class="headerlink" href="#list-manipulation" title="Link to this heading"></a></h3>
+<p>The majority of lists you create will be dynamic, meaning that when your program executes, you’ll add, update and remove items from the list you’ve created.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add elements</span>
+<span class="n">animals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;monkey&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="c1"># Insert element at any position</span>
+<span class="n">animals</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;rabbit&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="c1"># Remove elements by position</span>
+<span class="k">del</span> <span class="n">animals</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="c1"># Removing an Item Using the pop() Method</span>
+<span class="c1"># Example want to remove a user from a list of active members and then add that user to a list of inactive members.</span>
+<span class="c1"># pop() with no argument last element</span>
+<span class="c1"># pop(1) 2nd element</span>
+<span class="n">popped_animal</span> <span class="o">=</span> <span class="n">animals</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+<span class="c1"># Remove elements by value</span>
+<span class="n">animals</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only the first instance of the value you specify is removed by the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method.
+You’ll need to use a loop if there’s a chance that the value could appear more than once in the list to ensure that all instances are eliminated.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">min</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class="nb">max</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="list-organization">
+<h3>List Organization<a class="headerlink" href="#list-organization" title="Link to this heading"></a></h3>
+<p>Because you can’t always control the order in which your users submit their data, your lists will frequently be generated in an unpredictable order.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rabbit&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;monkey&#39;</span><span class="p">]</span>
+<span class="c1"># how long is the list</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="n">animals</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">animals</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># sort() is a irreversible procedure</span>
+<span class="c1"># if you need something temporary without affecting the original list use sorted(list_name)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here is the original list:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Here is the sorted list:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">animals</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Here is the original list again:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When all the values are not lowercase, sorting a list alphabetically becomes a little more challenging.
+When determining a sort order, capital letters can be interpreted in a variety of ways, and specifying the precise order can be more difficult than we want to handle right now.</p>
+</div>
+</section>
+<section id="avoiding-index-errors-when-working-with-lists">
+<h3>Avoiding Index Errors When Working with Lists<a class="headerlink" href="#avoiding-index-errors-when-working-with-lists" title="Link to this heading"></a></h3>
+<p>When you are working with lists for the first time, one type of error is frequent to see is Index error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rabbit&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;monkey&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Instead of using last element by explicitly using position value we can use</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">animals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dictionaries">
+<h2>4. Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading"></a></h2>
+<p>In Python, a dictionary is a collection of key-value pairs.
+Each key has a value associated with it, and you may use a key to get that value.
+The value of a key could be an integer, string, list, dictionary, or even another dictionary.
+In actuality, you may use any Python-created object as a value in a dictionary.</p>
+<p>What Are Dictionaries in Python?
+In Python, dictionaries are a built-in data type used to store collections of data. Unlike lists or tuples, dictionaries are unordered and store data in key-value pairs. Here’s a simple example:</p>
+<section id="when-are-dictionaries-used">
+<h3>When Are Dictionaries Used?<a class="headerlink" href="#when-are-dictionaries-used" title="Link to this heading"></a></h3>
+<p>Dictionaries are highly flexible and useful in a variety of situations, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Caching: To remember previously computed values.</p></li>
+<li><p>Data grouping: To categorize and summarize data by specific keys.</p></li>
+<li><p>Configuration: To hold settings and parameters.</p></li>
+<li><p>JSON representation: Python dictionaries can easily be converted to JSON format, making them useful in web development.</p></li>
+<li><p>Hash table implementations: To create sets, bags, or other abstract data types.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="best-practices">
+<h3>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Key Uniqueness: Ensure each key in the dictionary is unique. Adding a duplicate key will overwrite the existing value for that key.</p></li>
+<li><p>Immutable Keys: Use only immutable data types like strings, numbers, or tuples as keys.</p></li>
+<li><p>Readability: Choose meaningful names for keys to make the code more understandable.</p></li>
+<li><p>Exception Handling: Use methods like dict.get(key, default) or dict.setdefault(key, default) to avoid key errors.</p></li>
+<li><p>Dictionary Comprehensions: Use dictionary comprehensions for concise and expressive creation of dictionaries.</p></li>
+<li><p>Iteration: Use items(), keys(), and values() methods to iterate through dictionaries in a readable manner.</p></li>
+<li><p>Updates: Use the update() method to merge two dictionaries, which is more efficient than looping through keys.</p></li>
+<li><p>Deep Copy: Use copy.deepcopy() when you need to copy nested dictionaries.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="common-problems">
+<h3>Common Problems<a class="headerlink" href="#common-problems" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>KeyError: Trying to access a key that does not exist.</p></li>
+<li><p>Memory Usage: Dictionaries can consume a lot of memory when they grow large.</p></li>
+<li><p>Order Sensitivity: Prior to Python 3.7, dictionaries did not maintain order. Even now, relying on the insertion order could make your code less readable and harder to understand.</p></li>
+<li><p>Type Errors: Using mutable or unhashable types as keys.</p></li>
+<li><p>Concurrency: Dictionaries are not thread-safe, which can lead to unpredictable behavior in concurrent programs.</p></li>
+<li><p>Inconsistency: Since dictionaries are mutable, changes in the dictionary can lead to bugs if not handled carefully, especially when the dictionary is being shared across functions or objects.</p></li>
+</ul>
+</div></blockquote>
+<p>Methods available for dictionaries:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__class_getitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__contains__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getstate__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ior__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__iter__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__len__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__or__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reversed__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__ror__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="c1"># removes all the elements from the dictionary</span>
+<span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="c1"># returns a copy of the dictionary</span>
+<span class="s1">&#39;fromkeys&#39;</span><span class="p">,</span> <span class="c1"># returns a dictionary with the specified keys and value</span>
+<span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="c1"># returns the value of the specified key</span>
+<span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="c1"># returns a list containing a tuple for each key value pair</span>
+<span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="c1"># returns a list containing the dictionary&#39;s keys</span>
+<span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="c1"># removes the element with the specified key</span>
+<span class="s1">&#39;popitem&#39;</span><span class="p">,</span> <span class="c1"># removes the last inserted key-value pair</span>
+<span class="s1">&#39;setdefault&#39;</span><span class="p">,</span> <span class="c1"># returns the value of the specified key. If the key does not exist: insert the key, with the specified value</span>
+<span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="c1"># updates the dictionary with the specified key-value pairs</span>
+<span class="s1">&#39;values&#39;</span> <span class="c1"># returns a list of all the values in the dictionary</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;reptile&#39;</span><span class="p">:</span> <span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;primates&#39;</span><span class="p">:</span> <span class="s1">&#39;monkey&#39;</span><span class="p">,</span> <span class="s1">&#39;mammal&#39;</span><span class="p">:</span> <span class="s1">&#39;dog&#39;</span><span class="p">}</span>
+
+<span class="c1"># Accessing elements using key</span>
+<span class="n">animals</span><span class="p">[</span><span class="s1">&#39;primates&#39;</span><span class="p">]</span>
+
+<span class="c1"># Accessing keys</span>
+<span class="n">animals</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># Accessing values</span>
+<span class="n">animals</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+
+<span class="c1"># Loop through dictionary values</span>
+<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animals</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+
+<span class="n">muscle_cars</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Dodge&quot;</span><span class="p">,</span>
+<span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Challenger&quot;</span><span class="p">,</span>
+<span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1970</span>
+<span class="p">}</span>
+
+<span class="c1"># Add new elements in dictionary</span>
+<span class="n">muscle_cars</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+
+<span class="c1"># Update dictionary</span>
+<span class="n">muscle_cars</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">})</span>
+
+<span class="c1"># Remove items</span>
+<span class="c1"># `pop()` method removes the item with the specified key name</span>
+<span class="n">muscle_cars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">)</span>
+
+<span class="c1"># `popitem()` method removes the last inserted item</span>
+<span class="n">muscle_cars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+
+<span class="c1"># `del` keyword removes the item with the specified key name</span>
+<span class="k">del</span> <span class="n">muscle_cars</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+
+<span class="c1"># clear() method empties the dictionary</span>
+<span class="n">muscle_cars</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_installation.html" class="btn btn-neutral float-left" title="4.1 Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3_conditions_loops.html" class="btn btn-neutral float-right" title="4.3 Loops and conditionals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

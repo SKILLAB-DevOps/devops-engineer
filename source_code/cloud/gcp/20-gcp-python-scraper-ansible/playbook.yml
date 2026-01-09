@@ -1,0 +1,98 @@
+---
+- name: Deploy Python Reddit Scraper Service
+  hosts: all
+  become: true
+  vars:
+    app_directory: /opt/devops
+    repo_url: https://github.com/SKILLAB-DevOps/devops_reddit_scrapper.git
+    repo_name: devops_reddit_scrapper
+    python_version: "3.13.8"
+    service_name: reddit_scrapper
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install required system packages
+      apt:
+        name:
+          - curl
+          - git
+          - python3-pip
+        state: present
+
+    - name: Download and install uv installer
+      shell: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+      args:
+        creates: /root/.local/bin/uv
+      environment:
+        HOME: /root
+
+    - name: Install Python {{ python_version }} using uv
+      command: /root/.local/bin/uv python install {{ python_version }}
+      args:
+        creates: /root/.local/share/uv/python/cpython-{{ python_version }}-linux-x86_64-gnu
+
+    - name: Create application directory
+      file:
+        path: "{{ app_directory }}"
+        state: directory
+        mode: '0755'
+
+    - name: Clone the Reddit scraper repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_directory }}/{{ repo_name }}"
+        version: main
+        force: yes
+
+    - name: Initialize uv project (create virtual environment)
+      command: /root/.local/bin/uv venv
+      args:
+        chdir: "{{ app_directory }}/{{ repo_name }}"
+        creates: "{{ app_directory }}/{{ repo_name }}/.venv"
+
+    - name: Install Python dependencies using uv
+      command: /root/.local/bin/uv pip install .
+      args:
+        chdir: "{{ app_directory }}/{{ repo_name }}"
+
+    - name: Create systemd service file
+      copy:
+        dest: /etc/systemd/system/{{ service_name }}.service
+        content: |
+          [Unit]
+          Description=The Reddit Scraper Service
+          After=network.target
+
+          [Service]
+          Type=simple
+          ExecStart={{ app_directory }}/{{ repo_name }}/.venv/bin/python {{ app_directory }}/{{ repo_name }}/main.py
+          Restart=always
+          WorkingDirectory={{ app_directory }}/{{ repo_name }}
+
+          [Install]
+          WantedBy=multi-user.target
+        mode: '0644'
+
+    - name: Reload systemd daemon
+      systemd:
+        daemon_reload: true
+
+    - name: Enable and start the Reddit scraper service
+      systemd:
+        name: "{{ service_name }}"
+        enabled: true
+        state: started
+
+    - name: Check service status
+      systemd:
+        name: "{{ service_name }}"
+      register: service_status
+
+    - name: Display service status
+      debug:
+        msg: "Service {{ service_name }} is {{ service_status.status.ActiveState }}"

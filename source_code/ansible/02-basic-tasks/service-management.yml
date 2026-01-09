@@ -1,0 +1,245 @@
+---
+# Service Management Tutorial - System Administration Essentials
+# Learn to manage system services (start, stop, enable, disable)
+# Essential skill for deploying and maintaining server applications!
+
+- name: "Service Management Tutorial"
+  hosts: all
+  become: true  # Service management requires root privileges
+  gather_facts: true
+  
+  vars:
+    # Define services we'll work with
+    test_services:
+      - ssh
+      - systemd-resolved
+      - cron
+    
+  tasks:
+    - name: "Learning Objectives"
+      ansible.builtin.debug:
+        msg: |
+          
+          What you'll learn:
+          - Start and stop services
+          - Enable/disable services at boot
+          - Check service status
+          - Reload service configurations
+          - Handle service dependencies
+          - Troubleshoot service issues
+          
+    # Step 1: Check if NGINX is installed (from previous examples)
+    - name: "Check for installed packages"
+      ansible.builtin.package_facts:
+        manager: auto
+        
+    # Step 2: Start and Enable Service
+    - name: "Start and enable NGINX service"
+      ansible.builtin.systemd:
+        name: nginx
+        state: started    # Ensure service is running
+        enabled: yes      # Start automatically at boot
+      when: "'nginx' in ansible_facts.packages"
+      tags:
+        - nginx_management
+        
+    - name: "Install NGINX if not present (for demonstration)"
+      ansible.builtin.package:
+        name: nginx
+        state: present
+      when: "'nginx' not in ansible_facts.packages"
+      register: nginx_installed
+      tags:
+        - nginx_management
+        
+    - name: "Start newly installed NGINX"
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
+      when: nginx_installed is changed
+      tags:
+        - nginx_management
+        
+    # Step 3: Check Service Status
+    - name: "Get detailed service information"
+      ansible.builtin.systemd:
+        name: nginx
+      register: nginx_service_status
+      tags:
+        - service_status
+        
+    - name: "Display NGINX service status"
+      ansible.builtin.debug:
+        msg: |
+          
+          NGINX Service Status:
+          State: {{ nginx_service_status.status.ActiveState | default('unknown') }}
+          Enabled at boot: {{ nginx_service_status.status.UnitFileState | default('unknown') }}
+          Running since: {{ nginx_service_status.status.ActiveEnterTimestamp | default('unknown') }}
+          Memory usage: {{ nginx_service_status.status.MemoryCurrent | default('unknown') }}
+          Main PID: {{ nginx_service_status.status.MainPID | default('unknown') }}
+      when: nginx_service_status.status is defined
+      tags:
+        - service_status
+        
+        # Step 4: Service Operations (Safe with Tags)
+    - name: "Restart NGINX service (demonstration)"
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+      when: "'nginx' in ansible_facts.packages or nginx_installed is changed"
+      tags:
+        - restart_services
+        - never  # Only run when explicitly requested
+        
+    - name: "Reload NGINX configuration (demonstration)"
+      ansible.builtin.systemd:  
+        name: nginx
+        state: reloaded  # Reload config without stopping service
+      when: "'nginx' in ansible_facts.packages or nginx_installed is changed"
+      tags:
+        - reload_services
+        - never  # Only run when explicitly requested
+        
+    # Step 5: Gather All Service Information
+    - name: "Gather information about all services"
+      ansible.builtin.service_facts:
+      tags:
+        - service_inventory
+        
+    - name: "Show system service statistics"
+      ansible.builtin.debug:
+        msg: |
+          
+          System Service Statistics:
+          Total services: {{ ansible_facts.services | length }}
+          Running services: {{ ansible_facts.services | dict2items | selectattr('value.state', 'equalto', 'running') | list | length }}
+          Failed services: {{ ansible_facts.services | dict2items | selectattr('value.state', 'equalto', 'failed') | list | length }}
+          Inactive services: {{ ansible_facts.services | dict2items | selectattr('value.state', 'equalto', 'inactive') | list | length }}
+      tags:
+        - service_inventory
+        
+    # Step 6: Check Important System Services
+    - name: "Check status of important system services"
+      ansible.builtin.debug:
+        msg: |
+          
+          Key System Services Status:
+          {% for service in ['ssh.service', 'systemd-resolved.service', 'cron.service', 'nginx.service'] %}
+          {% if service in ansible_facts.services %}
+          {{ "[RUNNING]" if ansible_facts.services[service].state == "running" else "[STOPPED]" }} {{ service }}: {{ ansible_facts.services[service].state }}
+          {% else %}
+          [NOT FOUND] {{ service }}: not installed
+          {% endif %}
+          {% endfor %}
+      tags:
+        - service_inventory
+        
+    # Step 5: Gather All Service Information
+    - name: "Gather information about all services"
+      ansible.builtin.service_facts:
+      tags:
+        - service_inventory
+        
+    - name: "Show system service statistics"
+      ansible.builtin.debug:
+        msg: |
+          
+          System Service Statistics:
+          Total services: {{ ansible_facts.services | length }}
+          Running services: {{ ansible_facts.services | dict2items | selectattr('value.state', 'equalto', 'running') | list | length }}
+          Failed services: {{ ansible_facts.services | dict2items | selectattr('value.state', 'equalto', 'failed') | list | length }}
+          Inactive services: {{ ansible_facts.services | dict2items | selectattr('value.state', 'equalto', 'inactive') | list | length }}
+      tags:
+        - service_inventory
+        
+    # Step 6: Check Important System Services
+    - name: "Check status of important system services"
+      ansible.builtin.debug:
+        msg: |
+          
+          Key System Services Status:
+          {% for service in ['ssh.service', 'systemd-resolved.service', 'cron.service', 'nginx.service'] %}
+          {% if service in ansible_facts.services %}
+          {{ "[RUNNING]" if ansible_facts.services[service].state == "running" else "[STOPPED]" }} {{ service }}: {{ ansible_facts.services[service].state }}
+          {% else %}
+          [UNKNOWN] {{ service }}: not installed
+          {% endif %}
+          {% endfor %}
+      tags:
+        - service_inventory
+        
+    # Step 7: Create and Manage Custom Service (Advanced)
+    - name: "Create a simple custom script"
+      ansible.builtin.copy:
+        content: |
+          #!/bin/bash
+          # Simple test script managed by Ansible
+          
+          echo "=== Ansible Managed Service Test ==="
+          echo "Timestamp: $(date)"
+          echo "Hostname: $(hostname)"
+          echo "Uptime: $(uptime -p)"
+          echo "Current user: $(whoami)"
+          echo "Working directory: $(pwd)"
+          echo "=== End Test ==="
+        dest: /usr/local/bin/ansible-service-test
+        mode: '0755'
+        owner: root
+        group: root
+      tags:
+        - custom_service
+        
+    - name: "Test our custom script"
+      ansible.builtin.command:
+        cmd: /usr/local/bin/ansible-service-test
+      register: script_output
+      changed_when: false  # This doesn't change system state
+      tags:
+        - custom_service
+        
+    - name: "Display script output"
+      ansible.builtin.debug:
+        msg: |
+          
+          Custom Script Output:
+          {{ script_output.stdout }}
+      tags:
+        - custom_service
+        
+    # Step 8: Service Management Best Practices
+    - name: "Service management best practices and tips"
+      ansible.builtin.debug:
+        msg: |
+          
+          Service Management Best Practices:
+          
+          Common Service Operations:
+          • state: started    → Start service if not running
+          • state: stopped    → Stop service if running
+          • state: restarted  → Always restart service
+          • state: reloaded   → Reload config without restart
+          • enabled: yes      → Start at boot
+          • enabled: no       → Don't start at boot
+          
+          Safety Tips:
+          • Test service config before reload/restart
+          • Use 'check' mode first: --check
+          • Use tags for dangerous operations
+          • Always backup configs before changes
+          • Monitor logs after service changes
+          
+          Troubleshooting Commands:
+          • systemctl status servicename
+          • journalctl -u servicename
+          • systemctl list-failed
+          • systemd-analyze blame (boot times)
+          
+          Next Steps:
+          • Learn about service dependencies
+          • Practice with real applications
+          • Understand service unit files
+          • Explore service templating
+      tags:
+        - best_practices

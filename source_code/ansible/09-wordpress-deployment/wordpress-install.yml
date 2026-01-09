@@ -1,0 +1,306 @@
+---
+# Complete WordPress Installation Playbook
+# This is the culmination of our Ansible learning journey!
+# Demonstrates: variables, templates, handlers, service management, 
+#               complex multi-service deployment, security practices
+
+- name: "Complete WordPress LEMP Stack Deployment"
+  hosts: all
+  become: true
+  gather_facts: true
+  
+  vars:
+    # TEACHING NOTE: All passwords are educational examples only!
+    # In production, use ansible-vault for secure password management
+    
+    # WordPress configuration
+    wordpress_version: "latest"
+    wordpress_site_title: "{{ site_title | default('My Learning WordPress Site') }}"
+    wordpress_admin_user: "{{ admin_user | default('admin') }}"
+    wordpress_admin_password: "{{ admin_password | default('SecurePassword123!') }}"
+    wordpress_admin_email: "{{ admin_email | default('admin@example.com') }}"
+    wordpress_site_url: "http://{{ ansible_default_ipv4.address | default('localhost') }}"
+    
+    # Database configuration  
+    mysql_root_password: "{{ mysql_root_pass | default('RootPassword123!') }}"
+    wordpress_db_name: "wordpress"
+    wordpress_db_user: "wp_user"
+    wordpress_db_password: "{{ db_password | default('WPPassword123!') }}"
+    
+    # Web server configuration
+    web_root: "/var/www/html"
+    php_version: "8.1"
+    
+    # Required packages
+    required_packages:
+      - nginx
+      - mysql-server
+      - python3-pymysql
+      - php{{ php_version }}-fpm
+      - php{{ php_version }}-mysql
+      - php{{ php_version }}-curl
+      - php{{ php_version }}-gd
+      - php{{ php_version }}-intl
+      - php{{ php_version }}-mbstring
+      - php{{ php_version }}-soap
+      - php{{ php_version }}-xml
+      - php{{ php_version }}-xmlrpc
+      - php{{ php_version }}-zip
+      - unzip
+      - curl
+      
+  tasks:
+    # LEARNING CHECKPOINT: This playbook demonstrates everything we've learned!
+    - name: "WordPress Deployment Learning Objectives"
+      ansible.builtin.debug:
+        msg: |
+          
+          ADVANCED ANSIBLE CONCEPTS DEMONSTRATED:
+          
+          Variables and Templates
+             • Complex variable structures
+             • Jinja2 templating for configs
+             • Variable precedence and defaults
+             
+          Service Orchestration
+             • Multi-service dependencies
+             • Service startup order
+             • Handler-driven restarts
+             
+          Package Management
+             • Cross-platform package installation
+             • Dependency management
+             • Version-specific packages
+             
+          Security Best Practices
+             • Secure file permissions
+             • Database security hardening  
+             • Service configuration
+             
+          Real-World Application Deployment
+             • Complete LEMP stack
+             • Production-ready configuration
+             • Automated application setup
+          
+          Let's deploy WordPress step by step!
+          
+    - name: "🔄 Update package cache"
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+        
+    - name: Install required packages
+      ansible.builtin.package:
+        name: "{{ required_packages }}"
+        state: present
+        
+    - name: Start and enable MySQL service
+      ansible.builtin.systemd:
+        name: mysql
+        state: started
+        enabled: yes
+        
+    - name: Start and enable PHP-FPM service
+      ansible.builtin.systemd:
+        name: php{{ php_version }}-fpm
+        state: started
+        enabled: yes
+        
+    - name: Start and enable Nginx service
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
+        
+    - name: Set MySQL root password
+      ansible.builtin.mysql_user:
+        name: root
+        password: "{{ mysql_root_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        
+    - name: Remove anonymous MySQL users
+      ansible.builtin.mysql_user:
+        name: ""
+        host_all: yes
+        state: absent
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        
+    - name: Remove MySQL test database
+      ansible.builtin.mysql_db:
+        name: test
+        state: absent
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        
+    - name: Create WordPress database
+      ansible.builtin.mysql_db:
+        name: "{{ wordpress_db_name }}"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        
+    - name: Create WordPress database user
+      ansible.builtin.mysql_user:
+        name: "{{ wordpress_db_user }}"
+        password: "{{ wordpress_db_password }}"
+        priv: "{{ wordpress_db_name }}.*:ALL"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        
+    - name: Create web root directory
+      ansible.builtin.file:
+        path: "{{ web_root }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        
+    - name: Download WordPress
+      ansible.builtin.get_url:
+        url: "https://wordpress.org/{{ 'latest' if wordpress_version == 'latest' else 'wordpress-' + wordpress_version }}.tar.gz"
+        dest: /tmp/wordpress.tar.gz
+        mode: '0644'
+        
+    - name: Extract WordPress
+      ansible.builtin.unarchive:
+        src: /tmp/wordpress.tar.gz
+        dest: /tmp
+        remote_src: yes
+        owner: www-data
+        group: www-data
+        
+    - name: Copy WordPress files to web root
+      ansible.builtin.copy:
+        src: /tmp/wordpress/
+        dest: "{{ web_root }}/"
+        remote_src: yes
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        
+    - name: Generate WordPress security keys
+      ansible.builtin.uri:
+        url: https://api.wordpress.org/secret-key/1.1/salt/
+        return_content: yes
+      register: wordpress_keys
+      
+    - name: Create WordPress configuration from template
+      ansible.builtin.template:
+        src: wp-config.php.j2
+        dest: "{{ web_root }}/wp-config.php"
+        owner: www-data
+        group: www-data
+        mode: '0644'
+      notify: restart nginx
+      
+    - name: Create Nginx configuration for WordPress
+      ansible.builtin.template:
+        src: wordpress-nginx.conf.j2
+        dest: /etc/nginx/sites-available/wordpress
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart nginx
+      
+    - name: Enable WordPress site
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/wordpress
+        dest: /etc/nginx/sites-enabled/wordpress
+        state: link
+      notify: restart nginx
+      
+    - name: Remove default Nginx site
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: restart nginx
+      
+    - name: Set proper permissions for WordPress
+      ansible.builtin.file:
+        path: "{{ web_root }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        recurse: yes
+        
+    - name: Set permissions for wp-content
+      ansible.builtin.file:
+        path: "{{ web_root }}/wp-content"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0775'
+        recurse: yes
+        
+    - name: Create uploads directory
+      ansible.builtin.file:
+        path: "{{ web_root }}/wp-content/uploads"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0775'
+        
+    - name: Configure PHP-FPM for WordPress
+      ansible.builtin.template:
+        src: wordpress-php-fpm.conf.j2
+        dest: "/etc/php/{{ php_version }}/fpm/pool.d/wordpress.conf"
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart php-fpm
+      
+    - name: Test Nginx configuration
+      ansible.builtin.command: nginx -t
+      register: nginx_test
+      changed_when: false
+      
+    - name: Display Nginx test result
+      ansible.builtin.debug:
+        msg: "Nginx configuration test: {{ nginx_test.stderr_lines | default(['OK']) }}"
+        
+    - name: Cleanup downloaded files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /tmp/wordpress.tar.gz
+        - /tmp/wordpress
+        
+    - name: Display WordPress information
+      ansible.builtin.debug:
+        msg: |
+          WordPress installation completed!
+          
+          Site URL: {{ wordpress_site_url }}
+          Admin User: {{ wordpress_admin_user }}
+          Admin Password: {{ wordpress_admin_password }}
+          Admin Email: {{ wordpress_admin_email }}
+          
+          Database: {{ wordpress_db_name }}
+          DB User: {{ wordpress_db_user }}
+          
+          Next steps:
+          1. Open {{ wordpress_site_url }} in your browser
+          2. Complete the WordPress setup wizard
+          3. Login with the admin credentials above
+          
+          Important: Change the default passwords in production!
+          
+  handlers:
+    - name: restart nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+        
+    - name: restart php-fpm
+      ansible.builtin.systemd:
+        name: php{{ php_version }}-fpm
+        state: restarted
+        
+    - name: restart mysql
+      ansible.builtin.systemd:
+        name: mysql
+        state: restarted

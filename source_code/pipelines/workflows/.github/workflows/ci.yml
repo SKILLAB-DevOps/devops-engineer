@@ -1,0 +1,89 @@
+name: Python CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]               # Trigger on main and develop branches
+  pull_request:
+    branches: [ main ]                        # Trigger on PRs to main
+
+jobs:
+  # Fast feedback: Quality checks run first
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4             # Get the code
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5         # Install Python
+        with:
+          python-version: "3.12"
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3           # Install modern package manager
+      
+      - name: Install dependencies
+        run: uv sync --dev                    # Install all dependencies
+      
+      # Fast checks first for quick feedback
+      - name: Code formatting
+        run: uv run ruff format --check .     # Check code formatting
+        
+      - name: Linting
+        run: uv run ruff check .              # Check code quality
+        
+      - name: Type checking
+        run: uv run mypy src/                 # Static type checking
+  
+  # Comprehensive testing (only after quality passes)
+  test:
+    needs: quality                            # Wait for quality checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]  # Test multiple Python versions
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        
+      - name: Install dependencies
+        run: uv sync --dev
+      
+      - name: Run tests with coverage
+        run: |
+          uv run pytest --cov=src --cov-report=xml --cov-report=term-missing
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4       # Upload coverage reports
+        with:
+          file: ./coverage.xml
+  
+  # Security scanning (runs in parallel with tests)
+  security:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      
+      - name: Install dependencies
+        run: uv sync --dev
+      
+      - name: Security audit
+        run: |
+          uv run safety check                 # Check for vulnerable dependencies
+          uv run bandit -r src/               # Static security analysis

@@ -2,6 +2,21 @@
 1.2 Environments
 ################
 
+===================
+Learning Objectives
+===================
+
+By the end of this section, you will be able to:
+
+• **Distinguish** between bare metal, virtual machines, containers, pods, and cloud environments
+• **Compare** resource utilization, isolation, and performance characteristics of each environment type
+• **Choose** the appropriate environment type for different use cases and workloads
+• **Understand** the evolution from physical to virtualized to containerized infrastructure
+• **Recognize** how environment choices impact scalability, security, and cost
+• **Apply** environment concepts to real-world deployment scenarios
+
+**Prerequisites:** Basic understanding of computer hardware, operating systems, and software deployment.
+
 ==========================================================
 bare metal vs virtual machine vs container vs pod vs cloud
 ==========================================================

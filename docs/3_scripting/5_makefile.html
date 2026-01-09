@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5 Makefile &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.6 Utilities" href="6_utilities.html" />
+    <link rel="prev" title="3.4 Shell Style Guide" href="4_shell_style_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/5_terraform_practical_examples.html">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_infrastructure_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">3.5 Makefile</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/3_scripting/5_makefile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="makefile">
+<h1>3.5 Makefile<a class="headerlink" href="#makefile" title="Link to this heading"></a></h1>
+<section id="what-is-make">
+<h2>1. What is <code class="docutils literal notranslate"><span class="pre">make</span></code>?<a class="headerlink" href="#what-is-make" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">make</span></code> is a tool which controls the generation of executables and other non-source files of a program from the program’s source files.</p>
+</section>
+<section id="what-is-makefile">
+<h2>2. What is <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>?<a class="headerlink" href="#what-is-makefile" title="Link to this heading"></a></h2>
+<p>A makefile is a file containing a set of directives used by a make build automation tool to generate a target/goal.</p>
+</section>
+<section id="makefile-structure">
+<h2>3. Makefile structure<a class="headerlink" href="#makefile-structure" title="Link to this heading"></a></h2>
+<p>A makefile consists of a set of rules. Each rule consists of a target, a list of prerequisites, and a series of commands to be executed.</p>
+<p>The makefile consists of <code class="docutils literal notranslate"><span class="pre">rules</span></code>. Each rule consists of <code class="docutils literal notranslate"><span class="pre">target</span></code>, <code class="docutils literal notranslate"><span class="pre">prerequisites</span></code> and <code class="docutils literal notranslate"><span class="pre">commands</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">target</span></code> is usually the name of a file that is generated by a program; examples of targets are executable or object files. A target can also be the name of an action to carry out, such as <code class="docutils literal notranslate"><span class="pre">clean</span></code> (see Phony Targets).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">prerequisites</span></code> are files that are used as inputs to create the target. A target often depends on several files.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">commands</span></code> are a series of steps typically used to convert the prerequisites into the target.</p></li>
+</ul>
+</div></blockquote>
+<p>A simple makefile consists of <code class="docutils literal notranslate"><span class="pre">rules</span></code> with the following shape:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>target:<span class="w"> </span>prerequisites
+<span class="w">    </span><span class="nb">command</span>
+<span class="w">    </span><span class="nb">command</span>
+<span class="w">    </span><span class="nb">command</span>
+</pre></div>
+</div>
+<p>The target is the name of the file that is generated by the command. The prerequisites are files that are used as input to create the target. The commands are a series of steps typically used to convert the prerequisites into the target.</p>
+</section>
+<section id="hello-world">
+<h2>4. Hello World<a class="headerlink" href="#hello-world" title="Link to this heading"></a></h2>
+<p>Make sure that you have <code class="docutils literal notranslate"><span class="pre">make</span></code> installed on your system. If not, install it using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential
+</pre></div>
+</div>
+<p>Now, let’s create a simple Makefile that prints “Hello, World!” when you run make. Here’s the content of the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hello:
+<span class="w">        </span>@echo<span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span>
+</pre></div>
+</div>
+<p>Save the content above in a file named <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> (it’s case-sensitive; it should be exactly Makefile unless you want to specify the makefile name every time you run make).</p>
+<p>Now open a terminal, navigate to the directory where your Makefile is located, and simply type <code class="docutils literal notranslate"><span class="pre">make</span></code>. The output should be “Hello, World!”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Explanation</p>
+<p>The word <code class="docutils literal notranslate"><span class="pre">hello</span></code> followed by a colon <code class="docutils literal notranslate"><span class="pre">:</span></code> specifies a “target”. A target is essentially a label for a set of commands that are executed when you run make &lt;target&gt;.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;echo</span> <span class="pre">&quot;Hello,</span> <span class="pre">World!&quot;</span></code>: This line is a command that the make utility will execute. The <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> symbol prevents the command itself from being printed to the terminal before it’s executed, so only the command’s output (“Hello, World!”) will be shown. Without the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, you would see both the command and its output.</p>
+<p>Indentation matters: The commands to be executed for a target must be indented by a <code class="docutils literal notranslate"><span class="pre">Tab</span></code>, not spaces.</p>
+<p>Comments start with <code class="docutils literal notranslate"><span class="pre">#</span></code>, and they are ignored by make.</p>
+<p>To run the target hello, you’d just execute <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">hello</span></code> or simply <code class="docutils literal notranslate"><span class="pre">make</span></code> (if hello is the first target in the Makefile, it becomes the default target).</p>
+</div>
+</section>
+<section id="variables-and-arguments">
+<h2>5. Variables and Arguments<a class="headerlink" href="#variables-and-arguments" title="Link to this heading"></a></h2>
+<p>Variables are used to make makefiles more flexible and reusable. Variables can be defined in the makefile, passed as arguments to <code class="docutils literal notranslate"><span class="pre">make</span></code>, or inherited from the environment.</p>
+<p>Variables are defined in the makefile using <code class="docutils literal notranslate"><span class="pre">VAR</span> <span class="pre">=</span> <span class="pre">value</span></code> or <code class="docutils literal notranslate"><span class="pre">VAR</span> <span class="pre">:=</span> <span class="pre">value</span></code>. The difference between the two is that <code class="docutils literal notranslate"><span class="pre">VAR</span> <span class="pre">=</span> <span class="pre">value</span></code> is a <code class="docutils literal notranslate"><span class="pre">recursive</span></code> variable, while <code class="docutils literal notranslate"><span class="pre">VAR</span> <span class="pre">:=</span> <span class="pre">value</span></code> is a <code class="docutils literal notranslate"><span class="pre">simple</span></code> variable. Recursive variables are more flexible than simple variables, but simple variables are more predictable.</p>
+<p>Recursive variables are defined by <code class="docutils literal notranslate"><span class="pre">VAR</span> <span class="pre">=</span> <span class="pre">value</span></code>. The value of a recursive variable is only expanded when it is used. This means that you can define a recursive variable at the end of the makefile, and use it in variable definitions above that line.</p>
+<p>Simple variables are defined by <code class="docutils literal notranslate"><span class="pre">VAR</span> <span class="pre">:=</span> <span class="pre">value</span></code>. The value of a simple variable is expanded immediately. This means that you can’t define a simple variable at the end of the makefile and use it in variable definitions above that line.</p>
+<p>Passing arguments directly to Makefile targets isn’t straightforward because make wasn’t designed to accept arguments in the way that a normal shell script does. However, there are workarounds to accomplish this.</p>
+<p>One common way is to use make variables. These can be set on the command line when you invoke make.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+<span class="c1"># The target is &quot;hello&quot; and the command to execute is below it</span>
+
+hello:
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;Hello, </span><span class="k">$(</span>name<span class="k">)</span><span class="s2">!&quot;</span>
+</pre></div>
+</div>
+<p>To run this with your name, you would enter something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>hello<span class="w"> </span><span class="nv">name</span><span class="o">=</span>Ion
+</pre></div>
+</div>
+<p>The output would be “Hello, Ion!”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Explanation</p>
+<p><code class="docutils literal notranslate"><span class="pre">$(name)</span></code>: This is a variable in make syntax. When you run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">hello</span> <span class="pre">name=Ion</span></code>, make assigns the value “Ion” to name, and then substitutes <code class="docutils literal notranslate"><span class="pre">$(name)</span></code> with “Ion” when it executes the echo command.
+You can also specify a default value for the variable within the Makefile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="o">=</span>World
+
+hello:
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;Hello, </span><span class="k">$(</span>name<span class="k">)</span><span class="s2">!&quot;</span>
+</pre></div>
+</div>
+<p>With this version, if you just run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">hello</span></code> without specifying name, it will default to “World”. If you run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">hello</span> <span class="pre">name=Ion</span></code>, it will override the default value with “Ion”.</p>
+</div>
+</section>
+<section id="phony-targets">
+<h2>6. PHONY Targets<a class="headerlink" href="#phony-targets" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> target in a Makefile is used to specify that a target name does not represent a file. In make, by default, the targets are file names. When you define a target, make checks the modification time of the files that the target depends on (if any), and the modification time of the target file itself, to decide whether it needs to execute the commands under that target.</p>
+<p>However, sometimes you have targets that don’t produce any files or where the name of the target doesn’t correspond to a file. In those cases, you use <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> to tell make that the target is not a file name.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.PHONY:<span class="w"> </span>hello<span class="w"> </span>clean
+
+hello:
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span>
+
+clean:
+<span class="w">    </span>@rm<span class="w"> </span>-f<span class="w"> </span>*.log
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Explanation</p>
+<p><code class="docutils literal notranslate"><span class="pre">.PHONY:</span> <span class="pre">hello</span> <span class="pre">clean</span></code>: This line tells make that hello and clean are phony targets, which means they don’t represent files. Therefore, make will always execute the commands under these targets, even if there’s a file named hello or clean in the directory.</p>
+</div>
+<section id="why-is-phony-useful">
+<h3>Why is .PHONY useful?<a class="headerlink" href="#why-is-phony-useful" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><em>Always Execute</em>: When a target is phony, make will always execute its commands, regardless of file states.</p></li>
+<li><p><em>Avoid File Name Conflict</em>: Imagine you have a file named clean in your directory. If you didn’t specify clean as a phony target, make clean would do nothing, thinking that the target clean is up-to-date because a file with the same name exists.</p></li>
+<li><p><em>Clarifies Intent</em>: By using <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code>, you make it explicit that the target doesn’t produce a file with the target’s name. This makes the Makefile easier to understand.</p></li>
+</ul>
+<p>You can place <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> either at the top of your Makefile to declare all phony targets at once, or right before each phony target for better readability and maintainability, like so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.PHONY:<span class="w"> </span>hello
+hello:
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span>
+
+.PHONY:<span class="w"> </span>clean
+clean:
+<span class="w">    </span>@rm<span class="w"> </span>-f<span class="w"> </span>*.log
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_shell_style_guide.html" class="btn btn-neutral float-left" title="3.4 Shell Style Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="6_utilities.html" class="btn btn-neutral float-right" title="3.6 Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

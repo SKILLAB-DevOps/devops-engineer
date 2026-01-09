@@ -1,0 +1,935 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10.5 Terraform Practical Examples &mdash; DevOps 3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/max_width.css?v=a0fc712e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ba26cd90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.6 Ansible - Configuration Management" href="6_ansible_introduction.html" />
+    <link rel="prev" title="10.4 Terraform Production Challenges" href="4_terraform_production_challenges.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DevOps
+              <img src="../_static/Logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Curriculum</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_curriculum/curriculum.html">Class Curriculum</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_foreword.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/00_preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/1_devops.html">0.1 Introduction to DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/2_roadmap.html">0.2 DevOps Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/3_life_cycle.html">0.3 Software Development Lifecycle Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/4_scrum_agile.html">0.4 SCRUM Agile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/TODO.html">0.5 TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/0_computer_network.html">1.0 Computer and Network Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/1_how_code_works.html">1.1 How code works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/2_environments.html">1.2 Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/3_microservices.html">1.3 Microservices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/4_introduction_to_linux.html">1.4 Introduction to Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/5_getting_around.html">1.5 Getting around</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/6_setup_infra.html">1.6 Setup developing infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/7_system_design.html">1.7 System Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_system_design/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/0_introduction.html">2.0 Linux Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/1_managing_users_and_groups.html">2.1 Managing Users and Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/2_file_management.html">2.2 File Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/3_managing_software.html">2.3 Managing Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/4_service_management.html">2.4 Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/5_process_management.html">2.5 Process Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/6_system_logging.html">2.6 System Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/7_linux_file_systems.html">2.7 Linux File Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/8_terminal_tuning.html#id1">2.8 Terminal Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/9_networking.html#id1">2.9 Linux Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_linux/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/0_introduction.html">3.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/1_getting_started.html">3.1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/2_data_structures_conditions.html">3.2 Data structures and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/3_to_script_or_to_alias.html">3.3 Working with aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/4_shell_style_guide.html">3.4 Shell Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/5_makefile.html">3.5 Makefile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/6_utilities.html">3.6 Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_scripting/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/0_introduction.html">4.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/1_installation.html">4.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/2_data_structures.html">4.2 Variables and Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/3_conditions_loops.html">4.3 Loops and conditionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/4_libraries.html">4.4 Libraries and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/5_functions.html">4.5 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/6_classes.html">4.6 Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/7_yourfirstcli.html">4.7 Your first CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/8_documentation.html">4.8 Documenting your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/9_rules.html">4.9 Python Language Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/10_files.html">4.10 Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/11_rest_api.html">4.11 REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/12_comprehensions.html">4.12 Comprehensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/13_lambda.html">4.13 Lambda Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/14_testing.html">4.14 Testing and Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/15_packaging.html">4.15 Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_python/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/0_introduction.html">5.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/1_working_togheter.html">5.1 Working together on Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/2_bestpractices.html">5.1 Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_git/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DocOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/0_introduction.html">6.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/1_installation.html">6.1 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/2_sphinx.html">6.2 What is Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/3_deploy_docs.html">6.3 Deploy Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_docs_as_code/TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/0_introduction.html">CI/CD Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/1_getting_started.html">First CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/2_python_cli.html">Python CLI Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/3_github.html">Advanced GitHub Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/4_best_practices.html">7.4 CI/CD Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_pipelines/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Containers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/0_introduction.html">8.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/1_installation.html">8.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/2_helloworld.html">8.2 Your First Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/3_workingwithdocker.html">8.3 Container Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4_usingdockerfile.html">8.4 Creating Custom Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/4.5_container_registries.html">8.4.5 Container Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/5_management.html">8.5 Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/6_orchestration.html">8.6 Container Orchestration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/7_test.html">8.7 Container Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/8_best_practices.html">8.8 Container Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/9_run_llm_locally.html">8.9 Run LLM Locally in Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_containers/ANSWERS.html">Answers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/0_introduction.html">9.0 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_gettingstarted.html">9.1 Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/1_installing_k3s_and_rancher.html">9.1 Installing k3s and Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/2_core_concepts.html">9.2 Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/3_workloads_and_scheduling.html">9.3 Workloads and Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/4_networking_and_services.html">9.4 Networking and Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/5_storage_and_persistence.html">9.5 Storage and Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/6_configuration_management.html">9.6 Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/7_security_and_rbac.html">9.7 Security and RBAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/8_observability_and_monitoring.html">9.8 Observability and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/9_helm_package_management.html">9.9 Helm Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/10_gitops_with_argocd.html">9.10 GitOps with ArgoCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/11_production_best_practices.html">9.11 Production Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/12_troubleshooting_and_debugging.html">9.12 Troubleshooting and Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/13_kubernetes_operators.html#id1">9.13 Kubernetes Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/14_cicd_integration.html">9.14 CI/CD Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/15_service_mesh.html">9.15 Service Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/16_advanced_networking.html">9.16 Advanced Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_kubernetes/ANSWERS.html">ANSWERS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Infrastructure as Code</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_introduction_iac.html">10. Infrastructure as Code - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_terraform_introduction.html">10.1 Terraform &amp; OpenTofu - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_terraform_core_concepts.html">10.2 Terraform Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_terraform_workflow_gcp.html">10.3 Terraform Workflow &amp; GCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_terraform_production_challenges.html">10.4 Terraform Production Challenges</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10.5 Terraform Practical Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_ansible_introduction.html">10.6 Ansible - Configuration Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_ansible_core_concepts.html">10.7 Ansible Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_ansible_advanced_features.html">10.8 Ansible Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_ansible_production_patterns.html">10.9 Ansible Production Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cloud</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.1_what_is_cloud.html">11.0. 1 What is Cloud Computing?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.2_deployment_models.html">11.0.2 Cloud Deployment Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.3_cloud_vs_onpremises.html">11.0.3 Cloud vs On-Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.4_cloud_benefits.html">11.0.4 Cloud Benefits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.5_service_models.html">11.0.5 Cloud Service Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.6_cloud_providers.html">11.0.6 Cloud Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.7_cloud_migration.html">11.0.7 Cloud Migration Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.8_cloud_security.html">11.0.8 Cloud Security Essentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.9_finops_cost_management.html">11.0.9 Cloud Cost Management (FinOps)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/0.10_monitoring_observability.html">11.0.10 Cloud Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/1_agnostic_vs_native.html">11.1 Cloud Strategy: Native vs. Agnostic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/2_cloud_battle.html">11.2 Cloud Provider Comparison &amp; Strategic Decision Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/ANSWERS.html">ANSWERS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud/TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/0_introduction.html">11.0 Introduction to Google Cloud Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/1_iam.html">11.1 Identity and Access Management (IAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/2_networking.html">11.8.2 VPC and Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/3_compute_services_overview.html">11.3 GCP Compute Services Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/4_compute_engine.html">11.4 Compute Engine - Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/5_cloud_storage.html">11.5 Cloud Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/6_serverless.html">11.6 Serverless Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/7_gke.html">11.7 Google Kubernetes Engine (GKE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/8_finops.html">11.8 FinOps and Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/9_security.html">11.9 Security Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/10_database_services.html">11.10 Database Services on Google Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/11_platform_overview.html">11.11 Google Cloud Platform Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cloud_gcp/TODO.html">GCP Hands-On Exercises</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../12_project/introduction.html">12.0 Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DevOps</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">10.5 Terraform Practical Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/10_infrastructure_as_code/5_terraform_practical_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="terraform-practical-examples">
+<h1>10.5 Terraform Practical Examples<a class="headerlink" href="#terraform-practical-examples" title="Link to this heading"></a></h1>
+<p>This chapter provides references to hands-on examples that demonstrate real-world Terraform usage with Google Cloud Platform, progressing from simple to complex scenarios.</p>
+<section id="learning-path-overview">
+<h2>Learning Path Overview<a class="headerlink" href="#learning-path-overview" title="Link to this heading"></a></h2>
+<p>The practical examples demonstrate the complete journey from basic cloud services to advanced container orchestration, designed for progressive learning:</p>
+<p><strong>Foundation → Security → Scaling → Modern Architecture</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_code/cloud/gcp/
+├──<span class="w"> </span><span class="m">01</span>-gcp-storage-hello-world/<span class="w">          </span><span class="c1"># Start here</span>
+├──<span class="w"> </span><span class="m">02</span>-gcp-compute-hello-world/
+├──<span class="w"> </span><span class="m">03</span>-gcp-compute-wordpress/
+├──<span class="w"> </span><span class="m">04</span>-gcp-wordpress-variables/
+├──<span class="w"> </span><span class="m">05</span>-gcp-wordpress-https/
+├──<span class="w"> </span><span class="m">06</span>-gcp-wordpress-state/
+├──<span class="w"> </span><span class="m">07</span>-gcp-wordpress-modules/
+├──<span class="w"> </span><span class="m">08</span>-gcp-load-balancer/
+├──<span class="w"> </span><span class="m">09</span>-gcp-auto-scaling/
+├──<span class="w"> </span><span class="m">10</span>-gcp-containers/
+├──<span class="w"> </span><span class="m">11</span>-gcp-kubernetes/
+├──<span class="w"> </span><span class="m">12</span>-weather-api-vm/
+├──<span class="w"> </span><span class="m">13</span>-weather-api-serverless/
+└──<span class="w"> </span><span class="m">14</span>-weather-api-container/<span class="w">            </span><span class="c1"># Advanced</span>
+</pre></div>
+</div>
+</section>
+<section id="foundation-examples-01-03">
+<h2>Foundation Examples (01-03)<a class="headerlink" href="#foundation-examples-01-03" title="Link to this heading"></a></h2>
+<p><strong>1. Static Website Hosting (01-gcp-storage-hello-world)</strong></p>
+<p><strong>Purpose</strong>: Introduction to GCP and Terraform basics</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Google Cloud Storage bucket creation</p></li>
+<li><p>Public access policies and IAM</p></li>
+<li><p>Cost-effective static website hosting</p></li>
+<li><p>Basic Terraform syntax and workflow</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic provider configuration</span>
+<span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;google&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;your-project-id&quot;</span>
+<span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Simple resource creation</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;website&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-website-bucket&quot;</span>
+<span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;US&quot;</span>
+
+<span class="w">  </span><span class="nb">website</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">main_page_suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;index.html&quot;</span>
+<span class="w">    </span><span class="na">not_found_page</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;404.html&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Terraform initialization and basic commands</p></li>
+<li><p>GCP project setup and authentication</p></li>
+<li><p>Understanding of cloud storage services</p></li>
+</ul>
+<p>—</p>
+<p><strong>2. Virtual Machine Deployment (02-gcp-compute-hello-world)</strong></p>
+<p><strong>Purpose</strong>: Basic compute infrastructure</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Compute Engine instance creation</p></li>
+<li><p>Firewall rules and network security</p></li>
+<li><p>Startup scripts for automation</p></li>
+<li><p>SSH access and basic VM management</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute instance with startup script</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;web_server&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server&quot;</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+<span class="w">  </span><span class="na">zone</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+
+<span class="w">  </span><span class="nb">boot_disk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">initialize_params</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ubuntu-os-cloud/ubuntu-2204-lts&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="na">metadata_startup_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">&quot;${path.module}/startup.sh&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Virtual machine provisioning</p></li>
+<li><p>Network configuration basics</p></li>
+<li><p>Linux system administration concepts</p></li>
+</ul>
+<p>—</p>
+<p><strong>3. Full Application Stack (03-gcp-compute-wordpress)</strong></p>
+<p><strong>Purpose</strong>: Complete web application deployment</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>LAMP stack installation and configuration</p></li>
+<li><p>Database setup and management</p></li>
+<li><p>Multi-service application architecture</p></li>
+<li><p>Service integration and dependencies</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complex startup script with multiple services</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;wordpress&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">metadata_startup_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">templatefile</span><span class="p">(</span><span class="s2">&quot;${path.module}/install.sh&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.db_password</span>
+<span class="w">    </span><span class="na">site_title</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">var.site_title</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Application deployment strategies</p></li>
+<li><p>Database configuration</p></li>
+<li><p>Template usage and variable interpolation</p></li>
+</ul>
+</section>
+<section id="security-configuration-examples-04-07">
+<h2>Security &amp; Configuration Examples (04-07)<a class="headerlink" href="#security-configuration-examples-04-07" title="Link to this heading"></a></h2>
+<p><strong>4. Configuration Management (04-gcp-wordpress-variables)</strong></p>
+<p><strong>Purpose</strong>: Flexible and reusable infrastructure code</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Terraform variables and their types</p></li>
+<li><p>Environment-specific configurations</p></li>
+<li><p>Input validation and defaults</p></li>
+<li><p>Variable files and best practices</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variable definitions with validation</span>
+<span class="kr">variable</span><span class="w"> </span><span class="nv">&quot;environment&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Environment name&quot;</span>
+<span class="w">  </span><span class="na">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+
+<span class="w">  </span><span class="nb">validation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">condition</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nf">contains</span><span class="p">([</span><span class="s2">&quot;dev&quot;, &quot;staging&quot;, &quot;prod&quot;</span><span class="p">],</span><span class="w"> </span><span class="nv">var.environment</span><span class="p">)</span>
+<span class="w">    </span><span class="na">error_message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Environment must be dev, staging, or prod.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Conditional resource creation</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;app&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.environment</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="s2">&quot;prod&quot; ? &quot;e2-medium&quot; : &quot;e2-micro&quot;</span>
+
+<span class="w">  </span><span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.environment</span>
+<span class="w">    </span><span class="na">cost_center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.cost_center</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Infrastructure parameterization</p></li>
+<li><p>Environment management strategies</p></li>
+<li><p>Code reusability principles</p></li>
+</ul>
+<p>—</p>
+<p><strong>5. Security Implementation (05-gcp-wordpress-https)</strong></p>
+<p><strong>Purpose</strong>: Secure web applications with SSL/TLS</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>SSL certificate management</p></li>
+<li><p>HTTPS redirection and enforcement</p></li>
+<li><p>Static IP address allocation</p></li>
+<li><p>Security best practices</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Static IP for consistent SSL setup</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_address&quot;</span><span class="w"> </span><span class="nv">&quot;static_ip&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;wordpress-static-ip&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Instance with static IP</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;wordpress&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">network_interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">access_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">nat_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_address.static_ip.address</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Web security fundamentals</p></li>
+<li><p>Certificate management</p></li>
+<li><p>Network security configuration</p></li>
+</ul>
+<p>—</p>
+<p><strong>6. Team Collaboration (06-gcp-wordpress-state)</strong></p>
+<p><strong>Purpose</strong>: Remote state management for teams</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Remote state backends</p></li>
+<li><p>State locking and consistency</p></li>
+<li><p>Team collaboration workflows</p></li>
+<li><p>State backup and recovery</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remote state configuration</span>
+<span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">backend</span><span class="w"> </span><span class="nv">&quot;gcs&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-terraform-state&quot;</span>
+<span class="w">    </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;wordpress-production&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Team workflows and collaboration</p></li>
+<li><p>State management strategies</p></li>
+<li><p>Infrastructure versioning</p></li>
+</ul>
+<p>—</p>
+<p><strong>7. Modular Architecture (07-gcp-wordpress-modules)</strong></p>
+<p><strong>Purpose</strong>: Reusable and maintainable infrastructure</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Module creation and structure</p></li>
+<li><p>Module versioning and distribution</p></li>
+<li><p>Inter-module communication</p></li>
+<li><p>Design patterns for infrastructure</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Module usage</span>
+<span class="kr">module</span><span class="w"> </span><span class="nv">&quot;networking&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./modules/networking&quot;</span>
+
+<span class="w">  </span><span class="na">project_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_id</span>
+<span class="w">  </span><span class="na">region</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.region</span>
+<span class="p">}</span>
+
+<span class="kr">module</span><span class="w"> </span><span class="nv">&quot;compute&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./modules/compute&quot;</span>
+
+<span class="w">  </span><span class="na">network_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">module.networking.network_id</span>
+<span class="w">  </span><span class="na">subnet_id</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">module.networking.subnet_id</span>
+<span class="w">  </span><span class="na">instance_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.instance_name</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Modular design principles</p></li>
+<li><p>Code organization and structure</p></li>
+<li><p>Reusable component creation</p></li>
+</ul>
+</section>
+<section id="scaling-availability-examples-08-09">
+<h2>Scaling &amp; Availability Examples (08-09)<a class="headerlink" href="#scaling-availability-examples-08-09" title="Link to this heading"></a></h2>
+<p><strong>8. High Availability (08-gcp-load-balancer)</strong></p>
+<p><strong>Purpose</strong>: Load balancing and redundancy</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Multiple server deployment</p></li>
+<li><p>Load balancer configuration</p></li>
+<li><p>Health checks and failover</p></li>
+<li><p>Traffic distribution strategies</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Multiple instances with load balancing
+resource &quot;google_compute_instance&quot; &quot;web_servers&quot; {
+  count = 2
+  name  = &quot;web-server-${count.index + 1}&quot;
+
+  # Spread across zones for redundancy
+  zone = data.google_compute_zones.available.names[count.index]
+}
+
+# Load balancer target pool
+resource &quot;google_compute_target_pool&quot; &quot;web_servers&quot; {
+  name      = &quot;web-server-pool&quot;
+  instances = google_compute_instance.web_servers[*].self_link
+
+  health_checks = [
+    google_compute_http_health_check.web_servers.name
+  ]
+}
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>High availability design</p></li>
+<li><p>Load balancing concepts</p></li>
+<li><p>Fault tolerance strategies</p></li>
+</ul>
+<p>—</p>
+<p><strong>9. Elastic Scaling (09-gcp-auto-scaling)</strong></p>
+<p><strong>Purpose</strong>: Automatic scaling based on demand</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Instance templates and groups</p></li>
+<li><p>Auto-scaling policies</p></li>
+<li><p>CPU-based scaling triggers</p></li>
+<li><p>Managed instance groups</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instance template for auto-scaling</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance_template&quot;</span><span class="w"> </span><span class="nv">&quot;web_server&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name_prefix</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server-template-&quot;</span>
+<span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-micro&quot;</span>
+
+<span class="w">  </span><span class="nb">lifecycle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">create_before_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Auto-scaler with CPU-based scaling</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_autoscaler&quot;</span><span class="w"> </span><span class="nv">&quot;web_servers&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;web-server-autoscaler&quot;</span>
+<span class="w">  </span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_instance_group_manager.web_servers.id</span>
+
+<span class="w">  </span><span class="nb">autoscaling_policy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">max_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">    </span><span class="na">min_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="na">cooldown_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span>
+
+<span class="w">    </span><span class="nb">cpu_utilization</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">0.7</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Elastic infrastructure design</p></li>
+<li><p>Performance-based scaling</p></li>
+<li><p>Resource optimization</p></li>
+</ul>
+</section>
+<section id="modern-architecture-examples-10-11">
+<h2>Modern Architecture Examples (10-11)<a class="headerlink" href="#modern-architecture-examples-10-11" title="Link to this heading"></a></h2>
+<p><strong>10. Containerization (10-gcp-containers)</strong></p>
+<p><strong>Purpose</strong>: Introduction to container technology</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Docker containerization basics</p></li>
+<li><p>Container-Optimized OS</p></li>
+<li><p>Multi-container applications</p></li>
+<li><p>Microservices architecture fundamentals</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Container-optimized VM</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;container_vm&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">boot_disk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">initialize_params</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cos-cloud/cos-stable&quot;</span><span class="c1">  # Container-Optimized OS</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="c1">  # Docker Compose setup via metadata</span>
+<span class="w">  </span><span class="nb">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;docker-compose&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">&quot;${path.module}/docker-compose.yml&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Container technology basics</p></li>
+<li><p>Application containerization</p></li>
+<li><p>Service orchestration introduction</p></li>
+</ul>
+<p>—</p>
+<p><strong>11. Container Orchestration (11-gcp-kubernetes)</strong></p>
+<p><strong>Purpose</strong>: Kubernetes and container orchestration at scale</p>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>Google Kubernetes Engine (GKE)</p></li>
+<li><p>Pod deployments and services</p></li>
+<li><p>Container scaling and management</p></li>
+<li><p>Load balancing for containers</p></li>
+<li><p>Self-healing infrastructure</p></li>
+</ul>
+<p><strong>Key Terraform Concepts</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># GKE cluster creation</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;learning-cluster&quot;</span>
+<span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+
+<span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+
+<span class="w">  </span><span class="nb">node_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e2-small&quot;</span>
+<span class="w">    </span><span class="na">oauth_scopes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;https://www.googleapis.com/auth/cloud-platform&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Skills Developed</strong>:</p>
+<ul class="simple">
+<li><p>Container orchestration concepts</p></li>
+<li><p>Kubernetes fundamentals</p></li>
+<li><p>Cloud-native architecture patterns</p></li>
+</ul>
+</section>
+<section id="application-deployment-patterns-12-14">
+<h2>Application Deployment Patterns (12-14)<a class="headerlink" href="#application-deployment-patterns-12-14" title="Link to this heading"></a></h2>
+<p>These examples demonstrate the same application (FastAPI Weather API) deployed using three different strategies:</p>
+<p><strong>12. Traditional VM Deployment (12-weather-api-vm)</strong></p>
+<p><strong>Deployment Pattern</strong>: Infrastructure as a Service (IaaS)</p>
+<p><strong>When to Use</strong>:</p>
+<ul class="simple">
+<li><p>Legacy applications requiring specific OS configurations</p></li>
+<li><p>Applications needing persistent local storage</p></li>
+<li><p>Workloads requiring full system control</p></li>
+</ul>
+<p><strong>Key Learning Points</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Traditional VM with application installation</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_compute_instance&quot;</span><span class="w"> </span><span class="nv">&quot;weather_api&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">metadata_startup_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">&quot;${path.module}/install_app.sh&quot;</span><span class="p">)</span>
+
+<span class="c1">  # Persistent disk for application data</span>
+<span class="w">  </span><span class="nb">attached_disk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_disk.app_data.self_link</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>—</p>
+<p><strong>13. Serverless Deployment (13-weather-api-serverless)</strong></p>
+<p><strong>Deployment Pattern</strong>: Function as a Service (FaaS) / Platform as a Service (PaaS)</p>
+<p><strong>When to Use</strong>:</p>
+<ul class="simple">
+<li><p>Event-driven applications</p></li>
+<li><p>Variable or unpredictable traffic</p></li>
+<li><p>Minimal operational overhead requirements</p></li>
+</ul>
+<p><strong>Key Learning Points</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cloud Run service for serverless deployment</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_cloud_run_service&quot;</span><span class="w"> </span><span class="nv">&quot;weather_api&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;weather-api&quot;</span>
+<span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+
+<span class="w">  </span><span class="nb">template</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">spec</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nb">containers</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gcr.io/${var.project_id}/weather-api:latest&quot;</span>
+
+<span class="c1">        # Automatic scaling configuration</span>
+<span class="w">        </span><span class="nb">resources</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nb">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="na">cpu</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1000m&quot;</span>
+<span class="w">            </span><span class="na">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;512Mi&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="na">container_concurrency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nb">metadata</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nb">annotations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;autoscaling.knative.dev/maxScale&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10&quot;</span>
+<span class="w">        </span><span class="s2">&quot;autoscaling.knative.dev/minScale&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>—</p>
+<p><strong>14. Container Orchestration (14-weather-api-container)</strong></p>
+<p><strong>Deployment Pattern</strong>: Container as a Service (CaaS)</p>
+<p><strong>When to Use</strong>:</p>
+<ul class="simple">
+<li><p>Microservices architectures</p></li>
+<li><p>Applications requiring advanced orchestration</p></li>
+<li><p>Complex service mesh requirements</p></li>
+</ul>
+<p><strong>Key Learning Points</strong>:</p>
+<div class="highlight-hcl notranslate"><div class="highlight"><pre><span></span><span class="c1"># GKE cluster with application deployment</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;weather_cluster&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;weather-api-cluster&quot;</span>
+<span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="c1"># The application is deployed using Kubernetes manifests</span>
+<span class="c1"># Referenced in the deployment scripts</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-started-guide">
+<h2>Getting Started Guide<a class="headerlink" href="#getting-started-guide" title="Link to this heading"></a></h2>
+<p><strong>Prerequisites Setup:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Install required tools</span>
+<span class="c1"># Install Terraform</span>
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://apt.releases.hashicorp.com/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
+sudo<span class="w"> </span>apt-add-repository<span class="w"> </span><span class="s2">&quot;deb [arch=amd64] https://apt.releases.hashicorp.com </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> main&quot;</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>terraform
+
+<span class="c1"># Install Google Cloud SDK</span>
+curl<span class="w"> </span>https://sdk.cloud.google.com<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<span class="nb">exec</span><span class="w"> </span>-l<span class="w"> </span><span class="nv">$SHELL</span>
+
+<span class="c1"># 2. Authenticate with GCP</span>
+gcloud<span class="w"> </span>auth<span class="w"> </span>login
+gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>login
+gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project<span class="w"> </span>YOUR_PROJECT_ID
+</pre></div>
+</div>
+<p><strong>Example Workflow:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with the simplest example</span>
+<span class="nb">cd</span><span class="w"> </span>source_code/cloud/gcp/01-gcp-storage-hello-world
+
+<span class="c1"># Review the code</span>
+cat<span class="w"> </span>main.tf
+cat<span class="w"> </span>README.md
+
+<span class="c1"># Initialize and deploy</span>
+terraform<span class="w"> </span>init
+terraform<span class="w"> </span>plan
+terraform<span class="w"> </span>apply
+
+<span class="c1"># Test the deployment</span>
+<span class="c1"># (Instructions in each example&#39;s README)</span>
+
+<span class="c1"># Clean up</span>
+terraform<span class="w"> </span>destroy
+</pre></div>
+</div>
+<p><strong>Learning Recommendations:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Work Through Examples in Order</strong>: Each builds upon previous concepts</p></li>
+<li><p><strong>Read All README Files</strong>: Comprehensive documentation and learning objectives</p></li>
+<li><p><strong>Experiment with Variables</strong>: Modify configurations to understand behavior</p></li>
+<li><p><strong>Test Thoroughly</strong>: Use provided testing commands</p></li>
+<li><p><strong>Clean Up Resources</strong>: Always destroy test infrastructure to avoid costs</p></li>
+</ol>
+</section>
+<section id="skills-progression-matrix">
+<h2>Skills Progression Matrix<a class="headerlink" href="#skills-progression-matrix" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Skill Category</p></th>
+<th class="head"><p>Foundation
+(01-03)</p></th>
+<th class="head"><p>Security &amp;
+Config (04-07)</p></th>
+<th class="head"><p>Scaling &amp;
+Availability
+(08-09)</p></th>
+<th class="head"><p>Modern
+Architecture
+(10-14)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Terraform</strong>
+<strong>Concepts</strong></p></td>
+<td><p>Basic syntax,
+providers,
+resources</p></td>
+<td><p>Variables,
+modules,
+state mgmt</p></td>
+<td><p>Advanced
+resources,
+dependencies</p></td>
+<td><p>Complex
+deployments,
+multi-service</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GCP Services</strong></p></td>
+<td><p>Storage,
+Compute Engine</p></td>
+<td><p>IAM, Security,
+SSL certs</p></td>
+<td><p>Load Balancers,
+Auto-scaling</p></td>
+<td><p>GKE, Cloud Run,
+Container
+Registry</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>DevOps</strong>
+<strong>Practices</strong></p></td>
+<td><p>Basic
+automation</p></td>
+<td><p>Team
+collaboration,
+version control</p></td>
+<td><p>High
+availability,
+monitoring</p></td>
+<td><p>CI/CD,
+Container
+orchestration</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Architecture</strong>
+<strong>Patterns</strong></p></td>
+<td><p>Single service
+deployment</p></td>
+<td><p>Secure apps,
+multi-env</p></td>
+<td><p>Scalable
+systems,
+fault tolerance</p></td>
+<td><p>Microservices,
+cloud-native
+architecture</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<p><strong>Documentation References:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://registry.terraform.io/providers/hashicorp/google/latest/docs">Terraform Google Provider</a></p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/docs">Google Cloud Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html">Terraform Best Practices</a></p></li>
+</ul>
+<p><strong>Community Resources:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/terraform-google-modules">Terraform Google Modules</a></p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/architecture">Google Cloud Architecture Center</a></p></li>
+<li><p><a class="reference external" href="https://registry.terraform.io/">Terraform Registry</a></p></li>
+</ul>
+<p><strong>Next Steps After Completing Examples:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Implement CI/CD</strong>: Set up automated deployments with GitHub Actions or Cloud Build</p></li>
+<li><p><strong>Add Monitoring</strong>: Integrate Cloud Monitoring and Logging</p></li>
+<li><p><strong>Security Hardening</strong>: Implement advanced security practices</p></li>
+<li><p><strong>Cost Optimization</strong>: Use cost management tools and policies</p></li>
+<li><p><strong>Multi-Region Deployment</strong>: Expand to global infrastructure</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These examples are designed for learning and development. For production deployments, additional considerations around security, monitoring, backup, and disaster recovery should be implemented.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_terraform_production_challenges.html" class="btn btn-neutral float-left" title="10.4 Terraform Production Challenges" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="6_ansible_introduction.html" class="btn btn-neutral float-right" title="10.6 Ansible - Configuration Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, skillab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

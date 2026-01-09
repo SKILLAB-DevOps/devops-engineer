@@ -2,103 +2,57 @@
 7.4 CI/CD Best Practices
 ########################
 
-**From Working to World-Class**
+=============================
+Fast Feedback & Error Clarity
+=============================
 
-You've built your first pipeline and seen it work. Now comes the crucial step: transforming that basic pipeline into a production-ready system that your team can depend on. This section distills lessons learned from thousands of production CI/CD implementations across companies from startups to Fortune 500 enterprises.
-
-These aren't theoretical guidelines - they're battle-tested practices that prevent outages, reduce costs, and enable teams to deploy with confidence.
-
-==========================
-Pipeline Design Principles
-==========================
-
-**1. Optimize for Developer Experience**
-
-*Why this matters:* If your pipeline frustrates developers, they'll find ways around it. A great pipeline becomes invisible - developers trust it and forget it's there.
-
-*Practical guidelines:*
-
-- **Fast feedback loops:** Aim for <5 minutes for basic validation, <15 minutes for comprehensive testing
-- **Clear error messages:** Developers should immediately understand what went wrong and how to fix it
-- **Consistent environments:** "Works on my machine" problems disappear when environments are identical
+**Optimal Job Ordering:**
 
 .. code-block:: yaml
 
-    # Good: Clear, actionable error reporting
-    - name: Run tests with detailed output
+    # Fast validation first (1-2 min)
+    - name: Lint & format check
       run: |
-        python -m pytest -v --tb=short --strict-markers
-        if [ $? -ne 0 ]; then
-          echo "Tests failed. Check the output above for specific failures."
-          echo "Tip: Run 'python -m pytest -v' locally to debug"
-          exit 1
-        fi
-
-*Real-world impact:* Teams with great developer experience deploy 3x more frequently than those with clunky pipelines.
-
-**2. Fail Fast, Fail Clearly**
-
-*The principle:* Catch problems as early as possible when they're cheapest and easiest to fix.
-
-*Implementation strategy:*
-
-.. code-block:: yaml
-
-    # Optimal job ordering
-    jobs:
-      # Stage 1: Quick validations (1-2 minutes)
-      lint-and-format:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - run: uv run ruff check .        # Fast linting
-          - run: uv run ruff format --check . # Fast formatting check
+        uv run ruff check .
+        uv run ruff format --check .
+        
+    # Core tests next (3-5 min) 
+    - name: Unit tests
+      run: uv run pytest tests/unit/ -v --tb=short
       
-      # Stage 2: Core functionality (3-5 minutes)
-      unit-tests:
-        needs: lint-and-format  # Only run if linting passes
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - run: uv run pytest tests/unit/
-      
-      # Stage 3: Integration tests (10-15 minutes)
-      integration-tests:
-        needs: unit-tests
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - run: uv run pytest tests/integration/
+    # Expensive tests last (10+ min)
+    - name: Integration tests  
+      run: uv run pytest tests/integration/
 
-*Why this ordering works:* Developers get feedback about syntax errors in 2 minutes instead of waiting 15 minutes for integration tests to fail.
+================================
+Security Integration (DevSecOps)
+================================
 
-**3. Build Security In (DevSecOps)**
-
-*Traditional approach:* Security team reviews code after development is "done"
-*Modern approach:* Security checks are built into every stage of the pipeline
-
-*Essential security checks:*
+**Essential Security Checks:**
 
 .. code-block:: yaml
 
     security:
-      runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
         
-        # Dependency vulnerability scanning
-        - name: Check for vulnerable dependencies
+        # Vulnerability scanning
+        - name: Scan dependencies
           run: |
             uv run safety check
             uv run pip-audit
         
-        # Static security analysis
-        - name: Run security linter
-          run: uv run bandit -r src/ -f json -o security-report.json
+        # Static security analysis  
+        - name: Security linting
+          run: uv run bandit -r src/ -f json -o security.json
         
         # Secret detection
-        - name: Scan for leaked secrets
+        - name: Scan for secrets
           uses: trufflesecurity/trufflehog@main
+          with:
+            path: ./
+            base: main
+            head: HEAD
           with:
             path: ./
             base: main
@@ -152,92 +106,89 @@ Pipeline Design Principles
 Python-Specific Best Practices
 ==============================
 
-**1. Dependency Management**
+**Modern Dependency Management:**
 
 .. code-block:: yaml
 
-    # Good: Use modern tools with dependency locking
     - uses: astral-sh/setup-uv@v3
       with:
         enable-cache: true
         cache-dependency-glob: "uv.lock"
     - run: uv sync --dev
 
-    # Bad: Unpinned dependencies
-    - run: pip install pytest flask
-
-**2. Multi-Version Testing**
+**Multi-Version Testing:**
 
 .. code-block:: yaml
 
-    # Good: Test supported Python versions
     strategy:
       matrix:
         python-version: ["3.11", "3.12", "3.13"]
         exclude:
           - python-version: "3.12"
-            os: windows-latest  # Skip problematic combinations
+            os: windows-latest
 
-**3. Code Quality Gates**
+**Quality Gates:**
 
 .. code-block:: yaml
 
-    # Good: Comprehensive quality checks
-    - name: Code quality
+    - name: Quality checks
       run: |
         uv run ruff check .           # Linting
-        uv run ruff format --check .  # Formatting
+        uv run ruff format --check .  # Formatting  
         uv run mypy src/              # Type checking
-        uv run bandit -r src/         # Security scanning
+        uv run bandit -r src/         # Security
 
 =======================
-Security Best Practices
+Security Best Practices  
 =======================
 
-**1. Secret Management**
-
-- Never hardcode secrets in code or configuration files
-- Use GitHub repository secrets or environment secrets
-- Rotate secrets regularly
-- Use least-privilege principle
+**Secret Management:**
 
 .. code-block:: yaml
 
-    # Good: Proper secret usage
     - name: Deploy to production
       env:
         API_KEY: ${{ secrets.PRODUCTION_API_KEY }}
       run: deploy.sh
 
-    # Bad: Hardcoded secrets
-    - run: curl -H "Authorization: Bearer abc123" api.example.com
-
-**2. Dependency Security**
+**Dependency Security:**
 
 .. code-block:: yaml
 
-    # Good: Regular security scanning
     - name: Security audit
       run: |
         uv run bandit -r src/
         uv run safety check
-        # Scan for vulnerable dependencies
+        uv run pip-audit
 
-**3. Container Security**
+**Container Security:**
 
-- Use official, minimal base images
-- Scan images for vulnerabilities
-- Don't run containers as root
+.. code-block:: dockerfile
+
+    FROM python:3.12-slim
+    RUN adduser --disabled-password --gecos '' appuser
+    USER appuser  # Don't run as root
+    COPY --chown=appuser:appuser . /app
 
 ======================
 Testing Best Practices
 ======================
 
-**1. Test Pyramid Implementation**
+**Test Pyramid Structure:**
 
-- Many unit tests (fast, isolated)
-- Some integration tests (medium speed)
-- Few end-to-end tests (slow, comprehensive)
+.. code-block:: yaml
+
+    # Fast unit tests (70% of tests)
+    - name: Unit tests
+      run: uv run pytest tests/unit/ --maxfail=1
+      
+    # Medium integration tests (20% of tests)  
+    - name: Integration tests
+      run: uv run pytest tests/integration/ -v
+      
+    # Slow E2E tests (10% of tests)
+    - name: End-to-end tests
+      run: uv run pytest tests/e2e/ --timeout=300
 
 .. code-block:: yaml
 
@@ -252,64 +203,42 @@ Testing Best Practices
       if: github.ref == 'refs/heads/main'
       run: uv run pytest tests/e2e/ -v
 
-**2. Test Coverage Standards**
-
-- Aim for >80% code coverage
-- Focus on critical business logic
-- Don't obsess over 100% coverage
+**Test Coverage:**
 
 .. code-block:: yaml
 
-    # Good: Coverage with reasonable thresholds
     - name: Test with coverage
       run: |
         uv run pytest --cov=src --cov-report=xml --cov-fail-under=80
         uv run coverage report
 
-**3. Test Environment Parity**
+======================
+Environment Management
+======================
 
-- Use production-like data (anonymized)
-- Mirror production configuration
-- Test with realistic load
-
-=================================
-Environment Management Strategies
-=================================
-
-**The Production Mirror Principle**
-
-One of the most expensive mistakes in software development is assuming that code working in development will work in production. The solution: make your pipeline environments as close to production as possible.
-
-**Container-Based Consistency**
-
-*Problem:* "It works on my machine" syndrome
-*Solution:* Containerize everything - development, testing, and production environments should use identical base images.
+**Container-Based Consistency:**
 
 .. code-block:: yaml
 
-    # Production-ready approach
     jobs:
       test:
         runs-on: ubuntu-latest
         container:
-          image: python:3.12-slim  # Same image used in production
+          image: python:3.12-slim  # Match production
           env:
             DATABASE_URL: postgresql://test:test@postgres:5432/testdb
         
         services:
           postgres:
-            image: postgres:15  # Same version as production
+            image: postgres:15  # Same as production
             env:
               POSTGRES_PASSWORD: test
               POSTGRES_DB: testdb
 
-**Environment Promotion Strategy**
-
-*Best practice:* Code should flow through environments automatically, with identical deployment processes.
+**Environment Promotion:**
 
 .. code-block:: yaml
 
-    # Environment promotion workflow
     deploy:
       strategy:
         matrix:
@@ -322,24 +251,20 @@ One of the most expensive mistakes in software development is assuming that code
               url: https://myapp.com
               requires_approval: true
 
-*Why this works:* If deployment fails in staging, you know it will fail in production. Fix it once, deploy everywhere.
-
 =========================
 Deployment Best Practices
 =========================
 
-**1. Environment Strategy**
-
-- Development → Staging → Production
-- Each environment should be production-like
-- Automate environment provisioning
+**Environment Strategy:**
 
 .. code-block:: yaml
 
-    # Good: Environment-specific deployments
     deploy-staging:
       if: github.ref == 'refs/heads/develop'
       environment: staging
+      steps:
+        - name: Deploy to staging
+          run: kubectl apply -f k8s/staging/
       
     deploy-production:
       if: startsWith(github.ref, 'refs/tags/v')
@@ -457,15 +382,11 @@ Cost Optimization
       if: contains(github.event.head_commit.modified, 'docs/')
       run: deploy-docs.sh
 
-================================
-Cost Optimization Strategies
-================================
+========================
+Performance Optimization
+========================
 
-**CI/CD costs can quickly spiral out of control.** Here are proven strategies to keep them manageable:
-
-**1. Smart Caching**
-
-*Impact:* Can reduce pipeline time by 50-80%
+**Advanced Caching Patterns:**
 
 .. code-block:: yaml
 
@@ -479,149 +400,431 @@ Cost Optimization Strategies
         restore-keys: |
           ${{ runner.os }}-uv-
 
-**2. Conditional Workflows**
-
-*Strategy:* Only run expensive tests when necessary
+**Conditional Execution:**
 
 .. code-block:: yaml
 
-    jobs:
-      check-changes:
-        outputs:
-          backend-changed: ${{ steps.changes.outputs.backend }}
-          frontend-changed: ${{ steps.changes.outputs.frontend }}
-        steps:
-          - uses: dorny/paths-filter@v2
-            id: changes
-            with:
-              filters: |
-                backend:
-                  - 'src/**'
-                  - 'requirements.txt'
-                frontend:
-                  - 'frontend/**'
-                  - 'package.json'
+    check-changes:
+      outputs:
+        backend-changed: ${{ steps.changes.outputs.backend }}
+      steps:
+        - uses: dorny/paths-filter@v2
+          id: changes
+          with:
+            filters: |
+              backend: ['src/**', 'requirements.txt']
+              frontend: ['frontend/**', 'package.json']
+    
+    test-backend:
+      needs: check-changes
+      if: needs.check-changes.outputs.backend-changed == 'true'
+      run: uv run pytest tests/
+
+**Resource Right-Sizing:**
+
+.. code-block:: yaml
+
+    lint:  
+      runs-on: ubuntu-latest      # Basic tasks
       
-      test-backend:
-        needs: check-changes
-        if: needs.check-changes.outputs.backend-changed == 'true'
-        # ... backend tests
+    integration-tests:  
+      runs-on: ubuntu-latest-4-cores  # CPU intensive
 
-**3. Resource Right-Sizing**
+===================
+Pipeline Monitoring
+===================
 
-*Principle:* Use the smallest runner that gets the job done
-
-.. code-block:: yaml
-
-    jobs:
-      lint:  # Fast job, small runner
-        runs-on: ubuntu-latest
-        
-      integration-tests:  # Resource-intensive job, larger runner
-        runs-on: ubuntu-latest-4-cores
-
-==============================
-Monitoring and Alerting
-==============================
-
-**Beyond Green/Red Status**
-
-Successful teams monitor their CI/CD pipelines as carefully as their production applications.
-
-**Essential Alerts**
+**Metrics Collection:**
 
 .. code-block:: yaml
 
-    - name: Send failure notification
+    - name: Record metrics
+      run: |
+        echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
+        curl -X POST "$METRICS_ENDPOINT" \
+          -d "pipeline_start=$(date +%s)" \
+          -d "repo=${{ github.repository }}"
+    
+    - name: Report completion
+      if: always()
+      run: |
+        DURATION=$(($(date +%s) - $START_TIME))
+        curl -X POST "$METRICS_ENDPOINT" \
+          -d "duration=$DURATION" \
+          -d "status=${{ job.status }}"
+
+**Key Metrics:**
+- Lead Time: Commit → production
+- Deploy Frequency: Daily deployments
+- Change Failure Rate: <5% rollbacks
+- MTTR: <1 hour recovery
+
+**Failure Alerts:**
+
+.. code-block:: yaml
+
+    - name: Failure notification
       if: failure()
       uses: 8398a7/action-slack@v3
       with:
         status: failure
         channel: '#dev-alerts'
         message: |
-          🚨 Pipeline failed for ${{ github.repository }}
-          Commit: ${{ github.sha }}
-          Author: ${{ github.actor }}
-          Branch: ${{ github.ref }}
-          Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          🚨 Pipeline failed: ${{ github.repository }}
+          
+          📊 **Failure Context:**
+          - **Commit**: ${{ github.sha }} by ${{ github.actor }}
+          - **Branch**: ${{ github.ref_name }}
+          - **Failed Job**: ${{ github.job }}
+          - **Failure Rate**: Check if this is a pattern or one-off
+          
+          🔗 **Quick Actions:**
+          - [View Logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          - [Compare Changes](${{ github.event.compare }})
+          - [Rollback Procedure](https://wiki.company.com/rollback)
 
-**Pipeline Health Dashboard**
+**Pipeline Health Dashboards**
 
-Track these metrics weekly:
-- Average pipeline duration (trending down is good)
-- Success rate by branch (main should be >95%)
-- Most frequent failure causes
-- Developer satisfaction scores
+*Essential Dashboard Widgets:*
 
-=============
-Key Takeaways
-=============
+- Pipeline success rate by repository (rolling 7 days)
+- Average build duration trends
+- Most frequent failure causes and remediation times  
+- Developer productivity metrics (PRs merged per developer per week)
+- Infrastructure costs by repository and team
 
-1. **Start Simple**: Begin with basic pipelines and evolve gradually
-2. **Automate Everything**: If you do it twice, automate it
-3. **Fail Fast**: Catch issues early when they're cheap to fix
-4. **Monitor Continuously**: Track metrics and improve iteratively
-5. **Secure by Default**: Build security into every step
-6. **Team Ownership**: Everyone is responsible for pipeline health
+*Implementation using GitHub APIs:*
 
-.. warning::
-  
-    **Common Anti-Patterns to Avoid:**
-    
-    - Manual steps in automated pipelines
-    - Skipping tests to "save time"
-    - Deploying on Fridays without monitoring
-    - Ignoring flaky tests
-    - Over-engineering on day one
+.. code-block:: python
 
-Remember: The best CI/CD pipeline is one that your team actually uses and trusts. Focus on reliability and simplicity over complexity.
+    # Pipeline metrics collection script
+    import requests
+    from datetime import datetime, timedelta
+
+    def collect_pipeline_metrics(repo, token):
+        """Collect pipeline metrics for dashboard."""
+        headers = {'Authorization': f'token {token}'}
+        url = f"https://api.github.com/repos/{repo}/actions/runs"
+        
+        # Get last 100 workflow runs
+        response = requests.get(url, headers=headers, params={'per_page': 100})
+        runs = response.json()['workflow_runs']
+        
+        # Calculate metrics
+        total_runs = len(runs)
+        successful_runs = len([r for r in runs if r['conclusion'] == 'success'])
+        success_rate = (successful_runs / total_runs) * 100
+        
+        # Average duration for successful runs
+        durations = [
+            (datetime.fromisoformat(r['updated_at'].replace('Z', '+00:00')) - 
+             datetime.fromisoformat(r['created_at'].replace('Z', '+00:00'))).total_seconds()
+            for r in runs if r['conclusion'] == 'success'
+        ]
+        avg_duration = sum(durations) / len(durations) if durations else 0
+        
+        return {
+            'success_rate': success_rate,
+            'average_duration_minutes': avg_duration / 60,
+            'total_runs': total_runs
+        }
+
+===================================
+Infrastructure Pipeline Integration
+===================================
+
+**Treating Infrastructure as Code in Pipelines**
+
+Modern applications don't deploy in isolation - they require databases, load balancers, monitoring systems, and cloud resources. Production-ready pipelines automate infrastructure changes alongside application deployments.
+
+**Infrastructure-Aware Deployment Patterns**
+
+*Terraform Integration Example:*
+
+.. code-block:: yaml
+
+    # Infrastructure deployment as part of application pipeline
+    deploy-infrastructure:
+      runs-on: ubuntu-latest
+      environment: production
+      steps:
+        - uses: actions/checkout@v4
+        
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v3
+          with:
+            terraform_version: 1.6.0
+        
+        - name: Terraform Plan
+          working-directory: ./infrastructure
+          env:
+            TF_VAR_app_version: ${{ github.sha }}
+          run: |
+            terraform init
+            terraform plan -out=tfplan
+        
+        - name: Terraform Apply
+          if: github.ref == 'refs/heads/main'
+          working-directory: ./infrastructure
+          run: terraform apply -auto-approve tfplan
+        
+        - name: Output infrastructure details
+          run: |
+            echo "DATABASE_URL=$(terraform output -raw database_url)" >> $GITHUB_ENV
+            echo "API_ENDPOINT=$(terraform output -raw api_endpoint)" >> $GITHUB_ENV
+
+*Database Migration Integration:*
+
+.. code-block:: yaml
+
+    # Safe database migrations in pipelines
+    database-migration:
+      runs-on: ubuntu-latest
+      environment: production
+      steps:
+        - uses: actions/checkout@v4
+        
+        # Always backup before migrations
+        - name: Create database backup
+          run: |
+            pg_dump $DATABASE_URL > backup-$(date +%Y%m%d-%H%M%S).sql
+            aws s3 cp backup-*.sql s3://backups-bucket/
+        
+        # Run migrations with rollback capability
+        - name: Run database migrations
+          run: |
+            # Run migrations
+            uv run python manage.py migrate
+            
+            # Verify migration success
+            if uv run python manage.py showmigrations --plan | grep -q "UNAPPLIED"; then
+              echo " Migrations failed - rolling back"
+              uv run python manage.py migrate --fake-initial
+              exit 1
+            fi
+            
+            echo " Database migrations completed successfully"
+
+**Container Orchestration Integration**
+
+*Kubernetes Deployment with Health Checks:*
+
+.. code-block:: yaml
+
+    deploy-kubernetes:
+      runs-on: ubuntu-latest
+      environment: production
+      steps:
+        - uses: actions/checkout@v4
+        
+        - name: Configure kubectl
+          uses: azure/k8s-set-context@v3
+          with:
+            kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        
+        - name: Deploy to Kubernetes
+          run: |
+            # Apply configuration changes
+            kubectl apply -f k8s/
+            
+            # Update deployment with new image
+            kubectl set image deployment/myapp \
+              myapp=myregistry/myapp:${{ github.sha }}
+            
+            # Wait for rollout to complete
+            kubectl rollout status deployment/myapp --timeout=300s
+        
+        - name: Verify deployment health
+          run: |
+            # Check pod status
+            kubectl get pods -l app=myapp
+            
+            # Verify health check endpoints
+            API_URL=$(kubectl get service myapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+            curl -f http://$API_URL/health || exit 1
+            
+            echo " Deployment successful and healthy"
+
+**Multi-Environment Infrastructure Management**
+
+*Environment-Specific Infrastructure Patterns:*
+
+.. code-block:: yaml
+
+    # Environment promotion with infrastructure validation
+    deploy:
+      strategy:
+        matrix:
+          environment: [staging, production]
+          include:
+            - environment: staging
+              tf_workspace: staging
+              cluster_name: staging-cluster
+              requires_approval: false
+            - environment: production
+              tf_workspace: production  
+              cluster_name: prod-cluster
+              requires_approval: true
+              
+      environment: ${{ matrix.environment }}
+      runs-on: ubuntu-latest
+      
+      steps:
+        # Infrastructure provisioning
+        - name: Deploy infrastructure
+          working-directory: ./terraform
+          env:
+            TF_WORKSPACE: ${{ matrix.tf_workspace }}
+          run: |
+            terraform init
+            terraform plan -var="environment=${{ matrix.environment }}"
+            terraform apply -auto-approve
+        
+        # Application deployment to infrastructure
+        - name: Deploy application
+          env:
+            CLUSTER_NAME: ${{ matrix.cluster_name }}
+          run: |
+            aws eks update-kubeconfig --name $CLUSTER_NAME
+            helm upgrade --install myapp ./helm-chart \
+              --set image.tag=${{ github.sha }} \
+              --set environment=${{ matrix.environment }}
 
 ==============================
-Implementation Checklist
+Disaster Recovery & Compliance
 ==============================
 
-**Week 1: Foundation**
+**Pipeline Resilience Patterns**
 
-- Set up basic CI pipeline (build, test, lint)
-- Configure dependency management with uv
-- Add code quality checks (ruff, mypy)
-- Set up test coverage reporting
+Production pipelines must handle failures gracefully and provide audit trails for compliance requirements.
 
-**Week 2: Security & Quality**
+**Automated Rollback Strategies**
 
-- Add security scanning (bandit)
-- Configure secret management
-- Set up multi-version testing
-- Add integration tests
+.. code-block:: yaml
 
-**Week 3: Deployment**
+    # Automated rollback on deployment failure
+    deploy-with-rollback:
+      runs-on: ubuntu-latest
+      environment: production
+      steps:
+        - name: Record current version
+          run: |
+            CURRENT_VERSION=$(kubectl get deployment myapp -o jsonpath='{.spec.template.spec.containers[0].image}')
+            echo "PREVIOUS_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+        
+        - name: Deploy new version
+          id: deploy
+          run: |
+            kubectl set image deployment/myapp myapp=myregistry/myapp:${{ github.sha }}
+            kubectl rollout status deployment/myapp --timeout=300s
+        
+        - name: Health check post-deployment
+          id: health_check
+          run: |
+            sleep 30  # Allow time for startup
+            curl -f $API_ENDPOINT/health || exit 1
+            
+            # Check error rates in monitoring
+            ERROR_RATE=$(curl -s "$METRICS_API/error_rate?minutes=5")
+            if (( $(echo "$ERROR_RATE > 0.05" | bc -l) )); then
+              echo " Error rate too high: $ERROR_RATE"
+              exit 1
+            fi
+        
+        - name: Automatic rollback on failure
+          if: failure() && (steps.deploy.outcome == 'success' || steps.health_check.outcome == 'failure')
+          run: |
+            echo " Initiating automatic rollback to $PREVIOUS_VERSION"
+            kubectl set image deployment/myapp myapp=$PREVIOUS_VERSION
+            kubectl rollout status deployment/myapp --timeout=300s
+            
+            # Notify team of rollback
+            curl -X POST $SLACK_WEBHOOK \
+              -d "payload={'text': '🚨 Auto-rollback triggered for ${{ github.repository }}. Previous version restored.'}"
 
-- Create staging environment
-- Set up automated deployment pipeline
-- Configure environment-specific secrets
-- Test rollback procedures
+**Compliance and Audit Patterns**
 
-**Week 4: Optimization**
+*SOX/SOC2 Compliance Example:*
+
+.. code-block:: yaml
+
+    # Compliance-focused deployment with audit trail
+    compliance-deployment:
+      runs-on: ubuntu-latest
+      environment: production
+      steps:
+        # Approval gate for production changes
+        - name: Wait for deployment approval
+          uses: trstringer/manual-approval@v1
+          with:
+            secret: ${{ secrets.GITHUB_TOKEN }}
+            approvers: user1,user2,user3
+            minimum-approvals: 2
+            issue-title: "Production Deployment: ${{ github.ref_name }}"
+        
+        # Create audit record
+        - name: Log deployment attempt
+          run: |
+            curl -X POST "$AUDIT_API/deployments" \
+              -H "Authorization: Bearer ${{ secrets.AUDIT_TOKEN }}" \
+              -d '{
+                "timestamp": "'$(date -Iseconds)'",
+                "repository": "${{ github.repository }}",
+                "commit_sha": "${{ github.sha }}",
+                "deployer": "${{ github.actor }}",
+                "environment": "production",
+                "status": "initiated"
+              }'
+        
+        # Deployment with security validation
+        - name: Security scan before deployment
+          run: |
+            # Container image security scan
+            trivy image myregistry/myapp:${{ github.sha }} \
+              --severity HIGH,CRITICAL \
+              --exit-code 1
+            
+            # Dependency vulnerability check
+            uv run safety check --audit-and-monitor
+        
+        - name: Deploy with verification
+          run: |
+            # Deploy with gradual rollout
+            kubectl patch deployment myapp -p '{
+              "spec": {
+                "strategy": {
+                  "rollingUpdate": {
+                    "maxUnavailable": 1,
+                    "maxSurge": 1
+                  }
+                },
+                "template": {
+                  "spec": {
+                    "containers": [{
+                      "name": "myapp",
+                      "image": "myregistry/myapp:${{ github.sha }}"
+                    }]
+                  }
+                }
+              }
+            }'
+        
+        # Record successful deployment
+        - name: Log deployment success
+          if: success()
+          run: |
+            curl -X POST "$AUDIT_API/deployments" \
+              -H "Authorization: Bearer ${{ secrets.AUDIT_TOKEN }}" \
+              -d '{
+                "timestamp": "'$(date -Iseconds)'",
+                "commit_sha": "${{ github.sha }}",
+                "status": "completed",
+                "deployment_id": "'$GITHUB_RUN_ID'"
+              }'
+
+
 
 - Optimize pipeline speed with caching
 - Set up monitoring and alerts
 - Document troubleshooting procedures
 - Train team on CI/CD best practices
-
-=============
-Key Takeaways
-=============
-
-**The practices that matter most:**
-
-1. **Developer experience trumps everything** - If your pipeline frustrates developers, they'll work around it
-2. **Fail fast, fail clearly** - Catch problems early when they're cheap to fix
-3. **Automate security from day one** - Security can't be an afterthought
-4. **Monitor your pipeline like production** - What you can't measure, you can't improve
-5. **Optimize for confidence, not perfection** - A simple pipeline that works beats a complex one that doesn't
-
-**Your next steps:** Pick one practice from this section and implement it in your current pipeline. Master it, then move to the next. Sustainable improvement beats revolutionary changes that nobody adopts.
-
-.. note::
-
-    **Reality Check:** These practices took years to develop across thousands of teams. Don't try to implement everything at once. Focus on the practices that solve your team's biggest pain points first.

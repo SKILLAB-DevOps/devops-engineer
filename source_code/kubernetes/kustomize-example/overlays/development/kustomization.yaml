@@ -1,0 +1,41 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: webapp-development
+
+# Reference to base configuration
+bases:
+- ../../base
+
+# Add prefixes and suffixes
+namePrefix: dev-
+nameSuffix: -v1
+
+# Environment-specific labels
+commonLabels:
+  environment: development
+  tier: non-production
+
+# Override image tag
+images:
+- name: nginx
+  newTag: 1.21-alpine
+
+# Set replica count
+replicas:
+- name: webapp
+  count: 1
+
+# Apply patches
+patchesStrategicMerge:
+- patches/configmap-patch.yaml
+- patches/resources-patch.yaml
+
+# Generate additional ConfigMaps
+configMapGenerator:
+- name: dev-config
+  literals:
+  - debug_mode=true
+  - api_endpoint=https://api-dev.example.com
+  - feature_flags=experimental_ui,beta_api

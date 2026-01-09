@@ -1,0 +1,172 @@
+---
+# Package Management Tutorial - Essential System Administration
+# Learn how to install, update, and manage software packages with Ansible
+# This is one of the most common tasks in DevOps automation!
+
+- name: "Package Management Tutorial"
+  hosts: all
+  become: true  # Most package operations require root/sudo
+  gather_facts: true  # We need OS information for package management
+  
+  vars:
+    # Best practice: Define packages as variables for easy modification
+    essential_packages:
+      - curl      # HTTP client tool
+      - wget      # File downloader
+      - vim       # Text editor
+      - htop      # Interactive process viewer
+      - tree      # Directory tree viewer
+      - unzip     # Archive extractor
+    
+    development_packages:
+      - git       # Version control
+      - python3   # Python programming language
+      - python3-pip  # Python package manager
+      
+  tasks:
+    - name: "Learning Objectives"
+      ansible.builtin.debug:
+        msg: |
+          
+          What you'll learn:
+          - Update package cache safely
+          - Install packages cross-platform
+          - Handle different Linux distributions
+          - Verify package installation
+          - Remove packages safely
+          - Best practices for package management
+          
+    # Step 1: Update Package Cache
+    - name: "Update package cache (Ubuntu/Debian)"
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600  # Only update if cache is older than 1 hour
+      when: ansible_os_family == "Debian"
+      tags:
+        - package_cache
+        
+    - name: "Update package cache (RedHat/CentOS)"
+      ansible.builtin.yum:
+        update_cache: yes
+      when: ansible_os_family == "RedHat"
+      tags:
+        - package_cache
+        
+    # Step 2: Install Essential Packages (Cross-Platform)
+    - name: "Install essential packages (works on all Linux distributions)"
+      ansible.builtin.package:  # Generic module - works across different OS families
+        name: "{{ essential_packages }}"
+        state: present
+      tags:
+        - essential_packages
+        
+    # Step 3: Install Development Packages with Loop
+    - name: "Install development packages one by one"
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ development_packages }}"
+      tags:
+        - development_packages
+        
+    # Step 4: Install Specific Package with OS-Specific Module
+    - name: "Install NGINX web server (Ubuntu/Debian)"
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+      tags:
+        - web_server
+        
+    - name: "Install NGINX web server (RedHat/CentOS)"
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+      when: ansible_os_family == "RedHat"
+      tags:
+        - web_server
+        
+    # Step 5: Verify Package Installation
+    - name: "Gather facts about installed packages"
+      ansible.builtin.package_facts:
+        manager: auto  # Automatically detect package manager
+        
+    - name: "Verify NGINX installation"
+      ansible.builtin.debug:
+        msg: |
+          NGINX installed successfully!
+          Version: {{ ansible_facts.packages.nginx[0].version }}
+          Package manager: {{ ansible_facts.packages.nginx[0].source | default('unknown') }}
+      when: "'nginx' in ansible_facts.packages"
+      tags:
+        - verification
+        
+    - name: "NGINX installation check"
+      ansible.builtin.debug:
+        msg: "WARNING: NGINX not found in installed packages"
+      when: "'nginx' not in ansible_facts.packages"
+      tags:
+        - verification
+        
+    # Step 6: Show Installed Package Count
+    - name: "Display package statistics"
+      ansible.builtin.debug:
+        msg: |
+          
+          Package Statistics:
+          Total packages installed: {{ ansible_facts.packages | length }}
+          Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Package Manager: {{ ansible_pkg_mgr }}
+          
+    # Step 7: Package Removal (Demonstration Only - Safe with Tags)
+    - name: "Remove example package (nano editor)"
+      ansible.builtin.package:
+        name: nano
+        state: absent
+      when: 
+        - ansible_os_family == "Debian"
+        - "'nano' in ansible_facts.packages"
+      tags:
+        - remove_packages
+        - never  # Only run when explicitly requested with --tags remove_packages
+        
+    # Step 8: Show Package Information
+    - name: "List some key installed packages"
+      ansible.builtin.debug:
+        msg: |
+          
+          Key Package Status:
+          {% for pkg in essential_packages %}
+          {{ "[INSTALLED]" if pkg in ansible_facts.packages else "[MISSING]" }} {{ pkg }}
+          {% endfor %}
+          
+          Pro Tips:
+          - Always use 'state: present' instead of 'state: latest' for stability
+          - Use 'package' module for cross-platform compatibility
+          - Use specific modules (apt, yum) for advanced features
+          - Always update cache before installing packages
+          - Use tags to organize optional tasks
+          
+    # Step 9: Advanced Package Management Examples
+    - name: "Install package with specific version (demonstration)"
+      ansible.builtin.debug:
+        msg: |
+          
+          Advanced Package Management Examples:
+          
+          # Install specific version:
+          apt: name=nginx=1.18.0-0ubuntu1 state=present
+          
+          # Install from URL:
+          apt: deb=https://example.com/package.deb state=present
+          
+          # Install with recommends disabled:
+          apt: name=nginx state=present install_recommends=no
+          
+          # Update all packages (use carefully!):
+          apt: upgrade=dist update_cache=yes
+          
+          WARNING: These are examples only - not executed in this playbook
+      tags:
+        - advanced_examples

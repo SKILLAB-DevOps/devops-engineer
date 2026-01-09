@@ -1,0 +1,6 @@
+region          = "eu-central-1"
+instance_type   = "t2.micro"
+key_name        = "my-custom-key"
+ssh_access_cidr = "0.0.0.0/0"
+web_access_cidr = "0.0.0.0/0"
+ami_id          = "ami-03cceb19496c25679"

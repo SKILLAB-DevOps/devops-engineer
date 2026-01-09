@@ -1,0 +1,215 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "weather-cli"
+version = "1.0.0"
+description = "Production-ready CLI weather application"
+authors = [
+    {name = "DevOps Team", email = "devops@example.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+keywords = ["cli", "weather", "api", "devops"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers", 
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+
+# Runtime dependencies (what users need)
+dependencies = [
+    "typer>=0.9.0,<1.0",                    # Modern CLI framework
+    "rich>=13.0.0,<14.0",                   # Beautiful terminal output  
+    "requests>=2.28.0,<3.0",               # HTTP client for API calls
+    "pydantic>=2.0.0,<3.0",                # Data validation
+]
+
+# Optional dependencies for extra features
+[project.optional-dependencies]
+dev = [
+    # Testing framework and plugins
+    "pytest>=7.4.0,<8.0",                  # Testing framework
+    "pytest-cov>=4.1.0,<5.0",              # Coverage reporting
+    "pytest-mock>=3.11.0,<4.0",            # Mocking for tests
+    "pytest-asyncio>=0.21.0,<1.0",         # Async test support
+    
+    # Code quality tools (modern stack)
+    "ruff>=0.1.0,<1.0",                    # Fast linter and formatter
+    "mypy>=1.5.0,<2.0",                    # Static type checking
+    "pre-commit>=3.4.0,<4.0",              # Git hooks for quality
+    
+    # Security and dependency checking
+    "bandit>=1.7.0,<2.0",                  # Security vulnerability scanner
+    "safety>=2.3.0,<3.0",                  # Dependency vulnerability checker
+    
+    # Documentation and packaging
+    "mkdocs>=1.5.0,<2.0",                  # Documentation generator
+    "twine>=4.0.0,<5.0",                   # Package upload tool
+]
+
+# Define CLI entry points
+[project.scripts]
+weather = "weather_cli.main:app"            # Command: weather -> weather_cli.main:app
+
+# URLs for package metadata
+[project.urls]
+Homepage = "https://github.com/example/weather-cli"
+Documentation = "https://weather-cli.readthedocs.io"
+Repository = "https://github.com/example/weather-cli.git"
+"Bug Tracker" = "https://github.com/example/weather-cli/issues"
+Changelog = "https://github.com/example/weather-cli/blob/main/CHANGELOG.md"
+
+# Build configuration
+[tool.hatchling.build.targets.wheel]
+packages = ["src/weather_cli"]              # Include source package
+
+# Ruff configuration (replaces flake8, black, isort)
+[tool.ruff]
+target-version = "py311"                    # Target Python 3.11+
+line-length = 88                           # Black-compatible line length
+src = ["src", "tests"]                      # Source directories
+
+[tool.ruff.lint]
+# Enable specific rule categories
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings  
+    "F",      # Pyflakes
+    "I",      # isort
+    "N",      # pep8-naming
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "SIM",    # flake8-simplify
+    "TCH",    # flake8-type-checking
+]
+
+# Ignore specific rules
+ignore = [
+    "E501",   # Line too long (handled by formatter)
+    "B008",   # Function calls in argument defaults
+]
+
+# Rules for specific file patterns
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",   # Allow assert statements in tests
+    "ARG",    # Allow unused arguments in test fixtures
+    "FBT",    # Allow boolean trap in tests
+]
+
+# Configure import sorting
+[tool.ruff.lint.isort]
+known-first-party = ["weather_cli"]
+force-single-line = false
+lines-between-types = 1
+
+# MyPy configuration for static type checking
+[tool.mypy]
+python_version = "3.11"                    # Target Python version
+strict = true                              # Enable all strict checks
+warn_return_any = true                     # Warn on Any returns
+warn_unused_configs = true                 # Warn on unused config
+disallow_untyped_defs = true              # Require type annotations
+disallow_any_generics = true              # Require specific generic types
+no_implicit_optional = true               # No implicit Optional types
+warn_redundant_casts = true               # Warn on redundant type casts
+warn_unused_ignores = true                # Warn on unused type ignores
+
+# Paths to check
+files = ["src", "tests"]
+
+# Module-specific overrides
+[[tool.mypy.overrides]]
+module = ["requests.*", "rich.*"]          # External libraries without stubs
+ignore_missing_imports = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]                      # Test directories
+python_files = ["test_*.py", "*_test.py"] # Test file patterns  
+python_classes = ["Test*"]                # Test class patterns
+python_functions = ["test_*"]             # Test function patterns
+addopts = [
+    "--strict-markers",                    # Strict marker usage
+    "--strict-config",                     # Strict configuration
+    "--verbose",                           # Verbose output
+    "--tb=short",                          # Short traceback format
+    "--cov=src",                          # Coverage source
+    "--cov-report=term-missing",          # Show missing lines
+    "--cov-report=html:htmlcov",          # HTML coverage report
+    "--cov-fail-under=80",                # Minimum coverage threshold
+]
+
+# Define custom test markers
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["src"]                           # Source for coverage
+branch = true                             # Enable branch coverage
+omit = [
+    "*/tests/*",                          # Exclude test files
+    "*/venv/*",                           # Exclude virtual env
+    "*/__pycache__/*",                    # Exclude cached files
+]
+
+[tool.coverage.report]
+precision = 2                             # Decimal precision
+show_missing = true                       # Show missing lines
+skip_covered = false                      # Don't skip covered files
+
+[tool.coverage.html]
+directory = "htmlcov"                     # HTML report directory
+
+# Bandit security configuration
+[tool.bandit]
+exclude_dirs = ["tests", "venv"]          # Exclude directories
+skips = ["B101"]                         # Skip specific checks (assert_used)
+
+# Pre-commit hook configuration
+[tool.pre-commit]
+repos = [
+    {
+        repo = "local",
+        hooks = [
+            {
+                id = "ruff-format",
+                name = "ruff-format",
+                entry = "ruff format",
+                language = "system",
+                files = "\\.py$",
+            },
+            {
+                id = "ruff-lint", 
+                name = "ruff-lint",
+                entry = "ruff check --fix",
+                language = "system",
+                files = "\\.py$",
+            },
+            {
+                id = "mypy",
+                name = "mypy",
+                entry = "mypy",
+                language = "system", 
+                files = "\\.py$",
+                pass_filenames = false,
+            }
+        ]
+    }
+]

@@ -2,7 +2,7 @@
 Foreword
 ########
 
-This book began as an accident. While using the Sphinx documentation package to make my lectures more accessible, I intended to build documentation in HTML. Instead, I tried to generate an EPUB. That small mishap planted the seed for this book—and here we are.
+This book began as an accident. While using the ``sphinx`` documentation package to make my lectures more accessible, I intended to build documentation in HTML. Instead, I tried to generate an ``.epub``. That small mishap planted the seed for this book—and here we are.
 
 As a professional in the technology industry, I have witnessed the transformative power of DevOps firsthand. It has revolutionized how software is developed, delivered, and maintained, reshaping organizations across industries and scales. DevOps isn't just a set of tools or processes, it's a cultural shift, a holistic approach that bridges the gap between software development and IT operations.
 

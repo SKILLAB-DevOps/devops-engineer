@@ -1,0 +1,19 @@
+---
+# Variables file - can be included in playbooks
+# These variables can be overridden by command line, host vars, or group vars
+
+database_host: "localhost"
+database_port: 3306
+database_name: "webapp_db"
+database_user: "webapp_user"
+
+log_level: "INFO"
+log_max_size: "50MB"
+
+debug_mode: false
+
+# Client settings
+client_max_body_size: "20M"
+
+# Environment-specific defaults (can be overridden)
+environment: "development"

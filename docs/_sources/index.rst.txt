@@ -101,6 +101,83 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    1_system_design/6_setup_infra
    1_system_design/7_system_design.rst
    1_system_design/TODO
+   
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Linux
+
+   2_linux/0_introduction
+   2_linux/1_managing_users_and_groups
+   2_linux/2_file_management
+   2_linux/3_managing_software
+   2_linux/4_service_management
+   2_linux/5_process_management
+   2_linux/6_system_logging
+   2_linux/7_linux_file_systems
+   2_linux/8_terminal_tuning
+   2_linux/9_networking
+   2_linux/TODO
+   2_linux/ANSWERS
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Scripting
+
+   3_scripting/0_introduction
+   3_scripting/1_getting_started
+   3_scripting/2_data_structures_conditions
+   3_scripting/3_to_script_or_to_alias
+   3_scripting/4_shell_style_guide
+   3_scripting/5_makefile
+   3_scripting/6_utilities
+   3_scripting/TODO
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Python
+
+   4_python/0_introduction
+   4_python/1_installation
+   4_python/2_data_structures
+   4_python/3_conditions_loops
+   4_python/4_libraries
+   4_python/5_functions
+   4_python/6_classes
+   4_python/7_yourfirstcli
+   4_python/8_documentation
+   4_python/9_rules
+   4_python/10_files
+   4_python/11_rest_api
+   4_python/12_comprehensions
+   4_python/13_lambda
+   4_python/14_testing
+   4_python/15_packaging
+   4_python/TODO
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Git
+
+   5_git/0_introduction
+   5_git/1_working_togheter
+   5_git/2_bestpractices
+   5_git/TODO
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: DocOps
+
+   6_docs_as_code/0_introduction
+   6_docs_as_code/1_installation
+   6_docs_as_code/2_sphinx
+   6_docs_as_code/3_deploy_docs
+   6_docs_as_code/TODO
 
 .. toctree::
    :hidden:
@@ -171,10 +248,12 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    10_infrastructure_as_code/2_terraform_core_concepts
    10_infrastructure_as_code/3_terraform_workflow_gcp
    10_infrastructure_as_code/4_terraform_production_challenges
+   10_infrastructure_as_code/5_terraform_practical_examples
    10_infrastructure_as_code/6_ansible_introduction
    10_infrastructure_as_code/7_ansible_core_concepts
    10_infrastructure_as_code/8_ansible_advanced_features
    10_infrastructure_as_code/9_ansible_production_patterns
+   10_infrastructure_as_code/TODO
 
 .. toctree::
    :hidden:
@@ -208,8 +287,6 @@ A DevOps engineer isn't just an expert in tools (languages, frameworks, applicat
    11_cloud_gcp/10_database_services
    11_cloud_gcp/11_platform_overview
    11_cloud_gcp/TODO
-
-
 
 .. toctree::
    :hidden:

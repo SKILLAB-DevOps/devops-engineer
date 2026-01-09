@@ -1,0 +1,52 @@
+server {
+    listen {{ app_port }};
+    server_name {{ inventory_hostname }} {{ ansible_default_ipv4.address | default('localhost') }};
+
+    root {{ app_directory }}/html;
+    index index.html index.htm;
+
+    # Logging
+    access_log {{ app_directory }}/logs/access.log;
+    error_log {{ app_directory }}/logs/error.log;
+
+    # Basic settings
+    client_max_body_size {{ client_max_body_size | default('10M') }};
+    
+    location / {
+        try_files $uri $uri/ =404;
+        
+        # Add custom headers
+        add_header X-App-Name "{{ app_name }}";
+        add_header X-Environment "{{ environment | default('development') }}";
+        add_header X-Deployed-By "Ansible";
+    }
+
+    # Static files caching
+    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Security headers
+{% if environment == 'production' %}
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options DENY;
+    add_header X-XSS-Protection "1; mode=block";
+{% endif %}
+
+    # Health check endpoint
+    location /health {
+        access_log off;
+        return 200 "OK\n";
+        add_header Content-Type text/plain;
+    }
+
+    # Server info (only in development)
+{% if environment != 'production' %}
+    location /info {
+        access_log off;
+        return 200 "Server: {{ inventory_hostname }}\nApp: {{ app_name }}\nPort: {{ app_port }}\n";
+        add_header Content-Type text/plain;
+    }
+{% endif %}
+}

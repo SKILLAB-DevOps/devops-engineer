@@ -1,0 +1,190 @@
+[
+  {
+    "model": "store.category",
+    "pk": 1,
+    "fields": {
+      "name": "Electronics",
+      "description": "Electronic devices and gadgets"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 2,
+    "fields": {
+      "name": "Clothing",
+      "description": "Fashion and apparel"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 3,
+    "fields": {
+      "name": "Books",
+      "description": "Books and educational materials"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 4,
+    "fields": {
+      "name": "Home & Garden",
+      "description": "Home improvement and gardening supplies"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 1,
+    "fields": {
+      "name": "Laptop Pro 15\"",
+      "description": "High-performance laptop with 16GB RAM and 512GB SSD",
+      "price": "1299.99",
+      "category": 1,
+      "stock_quantity": 25,
+      "image_url": "https://via.placeholder.com/300x300?text=Laptop",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 2,
+    "fields": {
+      "name": "Wireless Headphones",
+      "description": "Noise-cancelling wireless headphones with 30-hour battery",
+      "price": "199.99",
+      "category": 1,
+      "stock_quantity": 50,
+      "image_url": "https://via.placeholder.com/300x300?text=Headphones",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 3,
+    "fields": {
+      "name": "Smartphone X",
+      "description": "Latest smartphone with advanced camera and fast processor",
+      "price": "899.99",
+      "category": 1,
+      "stock_quantity": 30,
+      "image_url": "https://via.placeholder.com/300x300?text=Smartphone",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 4,
+    "fields": {
+      "name": "Designer T-Shirt",
+      "description": "Premium cotton t-shirt with modern design",
+      "price": "29.99",
+      "category": 2,
+      "stock_quantity": 100,
+      "image_url": "https://via.placeholder.com/300x300?text=T-Shirt",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 5,
+    "fields": {
+      "name": "Jeans Classic",
+      "description": "Comfortable classic fit jeans in dark blue",
+      "price": "79.99",
+      "category": 2,
+      "stock_quantity": 75,
+      "image_url": "https://via.placeholder.com/300x300?text=Jeans",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 6,
+    "fields": {
+      "name": "Python Programming Book",
+      "description": "Complete guide to Python programming for beginners and experts",
+      "price": "39.99",
+      "category": 3,
+      "stock_quantity": 60,
+      "image_url": "https://via.placeholder.com/300x300?text=Python+Book",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+      "name": "Web Development Handbook",
+      "description": "Modern web development techniques and best practices",
+      "price": "49.99",
+      "category": 3,
+      "stock_quantity": 40,
+      "image_url": "https://via.placeholder.com/300x300?text=Web+Dev+Book",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+      "name": "Garden Tool Set",
+      "description": "Complete set of essential gardening tools",
+      "price": "89.99",
+      "category": 4,
+      "stock_quantity": 20,
+      "image_url": "https://via.placeholder.com/300x300?text=Garden+Tools",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 9,
+    "fields": {
+      "name": "Smart Tablet",
+      "description": "10-inch tablet with high-resolution display",
+      "price": "349.99",
+      "category": 1,
+      "stock_quantity": 35,
+      "image_url": "https://via.placeholder.com/300x300?text=Tablet",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 10,
+    "fields": {
+      "name": "Running Shoes",
+      "description": "Comfortable running shoes with advanced cushioning",
+      "price": "129.99",
+      "category": 2,
+      "stock_quantity": 80,
+      "image_url": "https://via.placeholder.com/300x300?text=Running+Shoes",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 11,
+    "fields": {
+      "name": "Bluetooth Speaker",
+      "description": "Portable Bluetooth speaker with excellent sound quality",
+      "price": "79.99",
+      "category": 1,
+      "stock_quantity": 5,
+      "image_url": "https://via.placeholder.com/300x300?text=Speaker",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 12,
+    "fields": {
+      "name": "Cloud Computing Guide",
+      "description": "Comprehensive guide to cloud computing and DevOps",
+      "price": "59.99",
+      "category": 3,
+      "stock_quantity": 0,
+      "image_url": "https://via.placeholder.com/300x300?text=Cloud+Book",
+      "is_active": true
+    }
+  }
+]

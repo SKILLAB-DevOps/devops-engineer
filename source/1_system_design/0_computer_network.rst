@@ -2,128 +2,279 @@
 1.0 Computer and Network Basics
 ###############################
 
+Understanding how computers and networks work is essential for DevOps engineers. This chapter covers the fundamental concepts you need to know.
+
 ========
 Computer
 ========
 
-A computer is composed of two key components: hardware, and software, which allow it to function and perform a wide array of tasks.
+Think of a computer like a highly organized office building where different departments work together to complete tasks.
 
 .. image:: ../diagrams/computer.png
   :width: 1000
-  :alt: How code works
+  :alt: Computer components diagram
 
---------
-Hardware
---------
+-------------------
+Hardware Components
+-------------------
 
-    #. **Central Processing Unit (CPU)**: Often referred to as the "brain" of the computer, the CPU executes the instructions provided by the computer's software.
+**Central Processing Unit (CPU)**
 
-    #. **Memory (RAM and ROM)**: RAM (Random Access Memory) is a type of volatile memory used for the temporary storage of data that is being actively used or processed by the CPU. ROM (Read-Only Memory) is non-volatile memory used to store firmware or software that boots the computer and performs diagnostics.
+    The "brain" that executes instructions. Like a super-fast calculator that can perform billions of operations per second.
+    
+    *Example*: When you click a button in an app, the CPU processes that click and decides what should happen next.
 
-    #. **Storage**: Non-volatile storage devices, like hard drives (HDD), solid-state drives (SSD), or flash drives, store data, and software applications.
+**Memory (RAM and Storage)**
 
-    #. **Motherboard**: This is the main circuit board that connects all the computer's components and allows them to communicate with each other.
+    - **RAM (Random Access Memory)**: Think of it as your desk workspace - it holds information you're actively working with. When you close an application, this data disappears.
+    - **Storage (HDD/SSD)**: Like filing cabinets that keep your documents even when the power is off.
+    
+    *Analogy*: RAM is like papers on your desk (fast access, but temporary), while storage is like a filing cabinet (slower access, but permanent).
 
-    #. **Power Supply**: Converts electrical power from the outlet into usable power for the other components within the computer.
+**Other Essential Components**
 
-    #. **Input Devices**: Devices like a keyboard, mouse, microphone, or touchscreen allow users to interact with the computer.
+    - **Motherboard**: The office building that connects all departments
+    - **Power Supply**: The electrical system powering everything
+    - **GPU (Graphics Card)**: Specialized department for handling visual tasks
+    - **Input/Output Devices**: Ways to communicate with the outside world (keyboard, mouse, monitor)
 
-    #. **Output Devices**: Devices like a monitor, printer, or speaker produce human-perceivable output (visual, printed, or audio).
+.. note::
 
-    #. **Graphics Processing Unit (GPU)**: A specialized electronic circuit designed to rapidly manipulate and alter memory to accelerate the creation of images in a frame buffer intended for output to a display.
+    **Real-world example**: When you open a program like a web browser:
 
---------
-Software
---------
+    1. CPU reads the program from storage
+    2. Loads it into RAM for quick access
+    3. GPU helps render the visual interface
+    4. You interact through input devices
 
-    #. **Operating System (OS)**: This is the primary software that manages all the hardware and other software on the computer. Examples include Microsoft Windows, macOS, Linux, and Android.
+---------------
+Software Layers
+---------------
 
-    #. **Application Software**: These are the programs that perform specific tasks. Examples include web browsers, word processors, games, and databases.
+Software works in layers, like floors in an office building:
 
-    #. **Drivers**: These are special pieces of software that allow the operating system to interact with the hardware components.
+**Operating System (OS)**
 
-    #. **Firmware**: This is a type of software that is closely related to hardware, often stored in ROM or flash memory, and is used to control the hardware.
+    The building manager that coordinates everything. Examples: Windows, macOS, Linux, Android.
+    
+    *What it does*: Manages hardware, runs programs, handles files, provides security.
 
-=======
-Network
-=======
+**Application Software**
 
-A network, in the context of computing, is a collection of interconnected devices such as computers, servers, mainframes, network devices, peripherals, or smart IoT devices that are linked together to facilitate communication and data exchange. Networks can be categorized by their scope:
+    The actual workers doing specific jobs: web browsers, text editors, games, databases.
+    
+    *Example*: When you use Chrome (application), it asks the OS to display windows, access the internet, and store bookmarks.
 
-    #. Local Area Network (LAN): A network that connects devices in a relatively small area such as a home, office, or a group of buildings.
+**Drivers & Firmware**
 
-    #. Wide Area Network (WAN): A network that covers a large geographical area, and is often composed of several LANs. The best-known example of a WAN is the Internet.
+    - **Drivers**: Translators that help the OS talk to hardware
+    - **Firmware**: Basic instructions built into hardware components
+    
+    *Analogy*: Drivers are like interpreters helping departments communicate in different languages.
 
-    #. Personal Area Network (PAN): A network designed for personal use within a range of a few meters, often using wireless technology.
+========
+Networks
+========
 
-    #. Metropolitan Area Network (MAN): A network that covers a larger geographic area, such as a city or campus.
-
-Why it's important to know about different networks? A machine has more than one network interface, one private and one public. The private network is used for internal communication, while the public network is used for external communication. This is important for security reasons.
-
-Networking can be done using a variety of mediums such as cable - wired (Ethernet)) or wireless (Wi-Fi).
-
-**The Internet** is a global network of networks. It's a WAN that spans the entire globe. It uses the standard Internet protocol suite (TCP/IP) to link devices worldwide. The Internet carries a vast array of information resources and services, such as the interlinked hypertext documents and applications of the World Wide Web (WWW), electronic mail, telephony, and file sharing. Its infrastructure is made up of many different networks from all around the world, managed by different organizations, companies, governments, and individuals.
-
-The Internet allows computers and other devices to share information over great distances. It's the infrastructure that enables activities like online gaming, social networking, financial transactions, data transfer, email, and much more. The World Wide Web, which is often mistaken for the Internet, is a service that operates over the Internet.
-
-Simplified data flow:
-
-User's Device (Browser) -> Local Network (Router) -> ISP -> Internet Backbone -> Server (Website)
-
-.. code ::
-
-    traceroute google.com
+A network is like a postal system that lets computers send messages to each other. Instead of physical mail, they send digital data.
 
 .. image:: ../diagrams/network.png
   :width: 1000
-  :alt: How code works
+  :alt: Network topology diagram
 
-=========================
-IP Address vs MAC Address
-=========================
+-----------------
+Types of Networks
+-----------------
 
-.. code::
+**Local Area Network (LAN)**
 
-  ip addr show
-  # or
-  ip a
+    Connects devices in a small area like your home or office.
+    
+    *Example*: Your laptop, phone, and smart TV all connected to your home WiFi router.
 
-An IP address is a unique identifier assigned to each device connected to a network. It's used to identify the device and communicate with it. An IP address is a logical address that can be changed. It's assigned by the network administrator or ISP (Internet Service Provider).
+**Wide Area Network (WAN)**
 
-An MAC address is a unique identifier assigned to each network interface controller (NIC) connected to a network. It's used to identify the device and communicate with it. An MAC address is a physical address that cannot be changed(but can be spoofed). It's assigned by the manufacturer.
+    Connects devices across large distances. The Internet is the biggest WAN.
+    
+    *Example*: Sending an email from New York to Tokyo uses multiple WANs.
 
--------------
-IP v4 classes
--------------
+**Personal Area Network (PAN)**
 
-=============  ===============================  ===================  ================================  ============  =========  ===============================
-RFC 1918 name  IP address range                 Number of addresses  Largest CIDR block (subnet mask)  Host ID size  Mask bits  Classful description
-=============  ===============================  ===================  ================================  ============  =========  ===============================
-24-bit block   10.0.0.0 - 10.255.255.255        16777216             10.0.0.0/8 (255.0.0.0)            24 bits       8 bits     single class A network
-20-bit block   172.16.0.0 - 172.31.255.255      1048576              172.16.0.0/12 (255.240.0.0)       20 bits       12 bits    16 contiguous class B networks
-16-bit block   192.168.0.0 - 192.168.255.255    65536                192.168.0.0/16 (255.255.0.0)      16 bits       16 bits    256 contiguous class C networks
-=============  ===============================  ===================  ================================  ============  =========  ===============================
+    Very short-range connections, usually wireless.
+    
+    *Example*: Bluetooth connection between your phone and wireless earbuds.
 
-There is another special IP address range called the loopback address range. It's used to establish a connection to the same computer. The loopback address range is localhost (127.0.0.1).
+**Metropolitan Area Network (MAN)**
 
---------------
-IP v4 vs IP v6
---------------
+    Covers a city or large campus.
+    
+    *Example*: A university network connecting all campus buildings.
 
-IP v4 is the fourth version of the Internet Protocol (IP). It's the most widely used protocol in use today. It's a connectionless protocol that operates on a best-effort delivery model, in that it does not guarantee delivery, nor does it assure proper sequencing or avoidance of duplicate delivery. These aspects, including data integrity, are addressed by an upper layer transport protocol, such as the Transmission Control Protocol (TCP).
+----------------------
+How the Internet Works
+----------------------
 
-Example:
+The Internet is like a global highway system for data:
 
-.. code-block::
-  
-    8.8.8.8
+.. code-block:: 
 
-	  00001000.00001000.00001000.00001000
+    Your Device → Home Router → Internet Service Provider (ISP) → 
+    Internet Backbone → Destination Server
 
-IP v6 is the sixth version of the Internet Protocol (IP). It's the most recent version of the Internet Protocol. It's designed to succeed Internet Protocol version 4 (IPv4). It's a connectionless protocol that operates on a best-effort delivery model, in that it does not guarantee delivery, nor does it assure proper sequencing or avoidance of duplicate delivery. These aspects, including data integrity, are addressed by an upper layer transport protocol, such as the Transmission Control Protocol (TCP).
+**Step-by-step example**: Loading a website
 
-Example: 
+1. You type "google.com" in your browser
+2. Your computer asks your router "Where is google.com?"
+3. Router asks your ISP's DNS server
+4. DNS server responds with Google's IP address
+5. Your request travels through multiple networks to reach Google's servers
+6. Google sends the webpage back through the same path
 
-.. code-block::
+.. note::
+    
+    **Try this**: Open a terminal and run ``traceroute google.com`` to see the actual path your data takes to reach Google!
 
-    2001:0db8:0000:0000:1234:0ace:6006:001e
+=========================================
+Addressing: How Computers Find Each Other
+=========================================
+
+Computers use two types of addresses, like having both a home address and a social security number.
+
+-----------------------------
+IP Addresses vs MAC Addresses
+-----------------------------
+
+.. code-block:: bash
+
+    # See your network information
+    ip addr show
+    # or shorter version
+    ip a
+
+**IP Address (Logical Address)**
+
+    Like your home address - can change when you move to a different network.
+    
+    *Example*: 192.168.1.100 (at home) vs 10.0.1.50 (at work)
+    
+    *Purpose*: Routes data across networks to find the right destination.
+
+**MAC Address (Physical Address)**
+
+    Like your fingerprint - unique to each network card and doesn't change.
+    
+    *Example*: 00:1A:2B:3C:4D:5E
+    
+    *Purpose*: Identifies devices on the same local network.
+
+.. note::
+
+    **Analogy**: IP addresses are like postal addresses (change when you move), while MAC addresses are like your DNA (always the same).
+
+------------------------------
+Private vs Public IP Addresses
+------------------------------
+
+**Private IP Addresses (Internal Use)**
+These are like apartment numbers within a building - they only make sense inside that building.
+
+===============  =================================  ==============================
+Address Range    Usage                              Example
+===============  =================================  ==============================
+10.0.0.0/8       Large organizations                10.0.0.1 - 10.255.255.254
+172.16.0.0/12    Medium-sized networks              172.16.0.1 - 172.31.255.254  
+192.168.0.0/16   Home/small office networks         192.168.0.1 - 192.168.255.254
+127.0.0.1        Loopback (your own computer)       Always 127.0.0.1 (localhost)
+===============  =================================  ==============================
+
+**Public IP Addresses**
+Like your building's street address - unique worldwide and accessible from the Internet.
+
+*Example*: When you visit a website, you're connecting to its public IP address.
+
+-----------------------------------
+IPv4 vs IPv6: The Address Evolution
+-----------------------------------
+
+**IPv4 (Current Standard)**
+
+    - Format: Four numbers separated by dots
+    - Example: ``8.8.8.8`` (Google's DNS server)
+    - Problem: Only ~4.3 billion possible addresses (not enough for everyone!)
+
+.. code-block:: text
+
+    IPv4 Binary Representation:
+    8.8.8.8 = 00001000.00001000.00001000.00001000
+
+**IPv6 (Future Standard)**
+
+    - Format: Eight groups of hexadecimal numbers
+    - Example: ``2001:0db8:0000:0000:1234:0ace:6006:001e``
+    - Solution: 340 undecillion addresses (enough for every grain of sand on Earth!)
+
+.. note::
+
+    **Why the change?** We're running out of IPv4 addresses! IPv6 provides enough addresses for every device on the planet to have multiple unique addresses.
+
+==================
+Practical Examples
+==================
+
+**Example 1: Home Network Setup**
+
+.. code-block:: text
+
+    Internet (Public IP: 203.0.113.1)
+           ↓
+    Router/Modem (Gateway: 192.168.1.1)
+           ↓
+    Home Devices:
+    - Laptop: 192.168.1.100
+    - Phone: 192.168.1.101  
+    - Smart TV: 192.168.1.102
+
+**Example 2: Checking Your Network**
+
+.. code-block:: bash
+
+    # Find your IP address
+    ip addr show | grep inet
+    
+    # Test connectivity to Google
+    ping 8.8.8.8
+    
+    # See the route to a website
+    traceroute github.com
+    
+    # Check your public IP
+    curl ifconfig.me
+
+**Example 3: Understanding Network Troubleshooting**
+
+When a website doesn't load, the problem could be at different layers:
+
+1. **Physical**: Is your ethernet cable plugged in?
+2. **Network**: Can you ping your router? (``ping 192.168.1.1``)
+3. **Internet**: Can you reach external sites? (``ping 8.8.8.8``)
+4. **DNS**: Can you resolve domain names? (``nslookup google.com``)
+5. **Application**: Is the specific service working?
+
+=============
+Key Takeaways
+=============
+
+1. **Computers** are collections of hardware managed by software layers
+2. **Networks** connect computers so they can communicate
+3. **IP addresses** route data across networks (like postal addresses)
+4. **MAC addresses** identify devices on local networks (like fingerprints)
+5. **The Internet** is a global network of interconnected smaller networks
+6. **Private IPs** are for internal use, **public IPs** are for Internet communication
+
+.. note::
+
+    **Next Steps**: 
+    
+    - Experiment with network commands like ``ping``, ``traceroute``, and ``ip addr``
+    - Set up a simple home network to see these concepts in action
+    - Learn about network protocols (HTTP, DNS, etc.) in the next chapter

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  environment: "development"
+  log_level: "debug"
+  database_host: "postgres-dev"
+  cache_enabled: "false"
+  max_connections: "50"

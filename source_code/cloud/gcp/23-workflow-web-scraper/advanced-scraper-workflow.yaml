@@ -1,0 +1,198 @@
+# Advanced Google Cloud Workflow for Web Scraping
+# This workflow includes data enrichment and multiple storage options
+
+main:
+  params: [args]
+  steps:
+    - init:
+        assign:
+          - project_id: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+          - bucket_name: ${default(map.get(args, "bucket"), "web-scraper-data")}
+          - dataset_id: ${default(map.get(args, "dataset"), "scraped_data")}
+          - table_id: ${default(map.get(args, "table"), "scrape_results")}
+          - urls: ${default(map.get(args, "urls"), ["https://httpbin.org/json"])}
+          - enrichment: ${default(map.get(args, "enrichment"), true)}
+          - timestamp: ${time.format(sys.now())}
+          - results: []
+          - metadata: {}
+    
+    - validate_and_setup:
+        switch:
+          - condition: ${len(urls) = 0}
+            raise:
+              message: "No URLs provided"
+          - condition: ${len(urls) > 20}
+            raise:
+              message: "Too many URLs (max 20)"
+    
+    - scrape_websites:
+        for:
+          value: url
+          index: i
+          in: ${urls}
+          steps:
+            - fetch_website:
+                try:
+                  steps:
+                    - make_request:
+                        call: http.get
+                        args:
+                          url: ${url}
+                          timeout: 30
+                          headers:
+                            User-Agent: "GoogleCloudWorkflows/1.0"
+                        result: response
+                    
+                    - extract_metadata:
+                        assign:
+                          - domain: ${text.substring(url, text.find(url, "://") + 3, text.find(url, "/", text.find(url, "://") + 3))}
+                          - url_hash: ${text.encode_base64(url)}
+                          - response_size: ${len(response.body)}
+                    
+                    - process_content:
+                        switch:
+                          - condition: ${text.match_regex(response.headers["content-type"], ".*json.*")}
+                            assign:
+                              - processed_data:
+                                  id: ${url_hash}
+                                  url: ${url}
+                                  domain: ${domain}
+                                  status_code: ${response.code}
+                                  content_type: "application/json"
+                                  data: ${response.body}
+                                  size_bytes: ${response_size}
+                                  scraped_at: ${time.format(sys.now())}
+                          - condition: ${text.match_regex(response.headers["content-type"], ".*html.*")}
+                            steps:
+                              - extract_html_data:
+                                  assign:
+                                    - html_snippet: ${text.substring(response.body, 0, min(3000, len(response.body)))}
+                                    - processed_data:
+                                        id: ${url_hash}
+                                        url: ${url}
+                                        domain: ${domain}
+                                        status_code: ${response.code}
+                                        content_type: "text/html"
+                                        html_preview: ${html_snippet}
+                                        size_bytes: ${response_size}
+                                        scraped_at: ${time.format(sys.now())}
+                    
+                    - add_result:
+                        assign:
+                          - results: ${list.concat(results, processed_data)}
+                    
+                    - brief_delay:
+                        call: sys.sleep
+                        args:
+                          seconds: 0.5
+                
+                except:
+                  as: e
+                  steps:
+                    - log_scrape_error:
+                        call: sys.log
+                        args:
+                          text: "Scraping failed for URL"
+                          severity: "WARNING"
+    
+    - enrich_data:
+        switch:
+          - condition: ${enrichment = true}
+            steps:
+              - add_enrichment:
+                  assign:
+                    - enriched_results: []
+                    
+              - enrich_each_result:
+                  for:
+                    value: result
+                    in: ${results}
+                    steps:
+                      - add_analysis:
+                          assign:
+                            - enriched_result: ${result}
+                            - word_count: ${len(text.split(default(map.get(result, "html_preview"), ""), " "))}
+                            - enriched_result["analysis"]: 
+                                word_count: ${word_count}
+                                has_content: ${word_count > 10}
+                                category: ${if(word_count > 100, "article", "snippet")}
+                      
+                      - append_enriched:
+                          assign:
+                            - enriched_results: ${list.concat(enriched_results, enriched_result)}
+              
+              - use_enriched:
+                  assign:
+                    - final_results: ${enriched_results}
+          - condition: true
+            assign:
+              - final_results: ${results}
+    
+    - prepare_output:
+        assign:
+          - output_data:
+              workflow_execution_id: ${sys.get_env("GOOGLE_CLOUD_WORKFLOW_EXECUTION_ID")}
+              execution_timestamp: ${timestamp}
+              total_urls: ${len(urls)}
+              successful_scrapes: ${len(final_results)}
+              scraping_summary:
+                urls_requested: ${urls}
+                results_count: ${len(final_results)}
+                enrichment_enabled: ${enrichment}
+              data: ${final_results}
+    
+    - store_in_cloud_storage:
+        try:
+          steps:
+            - create_storage_filename:
+                assign:
+                  - storage_filename: ${"scrape_" + text.replace_all(text.replace_all(timestamp, ":", ""), " ", "_") + ".json"}
+            
+            - upload_to_gcs:
+                call: googleapis.storage.v1.objects.insert
+                args:
+                  bucket: ${bucket_name}
+                  uploadType: "media"
+                  name: ${storage_filename}
+                  body:
+                    data: ${json.encode(output_data)}
+                result: storage_result
+            
+            - log_storage_success:
+                call: sys.log
+                args:
+                  text: "Data stored in Cloud Storage successfully"
+                  severity: "INFO"
+        except:
+          as: e
+          steps:
+            - log_storage_failure:
+                call: sys.log
+                args:
+                  text: "Failed to store in Cloud Storage"
+                  severity: "ERROR"
+    
+    - create_summary:
+        assign:
+          - execution_summary:
+              status: "completed"
+              workflow_id: ${sys.get_env("GOOGLE_CLOUD_WORKFLOW_EXECUTION_ID")}
+              execution_time: ${timestamp}
+              completed_at: ${time.format(sys.now())}
+              statistics:
+                total_urls_processed: ${len(urls)}
+                successful_extractions: ${len(final_results)}
+                success_rate_percent: ${if(len(urls) > 0, (len(final_results) * 100) / len(urls), 0)}
+                enrichment_applied: ${enrichment}
+              output_locations:
+                cloud_storage: ${"gs://" + bucket_name + "/" + storage_filename}
+              sample_domains: ${list.concat([], [result.domain for result in final_results])}
+    
+    - final_log:
+        call: sys.log
+        args:
+          text: "Web scraping workflow execution completed successfully"
+          severity: "INFO"
+    
+    - return_results:
+        return: ${execution_summary}

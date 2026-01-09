@@ -1,0 +1,58 @@
+name: Debug Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: 'Enable debug mode'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  debug-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Enable debug logging
+        if: inputs.debug_enabled
+        run: |
+          echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
+          echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
+      
+      - name: Debug information
+        if: inputs.debug_enabled
+        run: |
+          echo "=== Environment Variables ==="
+          env | sort
+          echo "=== System Information ==="
+          uname -a
+          echo "=== Disk Space ==="
+          df -h
+          echo "=== Memory ==="
+          free -h
+      
+      - name: Monitor workflow performance
+        run: |
+          START_TIME=$(date +%s)
+          
+          # Your actual work here
+          echo "Doing some work..."
+          sleep 2
+          
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          
+          echo "Work duration: ${DURATION}s"
+          
+          # Alert if work is slow
+          if [ $DURATION -gt 5 ]; then
+            echo "Work took longer than 5 seconds!"
+            # In real workflow, you'd send to Slack/email
+          fi
+      
+      - name: SSH Debug Session
+        if: failure() && inputs.debug_enabled
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true

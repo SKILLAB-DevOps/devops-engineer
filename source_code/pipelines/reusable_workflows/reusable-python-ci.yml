@@ -1,0 +1,49 @@
+name: Reusable Python CI
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        required: false
+        type: string
+        default: "3.12"
+      run-security-scan:
+        required: false
+        type: boolean
+        default: true
+      coverage-threshold:
+        required: false
+        type: number
+        default: 80
+    secrets:
+      CODECOV_TOKEN:
+        required: false
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      
+      - name: Install and test
+        run: |
+          uv sync --dev
+          uv run pytest --cov=src --cov-fail-under=${{ inputs.coverage-threshold }}
+      
+      - name: Security scan
+        if: inputs.run-security-scan
+        run: uv run bandit -r src/
+      
+      - name: Upload coverage
+        if: secrets.CODECOV_TOKEN
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

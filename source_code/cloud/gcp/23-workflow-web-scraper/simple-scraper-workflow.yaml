@@ -1,0 +1,204 @@
+# Star Wars Data Collection Workflow
+# Fetches Star Wars data from swapi.tech and stores in Cloud Storage
+
+main:
+  params: [args]
+  steps:
+    - initialize:
+        assign:
+          - endpoints: ${default(args.endpoints, ["people", "planets"])}
+          - bucket: ${args.bucket}
+          - base_url: "https://www.swapi.tech/api"
+          - timestamp: ${text.replace_all(time.format(sys.now()), ":", "-")}
+          - results: []
+          
+    - process_endpoints:
+        for:
+          value: endpoint
+          in: ${endpoints}
+          steps:
+            - log_processing:
+                call: sys.log
+                args:
+                  text: ${"Fetching Star Wars data from " + endpoint + " endpoint"}
+                  severity: INFO
+                  
+            - build_url:
+                assign:
+                  - api_url: ${base_url + "/" + endpoint}
+                  
+            - fetch_endpoint_list:
+                try:
+                  call: http.get
+                  args:
+                    url: ${api_url}
+                    timeout: 30
+                  result: list_response
+                except:
+                  as: e
+                  steps:
+                    - handle_list_error:
+                        assign:
+                          - error_result:
+                              endpoint: ${endpoint}
+                              url: ${api_url}
+                              error: ${e.message}
+                              timestamp: ${time.format(sys.now())}
+                        next: add_error_result
+                        
+            - process_endpoint_data:
+                switch:
+                  - condition: ${list_response.code == 200}
+                    steps:
+                      - extract_items:
+                          assign:
+                            - api_data: ${list_response.body}
+                            - total_records: ${map.get(api_data.result, "total_records")}
+                            - items: ${map.get(api_data.result, "results")}
+                            
+                      - fetch_detailed_items:
+                          assign:
+                            - detailed_items: []
+                            - max_items: ${if(len(items) > 5, 5, len(items))}
+                            
+                      - get_item_details:
+                          for:
+                            value: item
+                            range: ${max_items}
+                            steps:
+                              - fetch_item_detail:
+                                  try:
+                                    call: http.get
+                                    args:
+                                      url: ${items[item].url}
+                                      timeout: 30
+                                    result: detail_response
+                                  except:
+                                    as: detail_error
+                                    next: continue
+                                    
+                              - add_detailed_item:
+                                  switch:
+                                    - condition: ${detail_response.code == 200}
+                                      assign:
+                                        - item_detail: ${detail_response.body.result}
+                                        - detailed_items: ${list.concat(detailed_items, item_detail)}
+                            
+                      - create_endpoint_result:
+                          assign:
+                            - endpoint_result:
+                                endpoint: ${endpoint}
+                                url: ${api_url}
+                                status_code: ${list_response.code}
+                                total_available: ${total_records}
+                                items_fetched: ${len(detailed_items)}
+                                data: ${detailed_items}
+                                fetched_at: ${time.format(sys.now())}
+                                
+                      - add_result:
+                          assign:
+                            - results: ${list.concat(results, endpoint_result)}
+                              
+            - process_response:
+                switch:
+                  - condition: ${response.code == 200}
+                    steps:
+                      - determine_content_type:
+                          assign:
+                            - content_type: ${default(map.get(response.headers, "content-type"), "unknown")}
+                            - body_text: ${string(response.body)}
+                            - is_json: ${text.find_all(content_type, "json") != []}
+                            
+                      - extract_data:
+                          switch:
+                            - condition: ${is_json}
+                              assign:
+                                - extracted_data: ${response.body}
+                            - condition: true
+                              assign:
+                                - max_length: 1000
+                                - body_length: ${len(body_text)}
+                                - truncate_length: ${if(body_length > max_length, max_length, body_length)}
+                                - extracted_data: ${text.substring(body_text, 0, truncate_length)}
+                            
+                      - create_result:
+                          assign:
+                            - url_result:
+                                url: ${url}
+                                status_code: ${response.code}
+                                content_type: ${content_type}
+                                content_length: ${len(body_text)}
+                                data: ${extracted_data}
+                                scraped_at: ${time.format(sys.now())}
+                                
+                      - add_result:
+                          assign:
+                            - results: ${list.concat(results, url_result)}
+                            
+                  - condition: true
+                    steps:
+                      - create_endpoint_error:
+                          assign:
+                            - error_result:
+                                endpoint: ${endpoint}
+                                url: ${api_url}
+                                status_code: ${list_response.code}
+                                error: ${"HTTP " + string(list_response.code)}
+                                timestamp: ${time.format(sys.now())}
+                                
+                      - add_error_result:
+                          assign:
+                            - results: ${list.concat(results, error_result)}
+                            
+    - count_results:
+        assign:
+          - successful_count: 0
+          - failed_count: 0
+          
+    - count_successful:
+        for:
+          value: result
+          in: ${results}
+          steps:
+            - check_success:
+                switch:
+                  - condition: ${map.get(result, "status_code") == 200}
+                    assign:
+                      - successful_count: ${successful_count + 1}
+                  - condition: true
+                    assign:
+                      - failed_count: ${failed_count + 1}
+                            
+    - prepare_storage:
+        assign:
+          - filename: ${"star_wars_data_" + text.replace_all(timestamp, ".", "_") + ".json"}
+          - storage_data:
+              summary:
+                total_endpoints: ${len(endpoints)}
+                successful_fetches: ${successful_count}
+                failed_fetches: ${failed_count}
+                execution_time: ${time.format(sys.now())}
+                data_source: "Star Wars API (swapi.tech)"
+              results: ${results}
+              
+    - store_results:
+        call: googleapis.storage.v1.objects.insert
+        args:
+          bucket: ${bucket}
+          name: ${filename}
+          uploadType: "media"
+          body: ${json.encode(storage_data)}
+        result: storage_response
+        
+    - log_completion:
+        call: sys.log
+        args:
+          text: ${"Star Wars data collection completed. Results stored in gs://" + bucket + "/" + filename}
+          severity: INFO
+          
+    - return_summary:
+        return:
+          success: true
+          endpoints_processed: ${len(results)}
+          storage_location: ${"gs://" + bucket + "/" + filename}
+          summary: ${map.get(storage_data, "summary")}

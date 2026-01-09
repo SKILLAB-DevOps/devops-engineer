@@ -2,6 +2,7 @@
 TODO
 ####
 
+
 This section contains practical exercises designed to build your CI/CD skills progressively. Each task includes estimated completion time and clear success criteria.
 
 .. note::

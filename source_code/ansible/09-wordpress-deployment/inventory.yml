@@ -1,0 +1,26 @@
+---
+# Simple inventory for WordPress deployment
+# Use this for single-server WordPress installations
+
+all:
+  hosts:
+    # For local testing
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: "{{ ansible_playbook_python }}"
+      
+    # For single VM deployment (uncomment and configure)  
+    # wordpress-server:
+    #   ansible_host: 192.168.1.100
+    #   ansible_user: ubuntu
+    #   ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    
+    # For Docker container testing (uncomment and configure)
+    # wordpress-container:
+    #   ansible_host: wordpress-test
+    #   ansible_connection: docker
+  
+  vars:
+    # Global variables for all hosts
+    ansible_become: true
+    ansible_become_method: sudo

@@ -1,0 +1,4 @@
+---
+# Variables for all hosts
+environment: "development"
+custom_message: "This is a development server - handle with care!"

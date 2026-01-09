@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-content
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html-content
+        configMap:
+          name: web-content
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: web-app
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-content
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Kubernetes Hello World</title>
+        <style>
+            body { font-family: Arial; margin: 40px; text-align: center; }
+            .container { max-width: 600px; margin: 0 auto; }
+            h1 { color: #4285f4; }
+            .info { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🚀 Kubernetes Hello World!</h1>
+            <div class="info">
+                <h2>Congratulations!</h2>
+                <p>You've successfully deployed an application to Google Kubernetes Engine (GKE)!</p>
+                <p><strong>Pod:</strong> <span id="hostname">Loading...</span></p>
+                <p><strong>Replicas:</strong> This app runs on multiple containers</p>
+                <p><strong>Load Balanced:</strong> Traffic is distributed automatically</p>
+            </div>
+            <h3>Learning Achievement</h3>
+            <p>You've completed the full journey:</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>✅ Storage (static websites)</li>
+                <li>✅ Compute (virtual machines)</li>
+                <li>✅ Applications (WordPress)</li>
+                <li>✅ Load Balancing (high availability)</li>
+                <li>✅ Auto Scaling (elastic infrastructure)</li>
+                <li>✅ Containers (Docker)</li>
+                <li>✅ Kubernetes (container orchestration)</li>
+            </ul>
+        </div>
+        
+        <script>
+            // Show which pod is serving this request
+            fetch('/hostname')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('hostname').textContent = data;
+                })
+                .catch(() => {
+                    document.getElementById('hostname').textContent = window.location.hostname;
+                });
+        </script>
+    </body>
+    </html>

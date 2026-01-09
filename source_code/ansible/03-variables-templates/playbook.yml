@@ -1,0 +1,126 @@
+---
+- name: Variables and Templates Example
+  hosts: all
+  become: true
+  
+  # Define variables at playbook level
+  vars:
+    app_name: "my-web-app"
+    app_port: 8080
+    app_user: "webapp"
+    app_directory: "/opt/{{ app_name }}"
+    packages_to_install:
+      - nginx
+      - curl
+      - vim
+    nginx_sites:
+      - name: "{{ app_name }}"
+        port: "{{ app_port }}"
+        root: "{{ app_directory }}/html"
+        
+  # Variable files can also be included
+  vars_files:
+    - vars/main.yml
+    
+  tasks:
+    - name: Show some basic variable usage
+      ansible.builtin.debug:
+        msg: "Deploying {{ app_name }} on port {{ app_port }}"
+        
+    - name: Display host-specific information
+      ansible.builtin.debug:
+        msg: |
+          Host: {{ inventory_hostname }}
+          OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          CPU: {{ ansible_processor_cores }} cores
+          Memory: {{ ansible_memtotal_mb }}MB
+          
+    - name: Create application user
+      ansible.builtin.user:
+        name: "{{ app_user }}"
+        shell: /bin/bash
+        home: "{{ app_directory }}"
+        create_home: yes
+        system: yes
+        
+    - name: Create application directory structure
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: '0755'
+      loop:
+        - "{{ app_directory }}"
+        - "{{ app_directory }}/html"
+        - "{{ app_directory }}/logs"
+        - "{{ app_directory }}/config"
+        
+    - name: Install required packages
+      ansible.builtin.package:
+        name: "{{ packages_to_install }}"
+        state: present
+        
+    - name: Generate application configuration from template
+      ansible.builtin.template:
+        src: app-config.j2
+        dest: "{{ app_directory }}/config/app.conf"
+        owner: "{{ app_user }}"  
+        group: "{{ app_user }}"
+        mode: '0644'
+      notify: restart nginx
+      
+    - name: Create HTML page from template
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: "{{ app_directory }}/html/index.html"
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: '0644'
+        
+    - name: Generate nginx site configuration
+      ansible.builtin.template:
+        src: nginx-site.j2
+        dest: "/etc/nginx/sites-available/{{ app_name }}"
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart nginx
+      
+    - name: Enable nginx site
+      ansible.builtin.file:
+        src: "/etc/nginx/sites-available/{{ app_name }}"
+        dest: "/etc/nginx/sites-enabled/{{ app_name }}"
+        state: link
+      notify: restart nginx
+      
+    - name: Remove default nginx site
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: restart nginx
+      
+    - name: Show variables from different sources
+      ansible.builtin.debug:
+        msg: |
+          Playbook var: {{ app_name }}
+          Vars file: {{ database_host | default('not defined') }}
+          Host var: {{ custom_message | default('not defined') }}
+          Group var: {{ environment | default('not defined') }}
+          Fact: {{ ansible_hostname }}
+          
+    - name: Conditional task based on variable
+      ansible.builtin.debug:
+        msg: "This is a production environment!"
+      when: environment is defined and environment == "production"
+      
+    - name: Loop with variables
+      ansible.builtin.debug:
+        msg: "Package {{ item }} will be installed"
+      loop: "{{ packages_to_install }}"
+      
+  handlers:
+    - name: restart nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted

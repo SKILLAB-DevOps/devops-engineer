@@ -1,0 +1,79 @@
+---
+# System Information Gathering Playbook
+# Demonstrates Ansible facts collection and information display
+# Perfect for understanding what Ansible can discover about your systems
+
+- name: "Gather and Display System Information"
+  hosts: all
+  gather_facts: true  # This collects system information automatically
+  
+  tasks:
+    - name: "Display basic system information"
+      ansible.builtin.debug:
+        msg: |
+          
+          === SYSTEM OVERVIEW ===
+          Hostname: {{ ansible_hostname }}
+          Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Architecture: {{ ansible_architecture }}
+          Kernel Version: {{ ansible_kernel }}
+          Python Version: {{ ansible_python_version }}
+          Uptime: {{ ansible_uptime_seconds | int // 3600 }} hours
+          
+    - name: "Display network information"
+      ansible.builtin.debug:
+        msg: |
+          
+          === NETWORK INFORMATION ===
+          Primary IP Address: {{ ansible_default_ipv4.address | default('Not available') }}
+          Network Interface: {{ ansible_default_ipv4.interface | default('Not available') }}
+          All IP Addresses: {{ ansible_all_ipv4_addresses | join(', ') }}
+          Hostname (FQDN): {{ ansible_fqdn }}
+          
+    - name: "Display hardware information"
+      ansible.builtin.debug:
+        msg: |
+          
+          === HARDWARE INFORMATION ===
+          CPU Cores: {{ ansible_processor_vcpus }}
+          CPU Model: {{ ansible_processor[2] | default('Unknown') }}
+          Total Memory: {{ ansible_memtotal_mb }}MB ({{ (ansible_memtotal_mb/1024) | round(1) }}GB)
+          Available Memory: {{ ansible_memfree_mb }}MB
+          Disk Space (root): {{ (ansible_mounts | selectattr('mount', 'equalto', '/') | first).size_total | filesizeformat | default('Unknown') }}
+          
+    - name: "Gather service information"
+      ansible.builtin.service_facts:
+      
+    - name: "Show important services status"
+      ansible.builtin.debug:
+        msg: |
+          
+          === SERVICE STATUS ===
+          SSH Service: {{ ansible_facts.services['ssh.service'].state | default('not found') }}
+          {% if 'systemd-resolved.service' in ansible_facts.services %}
+          DNS Resolution: {{ ansible_facts.services['systemd-resolved.service'].state }}
+          {% endif %}
+          {% if 'cron.service' in ansible_facts.services %}
+          Cron Service: {{ ansible_facts.services['cron.service'].state }}
+          {% endif %}
+          
+    - name: "Create detailed system report"
+      ansible.builtin.template:
+        src: system-summary.j2
+        dest: "/tmp/ansible-system-report-{{ inventory_hostname }}.txt"
+        mode: '0644'
+      delegate_to: localhost  # Save file on your control machine
+      
+    - name: "Report generation complete"
+      ansible.builtin.debug:
+        msg: |
+          
+          System information gathering complete!
+          
+          Detailed report saved to:
+             /tmp/ansible-system-report-{{ inventory_hostname }}.txt
+          
+          Next steps:
+             - Review the generated report
+             - Try modifying this playbook to gather additional information
+             - Move on to 02-basic-tasks to learn file and package management

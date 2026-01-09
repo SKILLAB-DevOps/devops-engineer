@@ -1,0 +1,28 @@
+---
+# Teaching Inventory - Single VM Setup
+# Use this when you have one Ubuntu VM for testing
+# Perfect for cloud instances or VirtualBox VMs
+
+all:
+  hosts:
+    ubuntu-vm:
+      ansible_host: 192.168.1.100  # Change this to your VM's IP
+      ansible_user: ubuntu          # Change this to your VM's user
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa  # Change to your key path
+      ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+  
+  vars:
+    # Global variables for VM deployment
+    ansible_become: true
+    ansible_become_method: sudo
+    ansible_python_interpreter: /usr/bin/python3
+    
+    # Teaching environment markers
+    environment: "learning"
+    deployment_method: "single_vm"
+    
+# Example of how to customize for your specific VM:
+# 1. Change ansible_host to your VM's IP address
+# 2. Change ansible_user to your VM's username
+# 3. Update the SSH key path if needed
+# 4. Test with: ansible all -i inventory/single-vm.yml -m ping

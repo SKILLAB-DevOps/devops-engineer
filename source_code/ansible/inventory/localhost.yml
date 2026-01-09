@@ -1,0 +1,18 @@
+---
+# Teaching Inventory - Localhost Only
+# Perfect for learning Ansible basics without additional infrastructure
+
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: "{{ ansible_playbook_python }}"
+  
+  vars:
+    # Global variables for all teaching examples
+    ansible_become: true
+    ansible_become_method: sudo
+    
+    # Teaching environment markers
+    environment: "learning"
+    deployment_method: "localhost"

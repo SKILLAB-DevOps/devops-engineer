@@ -1,0 +1,60 @@
+---
+# Ansible Connectivity Test Playbook
+# This playbook verifies that Ansible can connect to your machines
+# and perform basic operations - your "Hello World" for Ansible!
+
+- name: "Ansible Connectivity and Access Test"
+  hosts: all
+  gather_facts: false  # Skip fact gathering for faster execution
+  
+  tasks:
+    # Step 1: Test basic connectivity
+    - name: "Test Ansible ping (not ICMP ping!)"
+      ansible.builtin.ping:
+      register: ping_result
+      
+    - name: "Connection successful"
+      ansible.builtin.debug:
+        msg: "Successfully connected to {{ inventory_hostname }}"
+      when: ping_result is succeeded
+      
+    # Step 2: Test command execution
+    - name: "Check what user we're connected as"
+      ansible.builtin.command:
+        cmd: whoami
+      register: whoami_result
+      changed_when: false  # This command doesn't change anything
+      
+    - name: "Display connection user"
+      ansible.builtin.debug:
+        msg: "Connected as user: {{ whoami_result.stdout }}"
+        
+    # Step 3: Test privilege escalation (sudo)
+    - name: "Test sudo access for system administration"
+      ansible.builtin.command:
+        cmd: whoami
+      become: true  # This uses sudo
+      register: sudo_result
+      ignore_errors: true  # Don't fail if sudo doesn't work
+      changed_when: false
+      
+    - name: "Sudo access working"
+      ansible.builtin.debug:
+        msg: "Sudo works! Can escalate to: {{ sudo_result.stdout }}"
+      when: sudo_result is succeeded
+      
+    - name: "Sudo access issue"
+      ansible.builtin.debug:
+        msg: "WARNING: Sudo not working - you'll need this for system administration tasks"
+      when: sudo_result is failed
+      
+    # Step 4: Show basic system info
+    - name: "Get basic system information"
+      ansible.builtin.command:
+        cmd: uname -a
+      register: system_info
+      changed_when: false
+      
+    - name: "Display system information"
+      ansible.builtin.debug:
+        msg: "System: {{ system_info.stdout }}"

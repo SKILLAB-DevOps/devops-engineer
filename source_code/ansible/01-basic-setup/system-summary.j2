@@ -1,0 +1,28 @@
+System Information Summary for {{ inventory_hostname }}
+=======================================================
+
+Basic Information:
+- Hostname: {{ ansible_hostname }}
+- FQDN: {{ ansible_fqdn }}
+- Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}
+- Architecture: {{ ansible_architecture }}
+- Kernel Version: {{ ansible_kernel }}
+- Python Version: {{ ansible_python_version }}
+
+Hardware Information:
+- CPU Model: {{ ansible_processor[2] | default('Unknown') }}
+- CPU Cores: {{ ansible_processor_vcpus }}
+- Total Memory: {{ ansible_memtotal_mb }} MB
+- Available Memory: {{ ansible_memfree_mb }} MB
+
+Network Information:
+- Default IPv4 Address: {{ ansible_default_ipv4.address | default('Not available') }}
+- All IPv4 Addresses: {{ ansible_all_ipv4_addresses | join(', ') }}
+- Default Gateway: {{ ansible_default_ipv4.gateway | default('Not available') }}
+
+Storage Information:
+{% for mount in ansible_mounts %}
+- {{ mount.mount }}: {{ mount.size_total | filesizeformat }} total, {{ mount.size_available | filesizeformat }} available
+{% endfor %}
+
+Date Generated: {{ ansible_date_time.iso8601 }}

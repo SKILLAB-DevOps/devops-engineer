@@ -2,6 +2,21 @@
 0.1 Introduction to DevOps
 ##########################
 
+===================
+Learning Objectives
+===================
+
+By the end of this chapter, you will be able to:
+
+• **Define** DevOps and explain its core principles and cultural impact
+• **Distinguish** between traditional IT operations and DevOps approaches
+• **Identify** the key benefits DevOps brings to organizations and teams
+• **Understand** the evolution from siloed teams to collaborative culture
+• **Recognize** essential DevOps practices like CI/CD, automation, and monitoring
+• **Appreciate** the mindset shift required for successful DevOps adoption
+
+**Prerequisites:** Basic understanding of software development and IT operations concepts.
+
 ===============
 What is DevOps?
 ===============
@@ -71,33 +86,6 @@ DevOps patterns are proven practices that help teams succeed in their DevOps jou
 7. **Single Source of Truth**: Ensures consistency by storing configuration and code in a single, version-controlled repository.
 8. **Dark Launching**: Tests new features in production without exposing them to users, reducing risk and validating performance.
 
-==============================
-What I Do as a DevOps Engineer
-==============================
-
-The role of a DevOps engineer varies depending on the company, team, and project, but it generally involves:
-
-1. Supporting teams with the infrastructure and automation they need: building pipelines, integrating tools, and creating new environments.
-2. Enhancing security, performance, reliability, and scalability of systems.
-3. Mentoring team members and fostering knowledge-sharing.
-4. Conducting PoCs (Proof of Concepts) for new tools and technologies and documenting decisions with Architecture Decision Records (ADRs).
-5. Managing stakeholders by helping them understand DevOps culture and its benefits.
-
-=============================================
-Site Reliability Engineering (SRE) vs. DevOps
-=============================================
-
--------------------------------------------
-"Explain Like I'm 5" (ELI5): DevOps vs. SRE
--------------------------------------------
-
-*Imagine a theater production.*
-
-- **DevOps** is like the team that writes the script, directs the play, and sets up the stage and lighting. They ensure the play is ready to run smoothly when it's showtime.
-- **SRE** is the backstage crew, handling lighting and sound, fixing issues during the performance, and ensuring the play goes on without a hitch.
-
-While DevOps focuses on streamlining the entire development and deployment process, SRE emphasizes reliability and performance during operations. Both roles often overlap but have distinct missions.
-
 ==============
 DevOps Flavors
 ==============
@@ -146,3 +134,29 @@ Continuous Delivery (CD) builds on CI by automatically preparing code changes fo
    :align: center
    :alt: CI/CD
 
+==============================
+What I Do as a DevOps Engineer
+==============================
+
+The role of a DevOps engineer varies depending on the company, team, and project, but it generally involves:
+
+1. Supporting teams with the infrastructure and automation they need: building pipelines, integrating tools, and creating new environments.
+2. Enhancing security, performance, reliability, and scalability of systems.
+3. Mentoring team members and fostering knowledge-sharing.
+4. Conducting PoCs (Proof of Concepts) for new tools and technologies and documenting decisions with Architecture Decision Records (ADRs).
+5. Managing stakeholders by helping them understand DevOps culture and its benefits.
+
+=============================================
+Site Reliability Engineering (SRE) vs. DevOps
+=============================================
+
+-------------------------------------------
+"Explain Like I'm 5" (ELI5): DevOps vs. SRE
+-------------------------------------------
+
+*Imagine a theater production.*
+
+- **DevOps** is like the team that writes the script, directs the play, and sets up the stage and lighting. They ensure the play is ready to run smoothly when it's showtime.
+- **SRE** is the backstage crew, handling lighting and sound, fixing issues during the performance, and ensuring the play goes on without a hitch.
+
+While DevOps focuses on streamlining the entire development and deployment process, SRE emphasizes reliability and performance during operations. Both roles often overlap but have distinct missions.

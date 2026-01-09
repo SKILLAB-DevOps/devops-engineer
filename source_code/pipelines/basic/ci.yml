@@ -1,0 +1,51 @@
+name: Basic CI Pipeline
+# Simple pipeline demonstrating modern Python CI/CD with GitHub Actions
+
+on:
+  push:                                               # Run on every push
+    branches: [ main, develop ]                       # Target branches
+  pull_request:                                       # Run on PRs  
+    branches: [ main ]                                # PR target branch
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest                            # Use Ubuntu runner
+    strategy:
+      matrix:                                         # Test multiple versions
+        python-version: ["3.11", "3.12", "3.13"]
+    
+    steps:
+      - name: Checkout code                           # Get repository code
+        uses: actions/checkout@v4                     # Latest stable version
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5                 # Install Python
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install uv (modern Python package manager)
+        uses: astral-sh/setup-uv@v3                   # Ultra-fast package manager
+        with:
+          enable-cache: true                          # Cache dependencies
+      
+      - name: Install dependencies
+        run: |
+          uv venv                                     # Create virtual environment
+          uv pip install pytest ruff mypy           # Install dev tools
+      
+      - name: Code formatting check
+        run: |
+          uv run ruff format --check .               # Check code formatting
+      
+      - name: Linting
+        run: |
+          uv run ruff check .                        # Run linter
+      
+      - name: Type checking
+        run: |
+          uv run mypy *.py                           # Static type checking
+      
+      - name: Run tests
+        run: |
+          uv run python hello_world.py               # Test our script
+          echo "✅ All tests passed!"                # Success message

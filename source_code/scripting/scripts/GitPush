@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#
+#######################################
+# Automates the git push process.
+# Usage: ./GitPush 'message' - always use single quotes
+# Author: Skillab Team
+# Copyright: Bla Bla Bla
+#######################################
+
+#######################################
+# Description
+#   checks the status of the repository
+#   adds all the updated files
+#   adds a message commit
+#   pushes the code to the 
+# Globals:
+#   None
+# Arguments:
+#   ${1} - Commit Message
+# Returns
+#   None
+#######################################
+function pushCode() {
+  git status
+  git add --all
+  echo "${1}"
+  git commit -m "\"${1}\""
+  git push
+}
+
+if [[ $# -eq 1 ]]; then
+    pushCode "${1}"
+    echo "[INFO]: Code pushed."
+else
+    echo "[ERROR]: No arguments supplied."
+fi
+1``

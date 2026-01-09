@@ -1,0 +1,17 @@
+# Code in browser
+jupyter
+
+# Creating a cli application
+click
+
+# Creating a web crawler
+requests
+bs4
+
+# Getting system uptime
+uptime
+
+# Testing dependencies
+pylint
+mypy
+black
